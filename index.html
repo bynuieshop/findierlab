@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FINDIER LAB — Translate Ideas Into Companies</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --lime:   #D3F45A;
+      --purple: #7B61FF;
+      --cyan:   #4DE7FF;
+      --coral:  #FF6B47;
+      --black:  #111111;
+      --white:  #FFFFFF;
+      --offwhite: #F7F7F5;
+      --gray1:  #F2F0ED;
+      --gray2:  #E2E0DC;
+      --t-soft: #555555;
+      --t-muted:#999999;
+    }
+
+    html { scroll-behavior: smooth; font-size: 17px; }
+
+    .fade { opacity: 0; transform: translateY(36px); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+    .fade.in { opacity: 1; transform: none; }
+    .d1 { transition-delay: .12s; } .d2 { transition-delay: .24s; } .d3 { transition-delay: .36s; } .d4 { transition-delay: .48s; }
+
+    body {
+      font-family: 'Pretendard', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--black);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* NAV */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; height: 64px; z-index: 9999;
+      background: #ffffff; border-bottom: 1px solid #E8E8E8;
+      display: flex; align-items: center; justify-content: space-between; padding: 0 48px;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+    .nav-logo-text { font-family: 'Inter',sans-serif; font-size: 15px; font-weight: 800; letter-spacing: .05em; color: #111; white-space: nowrap; }
+    .nav-menu { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .nav-menu li a { font-family: 'Inter',sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .12em; color: #666; text-transform: uppercase; text-decoration: none; transition: color .2s; }
+    .nav-menu li a:hover { color: #111; }
+    .nav-cta { display: inline-flex; align-items: center; gap: 8px; background: #111; color: #fff; font-family: 'Pretendard',sans-serif; font-size: 13px; font-weight: 600; padding: 10px 22px; border-radius: 100px; text-decoration: none; white-space: nowrap; transition: opacity .2s; flex-shrink: 0; }
+    .nav-cta:hover { opacity: .75; }
+    .nav-cta-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--lime); flex-shrink: 0; }
+
+    /* HERO */
+    #hero { display: grid; grid-template-columns: 1fr 1fr; height: 100vh; padding-top: 64px; overflow: hidden; }
+    .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 40px 48px 40px 72px; background: #fff; overflow: hidden; }
+    .hero-eyebrow { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 600; letter-spacing: .2em; color: var(--t-muted); text-transform: uppercase; margin-bottom: 16px; }
+    .hero-headline { font-family: 'Pretendard',sans-serif; font-size: clamp(2.8rem,4.6vw,4.4rem); font-weight: 900; line-height: 1.16; letter-spacing: -.03em; color: var(--black); margin-bottom: 20px; }
+    .typing-cursor { display: inline-block; margin-left: 3px; color: var(--purple); font-weight: 300; }
+    .hero-body { font-size: .93rem; color: var(--t-soft); line-height: 1.7; margin-bottom: 6px; }
+    .hero-body strong { color: var(--black); font-weight: 700; }
+    .hero-sub { font-size: .82rem; color: var(--t-muted); line-height: 1.7; margin-bottom: 22px; padding-left: 14px; border-left: 2.5px solid var(--gray2); }
+    .hero-steps { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-bottom: 26px; }
+    .hero-step { display: flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 500; color: var(--t-soft); }
+    .hero-step + .hero-step { padding-left: 6px; border-left: 1px solid var(--gray2); }
+    .step-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+    .hero-cta { display: inline-flex; align-items: center; gap: 10px; background: var(--black); color: var(--white); font-size: 13px; font-weight: 700; letter-spacing: .04em; padding: 14px 28px; border-radius: 100px; width: fit-content; transition: opacity .2s; }
+    .hero-cta:hover { opacity: .8; }
+    .hero-right { background-color: #f0eeeb; background-image: url('assets/hero-object.png'); background-size: cover; background-position: right center; }
+
+    /* HOW SECTION */
+    #how {
+      background: var(--gray1);
+      padding: 130px 80px;
+    }
+    .how-inner {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .section-eyebrow { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 600; letter-spacing: .2em; color: var(--t-muted); text-transform: uppercase; margin-bottom: 24px; }
+    .how-title { font-size: clamp(1.6rem,2.5vw,2.2rem); font-weight: 900; line-height: 1.3; letter-spacing: -.025em; margin-bottom: 20px; color: var(--black); }
+    .how-title .underbar { position: relative; display: inline-block; }
+    .how-title .underbar::after { content: ''; position: absolute; left: 0; right: 0; bottom: -2px; height: 3px; background: linear-gradient(90deg,#D3F45A,#7B61FF,#4DE7FF); border-radius: 2px; }
+    .how-body { font-size: .86rem; color: var(--t-soft); line-height: 1.9; margin-bottom: 12px; }
+    .how-quote { font-size: .82rem; font-style: italic; color: var(--t-muted); line-height: 1.75; padding-left: 14px; border-left: 2.5px solid var(--gray2); margin-bottom: 28px; }
+    .text-link { font-size: 12px; font-weight: 700; letter-spacing: .06em; color: var(--black); border-bottom: 1.5px solid var(--black); padding-bottom: 2px; transition: opacity .2s; display: inline-block; }
+    .text-link:hover { opacity: .5; }
+
+    .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); align-items: start; gap: 0; }
+    .step-card { padding: 0 28px; position: relative; }
+    .step-card:first-child { padding-left: 0; }
+    .step-card:last-child { padding-right: 0; }
+    .step-card:not(:first-child)::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: var(--gray2); }
+    .step-num { font-family: 'Inter',sans-serif; font-size: 1.6rem; font-weight: 900; letter-spacing: -.03em; margin-bottom: 20px; display: block; }
+    .step-icon { margin-bottom: 14px; }
+    .step-name { font-family: 'Inter',sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .08em; margin-bottom: 2px; }
+    .step-ko { font-size: 11px; color: var(--t-muted); margin-bottom: 12px; }
+    .step-desc { font-size: 11px; color: var(--t-soft); line-height: 1.7; }
+    .step-portal { margin-top: 14px; display: flex; align-items: center; gap: 5px; font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 700; letter-spacing: .1em; color: var(--t-muted); text-transform: uppercase; }
+    .step-portal-dot { width: 4px; height: 4px; border-radius: 50%; }
+
+    /* CLIENTS */
+    #clients { padding: 100px 80px 120px; background: var(--white); }
+    .clients-title { font-size: clamp(1.4rem,2.2vw,1.9rem); font-weight: 900; letter-spacing: -.025em; margin-bottom: 48px; color: var(--black); }
+    .clients-row { display: flex; align-items: center; }
+    .client-item { flex: 1; text-align: center; padding: 18px 8px; border-right: 1px solid var(--gray2); font-weight: 700; font-size: 15px; color: #AAAAAA; letter-spacing: -.01em; transition: color .2s; }
+    .client-item:last-child { border-right: none; }
+    .client-item:hover { color: var(--black); }
+
+    /* CTA */
+    #cta {
+      margin: 0 64px 80px;
+      border-radius: 24px;
+      background: linear-gradient(135deg,#EAE3FF 0%,#CBF0FF 55%,#D8FAFF 100%);
+      padding: 100px 80px;
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      align-items: center;
+      gap: 64px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-circle { width: 160px; height: 160px; border-radius: 50%; background: var(--lime); position: relative; flex-shrink: 0; }
+    .cta-title { font-size: clamp(1.7rem,2.8vw,2.4rem); font-weight: 900; line-height: 1.25; letter-spacing: -.025em; margin-bottom: 14px; color: var(--black); }
+    .cta-title .c-purple { color: var(--purple); }
+    .cta-body { font-size: .88rem; color: var(--t-soft); line-height: 1.8; margin-bottom: 32px; }
+    .cta-btn { display: inline-flex; align-items: center; gap: 10px; background: var(--black); color: var(--white); font-size: 14px; font-weight: 700; padding: 16px 32px; border-radius: 100px; transition: opacity .2s; }
+    .cta-btn:hover { opacity: .8; }
+    .cta-watermark { position: absolute; bottom: 32px; right: 48px; opacity: .12; }
+
+    /* FOOTER */
+    #footer { background: var(--black); padding: 0 0 0; }
+    .footer-brand-quote { padding: 56px 80px 48px; border-bottom: 1px solid rgba(255,255,255,.06); }
+    .fbq-text { font-size: clamp(.95rem,1.6vw,1.3rem); font-weight: 900; line-height: 1.5; letter-spacing: -.025em; color: rgba(255,255,255,.55); margin-bottom: 8px; }
+    .fbq-sub { font-size: .8rem; color: rgba(255,255,255,.22); letter-spacing: .06em; }
+    .footer-top { display: flex; justify-content: space-between; align-items: center; padding: 40px 80px; border-bottom: 1px solid rgba(255,255,255,.08); }
+    .footer-logo { font-family: 'Inter',sans-serif; font-size: 15px; font-weight: 800; letter-spacing: .06em; color: #fff; }
+    .footer-tagline { font-size: 10px; color: rgba(255,255,255,.3); letter-spacing: .14em; margin-top: 6px; }
+    .footer-links { display: flex; gap: 28px; }
+    .footer-links a { font-size: 11px; font-weight: 500; letter-spacing: .1em; color: rgba(255,255,255,.35); text-transform: uppercase; transition: color .2s; }
+    .footer-links a:hover { color: rgba(255,255,255,.8); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding: 24px 80px 32px; }
+    .footer-copy { font-size: 10px; color: rgba(255,255,255,.18); letter-spacing: .06em; }
+    .footer-gradbar { width: 100px; height: 2px; border-radius: 2px; background: linear-gradient(90deg,#D3F45A,#7B61FF,#4DE7FF); }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      #nav { padding: 0 32px; }
+      .nav-menu { gap: 22px; }
+      .hero-left { padding: 40px 36px 40px 48px; }
+      #how { padding: 80px 48px; }
+      #clients { padding: 60px 48px 80px; }
+      #cta { margin: 0 48px 64px; padding: 60px; }
+      .footer-brand-quote { padding: 48px 48px 40px; }
+      .footer-top { padding: 36px 48px; }
+      .footer-bottom { padding: 20px 48px 28px; }
+    }
+    @media (max-width: 768px) {
+      #nav { padding: 0 20px; gap: 10px; }
+      .nav-menu { display: none; }
+      .nav-logo-text { font-size: 13px; }
+      .nav-cta { padding: 8px 16px; font-size: 12px; }
+      #hero { grid-template-columns: 1fr; height: auto; min-height: 100svh; }
+      .hero-left { padding: 96px 24px 40px; order: 1; }
+      .hero-right { height: 56vw; min-height: 220px; order: 2; }
+      .hero-headline { font-size: clamp(1.9rem,7.5vw,2.8rem); }
+      #how { padding: 56px 24px; }
+      .how-inner { grid-template-columns: 1fr; gap: 36px; }
+      .steps-grid { grid-template-columns: 1fr; gap: 28px; }
+      .step-card { padding: 0; }
+      .step-card:not(:first-child)::before { display: none; }
+      .step-card:not(:first-child) { padding-top: 24px; border-top: 1px solid var(--gray2); }
+      #clients { padding: 56px 24px 72px; }
+      .clients-row { flex-wrap: wrap; }
+      .client-item { flex: 0 0 50%; border-right: none; border-bottom: 1px solid var(--gray2); font-size: 13px; }
+      #cta { margin: 0 16px 48px; padding: 40px 28px; grid-template-columns: 1fr; gap: 24px; }
+      .cta-circle { width: 64px; height: 64px; }
+      .cta-watermark { display: none; }
+      .footer-brand-quote { padding: 40px 24px 32px; }
+      .footer-top { padding: 28px 24px; flex-direction: column; gap: 20px; align-items: flex-start; }
+      .footer-links { flex-wrap: wrap; gap: 14px; }
+      .footer-bottom { padding: 16px 24px 24px; flex-direction: column; gap: 10px; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<header id="nav">
+  <a href="index.html" class="nav-logo">
+    <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+      <circle cx="10" cy="9.5" r="4.5" fill="#D3F45A"/>
+      <path d="M17 5 L28 5 L28 20" stroke="#7B61FF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M6.5 21 Q10.5 29.5 20 27" stroke="#111111" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+    </svg>
+    <span class="nav-logo-text">FINDIER LAB</span>
+  </a>
+  <ul class="nav-menu">
+    <li><a href="about.html">ABOUT</a></li>
+    <li><a href="service.html">SERVICES</a></li>
+    <li><a href="works.html">WORKS</a></li>
+    <li><a href="process.html">PROCESS</a></li>
+    <li><a href="investment.html">INVESTMENT</a></li>
+    <li><a href="contact.html">CONTACT</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">
+    <span class="nav-cta-dot"></span>생각 보내기
+  </a>
+</header>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Founding Studio</p>
+    <h1 class="hero-headline">
+      <span id="hero-typed"></span><span id="hero-cursor" class="typing-cursor">|</span>
+    </h1>
+    <p class="hero-body">브랜드가 없는 게 아닙니다.<br><strong>번역이 없는 겁니다.</strong></p>
+    <p class="hero-sub">
+      브랜드 마케터를 뽑기 전에, 브랜드를 만드세요.<br>
+      광고 대행사를 쓰기 전에, 언어를 먼저 정리하세요.<br>
+      대표의 생각을 실행 가능한 회사로 번역합니다.
+    </p>
+    <div class="hero-steps">
+      <span class="hero-step"><span class="step-dot" style="background:#D3F45A;"></span>BRAND</span>
+      <span class="hero-step"><span class="step-dot" style="background:#4DE7FF;"></span>WEBSITE</span>
+      <span class="hero-step"><span class="step-dot" style="background:#7B61FF;"></span>OPERATING SYSTEM</span>
+    </div>
+    <a href="contact.html" class="hero-cta">생각 정리 시작하기 →</a>
+  </div>
+  <div class="hero-right"></div>
+</section>
+
+<!-- HOW WE WORK -->
+<section id="how" class="fade">
+  <div class="how-inner">
+    <div>
+      <p class="section-eyebrow">How We Work</p>
+      <h2 class="how-title">
+        생각은 혼자<br>
+        시작할 수 있습니다.<br>
+        하지만 <span class="underbar">회사</span>는<br>
+        구조가 필요합니다.
+      </h2>
+      <p class="how-body">대표와 직접 대화하고,<br>생각을 브랜드 언어와 구조로 번역합니다.</p>
+      <p class="how-quote">우리는 오래 일하지 않습니다.<br>대표가 오래 갈 수 있게 만듭니다.</p>
+      <a href="process.html" class="text-link">PROCESS 자세히 보기 →</a>
+    </div>
+
+    <div class="steps-grid">
+      <!-- 01 DISCOVER -->
+      <div class="step-card">
+        <span class="step-num" style="color:#D3F45A;">01</span>
+        <div class="step-icon">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+            <circle cx="15" cy="15" r="9" stroke="#D3F45A" stroke-width="2"/>
+            <line x1="22" y1="22" x2="30" y2="30" stroke="#D3F45A" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="15" cy="15" r="3.5" fill="#D3F45A" opacity=".3"/>
+            <line x1="15" y1="9" x2="15" y2="21" stroke="#D3F45A" stroke-width="1.2" opacity=".5"/>
+            <line x1="9" y1="15" x2="21" y2="15" stroke="#D3F45A" stroke-width="1.2" opacity=".5"/>
+          </svg>
+        </div>
+        <p class="step-name">DISCOVER</p>
+        <p class="step-ko">발견 — 7일</p>
+        <p class="step-desc">대표의 말 안에서 브랜드 본질을 발견합니다.</p>
+        <div class="step-portal">
+          <span class="step-portal-dot" style="background:#D3F45A;"></span>
+          Brand Note Portal
+        </div>
+      </div>
+      <!-- 02 TRANSLATE -->
+      <div class="step-card">
+        <span class="step-num" style="color:#7B61FF;">02</span>
+        <div class="step-icon">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+            <path d="M4 8H14M9 3V8M6 12c0 0 1.5 5 4.5 7" stroke="#7B61FF" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M16 3c0 0-2 6.5-7.5 9" stroke="#7B61FF" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>
+            <path d="M20 26h12M26 20l6 6-6 6" stroke="#7B61FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <p class="step-name">TRANSLATE</p>
+        <p class="step-ko">번역 — 14일</p>
+        <p class="step-desc">생각을 브랜드 언어와 홈페이지로 번역합니다.</p>
+        <div class="step-portal">
+          <span class="step-portal-dot" style="background:#7B61FF;"></span>
+          Brand OS Site
+        </div>
+      </div>
+      <!-- 03 BUILD -->
+      <div class="step-card">
+        <span class="step-num" style="color:#4DE7FF;">03</span>
+        <div class="step-icon">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+            <rect x="4" y="18" width="11" height="11" rx="2" stroke="#4DE7FF" stroke-width="1.8"/>
+            <rect x="17" y="7" width="11" height="11" rx="2" stroke="#4DE7FF" stroke-width="1.8"/>
+            <path d="M9.5 18V13H17" stroke="#4DE7FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2.5 2"/>
+          </svg>
+        </div>
+        <p class="step-name">BUILD</p>
+        <p class="step-ko">구축 — 30일</p>
+        <p class="step-desc">혼자서도 움직이는 운영 구조를 만듭니다.</p>
+        <div class="step-portal">
+          <span class="step-portal-dot" style="background:#4DE7FF;"></span>
+          Operating Portal
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section id="clients" class="fade">
+  <p class="section-eyebrow" style="margin-bottom:16px;">We Work With</p>
+  <h2 class="clients-title">함께 만든 변화</h2>
+  <div class="clients-row">
+    <div class="client-item">NUiE</div>
+    <div class="client-item">VEVELL</div>
+    <div class="client-item">FINDIER LAB</div>
+    <div class="client-item">BRAND 04</div>
+    <div class="client-item">BRAND 05</div>
+    <div class="client-item">BRAND 06</div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta" class="fade">
+  <div class="cta-circle"></div>
+  <div>
+    <h2 class="cta-title">
+      생각은 혼자 시작할 수 있습니다.<br>
+      하지만 <span class="c-purple">회사는 구조가</span><br>
+      필요합니다.
+    </h2>
+    <p class="cta-body">브랜드부터 운영 구조까지,<br>실행 가능한 회사를 함께 만듭니다.</p>
+    <a href="contact.html" class="cta-btn">생각 보내기 →</a>
+  </div>
+  <svg class="cta-watermark" width="88" height="88" viewBox="0 0 88 88" fill="none">
+    <circle cx="26" cy="22" r="11" fill="#7B61FF"/>
+    <path d="M40 12 L74 12 L74 52" stroke="#111" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M18 54 Q26 74 50 68" stroke="#111" stroke-width="6.5" stroke-linecap="round" fill="none"/>
+  </svg>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="footer-brand-quote fade">
+    <p class="fbq-text">좋은 브랜드는 비싸야 하는 것이 아니라, 시작할 수 있어야 합니다.</p>
+    <p class="fbq-sub">대표의 생각을 실행 가능한 회사로 번역합니다.</p>
+  </div>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">FINDIER LAB</div>
+      <div class="footer-tagline">TRANSLATE IDEAS INTO COMPANIES</div>
+    </div>
+    <div class="footer-links">
+      <a href="about.html">ABOUT</a>
+      <a href="service.html">SERVICES</a>
+      <a href="works.html">WORKS</a>
+      <a href="process.html">PROCESS</a>
+      <a href="investment.html">INVESTMENT</a>
+      <a href="contact.html">CONTACT</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 FINDIER LAB. All rights reserved.</span>
+    <div class="footer-gradbar"></div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+const fader = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -48px 0px' });
+document.querySelectorAll('.fade').forEach(el => fader.observe(el));
+</script>
+<script>
+(function () {
+  const texts = [
+    {
+      str: "머릿속은 이미 완성되었습니다",
+      segs: [
+        { s: 0,  e: 8,  color: null       },
+        { s: 8,  e: 10, color: '#D3F45A'  },
+        { s: 10, e: 15, color: null       }
+      ]
+    },
+    {
+      str: "회사만 아직입니다",
+      segs: [
+        { s: 0, e: 3, color: '#7B61FF' },
+        { s: 3, e: 9, color: null      }
+      ]
+    }
+  ];
+
+  const el     = document.getElementById('hero-typed');
+  const cursor = document.getElementById('hero-cursor');
+  const typingSpeed = 75, deletingSpeed = 40, pauseDuration = 2000;
+  let idx = 0, charIdx = 0, deleting = false, display = '';
+
+  gsap.to(cursor, { opacity: 0, duration: .5, repeat: -1, yoyo: true, ease: 'power2.inOut' });
+
+  function buildHTML(str, segs) {
+    var len = str.length, html = '';
+    for (var i = 0; i < segs.length; i++) {
+      var seg = segs[i];
+      if (seg.s >= len) break;
+      var portion = str.slice(seg.s, Math.min(seg.e, len));
+      html += seg.color ? '<span style="color:' + seg.color + '">' + portion + '</span>' : portion;
+    }
+    return html;
+  }
+
+  function tick() {
+    var item = texts[idx], target = item.str;
+    if (!deleting) {
+      if (charIdx <= target.length) {
+        display = target.slice(0, charIdx++);
+        el.innerHTML = buildHTML(display, item.segs);
+        setTimeout(tick, typingSpeed);
+      } else {
+        setTimeout(function () { deleting = true; tick(); }, pauseDuration);
+      }
+    } else {
+      if (display.length > 0) {
+        display = display.slice(0, -1);
+        el.innerHTML = buildHTML(display, item.segs);
+        setTimeout(tick, deletingSpeed);
+      } else {
+        deleting = false; idx = (idx + 1) % texts.length; charIdx = 0;
+        setTimeout(tick, 400);
+      }
+    }
+  }
+  setTimeout(tick, 600);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WORKS — FINDIER LAB</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --lime: #D3F45A; --purple: #7B61FF; --cyan: #4DE7FF;
+      --black: #111111; --white: #FFFFFF; --offwhite: #F7F7F5;
+      --gray1: #F2F0ED; --gray2: #E2E0DC;
+    }
+    html { scroll-behavior: smooth; font-size: 17px; }
+    body { font-family: 'Pretendard','Inter',-apple-system,sans-serif; color: var(--black); background: var(--white); -webkit-font-smoothing: antialiased; }
+    a { text-decoration: none; color: inherit; }
+
+    .fade { opacity: 0; transform: translateY(36px); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+    .fade.in { opacity: 1; transform: none; }
+    .d1 { transition-delay: .12s; } .d2 { transition-delay: .24s; } .d3 { transition-delay: .36s; }
+
+    /* NAV */
+    #nav { position: fixed; top: 0; left: 0; right: 0; height: 64px; z-index: 9999; background: #fff; border-bottom: 1px solid #E8E8E8; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; }
+    .nav-logo-text { font-family: 'Inter',sans-serif; font-size: 15px; font-weight: 800; letter-spacing: .05em; color: #111; }
+    .nav-menu { display: flex; gap: 28px; list-style: none; }
+    .nav-menu a { font-family: 'Inter',sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .12em; color: #666; text-transform: uppercase; transition: color .2s; }
+    .nav-menu a:hover { color: #111; }
+    .nav-menu a.active { color: #111; border-bottom: 2px solid var(--purple); padding-bottom: 2px; }
+    .nav-cta { display: inline-flex; align-items: center; gap: 8px; background: #111; color: #fff; font-size: 13px; font-weight: 600; padding: 10px 22px; border-radius: 100px; flex-shrink: 0; transition: opacity .2s; }
+    .nav-cta:hover { opacity: .75; }
+    .nav-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--lime); }
+
+    /* INTRO */
+    #intro { padding-top: 64px; height: 52vh; min-height: 320px; display: grid; grid-template-columns: 1fr 1fr; background: var(--offwhite); align-items: end; }
+    .intro-left { padding: 0 52px 56px 80px; }
+    .intro-kicker { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .22em; color: var(--purple); text-transform: uppercase; display: flex; align-items: center; gap: 8px; margin-bottom: 20px; }
+    .intro-kicker::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--purple); }
+    .intro-title { font-size: clamp(2rem,4vw,3.6rem); font-weight: 900; line-height: 1.18; letter-spacing: -.04em; }
+    .intro-sub { font-size: .88rem; color: #888; line-height: 1.7; margin-top: 16px; }
+    .intro-right { padding: 0 80px 60px 0; display: flex; align-items: flex-end; justify-content: flex-end; }
+    .intro-count { font-family: 'Inter',sans-serif; font-size: clamp(5rem,9vw,10rem); font-weight: 900; letter-spacing: -.06em; line-height: 1; color: rgba(0,0,0,.06); }
+
+    /* CASE ARTICLES */
+    .case-article { border-top: 1px solid var(--gray2); }
+    .case-article:last-of-type { border-bottom: 1px solid var(--gray2); }
+
+    /* Case header */
+    .case-header { display: grid; grid-template-columns: 1fr 1fr; }
+    .case-visual { min-height: 440px; position: relative; overflow: hidden; }
+    .case-visual img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .7s ease; }
+    .case-article:hover .case-visual img { transform: scale(1.03); }
+    .case-visual-bg { position: absolute; inset: 0; }
+    .case-ph { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; }
+    .case-ph-label { font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
+    .case-meta { padding: 52px 64px; display: flex; flex-direction: column; justify-content: center; }
+    .case-num { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .2em; color: #bbb; margin-bottom: 16px; }
+    .case-brand { font-size: clamp(2.2rem,4vw,3.8rem); font-weight: 900; line-height: 1.08; letter-spacing: -.04em; margin-bottom: 12px; }
+    .case-tagline { font-size: .86rem; color: #777; line-height: 1.7; margin-bottom: 24px; max-width: 280px; }
+    .case-services { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 24px; }
+    .case-svc { display: flex; align-items: center; gap: 6px; font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 700; letter-spacing: .1em; color: #888; }
+    .case-svc-dot { width: 5px; height: 5px; border-radius: 50%; }
+
+    /* Translate flow */
+    .case-flow { border-top: 1px solid var(--gray2); display: grid; grid-template-columns: repeat(3, 1fr); }
+    .flow-col { padding: 40px 48px; position: relative; }
+    .flow-col:not(:first-child)::before { content: ''; position: absolute; left: 0; top: 40px; bottom: 40px; width: 1px; background: var(--gray2); }
+    .flow-label { font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+    .flow-label-dot { width: 6px; height: 6px; border-radius: 50%; }
+    .flow-keyword { font-size: clamp(1rem,1.8vw,1.5rem); font-weight: 900; line-height: 1.3; letter-spacing: -.025em; margin-bottom: 10px; }
+    .flow-desc { font-size: .8rem; color: #888; line-height: 1.7; }
+    .flow-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 14px; }
+    .flow-tag { font-family: 'Inter',sans-serif; font-size: .65rem; font-weight: 700; padding: 3px 10px; background: var(--gray1); border-radius: 100px; color: #777; }
+
+    /* reverse layout (visual on right) */
+    .case-article.reverse .case-header { direction: rtl; }
+    .case-article.reverse .case-header > * { direction: ltr; }
+
+    /* COMING SOON */
+    #coming { background: var(--black); padding: 130px 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .coming-title { font-size: clamp(1.8rem,3.5vw,3.2rem); font-weight: 900; line-height: 1.2; letter-spacing: -.04em; color: var(--white); }
+    .coming-title .c-lime { color: var(--lime); }
+    .coming-right { display: flex; flex-direction: column; gap: 20px; align-items: flex-start; border-left: 1px solid rgba(255,255,255,.08); padding-left: 60px; }
+    .coming-sub { font-size: .88rem; color: rgba(255,255,255,.4); line-height: 1.75; }
+    .coming-cta { display: inline-flex; align-items: center; gap: 10px; background: var(--lime); color: var(--black); font-size: 13px; font-weight: 800; padding: 14px 28px; border-radius: 100px; transition: opacity .2s; }
+    .coming-cta:hover { opacity: .85; }
+
+    /* FOOTER */
+    #footer { background: var(--black); padding: 0; }
+    .footer-brand-quote { padding: 56px 80px 48px; border-bottom: 1px solid rgba(255,255,255,.06); }
+    .fbq-text { font-size: clamp(.95rem,1.6vw,1.3rem); font-weight: 900; line-height: 1.5; letter-spacing: -.025em; color: rgba(255,255,255,.55); margin-bottom: 8px; }
+    .fbq-sub { font-size: .8rem; color: rgba(255,255,255,.22); letter-spacing: .06em; }
+    .footer-top { display: flex; justify-content: space-between; align-items: center; padding: 40px 80px; border-bottom: 1px solid rgba(255,255,255,.08); }
+    .footer-logo { font-family: 'Inter',sans-serif; font-size: 15px; font-weight: 800; letter-spacing: .06em; color: #fff; }
+    .footer-tagline { font-size: 10px; color: rgba(255,255,255,.28); letter-spacing: .14em; margin-top: 5px; }
+    .footer-links { display: flex; gap: 28px; }
+    .footer-links a { font-size: 11px; font-weight: 500; letter-spacing: .1em; color: rgba(255,255,255,.35); text-transform: uppercase; transition: color .2s; }
+    .footer-links a:hover { color: rgba(255,255,255,.8); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding: 24px 80px 32px; }
+    .footer-copy { font-size: 10px; color: rgba(255,255,255,.18); letter-spacing: .06em; }
+    .footer-gradbar { width: 80px; height: 2px; border-radius: 2px; background: linear-gradient(90deg,#D3F45A,#7B61FF,#4DE7FF); }
+
+    @media (max-width: 1024px) {
+      #nav { padding: 0 32px; }
+      .nav-menu { gap: 20px; }
+      .intro-left { padding: 0 36px 48px 48px; }
+      .intro-right { padding: 0 48px 52px 0; }
+      .case-meta { padding: 40px 48px; }
+      .flow-col { padding: 32px 36px; }
+      #coming { padding: 80px 48px; }
+      .coming-right { padding-left: 40px; }
+      .footer-brand-quote { padding: 48px 48px 40px; }
+      .footer-top { padding: 36px 48px; }
+      .footer-bottom { padding: 20px 48px 28px; }
+    }
+    @media (max-width: 768px) {
+      #nav { padding: 0 20px; } .nav-menu { display: none; } .nav-cta { padding: 8px 16px; font-size: 12px; }
+      #intro { grid-template-columns: 1fr; height: auto; padding-top: 80px; }
+      .intro-left { padding: 80px 24px 32px; }
+      .intro-right { padding: 0 24px 40px; justify-content: flex-start; }
+      .case-header { grid-template-columns: 1fr; }
+      .case-visual { min-height: 56vw; }
+      .case-article.reverse .case-header { direction: ltr; }
+      .case-meta { padding: 32px 24px; }
+      .case-flow { grid-template-columns: 1fr; }
+      .flow-col { padding: 24px 24px; }
+      .flow-col:not(:first-child)::before { left: 24px; right: 24px; top: 0; bottom: auto; width: auto; height: 1px; }
+      #coming { grid-template-columns: 1fr; padding: 64px 24px; gap: 36px; }
+      .coming-right { border-left: none; padding-left: 0; border-top: 1px solid rgba(255,255,255,.08); padding-top: 36px; }
+      .footer-brand-quote { padding: 40px 24px 32px; }
+      .footer-top { padding: 28px 24px; flex-direction: column; gap: 20px; align-items: flex-start; }
+      .footer-links { flex-wrap: wrap; gap: 14px; }
+      .footer-bottom { padding: 16px 24px 24px; flex-direction: column; gap: 10px; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<header id="nav">
+  <a href="index.html" class="nav-logo">
+    <svg width="32" height="32" viewBox="0 0 34 34" fill="none"><circle cx="10" cy="9.5" r="4.5" fill="#D3F45A"/><path d="M17 5 L28 5 L28 20" stroke="#7B61FF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 21 Q10.5 29.5 20 27" stroke="#111" stroke-width="2.8" stroke-linecap="round" fill="none"/></svg>
+    <span class="nav-logo-text">FINDIER LAB</span>
+  </a>
+  <ul class="nav-menu">
+    <li><a href="about.html">ABOUT</a></li>
+    <li><a href="service.html">SERVICES</a></li>
+    <li><a href="works.html" class="active">WORKS</a></li>
+    <li><a href="process.html">PROCESS</a></li>
+    <li><a href="investment.html">INVESTMENT</a></li>
+    <li><a href="contact.html">CONTACT</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta"><span class="nav-dot"></span>생각 보내기</a>
+</header>
+
+<section id="intro">
+  <div class="intro-left">
+    <p class="intro-kicker">WORKS — 번역 기록</p>
+    <h1 class="intro-title">번역이<br>회사를 만드는<br>방식</h1>
+    <p class="intro-sub">대표의 생각이 어떻게 브랜드가 되었는지,<br>그 번역의 과정을 보여줍니다.</p>
+  </div>
+  <div class="intro-right"><span class="intro-count">03</span></div>
+</section>
+
+<!-- CASE 00: NUiE -->
+<article class="case-article fade">
+  <div class="case-header">
+    <div class="case-visual">
+      <div class="case-visual-bg" style="background:linear-gradient(135deg,#12003a 0%,#2d0f7a 45%,#7B61FF 100%);"></div>
+      <div class="case-ph">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" opacity=".18"><rect x="4" y="4" width="32" height="32" rx="4" stroke="white" stroke-width="1.5" stroke-dasharray="4 3"/><circle cx="14" cy="15" r="4" stroke="white" stroke-width="1.5"/><path d="M4 28l9-9 7 7 5-5 11 9" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="case-ph-label" style="color:rgba(255,255,255,.18);">IMAGE</span>
+      </div>
+    </div>
+    <div class="case-meta">
+      <p class="case-num">CASE 00</p>
+      <h2 class="case-brand">NUiE</h2>
+      <p class="case-tagline">감정을 해결하지 않고,<br>존재를 인정하는 향 브랜드.</p>
+      <div class="case-services">
+        <span class="case-svc"><span class="case-svc-dot" style="background:var(--lime);"></span>BRAND</span>
+        <span class="case-svc"><span class="case-svc-dot" style="background:var(--cyan);"></span>WEBSITE</span>
+      </div>
+    </div>
+  </div>
+  <div class="case-flow">
+    <div class="flow-col">
+      <div class="flow-label">
+        <span class="flow-label-dot" style="background:#D3F45A;"></span>
+        <span style="color:#888;">BEFORE — 대표의 생각</span>
+      </div>
+      <h3 class="flow-keyword">엄마를 위한 향</h3>
+      <p class="flow-desc">"엄마들은 왜 자신을 위한 향수를 쓰지 않을까."<br>이 질문에서 브랜드가 시작되었습니다.</p>
+    </div>
+    <div class="flow-col">
+      <div class="flow-label">
+        <span class="flow-label-dot" style="background:#7B61FF;"></span>
+        <span style="color:#888;">TRANSLATE — 번역</span>
+      </div>
+      <h3 class="flow-keyword">인정이라는 철학</h3>
+      <p class="flow-desc">"당신의 감정은 틀리지 않았다"는 철학으로 번역했습니다. 위로가 아닌 인정, 해결이 아닌 존재의 긍정.</p>
+      <div class="flow-tags">
+        <span class="flow-tag">브랜드 세계관</span>
+        <span class="flow-tag">브랜드 언어</span>
+        <span class="flow-tag">네이밍</span>
+      </div>
+    </div>
+    <div class="flow-col">
+      <div class="flow-label">
+        <span class="flow-label-dot" style="background:#4DE7FF;"></span>
+        <span style="color:#888;">BUILD — 결과</span>
+      </div>
+      <h3 class="flow-keyword">브랜드 구조 + VI</h3>
+      <p class="flow-desc">브랜드 세계관, 제품 언어, 비주얼 아이덴티티, 홈페이지 전 과정을 번역했습니다.</p>
+      <div class="flow-tags">
+        <span class="flow-tag">VI</span>
+        <span class="flow-tag">홈페이지</span>
+        <span class="flow-tag">마케팅 언어</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- CASE 01: VEVELL -->
+<article class="case-article reverse fade">
+  <div class="case-header">
+    <div class="case-visual">
+      <div class="case-visual-bg" style="background:linear-gradient(135deg,#0d1f0d 0%,#1a3d1a 45%,#2d6b2d 100%);"></div>
+      <div class="case-ph">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" opacity=".18"><rect x="4" y="4" width="32" height="32" rx="4" stroke="white" stroke-width="1.5" stroke-dasharray="4 3"/><circle cx="14" cy="15" r="4" stroke="white" stroke-width="1.5"/><path d="M4 28l9-9 7 7 5-5 11 9" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="case-ph-label" style="color:rgba(255,255,255,.18);">IMAGE</span>
+      </div>
+    </div>
+    <div class="case-meta">
+      <p class="case-num">CASE 01</p>
+      <h2 class="case-brand">VEVELL</h2>
+      <p class="case-tagline">속에서 발현되는 건강의 언어.<br>이너뷰티 브랜드.</p>
+      <div class="case-services">
+        <span class="case-svc"><span class="case-svc-dot" style="background:var(--lime);"></span>BRAND</span>
+        <span class="case-svc"><span class="case-svc-dot" style="background:var(--cyan);"></span>WEBSITE</span>
+        <span class="case-svc"><span class="case-svc-dot" style="background:var(--purple);"></span>OS</span>
+      </div>
+    </div>
+  </div>
+  <div class="case-flow">
+    <div class="flow-col">
+      <div class="flow-label">
+        <span class="flow-label-dot" style="background:#D3F45A;"></span>
+        <span style="color:#888;">BEFORE — 대표의 생각</span>
+      </div>
+      <h3 class="flow-keyword">속건강</h3>
+      <p class="flow-desc">"겉에서 바르는 것보다 속에서 채우는 것이 진짜 건강이다."<br>이 철학에서 브랜드가 시작되었습니다.</p>
+    </div>
+    <div class="flow-col">
+      <div class="flow-label">
+        <span class="flow-label-dot" style="background:#7B61FF;"></span>
+        <span style="color:#888;">TRANSLATE — 번역</span>
+      </div>
+      <h3 class="flow-keyword">흡수와 발현</h3>
+      <p class="flow-desc">몸 안에서 흡수되어 밖으로 발현되는 건강의 언어. 눈에 보이지 않는 과정을 브랜드 철학으로 번역했습니다.</p>
+      <div class="flow-tags">
+        <span class="flow-tag">브랜드 철학</span>
+        <span class="flow-tag">네이밍 VEVELL</span>
+        <span class="flow-tag">세계관</span>
+      </div>
+    </div>
+    <div class="flow-col">
+      <div class="flow-label">
+        <span class="flow-label-dot" style="background:#4DE7FF;"></span>
+        <span style="color:#888;">BUILD — 결과</span>
+      </div>
+      <h3 class="flow-keyword">브랜드 언어 + OS</h3>
+      <p class="flow-desc">브랜드 언어부터 홈페이지, 운영 구조까지 전 과정. 대표 혼자 운영할 수 있는 시스템을 구축했습니다.</p>
+      <div class="flow-tags">
+        <span class="flow-tag">VI</span>
+        <span class="flow-tag">홈페이지</span>
+        <span class="flow-tag">운영 시스템</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- CASE 02: FINDIER LAB -->
+<article class="case-article fade">
+  <div class="case-header">
+    <div class="case-visual">
+      <img src="assets/about-website.png" alt="FINDIER LAB">
+    </div>
+    <div class="case-meta">
+      <p class="case-num">CASE 02</p>
+      <h2 class="case-brand">FINDIER<br>LAB</h2>
+      <p class="case-tagline">첫 번째 클라이언트는 우리 자신.<br>Founding Studio를 번역했습니다.</p>
+      <div class="case-services">
+        <span class="case-svc"><span class="case-svc-dot" style="background:var(--lime);"></span>BRAND</span>
+        <span class="case-svc"><span class="case-svc-dot" style="background:var(--cyan);"></span>WEBSITE</span>
+        <span class="case-svc"><span class="case-svc-dot" style="background:var(--purple);"></span>OS</span>
+      </div>
+    </div>
+  </div>
+  <div class="case-flow">
+    <div class="flow-col">
+      <div class="flow-label">
+        <span class="flow-label-dot" style="background:#D3F45A;"></span>
+        <span style="color:#888;">BEFORE — 대표의 생각</span>
+      </div>
+      <h3 class="flow-keyword">대표의 생각을<br>회사로 만드는 일</h3>
+      <p class="flow-desc">"대표의 머릿속을 꺼내서 실행 가능한 회사로 만들 수 있다." 이 확신이 FINDIER LAB의 시작이었습니다.</p>
+    </div>
+    <div class="flow-col">
+      <div class="flow-label">
+        <span class="flow-label-dot" style="background:#7B61FF;"></span>
+        <span style="color:#888;">TRANSLATE — 번역</span>
+      </div>
+      <h3 class="flow-keyword">Founding Studio</h3>
+      <p class="flow-desc">에이전시도 컨설팅도 아닌, 창업자의 생각을 실행 가능한 회사로 번역하는 Founding Studio. 포지션과 언어 전체를 설계했습니다.</p>
+      <div class="flow-tags">
+        <span class="flow-tag">브랜드명</span>
+        <span class="flow-tag">세계관</span>
+        <span class="flow-tag">서비스 구조</span>
+      </div>
+    </div>
+    <div class="flow-col">
+      <div class="flow-label">
+        <span class="flow-label-dot" style="background:#4DE7FF;"></span>
+        <span style="color:#888;">BUILD — 결과</span>
+      </div>
+      <h3 class="flow-keyword">홈페이지 + 운영 구조</h3>
+      <p class="flow-desc">브랜드명, 세계관, 서비스 구조, 홈페이지, 운영 구조까지 전 과정을 직접 번역. 우리가 할 수 있는 것을 증명했습니다.</p>
+      <div class="flow-tags">
+        <span class="flow-tag">홈페이지</span>
+        <span class="flow-tag">운영 구조</span>
+        <span class="flow-tag">AI Agent</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- COMING SOON -->
+<section id="coming">
+  <h2 class="coming-title fade">
+    다음 케이스는<br>
+    <span class="c-lime">당신의 이야기</span>입니다.
+  </h2>
+  <div class="coming-right fade d1">
+    <p class="coming-sub">지금 머릿속에 있는 생각을<br>그대로 들고 오세요.<br><br>정리되어 있지 않아도 괜찮습니다.</p>
+    <a href="contact.html" class="coming-cta">생각 보내기 →</a>
+  </div>
+</section>
+
+<footer id="footer">
+  <div class="footer-brand-quote fade">
+    <p class="fbq-text">좋은 브랜드는 비싸야 하는 것이 아니라, 시작할 수 있어야 합니다.</p>
+    <p class="fbq-sub">대표의 생각을 실행 가능한 회사로 번역합니다.</p>
+  </div>
+  <div class="footer-top">
+    <div><div class="footer-logo">FINDIER LAB</div><div class="footer-tagline">TRANSLATE IDEAS INTO COMPANIES</div></div>
+    <div class="footer-links">
+      <a href="about.html">ABOUT</a><a href="service.html">SERVICES</a>
+      <a href="works.html">WORKS</a><a href="process.html">PROCESS</a>
+      <a href="investment.html">INVESTMENT</a><a href="contact.html">CONTACT</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 FINDIER LAB. All rights reserved.</span>
+    <div class="footer-gradbar"></div>
+  </div>
+</footer>
+
+<script>
+const fader = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
+document.querySelectorAll('.fade').forEach(el => fader.observe(el));
+</script>
+</body>
+</html>

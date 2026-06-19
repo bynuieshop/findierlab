@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ABOUT — FINDIER LAB</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --lime: #D3F45A; --purple: #7B61FF; --cyan: #4DE7FF;
+      --black: #111111; --white: #FFFFFF; --offwhite: #F7F7F5;
+      --gray1: #F2F0ED; --gray2: #E2E0DC;
+    }
+    html { scroll-behavior: smooth; font-size: 17px; }
+    body { font-family: 'Pretendard','Inter',-apple-system,sans-serif; color: var(--black); background: var(--white); -webkit-font-smoothing: antialiased; }
+    a { text-decoration: none; color: inherit; }
+
+    .fade { opacity: 0; transform: translateY(36px); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+    .fade.in { opacity: 1; transform: none; }
+    .d1 { transition-delay: .1s; } .d2 { transition-delay: .2s; } .d3 { transition-delay: .3s; } .d4 { transition-delay: .4s; }
+
+    /* NAV */
+    #nav { position: fixed; top: 0; left: 0; right: 0; height: 64px; z-index: 9999; background: var(--white); border-bottom: 1px solid #E8E8E8; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; }
+    .nav-logo-text { font-family: 'Inter',sans-serif; font-size: 15px; font-weight: 800; letter-spacing: .05em; color: #111; }
+    .nav-menu { display: flex; gap: 28px; list-style: none; }
+    .nav-menu a { font-family: 'Inter',sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .12em; color: #666; text-transform: uppercase; transition: color .2s; }
+    .nav-menu a:hover { color: #111; }
+    .nav-menu a.active { color: var(--purple); border-bottom: 2px solid var(--purple); padding-bottom: 2px; }
+    .nav-cta { display: inline-flex; align-items: center; gap: 8px; background: #111; color: #fff; font-size: 13px; font-weight: 700; padding: 10px 22px; border-radius: 100px; flex-shrink: 0; transition: opacity .2s; }
+    .nav-cta:hover { opacity: .8; }
+    .nav-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--lime); }
+
+    /* HERO */
+    #hero { display: grid; grid-template-columns: 1fr 1fr; height: 100vh; padding-top: 64px; background: var(--white); overflow: hidden; }
+    .hero-left { display: flex; flex-direction: column; justify-content: flex-end; padding: 0 52px 72px 80px; }
+    .hero-kicker { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .22em; color: var(--purple); text-transform: uppercase; display: flex; align-items: center; gap: 8px; margin-bottom: 20px; }
+    .hero-kicker::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--purple); }
+    .hero-title { font-size: clamp(2.4rem,4.5vw,5rem); font-weight: 900; line-height: 1.1; letter-spacing: -.04em; color: var(--black); margin-bottom: 24px; }
+    .hero-title .hl { color: var(--purple); }
+    .hero-sub { font-size: .92rem; color: #888; line-height: 1.75; border-left: 2.5px solid var(--gray2); padding-left: 14px; }
+    .hero-right { display: flex; align-items: flex-end; justify-content: center; overflow: hidden; background: #f0eef7 url('about-hero-bg.jpg') center/cover no-repeat; }
+
+    /* STATEMENT */
+    #statement { display: grid; grid-template-columns: 1fr 1fr; padding: 130px 80px; gap: 80px; background: var(--white); border-top: 1px solid var(--gray2); }
+    .stmt-title { font-size: clamp(1.6rem,2.8vw,2.8rem); font-weight: 900; line-height: 1.3; letter-spacing: -.035em; }
+    .stmt-right { border-left: 2px solid var(--gray2); padding-left: 48px; }
+    .stmt-line { font-size: .92rem; color: #555; line-height: 1.85; margin-bottom: 20px; }
+    .stmt-line:last-child { margin-bottom: 0; }
+    .stmt-line strong { color: var(--black); font-weight: 800; }
+
+    /* WHO IS */
+    #who { background: var(--black); padding: 130px 80px; }
+    .who-inner { display: grid; grid-template-columns: 380px 1fr; gap: 80px; align-items: start; }
+    .who-photo { border-radius: 20px; overflow: hidden; aspect-ratio: 3/4; flex-shrink: 0; }
+    .who-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; filter: grayscale(12%); }
+    .who-bio { padding-top: 8px; }
+    .who-kicker { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .22em; color: var(--lime); text-transform: uppercase; display: flex; align-items: center; gap: 8px; margin-bottom: 32px; }
+    .who-kicker::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--lime); }
+    .who-title { font-size: clamp(1.8rem,3vw,2.8rem); font-weight: 900; line-height: 1.2; letter-spacing: -.04em; color: var(--white); margin-bottom: 36px; }
+    .who-text { font-size: .92rem; color: rgba(255,255,255,.5); line-height: 1.9; margin-bottom: 20px; }
+    .who-text .hl { color: rgba(255,255,255,.85); font-weight: 700; }
+    .who-divider { width: 36px; height: 2px; background: rgba(255,255,255,.1); margin: 32px 0; }
+    .who-stats { display: flex; align-items: center; gap: 32px; flex-wrap: wrap; }
+    .who-stat-num { font-family: 'Inter',sans-serif; font-size: clamp(2.4rem,4vw,4rem); font-weight: 900; letter-spacing: -.06em; color: var(--lime); line-height: 1; }
+    .who-stat-unit { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .18em; color: rgba(255,255,255,.25); text-transform: uppercase; margin-top: 4px; }
+    .who-stat-sep { width: 1px; height: 40px; background: rgba(255,255,255,.1); }
+    .who-stat-tags { display: flex; flex-direction: column; gap: 6px; }
+    .who-stat-tag { font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 700; letter-spacing: .14em; color: rgba(255,255,255,.3); text-transform: uppercase; background: rgba(255,255,255,.05); padding: 4px 10px; border-radius: 100px; display: inline-block; width: fit-content; }
+
+    /* APPROACH */
+    #approach { background: var(--black); border-top: 1px solid rgba(255,255,255,.06); }
+    .ap-strip { display: grid; grid-template-columns: repeat(3,1fr); }
+    .ap-cell { padding: 80px 44px; border-right: 1px solid rgba(255,255,255,.06); display: flex; flex-direction: column; }
+    .ap-cell:last-child { border-right: none; }
+    .ap-picto { margin-bottom: 28px; }
+    .ap-big { font-family: 'Inter',sans-serif; font-size: clamp(3.5rem,5vw,6rem); font-weight: 900; letter-spacing: -.07em; color: rgba(255,255,255,.04); display: block; margin-bottom: -8px; }
+    .ap-name { font-family: 'Inter',sans-serif; font-size: .7rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; margin-bottom: 10px; }
+    .ap-phrase { font-size: .82rem; color: rgba(255,255,255,.4); line-height: 1.7; }
+
+    /* WHAT WE TRANSLATE */
+    .wwd-header { background: var(--white); padding: 90px 80px 44px; }
+    .wwd-section-kicker { font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 700; letter-spacing: .22em; color: #bbb; text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+    .wwd-section-kicker::before { content: ''; width: 20px; height: 1px; background: #ddd; }
+    .wwd-section-title { font-size: clamp(1.4rem,2.2vw,2rem); font-weight: 900; letter-spacing: -.03em; }
+    #wwd { background: var(--white); display: grid; grid-template-columns: repeat(3,1fr); height: 44vw; min-height: 320px; max-height: 560px; }
+    .wwd-card { position: relative; overflow: hidden; display: flex; align-items: flex-end; border-right: 1px solid var(--gray2); }
+    .wwd-card:last-child { border-right: none; }
+    .wwd-ph { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
+    .wwd-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .wwd-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px 24px; background: linear-gradient(transparent, rgba(0,0,0,.72)); display: flex; flex-direction: column; gap: 4px; }
+    .wwd-dot { width: 6px; height: 6px; border-radius: 50%; margin-bottom: 4px; }
+    .wwd-name { font-family: 'Inter',sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .12em; color: rgba(255,255,255,.9); text-transform: uppercase; }
+    .wwd-label { font-size: .75rem; color: rgba(255,255,255,.5); }
+
+    /* PHILOSOPHY */
+    #philosophy { background: var(--offwhite); padding: 130px 80px; }
+    .phil-kicker { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .22em; color: var(--purple); text-transform: uppercase; display: flex; align-items: center; gap: 8px; margin-bottom: 48px; }
+    .phil-kicker::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--purple); }
+    .phil-quote { font-size: clamp(2rem,5vw,4.4rem); font-weight: 900; line-height: 1.15; letter-spacing: -.04em; max-width: 900px; }
+    .phil-quote span { color: var(--purple); }
+    .phil-divider { width: 48px; height: 3px; border-radius: 2px; background: linear-gradient(90deg,var(--purple),var(--lime)); margin: 48px 0; }
+    .phil-sub { font-size: .9rem; color: #888; line-height: 1.75; max-width: 440px; }
+
+    /* BELIEVE */
+    #believe { background: var(--black); padding: 130px 80px; }
+    .believe-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 56px; }
+    .believe-h { font-size: clamp(1.6rem,2.8vw,2.4rem); font-weight: 900; letter-spacing: -.03em; color: #fff; }
+    .believe-count { font-family: 'Inter',sans-serif; font-size: 11px; color: rgba(255,255,255,.25); letter-spacing: .14em; }
+    .believe-grid { display: grid; grid-template-columns: repeat(2,1fr); }
+    .blv-item { display: flex; align-items: flex-start; gap: 20px; padding: 28px 0; border-bottom: 1px solid rgba(255,255,255,.06); }
+    .blv-item:nth-child(odd) { padding-right: 60px; border-right: 1px solid rgba(255,255,255,.06); }
+    .blv-item:nth-child(even) { padding-left: 60px; }
+    .blv-n { font-family: 'Inter',sans-serif; font-size: clamp(1.8rem,2.5vw,2.4rem); font-weight: 900; color: rgba(255,255,255,.07); letter-spacing: -.04em; line-height: 1; flex-shrink: 0; width: 60px; }
+    .blv-txt { font-size: .86rem; color: rgba(255,255,255,.55); line-height: 1.75; padding-top: 6px; }
+
+    /* WORKING MODEL */
+    #working-model { background: var(--offwhite); padding: 130px 80px; }
+    .wm-header { max-width: 640px; margin-bottom: 64px; }
+    .wm-kicker { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .22em; color: #aaa; text-transform: uppercase; display: flex; align-items: center; gap: 10px; margin-bottom: 24px; }
+    .wm-kicker::before { content: ''; width: 20px; height: 1px; background: #ccc; }
+    .wm-title { font-size: clamp(2rem,3.6vw,3.2rem); font-weight: 900; line-height: 1.15; letter-spacing: -.04em; margin-bottom: 14px; }
+    .wm-sub { font-size: .9rem; color: #777; line-height: 1.85; }
+    .wm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+
+    /* CORE CARD */
+    .wm-core-card { background: var(--black); border-radius: 24px; padding: 40px 36px; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+    .wm-core-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--lime), var(--purple)); }
+    .wm-core-badge { display: inline-flex; align-items: center; gap: 6px; font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: var(--black); background: var(--lime); padding: 5px 12px; border-radius: 100px; margin-bottom: 32px; width: fit-content; }
+    .wm-core-profile { display: flex; align-items: center; gap: 20px; margin-bottom: 32px; }
+    .wm-core-photo { width: 64px; height: 64px; border-radius: 50%; overflow: hidden; border: 2px solid rgba(211,244,90,.3); flex-shrink: 0; }
+    .wm-core-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+    .wm-core-name { font-size: 1.3rem; font-weight: 900; letter-spacing: -.03em; color: var(--white); margin-bottom: 3px; }
+    .wm-core-role { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .14em; color: var(--lime); text-transform: uppercase; }
+    .wm-core-direct { display: inline-flex; align-items: center; gap: 5px; font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 700; letter-spacing: .1em; color: rgba(211,244,90,.6); background: rgba(211,244,90,.08); border: 1px solid rgba(211,244,90,.15); padding: 3px 9px; border-radius: 100px; margin-top: 4px; }
+    .wm-core-desc { font-size: .84rem; color: rgba(255,255,255,.45); line-height: 1.8; margin-bottom: 28px; }
+    .wm-core-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .wm-core-tag { font-size: .72rem; font-weight: 600; padding: 5px 11px; background: rgba(255,255,255,.06); border-radius: 100px; color: rgba(255,255,255,.5); border: 1px solid rgba(255,255,255,.08); }
+
+    /* OPTIONAL CARDS */
+    .wm-optional-side { display: flex; flex-direction: column; gap: 16px; }
+    .wm-optional-header { display: flex; align-items: center; gap: 16px; padding: 0 4px 16px; }
+    .wm-optional-label { font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 700; letter-spacing: .18em; color: #aaa; text-transform: uppercase; }
+    .wm-connect-arrow { font-size: .8rem; color: #ccc; }
+    .wm-connect-note { font-size: .72rem; color: #bbb; }
+    .wm-partner-card { background: var(--white); border-radius: 18px; padding: 28px 26px; border: 1.5px solid var(--gray2); display: flex; flex-direction: column; gap: 10px; transition: border-color .2s, box-shadow .2s; }
+    .wm-partner-card:hover { border-color: #bbb; box-shadow: 0 8px 24px rgba(0,0,0,.06); }
+    .wm-partner-badge { font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 700; letter-spacing: .14em; color: #bbb; text-transform: uppercase; display: flex; align-items: center; gap: 6px; }
+    .wm-partner-badge::before { content: 'OPTIONAL'; font-size: 8px; background: var(--gray1); padding: 2px 7px; border-radius: 100px; color: #aaa; }
+    .wm-partner-name { font-size: 1.1rem; font-weight: 900; letter-spacing: -.02em; color: var(--black); }
+    .wm-partner-desc { font-size: .78rem; color: #999; line-height: 1.6; }
+    .wm-partner-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+    .wm-partner-tag { font-size: .67rem; padding: 3px 8px; background: var(--gray1); border-radius: 100px; color: #888; font-weight: 600; }
+    .wm-note { margin-top: 48px; padding-top: 36px; border-top: 1px solid var(--gray2); }
+    .wm-note-text { font-size: clamp(1.1rem,1.8vw,1.5rem); font-weight: 900; line-height: 1.5; letter-spacing: -.03em; color: #333; }
+    .wm-note-text .c-pur { color: var(--purple); }
+    .wm-note-text .c-muted { color: #bbb; font-weight: 700; }
+
+    /* FOOTER */
+    #footer { background: var(--black); padding: 0; }
+    .footer-brand-quote { padding: 56px 80px 48px; border-bottom: 1px solid rgba(255,255,255,.06); }
+    .fbq-text { font-size: clamp(.95rem,1.6vw,1.3rem); font-weight: 900; line-height: 1.5; letter-spacing: -.025em; color: rgba(255,255,255,.55); margin-bottom: 8px; }
+    .fbq-sub { font-size: .8rem; color: rgba(255,255,255,.22); letter-spacing: .06em; }
+    .footer-top { display: flex; justify-content: space-between; align-items: center; padding: 40px 80px; border-bottom: 1px solid rgba(255,255,255,.08); }
+    .footer-logo { font-family: 'Inter',sans-serif; font-size: 15px; font-weight: 800; letter-spacing: .06em; color: #fff; }
+    .footer-tagline { font-size: 10px; color: rgba(255,255,255,.28); letter-spacing: .14em; margin-top: 5px; }
+    .footer-links { display: flex; gap: 28px; }
+    .footer-links a { font-size: 11px; font-weight: 500; letter-spacing: .1em; color: rgba(255,255,255,.35); text-transform: uppercase; transition: color .2s; }
+    .footer-links a:hover { color: rgba(255,255,255,.8); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding: 24px 80px 32px; }
+    .footer-copy { font-size: 10px; color: rgba(255,255,255,.18); letter-spacing: .06em; }
+    .footer-gradbar { width: 80px; height: 2px; border-radius: 2px; background: linear-gradient(90deg,#D3F45A,#7B61FF,#4DE7FF); }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      #nav { padding: 0 32px; } .nav-menu { gap: 20px; }
+      #hero { grid-template-columns: 1fr; height: auto; }
+      .hero-left { padding: 96px 48px 56px; }
+      .hero-right { height: 60vw; }
+      #statement { grid-template-columns: 1fr; padding: 80px 48px; gap: 48px; }
+      .stmt-right { border-left: none; padding-left: 0; border-top: 2px solid var(--gray2); padding-top: 32px; }
+      #who { padding: 80px 48px; }
+      .who-inner { grid-template-columns: 280px 1fr; gap: 52px; }
+      .ap-cell { padding: 44px 32px; }
+      .wwd-header { padding: 52px 48px 32px; }
+      #philosophy { padding: 80px 48px; }
+      #believe { padding: 80px 48px; }
+      .blv-item:nth-child(odd) { padding-right: 36px; }
+      .blv-item:nth-child(even) { padding-left: 36px; }
+      #working-model { padding: 80px 48px; }
+      .footer-brand-quote { padding: 48px 48px 40px; }
+      .footer-top { padding: 36px 48px; }
+      .footer-bottom { padding: 20px 48px 28px; }
+    }
+    @media (max-width: 768px) {
+      #nav { padding: 0 20px; } .nav-menu { display: none; } .nav-cta { padding: 8px 16px; font-size: 12px; }
+      #hero { grid-template-columns: 1fr; }
+      .hero-left { padding: 96px 24px 48px; }
+      .hero-right { height: 55vw; }
+      #statement { padding: 60px 24px; }
+      #who { padding: 64px 24px; }
+      .who-inner { grid-template-columns: 1fr; gap: 40px; }
+      .who-photo { aspect-ratio: 4/3; max-width: 100%; }
+      .ap-strip { grid-template-columns: 1fr; }
+      .ap-cell { border-right: none; border-bottom: 1px solid rgba(255,255,255,.07); padding: 36px 24px; }
+      .wwd-header { padding: 40px 24px 24px; }
+      #wwd { grid-template-columns: 1fr; height: auto; }
+      .wwd-card { height: 52vw; min-height: 200px; }
+      #philosophy { padding: 64px 24px; }
+      #believe { padding: 64px 24px; }
+      .believe-grid { grid-template-columns: 1fr; }
+      .blv-item:nth-child(odd) { border-right: none; padding-right: 0; }
+      .blv-item:nth-child(even) { padding-left: 0; }
+      #working-model { padding: 64px 24px; }
+      .wm-grid { grid-template-columns: 1fr; }
+      .footer-brand-quote { padding: 40px 24px 32px; }
+      .footer-top { padding: 28px 24px; flex-direction: column; gap: 20px; align-items: flex-start; }
+      .footer-links { flex-wrap: wrap; gap: 14px; }
+      .footer-bottom { padding: 16px 24px 24px; flex-direction: column; gap: 10px; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<header id="nav">
+  <a href="index.html" class="nav-logo">
+    <svg width="32" height="32" viewBox="0 0 34 34" fill="none"><circle cx="10" cy="9.5" r="4.5" fill="#D3F45A"/><path d="M17 5 L28 5 L28 20" stroke="#7B61FF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 21 Q10.5 29.5 20 27" stroke="#111" stroke-width="2.8" stroke-linecap="round" fill="none"/></svg>
+    <span class="nav-logo-text">FINDIER LAB</span>
+  </a>
+  <ul class="nav-menu">
+    <li><a href="about.html" class="active">ABOUT</a></li>
+    <li><a href="service.html">SERVICES</a></li>
+    <li><a href="works.html">WORKS</a></li>
+    <li><a href="process.html">PROCESS</a></li>
+    <li><a href="investment.html">INVESTMENT</a></li>
+    <li><a href="contact.html">CONTACT</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta"><span class="nav-dot"></span>생각 보내기</a>
+</header>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <p class="hero-kicker">ABOUT</p>
+    <h1 class="hero-title">
+      대표의 생각은<br>
+      대부분 틀리지<br>
+      않습니다.<br>
+      <span class="hl">다만 설명되지</span><br>
+      않았을 뿐입니다.
+    </h1>
+    <p class="hero-sub">대표의 생각을<br>브랜드 · 홈페이지 · 운영 구조로 번역합니다.</p>
+  </div>
+  <div class="hero-right"></div>
+</section>
+
+<!-- STATEMENT -->
+<section id="statement">
+  <h2 class="stmt-title fade">
+    FINDIER LAB은<br>
+    왜 존재하는가.
+  </h2>
+  <div class="stmt-right">
+    <p class="stmt-line fade d1">대표의 머릿속에 이미 존재하지만<br>아직 누구도 설명하지 못한 생각을 발견합니다.</p>
+    <p class="stmt-line fade d2">그것을 브랜드 언어, 홈페이지, 운영 구조,<br>런칭 구조로 번역합니다.</p>
+    <p class="stmt-line fade d3">우리는 운영하지 않습니다.<br><strong>시작할 수 있는 상태를 만듭니다.</strong></p>
+  </div>
+</section>
+
+<!-- WHO IS FINDIER LAB -->
+<section id="who">
+  <div class="who-inner">
+    <div class="who-photo fade">
+      <img src="jimin.jpg" alt="박지민">
+    </div>
+    <div class="who-bio fade d1">
+      <p class="who-kicker">WHO IS FINDIER LAB</p>
+      <h2 class="who-title">
+        13년 동안<br>
+        사람과 브랜드를<br>이해하는 일을 했습니다.
+      </h2>
+      <p class="who-text">유학, 마케팅, 제조, 초기 스타트업을 거치며<br>대표가 <span class="hl">설명하지 못하는 생각</span>을<br>언어와 구조로 만드는 일을 해왔습니다.</p>
+      <p class="who-text">지금은 혼자 시작합니다.<br>필요한 순간이 오면 검증된 파트너를 연결합니다.<br><span class="hl">하지만 생각을 번역하는 일은 직접 합니다.</span></p>
+      <div class="who-divider"></div>
+      <div class="who-stats">
+        <div>
+          <div class="who-stat-num">13</div>
+          <div class="who-stat-unit">YEARS</div>
+        </div>
+        <div class="who-stat-sep"></div>
+        <div class="who-stat-tags">
+          <span class="who-stat-tag">Brand</span>
+          <span class="who-stat-tag">Marketing</span>
+          <span class="who-stat-tag">Operating</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section id="approach">
+  <div class="ap-strip">
+    <div class="ap-cell fade">
+      <div class="ap-picto">
+        <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+          <circle cx="18" cy="18" r="11" stroke="#D3F45A" stroke-width="1.8"/>
+          <line x1="26" y1="26" x2="36" y2="36" stroke="#D3F45A" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="18" cy="18" r="4" fill="#D3F45A" opacity=".3"/>
+          <line x1="18" y1="10" x2="18" y2="26" stroke="#D3F45A" stroke-width="1.2" opacity=".4"/>
+          <line x1="10" y1="18" x2="26" y2="18" stroke="#D3F45A" stroke-width="1.2" opacity=".4"/>
+        </svg>
+      </div>
+      <span class="ap-big">01</span>
+      <p class="ap-name" style="color:var(--lime);">DISCOVER</p>
+      <p class="ap-phrase" style="color:rgba(255,255,255,.4);">대표의 말 안에서<br>브랜드를 발견합니다.</p>
+    </div>
+    <div class="ap-cell fade d1">
+      <div class="ap-picto">
+        <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+          <path d="M6 14H20M13 8V14M9 18c0 0 2 7 6 9" stroke="#7B61FF" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M22 8c0 0-3 8-10 11" stroke="#7B61FF" stroke-width="1.6" stroke-linecap="round" opacity=".5"/>
+          <path d="M24 30h14M31 24l7 6-7 6" stroke="#7B61FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span class="ap-big">02</span>
+      <p class="ap-name" style="color:var(--purple);">TRANSLATE</p>
+      <p class="ap-phrase" style="color:rgba(255,255,255,.4);">발견한 본질을<br>언어와 구조로 번역합니다.</p>
+    </div>
+    <div class="ap-cell fade d2">
+      <div class="ap-picto">
+        <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+          <rect x="6" y="20" width="14" height="14" rx="3" stroke="#4DE7FF" stroke-width="1.8"/>
+          <rect x="24" y="10" width="14" height="14" rx="3" stroke="#4DE7FF" stroke-width="1.8"/>
+          <path d="M11.5 20V15H24" stroke="#4DE7FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 2"/>
+        </svg>
+      </div>
+      <span class="ap-big">03</span>
+      <p class="ap-name" style="color:var(--cyan);">BUILD</p>
+      <p class="ap-phrase" style="color:rgba(255,255,255,.4);">회사가 세상에<br>나아갈 수 있도록 설계합니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE TRANSLATE -->
+<div class="wwd-header fade">
+  <p class="wwd-section-kicker">WHAT WE TRANSLATE</p>
+  <h2 class="wwd-section-title">직접 번역하는 것</h2>
+</div>
+<section id="wwd">
+  <div class="wwd-card">
+    <img class="wwd-img" src="wwd-brand.jpg" alt="BRAND">
+    <div class="wwd-overlay">
+      <div class="wwd-dot" style="background:var(--purple);"></div>
+      <p class="wwd-name">BRAND</p>
+      <p class="wwd-label">생각 → 브랜드 언어</p>
+    </div>
+  </div>
+  <div class="wwd-card">
+    <img class="wwd-img" src="wwd-website.jpg" alt="WEBSITE">
+    <div class="wwd-overlay">
+      <div class="wwd-dot" style="background:var(--cyan);"></div>
+      <p class="wwd-name">WEBSITE</p>
+      <p class="wwd-label">브랜드 → 경험</p>
+    </div>
+  </div>
+  <div class="wwd-card">
+    <img class="wwd-img" src="wwd-os.jpg" alt="OPERATING SYSTEM">
+    <div class="wwd-overlay">
+      <div class="wwd-dot" style="background:var(--lime);"></div>
+      <p class="wwd-name">OPERATING SYSTEM</p>
+      <p class="wwd-label">구조 → 자동화</p>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section id="philosophy">
+  <p class="phil-kicker fade">OUR PHILOSOPHY</p>
+  <h2 class="phil-quote fade d1">
+    좋은 생각은 남기지 않습니다.<br>
+    <span>작동하게 만듭니다.</span>
+  </h2>
+  <div class="phil-divider fade d2"></div>
+  <p class="phil-sub fade d3">브랜드 마케터를 뽑기 전에, 브랜드를 만드세요.<br>광고 대행사를 쓰기 전에, 언어를 먼저 정리하세요.</p>
+</section>
+
+<!-- BELIEVE -->
+<section id="believe">
+  <div class="believe-header fade">
+    <h2 class="believe-h">WHAT WE BELIEVE</h2>
+    <span class="believe-count">7 PRINCIPLES</span>
+  </div>
+  <div class="believe-grid">
+    <div class="blv-item fade"><span class="blv-n">01</span><p class="blv-txt">좋은 브랜드는 만드는 것이 아니라 발견하는 것이다.</p></div>
+    <div class="blv-item fade d1"><span class="blv-n">02</span><p class="blv-txt">대표의 말버릇 안에 브랜드가 숨어있다.</p></div>
+    <div class="blv-item fade"><span class="blv-n">03</span><p class="blv-txt">혼자 하는 일도 언어가 있어야 방향이 생긴다.</p></div>
+    <div class="blv-item fade d1"><span class="blv-n">04</span><p class="blv-txt">브랜드는 디자인보다 순서가 중요하다.</p></div>
+    <div class="blv-item fade"><span class="blv-n">05</span><p class="blv-txt">홈페이지는 예쁜 것이 아니라 이해되어야 한다.</p></div>
+    <div class="blv-item fade d1"><span class="blv-n">06</span><p class="blv-txt">좋은 마케팅은 광고가 아니라 번역이다.</p></div>
+    <div class="blv-item fade"><span class="blv-n">07</span><p class="blv-txt">철학은 결국 실행 가능한 구조가 되어야 한다.</p></div>
+    <div class="blv-item fade d1" style="border-bottom:none;"></div>
+  </div>
+</section>
+
+<!-- WORKING MODEL -->
+<section id="working-model">
+  <div class="wm-header fade">
+    <p class="wm-kicker">WORKING MODEL</p>
+    <h2 class="wm-title">어떻게 일하나요.</h2>
+    <p class="wm-sub">생각의 번역은 직접 합니다.<br>디자인과 생산은 필요한 순간 연결합니다.</p>
+  </div>
+
+  <div class="wm-grid">
+    <!-- CORE -->
+    <div class="wm-core-card fade d1">
+      <div class="wm-core-badge">CORE — 직접 수행</div>
+      <div class="wm-core-profile">
+        <div class="wm-core-photo">
+          <img src="jimin.jpg" alt="박지민">
+        </div>
+        <div>
+          <div class="wm-core-name">박지민</div>
+          <div class="wm-core-role">Brand Builder · Founder</div>
+          <div class="wm-core-direct">DIRECT</div>
+        </div>
+      </div>
+      <p class="wm-core-desc">
+        대표와 직접 대화하고,<br>
+        생각을 발견하고, 번역하고, 구조로 만듭니다.<br>
+        모든 번역 작업은 외주 없이 직접 수행합니다.
+      </p>
+      <div class="wm-core-tags">
+        <span class="wm-core-tag">브랜드 철학</span>
+        <span class="wm-core-tag">세계관</span>
+        <span class="wm-core-tag">브랜드 언어</span>
+        <span class="wm-core-tag">마케팅 언어</span>
+        <span class="wm-core-tag">홈페이지 기획</span>
+        <span class="wm-core-tag">운영 구조</span>
+        <span class="wm-core-tag">AI 활용</span>
+      </div>
+    </div>
+
+    <!-- OPTIONAL -->
+    <div class="wm-optional-side fade d2">
+      <div class="wm-optional-header">
+        <span class="wm-connect-arrow">→</span>
+        <span class="wm-optional-label">OPTIONAL</span>
+        <span class="wm-connect-note">필요한 순간 연결합니다</span>
+      </div>
+
+      <div class="wm-partner-card">
+        <div class="wm-partner-badge">Visual</div>
+        <div class="wm-partner-name">Visual Partner</div>
+        <p class="wm-partner-desc">브랜드 언어가 만들어진 후,<br>비주얼로 경험시키는 단계에 연결합니다.</p>
+        <div class="wm-partner-tags">
+          <span class="wm-partner-tag">로고 · VI</span>
+          <span class="wm-partner-tag">홈페이지 디자인</span>
+          <span class="wm-partner-tag">브랜드 패키지</span>
+        </div>
+      </div>
+
+      <div class="wm-partner-card">
+        <div class="wm-partner-badge">Product</div>
+        <div class="wm-partner-name">Product Partner</div>
+        <p class="wm-partner-desc">제품 기획과 생산이 필요한<br>단계에서 검증된 파트너를 연결합니다.</p>
+        <div class="wm-partner-tags">
+          <span class="wm-partner-tag">제품 기획</span>
+          <span class="wm-partner-tag">생산 구조</span>
+          <span class="wm-partner-tag">런칭 설계</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wm-note fade">
+    <p class="wm-note-text">
+      <span class="c-muted">에이전시가 아닙니다.</span><br>
+      <span class="c-pur">대표의 생각을 번역하는</span> Founder-led Studio입니다.
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="footer-brand-quote fade">
+    <p class="fbq-text">좋은 브랜드는 비싸야 하는 것이 아니라, 시작할 수 있어야 합니다.</p>
+    <p class="fbq-sub">대표의 생각을 실행 가능한 회사로 번역합니다.</p>
+  </div>
+  <div class="footer-top">
+    <div><div class="footer-logo">FINDIER LAB</div><div class="footer-tagline">TRANSLATE IDEAS INTO COMPANIES</div></div>
+    <div class="footer-links">
+      <a href="about.html">ABOUT</a><a href="service.html">SERVICES</a>
+      <a href="works.html">WORKS</a><a href="process.html">PROCESS</a>
+      <a href="investment.html">INVESTMENT</a><a href="contact.html">CONTACT</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 FINDIER LAB. All rights reserved.</span>
+    <div class="footer-gradbar"></div>
+  </div>
+</footer>
+
+<script>
+const fader = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
+document.querySelectorAll('.fade').forEach(el => fader.observe(el));
+</script>
+</body>
+</html>

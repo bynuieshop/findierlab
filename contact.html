@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CONTACT — FINDIER LAB</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --lime: #D3F45A; --purple: #7B61FF; --cyan: #4DE7FF;
+      --black: #111111; --white: #FFFFFF; --offwhite: #F7F7F5;
+      --gray1: #F2F0ED; --gray2: #E2E0DC;
+    }
+    html { scroll-behavior: smooth; font-size: 17px; }
+    body { font-family: 'Pretendard','Inter',-apple-system,sans-serif; color: var(--black); background: var(--white); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+
+    .fade { opacity: 0; transform: translateY(36px); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+    .fade.in { opacity: 1; transform: none; }
+    .d1 { transition-delay: .12s; } .d2 { transition-delay: .24s; } .d3 { transition-delay: .36s; } .d4 { transition-delay: .46s; }
+
+    /* NAV */
+    #nav { position: fixed; top: 0; left: 0; right: 0; height: 64px; z-index: 9999; background: #fff; border-bottom: 1px solid #E8E8E8; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; }
+    .nav-logo-text { font-family: 'Inter',sans-serif; font-size: 15px; font-weight: 800; letter-spacing: .05em; color: #111; }
+    .nav-menu { display: flex; gap: 32px; list-style: none; }
+    .nav-menu a { font-family: 'Inter',sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .12em; color: #666; text-transform: uppercase; transition: color .2s; }
+    .nav-menu a:hover { color: #111; }
+    .nav-menu a.active { color: var(--purple); border-bottom: 2px solid var(--purple); padding-bottom: 2px; }
+    .nav-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--purple); color: #fff; font-family: 'Pretendard','Inter',sans-serif; font-size: 13px; font-weight: 700; padding: 10px 22px; border-radius: 100px; flex-shrink: 0; letter-spacing: -.01em; }
+    .nav-cta-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--lime); display: inline-block; }
+
+    /* HERO */
+    #hero { padding-top: 64px; height: 56vh; min-height: 380px; background: var(--offwhite); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; }
+    .hero-bg-text { position: absolute; font-family: 'Inter',sans-serif; font-size: clamp(5rem,10vw,12rem); font-weight: 900; letter-spacing: -.06em; color: rgba(0,0,0,.04); pointer-events: none; user-select: none; white-space: nowrap; top: 50%; transform: translateY(-50%); }
+    .hero-kicker { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .22em; color: var(--purple); text-transform: uppercase; display: flex; align-items: center; gap: 8px; margin-bottom: 24px; position: relative; }
+    .hero-kicker::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--purple); }
+    .hero-title { font-size: clamp(2.4rem, 4.5vw, 5rem); font-weight: 900; line-height: 1.12; letter-spacing: -.04em; position: relative; }
+    .hero-title .c-pur { color: var(--purple); }
+    .hero-sub { font-size: 1rem; color: #777; margin-top: 18px; letter-spacing: -.01em; position: relative; }
+
+    /* FORM SECTION */
+    #form-section { background: var(--white); padding: 130px 80px; }
+    .form-wrap { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 380px 1fr; gap: 80px; align-items: start; }
+
+    .form-intro { position: sticky; top: 88px; }
+    .form-intro-kicker { font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 700; letter-spacing: .22em; color: #bbb; text-transform: uppercase; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+    .form-intro-kicker::before { content: ''; width: 20px; height: 1px; background: #bbb; }
+    .form-intro-heading { font-size: clamp(1.6rem, 2.4vw, 2.2rem); font-weight: 900; line-height: 1.2; letter-spacing: -.04em; margin-bottom: 24px; }
+    .form-intro-heading .c-pur { color: var(--purple); }
+    .form-intro-desc { font-size: .95rem; line-height: 1.7; color: #555; margin-bottom: 8px; }
+    .form-intro-desc2 { font-size: .88rem; line-height: 1.7; color: #999; margin-bottom: 40px; }
+    .form-req-note { font-size: .78rem; color: #bbb; display: flex; align-items: center; gap: 6px; }
+    .form-req-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--lime); display: inline-block; }
+
+    /* FORM BODY */
+    .form-body { background: var(--gray1); border-radius: 24px; padding: 48px; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+    .field { display: flex; flex-direction: column; gap: 8px; margin-bottom: 0; }
+    .field-single { margin-bottom: 20px; }
+    .field label { font-size: .8rem; font-weight: 700; letter-spacing: -.005em; color: #444; display: flex; align-items: center; gap: 4px; }
+    .field label .req { color: var(--lime); font-size: .9rem; line-height: 1; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--lime); vertical-align: middle; font-size: 0; flex-shrink: 0; }
+    .field label .opt-label { font-size: .7rem; font-weight: 500; color: #bbb; background: var(--gray1); padding: 2px 7px; border-radius: 100px; margin-left: 4px; }
+    .field input, .field textarea {
+      width: 100%; background: var(--white); border: 1.5px solid var(--gray2);
+      border-radius: 12px; padding: 14px 18px;
+      font-family: 'Pretendard','Inter',sans-serif; font-size: .95rem; color: var(--black);
+      transition: border-color .2s, box-shadow .2s; outline: none; -webkit-appearance: none;
+    }
+    .field input::placeholder, .field textarea::placeholder { color: #bbb; }
+    .field input:focus, .field textarea:focus { border-color: var(--purple); box-shadow: 0 0 0 3px rgba(123,97,255,.1); }
+    .field textarea { min-height: 160px; resize: vertical; line-height: 1.7; }
+
+    .submit-btn {
+      width: 100%; margin-top: 32px; padding: 18px 32px;
+      background: var(--black); color: var(--white);
+      font-family: 'Pretendard','Inter',sans-serif; font-size: 1rem; font-weight: 800;
+      letter-spacing: -.01em; border: none; border-radius: 14px; cursor: pointer;
+      transition: background .25s, transform .15s;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      position: relative; overflow: hidden;
+    }
+    .submit-btn::after { content: '→'; font-size: 1.1rem; transition: transform .2s; }
+    .submit-btn:hover { background: var(--purple); }
+    .submit-btn:hover::after { transform: translateX(4px); }
+    .submit-btn:active { transform: scale(.99); }
+
+    /* SUCCESS STATE */
+    #form-success { display: none; text-align: center; padding: 60px 32px; }
+    .success-icon { width: 64px; height: 64px; border-radius: 50%; background: rgba(211,244,90,.2); display: flex; align-items: center; justify-content: center; margin: 0 auto 28px; }
+    .success-title { font-size: 1.5rem; font-weight: 900; letter-spacing: -.04em; margin-bottom: 12px; }
+    .success-sub { font-size: .9rem; color: #777; line-height: 1.7; }
+    .success-note { margin-top: 28px; display: inline-block; background: rgba(123,97,255,.08); color: var(--purple); font-size: .78rem; font-weight: 700; padding: 8px 18px; border-radius: 100px; letter-spacing: .02em; }
+
+    /* CLOSING */
+    #closing { background: var(--black); padding: 100px 80px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .closing-quote { font-size: clamp(1.8rem, 4vw, 4rem); font-weight: 900; line-height: 1.2; letter-spacing: -.05em; color: var(--white); max-width: 800px; }
+    .closing-quote .c-lime { color: var(--lime); }
+    .closing-divider { width: 48px; height: 3px; border-radius: 2px; background: linear-gradient(90deg,var(--lime),var(--purple)); margin: 48px 0; }
+    .closing-info { display: flex; gap: 40px; align-items: center; justify-content: center; flex-wrap: wrap; }
+    .closing-info-item { font-size: .88rem; color: rgba(255,255,255,.45); letter-spacing: .04em; }
+    .closing-info-item a { color: rgba(255,255,255,.6); border-bottom: 1px solid rgba(255,255,255,.2); padding-bottom: 2px; transition: color .2s; }
+    .closing-info-item a:hover { color: var(--lime); }
+
+    /* FOOTER */
+    #footer { background: var(--black); padding: 0; }
+    .footer-brand-quote { padding: 56px 80px 48px; border-bottom: 1px solid rgba(255,255,255,.06); }
+    .fbq-text { font-size: clamp(.95rem,1.6vw,1.3rem); font-weight: 900; line-height: 1.5; letter-spacing: -.025em; color: rgba(255,255,255,.55); margin-bottom: 8px; }
+    .fbq-sub { font-size: .8rem; color: rgba(255,255,255,.22); letter-spacing: .06em; }
+    .footer-top { display: flex; justify-content: space-between; align-items: center; padding: 40px 80px; border-bottom: 1px solid rgba(255,255,255,.08); }
+    .footer-logo { font-family: 'Inter',sans-serif; font-size: 15px; font-weight: 800; letter-spacing: .06em; color: #fff; }
+    .footer-tagline { font-size: 10px; color: rgba(255,255,255,.28); letter-spacing: .14em; margin-top: 5px; }
+    .footer-links { display: flex; gap: 28px; flex-wrap: wrap; }
+    .footer-links a { font-size: 11px; font-weight: 500; letter-spacing: .1em; color: rgba(255,255,255,.35); text-transform: uppercase; transition: color .2s; }
+    .footer-links a:hover { color: rgba(255,255,255,.8); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding: 24px 80px 32px; }
+    .footer-copy { font-size: 10px; color: rgba(255,255,255,.18); letter-spacing: .06em; }
+    .footer-gradbar { width: 80px; height: 2px; border-radius: 2px; background: linear-gradient(90deg,#D3F45A,#7B61FF,#4DE7FF); }
+
+    @media (max-width: 1024px) {
+      #nav { padding: 0 32px; }
+      #form-section { padding: 80px 48px; }
+      .form-wrap { grid-template-columns: 1fr; gap: 48px; }
+      .form-intro { position: static; }
+      #closing { padding: 80px 48px; }
+      .footer-brand-quote { padding: 48px 48px 40px; }
+      .footer-top { padding: 36px 48px; }
+      .footer-bottom { padding: 20px 48px 28px; }
+    }
+    @media (max-width: 768px) {
+      #nav { padding: 0 20px; } .nav-menu { display: none; } .nav-cta { padding: 8px 16px; font-size: 12px; }
+      #hero { height: auto; padding: 100px 24px 56px; }
+      .hero-bg-text { font-size: 16vw; }
+      .hero-title { font-size: clamp(2rem, 8vw, 3rem); }
+      #form-section { padding: 64px 24px; }
+      .form-body { padding: 28px 20px; }
+      .field-row { grid-template-columns: 1fr; gap: 16px; }
+      .field-single { margin-bottom: 16px; }
+      #closing { padding: 64px 24px; }
+      .closing-info { flex-direction: column; gap: 16px; }
+      .footer-brand-quote { padding: 40px 24px 32px; }
+      .footer-top { padding: 28px 24px; flex-direction: column; gap: 20px; align-items: flex-start; }
+      .footer-bottom { padding: 16px 24px 24px; flex-direction: column; gap: 10px; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<header id="nav">
+  <a href="index.html" class="nav-logo">
+    <svg width="32" height="32" viewBox="0 0 34 34" fill="none"><circle cx="10" cy="9.5" r="4.5" fill="#D3F45A"/><path d="M17 5 L28 5 L28 20" stroke="#7B61FF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 21 Q10.5 29.5 20 27" stroke="#111" stroke-width="2.8" stroke-linecap="round" fill="none"/></svg>
+    <span class="nav-logo-text">FINDIER LAB</span>
+  </a>
+  <ul class="nav-menu">
+    <li><a href="about.html">ABOUT</a></li>
+    <li><a href="service.html">SERVICES</a></li>
+    <li><a href="works.html">WORKS</a></li>
+    <li><a href="process.html">PROCESS</a></li>
+    <li><a href="investment.html">INVESTMENT</a></li>
+    <li><a href="contact.html" class="active">CONTACT</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta"><span class="nav-cta-dot"></span>생각 보내기</a>
+</header>
+
+<!-- HERO -->
+<section id="hero">
+  <span class="hero-bg-text">START</span>
+  <p class="hero-kicker">START YOUR BUILD</p>
+  <h1 class="hero-title">
+    정리되어 있지 않아도<br>
+    <span class="c-pur">괜찮습니다.</span>
+  </h1>
+  <p class="hero-sub fade d2">생각만 들고 오세요.</p>
+</section>
+
+<!-- FORM SECTION -->
+<section id="form-section">
+  <div class="form-wrap">
+
+    <!-- LEFT: INTRO -->
+    <div class="form-intro fade">
+      <p class="form-intro-kicker">진단 시작</p>
+      <h2 class="form-intro-heading">
+        다만 실제로 시작할<br>준비가 된<br>
+        <span class="c-pur">대표님과<br>이야기하고<br>싶습니다.</span>
+      </h2>
+      <p class="form-intro-desc">대표님의 생각과 사업 정보를 남겨주세요.<br>확인 후 연락드리겠습니다.</p>
+      <p class="form-intro-desc2">정리되지 않은 메모도 좋고,<br>아직 이름 없는 아이디어도 좋습니다.</p>
+      <div class="form-req-note"><span class="form-req-dot"></span> 필수 입력 항목</div>
+    </div>
+
+    <!-- RIGHT: FORM -->
+    <div class="form-body fade d1">
+      <form id="contact-form" novalidate>
+
+        <div class="field-row">
+          <div class="field">
+            <label>이름 <span class="req" title="필수"></span></label>
+            <input type="text" name="name" placeholder="대표자명" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label>회사명 <span class="req" title="필수"></span></label>
+            <input type="text" name="company" placeholder="예) 스튜디오 파인드" autocomplete="organization" required>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label>사업자번호 <span class="opt-label">선택</span></label>
+            <input type="text" name="bizno" placeholder="000-00-00000" maxlength="12">
+          </div>
+          <div class="field">
+            <label>연락처 <span class="req" title="필수"></span></label>
+            <input type="tel" name="tel" placeholder="010-0000-0000" autocomplete="tel" required>
+          </div>
+        </div>
+
+        <div class="field field-single">
+          <label>이메일 <span class="req" title="필수"></span></label>
+          <input type="email" name="email" placeholder="답변 받을 이메일 주소" autocomplete="email" required>
+        </div>
+
+        <div class="field field-single">
+          <label>현재 고민 <span class="req" title="필수"></span></label>
+          <textarea name="message" placeholder="지금 어디서 막혀있는지, 무엇이 필요한지 자유롭게 적어주세요.&#10;정리되지 않아도 됩니다." required></textarea>
+        </div>
+
+        <div class="field field-single">
+          <label>원하는 시점 <span class="opt-label">선택</span></label>
+          <input type="text" name="timeline" placeholder="예) 7월 중, 최대한 빨리, 아직 모름">
+        </div>
+
+        <div class="field field-single">
+          <label>추가 요청 <span class="opt-label">선택</span></label>
+          <textarea name="extra" placeholder="예산, 참고할 브랜드, 특이 사항 등 추가로 전달할 내용이 있으면 적어주세요." style="min-height:100px;"></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">생각 보내기</button>
+      </form>
+
+      <!-- SUCCESS STATE -->
+      <div id="form-success">
+        <div class="success-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <path d="M6 14l6 6 10-10" stroke="#111" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <p class="success-title">문의 내용이 준비되었습니다.</p>
+        <p class="success-sub">메일 연결 후 정상 발송됩니다.<br>현재는 폼 화면 구현 단계입니다.</p>
+        <span class="success-note">메일 발송 기능은 추후 연결됩니다</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section id="closing">
+  <h2 class="closing-quote fade">
+    생각은 남기지 않습니다.<br>
+    <span class="c-lime">작동하게 만듭니다.</span>
+  </h2>
+  <div class="closing-divider fade d1"></div>
+  <div class="closing-info fade d2">
+    <span class="closing-info-item">
+      <a href="mailto:findierlab@gmail.com">findierlab@gmail.com</a>
+    </span>
+    <span class="closing-info-item" style="color:rgba(255,255,255,.2);">·</span>
+    <span class="closing-info-item">
+      <a href="tel:01099208258">010-9920-8258</a>
+    </span>
+    <span class="closing-info-item" style="color:rgba(255,255,255,.2);">·</span>
+    <span class="closing-info-item">
+      <a href="https://instagram.com/findier.lab" target="_blank">@findier.lab</a>
+    </span>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="footer-brand-quote fade">
+    <p class="fbq-text">좋은 브랜드는 비싸야 하는 것이 아니라, 시작할 수 있어야 합니다.</p>
+    <p class="fbq-sub">대표의 생각을 실행 가능한 회사로 번역합니다.</p>
+  </div>
+  <div class="footer-top">
+    <div><div class="footer-logo">FINDIER LAB</div><div class="footer-tagline">TRANSLATE IDEAS INTO COMPANIES</div></div>
+    <div class="footer-links">
+      <a href="about.html">ABOUT</a><a href="service.html">SERVICES</a>
+      <a href="works.html">WORKS</a><a href="process.html">PROCESS</a>
+      <a href="investment.html">INVESTMENT</a><a href="contact.html">CONTACT</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 FINDIER LAB. All rights reserved.</span>
+    <div class="footer-gradbar"></div>
+  </div>
+</footer>
+
+<script>
+/* Scroll fade */
+const fader = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
+document.querySelectorAll('.fade').forEach(el => fader.observe(el));
+
+/* Bizno auto-format */
+const bizno = document.querySelector('input[name="bizno"]');
+if (bizno) {
+  bizno.addEventListener('input', () => {
+    let v = bizno.value.replace(/\D/g, '').slice(0, 10);
+    if (v.length > 5) v = v.slice(0,3) + '-' + v.slice(3,5) + '-' + v.slice(5);
+    else if (v.length > 3) v = v.slice(0,3) + '-' + v.slice(3);
+    bizno.value = v;
+  });
+}
+
+/* Tel auto-format */
+const tel = document.querySelector('input[name="tel"]');
+if (tel) {
+  tel.addEventListener('input', () => {
+    let v = tel.value.replace(/\D/g, '').slice(0, 11);
+    if (v.length > 7) v = v.slice(0,3) + '-' + v.slice(3,7) + '-' + v.slice(7);
+    else if (v.length > 3) v = v.slice(0,3) + '-' + v.slice(3);
+    tel.value = v;
+  });
+}
+
+/* Form submit (temp: UI only) */
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const fields = this.querySelectorAll('[required]');
+  let valid = true;
+  fields.forEach(f => {
+    f.style.borderColor = '';
+    if (!f.value.trim()) { f.style.borderColor = '#FF6B6B'; valid = false; }
+  });
+  if (!valid) return;
+  document.getElementById('contact-form').style.display = 'none';
+  document.getElementById('form-success').style.display = 'block';
+  document.getElementById('form-success').scrollIntoView({ behavior: 'smooth', block: 'center' });
+});
+</script>
+</body>
+</html>
