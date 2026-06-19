@@ -35,8 +35,8 @@
     .nav-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--lime); }
 
     /* INTRO */
-    #intro { padding-top: 64px; height: 52vh; min-height: 320px; display: grid; grid-template-columns: 1fr 1fr; background: var(--offwhite); align-items: end; }
-    .intro-left { padding: 0 52px 56px 80px; }
+    #intro { padding-top: 64px; height: 72vh; min-height: 480px; display: grid; grid-template-columns: 1fr 1fr; background: var(--offwhite); align-items: center; }
+    .intro-left { padding: 60px 52px 60px 80px; }
     .intro-kicker { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .22em; color: var(--purple); text-transform: uppercase; display: flex; align-items: center; gap: 8px; margin-bottom: 20px; }
     .intro-kicker::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--purple); }
     .intro-title { font-size: clamp(2rem,4vw,3.6rem); font-weight: 900; line-height: 1.18; letter-spacing: -.04em; }
@@ -56,6 +56,7 @@
     .case-visual-bg { position: absolute; inset: 0; }
     .case-ph { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; }
     .case-ph-label { font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
+    .case-visual iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; pointer-events: none; }
     .case-meta { padding: 52px 64px; display: flex; flex-direction: column; justify-content: center; }
     .case-num { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .2em; color: #bbb; margin-bottom: 16px; }
     .case-brand { font-size: clamp(2.2rem,4vw,3.8rem); font-weight: 900; line-height: 1.08; letter-spacing: -.04em; margin-bottom: 12px; }
@@ -131,7 +132,7 @@
     @media (max-width: 768px) {
       #nav { padding: 0 20px; } .nav-menu { display: none; } .nav-burger { display: flex; } .nav-cta { padding: 8px 16px; font-size: 12px; }
       #intro { grid-template-columns: 1fr; height: auto; padding-top: 80px; }
-      .intro-left { padding: 80px 24px 32px; }
+      .intro-left { padding: 60px 24px 40px; }
       .intro-right { padding: 0 24px 40px; justify-content: flex-start; }
       .case-header { grid-template-columns: 1fr; }
       .case-visual { min-height: 56vw; }
@@ -184,18 +185,14 @@
     <h1 class="intro-title">번역이<br>회사를 만드는<br>방식</h1>
     <p class="intro-sub">대표의 생각이 어떻게 브랜드가 되었는지,<br>그 번역의 과정을 보여줍니다.</p>
   </div>
-  <div class="intro-right"><span class="intro-count">03</span></div>
+  <div class="intro-right"><span class="intro-count">02</span></div>
 </section>
 
 <!-- CASE 00: NUiE -->
 <article class="case-article fade">
   <div class="case-header">
     <div class="case-visual">
-      <div class="case-visual-bg" style="background:linear-gradient(135deg,#12003a 0%,#2d0f7a 45%,#7B61FF 100%);"></div>
-      <div class="case-ph">
-        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" opacity=".18"><rect x="4" y="4" width="32" height="32" rx="4" stroke="white" stroke-width="1.5" stroke-dasharray="4 3"/><circle cx="14" cy="15" r="4" stroke="white" stroke-width="1.5"/><path d="M4 28l9-9 7 7 5-5 11 9" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <span class="case-ph-label" style="color:rgba(255,255,255,.18);">IMAGE</span>
-      </div>
+      <iframe src="https://bynuie.com" title="NUiE" scrolling="no" loading="lazy"></iframe>
     </div>
     <div class="case-meta">
       <p class="case-num">CASE 00</p>
@@ -245,73 +242,14 @@
   </div>
 </article>
 
-<!-- CASE 01: VEVELL -->
-<article class="case-article reverse fade">
-  <div class="case-header">
-    <div class="case-visual">
-      <div class="case-visual-bg" style="background:linear-gradient(135deg,#0d1f0d 0%,#1a3d1a 45%,#2d6b2d 100%);"></div>
-      <div class="case-ph">
-        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" opacity=".18"><rect x="4" y="4" width="32" height="32" rx="4" stroke="white" stroke-width="1.5" stroke-dasharray="4 3"/><circle cx="14" cy="15" r="4" stroke="white" stroke-width="1.5"/><path d="M4 28l9-9 7 7 5-5 11 9" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <span class="case-ph-label" style="color:rgba(255,255,255,.18);">IMAGE</span>
-      </div>
-    </div>
-    <div class="case-meta">
-      <p class="case-num">CASE 01</p>
-      <h2 class="case-brand">VEVELL</h2>
-      <p class="case-tagline">속에서 발현되는 건강의 언어.<br>이너뷰티 브랜드.</p>
-      <div class="case-services">
-        <span class="case-svc"><span class="case-svc-dot" style="background:var(--lime);"></span>BRAND</span>
-        <span class="case-svc"><span class="case-svc-dot" style="background:var(--cyan);"></span>WEBSITE</span>
-        <span class="case-svc"><span class="case-svc-dot" style="background:var(--purple);"></span>OS</span>
-      </div>
-    </div>
-  </div>
-  <div class="case-flow">
-    <div class="flow-col">
-      <div class="flow-label">
-        <span class="flow-label-dot" style="background:#D3F45A;"></span>
-        <span style="color:#888;">BEFORE — 대표의 생각</span>
-      </div>
-      <h3 class="flow-keyword">속건강</h3>
-      <p class="flow-desc">"겉에서 바르는 것보다 속에서 채우는 것이 진짜 건강이다."<br>이 철학에서 브랜드가 시작되었습니다.</p>
-    </div>
-    <div class="flow-col">
-      <div class="flow-label">
-        <span class="flow-label-dot" style="background:#7B61FF;"></span>
-        <span style="color:#888;">TRANSLATE — 번역</span>
-      </div>
-      <h3 class="flow-keyword">흡수와 발현</h3>
-      <p class="flow-desc">몸 안에서 흡수되어 밖으로 발현되는 건강의 언어. 눈에 보이지 않는 과정을 브랜드 철학으로 번역했습니다.</p>
-      <div class="flow-tags">
-        <span class="flow-tag">브랜드 철학</span>
-        <span class="flow-tag">네이밍 VEVELL</span>
-        <span class="flow-tag">세계관</span>
-      </div>
-    </div>
-    <div class="flow-col">
-      <div class="flow-label">
-        <span class="flow-label-dot" style="background:#4DE7FF;"></span>
-        <span style="color:#888;">BUILD — 결과</span>
-      </div>
-      <h3 class="flow-keyword">브랜드 언어 + OS</h3>
-      <p class="flow-desc">브랜드 언어부터 홈페이지, 운영 구조까지 전 과정. 대표 혼자 운영할 수 있는 시스템을 구축했습니다.</p>
-      <div class="flow-tags">
-        <span class="flow-tag">VI</span>
-        <span class="flow-tag">홈페이지</span>
-        <span class="flow-tag">운영 시스템</span>
-      </div>
-    </div>
-  </div>
-</article>
-
-<!-- CASE 02: FINDIER LAB -->
+<!-- CASE 01: FINDIER LAB -->
 <article class="case-article fade">
   <div class="case-header">
     <div class="case-visual">
       <img src="assets/about-website.png" alt="FINDIER LAB">
     </div>
     <div class="case-meta">
-      <p class="case-num">CASE 02</p>
+      <p class="case-num">CASE 01</p>
       <h2 class="case-brand">FINDIER<br>LAB</h2>
       <p class="case-tagline">첫 번째 클라이언트는 우리 자신.<br>Founding Studio를 번역했습니다.</p>
       <div class="case-services">
