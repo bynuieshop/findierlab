@@ -223,11 +223,10 @@
       #wwd { grid-template-columns: 1fr; height: auto; }
       .wwd-card { height: 52vw; min-height: 200px; }
       #philosophy { padding: 80px 24px; }
-      .wm-optional-side { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-      .wm-optional-header { grid-column: 1 / -1; }
-      .wm-partner-card { padding: 20px 16px; }
+      .wm-optional-side { display: flex; flex-direction: column; gap: 10px; }
+      .wm-partner-card { padding: 20px 18px; }
       .wm-partner-name { font-size: .95rem; }
-      .wm-partner-desc { font-size: .72rem; }
+      .wm-partner-desc { font-size: .75rem; }
       #believe { padding: 64px 24px; }
       .believe-grid { grid-template-columns: 1fr; }
       .blv-item:nth-child(odd) { border-right: none; padding-right: 0; }
@@ -257,6 +256,7 @@
     <li><a href="contact.html">CONTACT</a></li>
   </ul>
   <a href="contact.html" class="nav-cta"><span class="nav-dot"></span>생각 보내기</a>
+  <button class="nav-burger" id="navBurger" aria-label="메뉴"><span></span><span></span><span></span></button>
 </header>
 <div id="mobileMenu">
   <a href="about.html" class="mob-link active">ABOUT</a>
