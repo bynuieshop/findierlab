@@ -223,10 +223,12 @@
       #wwd { grid-template-columns: 1fr; height: auto; }
       .wwd-card { height: 52vw; min-height: 200px; }
       #philosophy { padding: 80px 24px; }
-      .wm-optional-side { display: flex; flex-direction: column; gap: 10px; }
-      .wm-partner-card { padding: 20px 18px; }
-      .wm-partner-name { font-size: .95rem; }
-      .wm-partner-desc { font-size: .75rem; }
+      .wm-optional-side { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+      .wm-optional-header { grid-column: 1 / -1; padding-bottom: 10px; }
+      .wm-partner-card { padding: 18px 14px; gap: 7px; }
+      .wm-partner-name { font-size: .88rem; }
+      .wm-partner-desc { font-size: .7rem; line-height: 1.5; }
+      .wm-partner-tags { display: none; }
       #believe { padding: 64px 24px; }
       .believe-grid { grid-template-columns: 1fr; }
       .blv-item:nth-child(odd) { border-right: none; padding-right: 0; }
