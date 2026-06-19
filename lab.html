@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LAB — FINDIER LAB</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --lime: #D3F45A; --purple: #7B61FF; --cyan: #4DE7FF;
+      --black: #111111; --white: #FFFFFF; --offwhite: #F7F7F5;
+      --gray1: #F2F0ED; --gray2: #E2E0DC;
+    }
+    html { scroll-behavior: smooth; font-size: 17px; }
+    body { font-family: 'Pretendard','Inter',-apple-system,sans-serif; color: var(--black); background: var(--white); -webkit-font-smoothing: antialiased; }
+    a { text-decoration: none; color: inherit; }
+
+    .fade { opacity: 0; transform: translateY(36px); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+    .fade.in { opacity: 1; transform: none; }
+    .d1 { transition-delay: .1s; } .d2 { transition-delay: .2s; } .d3 { transition-delay: .3s; } .d4 { transition-delay: .4s; }
+
+    /* NAV */
+    #nav { position: fixed; top: 0; left: 0; right: 0; height: 64px; z-index: 9999; background: var(--white); border-bottom: 1px solid #E8E8E8; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; }
+    .nav-logo-text { font-family: 'Inter',sans-serif; font-size: 15px; font-weight: 800; letter-spacing: .05em; color: #111; }
+    .nav-menu { display: flex; gap: 28px; list-style: none; }
+    .nav-menu a { font-family: 'Inter',sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .12em; color: #666; text-transform: uppercase; transition: color .2s; }
+    .nav-menu a:hover { color: #111; }
+    .nav-menu a.active { color: var(--purple); border-bottom: 2px solid var(--purple); padding-bottom: 2px; }
+    .nav-cta { display: inline-flex; align-items: center; gap: 8px; background: #111; color: #fff; font-size: 13px; font-weight: 700; padding: 10px 22px; border-radius: 100px; flex-shrink: 0; transition: opacity .2s; }
+    .nav-cta:hover { opacity: .8; }
+    .nav-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--lime); }
+
+    /* HERO */
+    #hero { display: grid; grid-template-columns: 1fr 1fr; height: 100vh; padding-top: 64px; background: var(--black); overflow: hidden; }
+    .hero-left { display: flex; flex-direction: column; justify-content: flex-end; padding: 0 52px 72px 80px; }
+    .hero-kicker { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .22em; color: var(--lime); text-transform: uppercase; display: flex; align-items: center; gap: 8px; margin-bottom: 20px; }
+    .hero-kicker::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--lime); }
+    .hero-title { font-size: clamp(2.8rem,5vw,5.2rem); font-weight: 900; line-height: 1.08; letter-spacing: -.04em; color: var(--white); margin-bottom: 24px; }
+    .hero-title .c-lime { color: var(--lime); }
+    .hero-sub { font-size: .92rem; color: rgba(255,255,255,.45); line-height: 1.75; border-left: 2px solid rgba(255,255,255,.1); padding-left: 14px; max-width: 400px; }
+    .hero-right { display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+
+    /* HERO SVG GRID */
+    .lab-grid { opacity: .08; }
+
+    /* PHILOSOPHY */
+    #philosophy { background: var(--offwhite); padding: 130px 80px; }
+    .phil-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .phil-left { }
+    .phil-kicker { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .22em; color: #aaa; text-transform: uppercase; margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
+    .phil-kicker::before { content: ''; width: 20px; height: 1px; background: #ccc; }
+    .phil-title { font-size: clamp(1.6rem,2.8vw,2.6rem); font-weight: 900; line-height: 1.25; letter-spacing: -.04em; margin-bottom: 32px; }
+    .phil-title .hl { color: var(--purple); }
+    .phil-quote { font-size: 1rem; color: #444; line-height: 1.85; border-left: 3px solid var(--lime); padding-left: 18px; }
+    .phil-right { padding-top: 16px; }
+    .phil-keywords { display: flex; flex-direction: column; gap: 0; }
+    .phil-kw { display: flex; align-items: center; gap: 20px; padding: 20px 0; border-bottom: 1px solid var(--gray2); }
+    .phil-kw:first-child { border-top: 1px solid var(--gray2); }
+    .phil-kw-en { font-family: 'Inter',sans-serif; font-size: 11px; font-weight: 800; letter-spacing: .14em; color: #bbb; text-transform: uppercase; width: 100px; flex-shrink: 0; }
+    .phil-kw-ko { font-size: .88rem; color: #555; line-height: 1.5; }
+
+    /* TOOLS */
+    #tools { background: var(--white); padding: 130px 80px; }
+    .tools-header { margin-bottom: 64px; }
+    .tools-kicker { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .22em; color: #aaa; text-transform: uppercase; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+    .tools-kicker::before { content: ''; width: 20px; height: 1px; background: #ccc; }
+    .tools-title { font-size: clamp(1.4rem,2.4vw,2.2rem); font-weight: 900; letter-spacing: -.03em; }
+    .tools-sub { font-size: .88rem; color: #888; line-height: 1.7; margin-top: 10px; max-width: 560px; }
+    .tools-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 2px; background: var(--gray2); border: 1px solid var(--gray2); }
+    .tool-card { background: var(--white); padding: 48px; display: flex; flex-direction: column; gap: 16px; transition: background .2s; }
+    .tool-card:hover { background: var(--gray1); }
+    .tool-icon { margin-bottom: 4px; }
+    .tool-num { font-family: 'Inter',sans-serif; font-size: .72rem; font-weight: 700; letter-spacing: .14em; color: #bbb; margin-bottom: 6px; }
+    .tool-name { font-size: 1.25rem; font-weight: 900; letter-spacing: -.025em; line-height: 1.2; }
+    .tool-desc { font-size: .85rem; color: #666; line-height: 1.7; }
+    .tool-tag { display: inline-flex; align-items: center; gap: 5px; font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 700; letter-spacing: .1em; color: #aaa; text-transform: uppercase; margin-top: 4px; }
+    .tool-tag-dot { width: 4px; height: 4px; border-radius: 50%; }
+
+    /* STANCE */
+    #stance { background: var(--black); padding: 130px 80px; }
+    .stance-inner { display: grid; grid-template-columns: 360px 1fr; gap: 80px; align-items: start; }
+    .stance-left { }
+    .stance-kicker { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .22em; color: var(--lime); text-transform: uppercase; margin-bottom: 24px; display: flex; align-items: center; gap: 8px; }
+    .stance-kicker::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--lime); }
+    .stance-title { font-size: clamp(1.5rem,2.5vw,2.2rem); font-weight: 900; line-height: 1.25; letter-spacing: -.035em; color: var(--white); }
+    .stance-right { border-left: 1px solid rgba(255,255,255,.08); padding-left: 60px; }
+    .stance-item { display: flex; align-items: flex-start; gap: 16px; padding: 24px 0; border-bottom: 1px solid rgba(255,255,255,.06); }
+    .stance-item:last-child { border-bottom: none; }
+    .stance-x { width: 22px; height: 22px; border-radius: 50%; background: rgba(255,255,255,.06); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+    .stance-x span { font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 900; color: rgba(255,255,255,.3); }
+    .stance-text { font-size: .9rem; color: rgba(255,255,255,.5); line-height: 1.7; }
+    .stance-text strong { color: rgba(255,255,255,.85); font-weight: 700; }
+
+    /* CTA */
+    #cta { background: var(--white); padding: 130px 80px; border-top: 1px solid var(--gray2); text-align: center; }
+    .cta-kicker { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .22em; color: #aaa; text-transform: uppercase; margin-bottom: 24px; }
+    .cta-title { font-size: clamp(1.8rem,3vw,2.8rem); font-weight: 900; line-height: 1.25; letter-spacing: -.04em; margin-bottom: 16px; }
+    .cta-title .c-purple { color: var(--purple); }
+    .cta-sub { font-size: .92rem; color: #888; line-height: 1.7; margin-bottom: 36px; }
+    .cta-btn { display: inline-flex; align-items: center; gap: 10px; background: var(--black); color: var(--white); font-size: 14px; font-weight: 700; padding: 16px 32px; border-radius: 100px; transition: opacity .2s; }
+    .cta-btn:hover { opacity: .8; }
+
+    /* FOOTER */
+    #footer { background: var(--black); }
+    .footer-brand-quote { padding: 56px 80px 48px; border-bottom: 1px solid rgba(255,255,255,.06); }
+    .fbq-text { font-size: clamp(.95rem,1.6vw,1.3rem); font-weight: 900; line-height: 1.5; letter-spacing: -.025em; color: rgba(255,255,255,.55); margin-bottom: 8px; }
+    .fbq-sub { font-size: .8rem; color: rgba(255,255,255,.22); letter-spacing: .06em; }
+    .footer-top { display: flex; justify-content: space-between; align-items: center; padding: 40px 80px; border-bottom: 1px solid rgba(255,255,255,.08); }
+    .footer-logo { font-family: 'Inter',sans-serif; font-size: 15px; font-weight: 800; letter-spacing: .06em; color: #fff; }
+    .footer-tagline { font-size: 10px; color: rgba(255,255,255,.3); letter-spacing: .14em; margin-top: 6px; }
+    .footer-links { display: flex; gap: 28px; }
+    .footer-links a { font-size: 11px; font-weight: 500; letter-spacing: .1em; color: rgba(255,255,255,.35); text-transform: uppercase; transition: color .2s; }
+    .footer-links a:hover { color: rgba(255,255,255,.8); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding: 24px 80px 32px; }
+    .footer-copy { font-size: 10px; color: rgba(255,255,255,.18); letter-spacing: .06em; }
+    .footer-gradbar { width: 100px; height: 2px; border-radius: 2px; background: linear-gradient(90deg,#D3F45A,#7B61FF,#4DE7FF); }
+
+    /* HAMBURGER */
+    .nav-burger { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px 4px; flex-shrink: 0; }
+    .nav-burger span { display: block; width: 22px; height: 2px; background: #111; border-radius: 1px; transition: transform .25s, opacity .25s; }
+    .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    #mobileMenu { display: none; position: fixed; top: 64px; left: 0; right: 0; bottom: 0; background: #fff; z-index: 9998; flex-direction: column; padding: 36px 24px; overflow-y: auto; }
+    #mobileMenu.open { display: flex; }
+    .mob-link { font-family: 'Inter',sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #888; text-decoration: none; padding: 18px 0; border-bottom: 1px solid #f0eeeb; transition: color .2s; }
+    .mob-link.active { color: #111; }
+    .mob-cta-wrap { margin-top: 32px; }
+    .mob-cta { display: inline-flex; align-items: center; gap: 8px; background: #111; color: #fff; font-size: 14px; font-weight: 700; padding: 14px 28px; border-radius: 100px; text-decoration: none; }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      #nav { padding: 0 32px; } .nav-menu { gap: 20px; }
+      #hero { grid-template-columns: 1fr; }
+      .hero-left { padding: 0 48px 60px; justify-content: flex-end; }
+      .hero-right { display: none; }
+      #philosophy { padding: 80px 48px; }
+      .phil-inner { grid-template-columns: 1fr; gap: 48px; }
+      #tools { padding: 80px 48px; }
+      #stance { padding: 80px 48px; }
+      .stance-inner { grid-template-columns: 1fr; gap: 40px; }
+      .stance-right { border-left: none; padding-left: 0; border-top: 1px solid rgba(255,255,255,.08); padding-top: 40px; }
+      #cta { padding: 80px 48px; }
+      .footer-brand-quote { padding: 48px 48px 40px; }
+      .footer-top { padding: 36px 48px; }
+      .footer-bottom { padding: 20px 48px 28px; }
+    }
+    @media (max-width: 768px) {
+      #nav { padding: 0 20px; gap: 10px; }
+      .nav-menu { display: none; }
+      .nav-burger { display: flex; }
+      .nav-logo-text { font-size: 13px; }
+      .nav-cta { padding: 8px 16px; font-size: 12px; }
+      #hero { height: auto; min-height: 100svh; }
+      .hero-left { padding: 96px 24px 48px; }
+      .hero-title { font-size: clamp(2.4rem,8vw,3.2rem); }
+      #philosophy { padding: 56px 24px; }
+      #tools { padding: 56px 24px; }
+      .tools-grid { grid-template-columns: 1fr; }
+      .tool-card { padding: 32px 24px; }
+      #stance { padding: 56px 24px; }
+      #cta { padding: 64px 24px; }
+      .footer-brand-quote { padding: 40px 24px 32px; }
+      .footer-top { padding: 28px 24px; flex-direction: column; gap: 20px; align-items: flex-start; }
+      .footer-links { flex-wrap: wrap; gap: 14px; }
+      .footer-bottom { padding: 16px 24px 24px; flex-direction: column; gap: 10px; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<header id="nav">
+  <a href="index.html" class="nav-logo">
+    <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+      <circle cx="10" cy="9.5" r="4.5" fill="#D3F45A"/>
+      <path d="M17 5 L28 5 L28 20" stroke="#7B61FF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M6.5 21 Q10.5 29.5 20 27" stroke="#111111" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+    </svg>
+    <span class="nav-logo-text">FINDIER LAB</span>
+  </a>
+  <ul class="nav-menu">
+    <li><a href="process.html">PROCESS</a></li>
+    <li><a href="works.html">WORK</a></li>
+    <li><a href="service.html">SERVICE</a></li>
+    <li><a href="lab.html" class="active">LAB</a></li>
+    <li><a href="about.html">ABOUT</a></li>
+    <li><a href="contact.html">CONTACT</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta"><span class="nav-dot"></span>생각 보내기</a>
+  <button class="nav-burger" id="navBurger" aria-label="메뉴"><span></span><span></span><span></span></button>
+</header>
+<div id="mobileMenu">
+  <a href="process.html" class="mob-link">PROCESS</a>
+  <a href="works.html" class="mob-link">WORK</a>
+  <a href="service.html" class="mob-link">SERVICE</a>
+  <a href="lab.html" class="mob-link active">LAB</a>
+  <a href="about.html" class="mob-link">ABOUT</a>
+  <a href="contact.html" class="mob-link">CONTACT</a>
+  <div class="mob-cta-wrap"><a href="contact.html" class="mob-cta"><span class="nav-dot"></span>생각 보내기</a></div>
+</div>
+
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <p class="hero-kicker">LAB</p>
+    <h1 class="hero-title">사람을 위한<br><span class="c-lime">AI 도구</span></h1>
+    <p class="hero-sub">
+      AI를 먼저 씁니다.<br>
+      당신이 더 중요한 일에 집중할 수 있게.
+    </p>
+  </div>
+  <div class="hero-right">
+    <svg class="lab-grid" width="480" height="480" viewBox="0 0 480 480" fill="none">
+      <!-- grid lines -->
+      <line x1="80" y1="0" x2="80" y2="480" stroke="#fff" stroke-width="1"/>
+      <line x1="160" y1="0" x2="160" y2="480" stroke="#fff" stroke-width="1"/>
+      <line x1="240" y1="0" x2="240" y2="480" stroke="#fff" stroke-width="1"/>
+      <line x1="320" y1="0" x2="320" y2="480" stroke="#fff" stroke-width="1"/>
+      <line x1="400" y1="0" x2="400" y2="480" stroke="#fff" stroke-width="1"/>
+      <line x1="0" y1="80" x2="480" y2="80" stroke="#fff" stroke-width="1"/>
+      <line x1="0" y1="160" x2="480" y2="160" stroke="#fff" stroke-width="1"/>
+      <line x1="0" y1="240" x2="480" y2="240" stroke="#fff" stroke-width="1"/>
+      <line x1="0" y1="320" x2="480" y2="320" stroke="#fff" stroke-width="1"/>
+      <line x1="0" y1="400" x2="480" y2="400" stroke="#fff" stroke-width="1"/>
+      <!-- nodes -->
+      <circle cx="160" cy="160" r="6" fill="#D3F45A" opacity="1"/>
+      <circle cx="320" cy="160" r="4" fill="#7B61FF" opacity="1"/>
+      <circle cx="240" cy="320" r="5" fill="#4DE7FF" opacity="1"/>
+      <circle cx="160" cy="320" r="3" fill="#fff" opacity=".5"/>
+      <circle cx="320" cy="240" r="3" fill="#fff" opacity=".3"/>
+      <!-- connections -->
+      <line x1="160" y1="160" x2="320" y2="160" stroke="#D3F45A" stroke-width="1.5" opacity=".6"/>
+      <line x1="320" y1="160" x2="240" y2="320" stroke="#7B61FF" stroke-width="1.5" opacity=".6"/>
+      <line x1="160" y1="160" x2="240" y2="320" stroke="#4DE7FF" stroke-width="1" opacity=".4"/>
+    </svg>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section id="philosophy" class="fade">
+  <div class="phil-inner">
+    <div class="phil-left">
+      <p class="phil-kicker">Our Stance on AI</p>
+      <h2 class="phil-title">AI는 도구입니다.<br><span class="hl">대체재가 아닙니다.</span></h2>
+      <p class="phil-quote">
+        AI가 더 많은 일을 처리해주는 게 목표가 아닙니다.<br>
+        당신이 더 중요한 일에 집중할 수 있도록,<br>
+        반복되고 구조화 가능한 일을 AI에게 맡기는 겁니다.<br><br>
+        사람이 방향을 정합니다.<br>
+        AI는 그 방향대로 구조를 만듭니다.
+      </p>
+    </div>
+    <div class="phil-right">
+      <div class="phil-keywords">
+        <div class="phil-kw">
+          <span class="phil-kw-en">RESEARCH</span>
+          <span class="phil-kw-ko">시장과 경쟁자를 빠르게 파악합니다</span>
+        </div>
+        <div class="phil-kw">
+          <span class="phil-kw-en">STRUCTURE</span>
+          <span class="phil-kw-ko">반복 업무에 처음부터 구조를 만듭니다</span>
+        </div>
+        <div class="phil-kw">
+          <span class="phil-kw-en">AUTOMATE</span>
+          <span class="phil-kw-ko">결정이 필요 없는 일을 자동화합니다</span>
+        </div>
+        <div class="phil-kw">
+          <span class="phil-kw-en">FOCUS</span>
+          <span class="phil-kw-ko">대표가 브랜드 방향에만 집중하게 합니다</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section id="tools" class="fade">
+  <div class="tools-header">
+    <p class="tools-kicker">What We Build</p>
+    <h2 class="tools-title">LAB에서 만드는 것들</h2>
+    <p class="tools-sub">파인디어랩이 직접 운영하며 쌓은 AI 구조를, 클라이언트의 상황에 맞게 설계합니다.</p>
+  </div>
+  <div class="tools-grid">
+    <!-- 01 -->
+    <div class="tool-card fade d1">
+      <div class="tool-icon">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+          <circle cx="20" cy="20" r="12" stroke="#D3F45A" stroke-width="1.8"/>
+          <line x1="20" y1="4" x2="20" y2="36" stroke="#D3F45A" stroke-width="1.2" opacity=".4"/>
+          <line x1="4" y1="20" x2="36" y2="20" stroke="#D3F45A" stroke-width="1.2" opacity=".4"/>
+          <circle cx="20" cy="20" r="4" fill="#D3F45A" opacity=".6"/>
+        </svg>
+      </div>
+      <p class="tool-num">01</p>
+      <h3 class="tool-name">브랜드 리서치 보조</h3>
+      <p class="tool-desc">시장, 경쟁자, 타겟 고객을 AI가 빠르게 정리합니다. 대표가 직접 조사하던 시간을 전략 사고로 바꿉니다.</p>
+      <span class="tool-tag"><span class="tool-tag-dot" style="background:#D3F45A;"></span>RESEARCH</span>
+    </div>
+    <!-- 02 -->
+    <div class="tool-card fade d2">
+      <div class="tool-icon">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+          <rect x="6" y="6" width="12" height="12" rx="2" stroke="#7B61FF" stroke-width="1.8"/>
+          <rect x="22" y="6" width="12" height="12" rx="2" stroke="#7B61FF" stroke-width="1.8"/>
+          <rect x="6" y="22" width="12" height="12" rx="2" stroke="#7B61FF" stroke-width="1.8"/>
+          <rect x="22" y="22" width="12" height="12" rx="2" stroke="#7B61FF" stroke-width="1.8" stroke-dasharray="2.5 2"/>
+          <line x1="12" y1="18" x2="12" y2="22" stroke="#7B61FF" stroke-width="1.5" opacity=".4"/>
+          <line x1="28" y1="18" x2="28" y2="22" stroke="#7B61FF" stroke-width="1.5" opacity=".4"/>
+        </svg>
+      </div>
+      <p class="tool-num">02</p>
+      <h3 class="tool-name">AI 에이전트 설계</h3>
+      <p class="tool-desc">반복되는 업무에 구조를 만들고, AI 에이전트가 대신 처리하게 합니다. 1인이 팀처럼 움직이는 구조.</p>
+      <span class="tool-tag"><span class="tool-tag-dot" style="background:#7B61FF;"></span>AUTOMATE</span>
+    </div>
+    <!-- 03 -->
+    <div class="tool-card fade d3">
+      <div class="tool-icon">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+          <path d="M8 32 L8 12 L20 6 L32 12 L32 32" stroke="#4DE7FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="15" y="20" width="10" height="12" rx="1" stroke="#4DE7FF" stroke-width="1.5"/>
+          <line x1="12" y1="16" x2="28" y2="16" stroke="#4DE7FF" stroke-width="1.2" opacity=".4"/>
+        </svg>
+      </div>
+      <p class="tool-num">03</p>
+      <h3 class="tool-name">콘텐츠 생산 시스템</h3>
+      <p class="tool-desc">아이디어 → 초안 → 배포까지 이어지는 콘텐츠 파이프라인을 구축합니다. 매번 새로 만들지 않아도 됩니다.</p>
+      <span class="tool-tag"><span class="tool-tag-dot" style="background:#4DE7FF;"></span>STRUCTURE</span>
+    </div>
+    <!-- 04 -->
+    <div class="tool-card fade d4">
+      <div class="tool-icon">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+          <path d="M10 20 L18 28 L30 12" stroke="#D3F45A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="20" cy="20" r="14" stroke="#D3F45A" stroke-width="1.5" opacity=".3"/>
+        </svg>
+      </div>
+      <p class="tool-num">04</p>
+      <h3 class="tool-name">운영 매뉴얼 자동화</h3>
+      <p class="tool-desc">매번 판단해야 했던 반복 업무를 매뉴얼화하고 자동화합니다. 결정 피로를 줄이고 중요한 일에 집중합니다.</p>
+      <span class="tool-tag"><span class="tool-tag-dot" style="background:#D3F45A;"></span>FOCUS</span>
+    </div>
+  </div>
+</section>
+
+<!-- STANCE -->
+<section id="stance" class="fade">
+  <div class="stance-inner">
+    <div class="stance-left">
+      <p class="stance-kicker">What We Don't Do</p>
+      <h2 class="stance-title">AI로<br>하지 않는 것</h2>
+    </div>
+    <div class="stance-right">
+      <div class="stance-item">
+        <div class="stance-x"><span>✕</span></div>
+        <p class="stance-text"><strong>AI가 대표의 생각을 대신하지 않습니다.</strong><br>방향과 판단은 사람이 합니다. AI는 그 결정을 실행하는 구조입니다.</p>
+      </div>
+      <div class="stance-item">
+        <div class="stance-x"><span>✕</span></div>
+        <p class="stance-text"><strong>AI가 브랜드를 만들지 않습니다.</strong><br>브랜드는 대표와의 인터뷰에서 시작합니다. AI는 그 언어를 정리하는 도구입니다.</p>
+      </div>
+      <div class="stance-item">
+        <div class="stance-x"><span>✕</span></div>
+        <p class="stance-text"><strong>AI 도구 자체를 팔지 않습니다.</strong><br>도구보다 구조가 중요합니다. 어떤 AI를 쓰느냐보다, 어떻게 연결하느냐가 핵심입니다.</p>
+      </div>
+      <div class="stance-item">
+        <div class="stance-x"><span>✕</span></div>
+        <p class="stance-text"><strong>자동화가 목표가 아닙니다.</strong><br>더 많이 처리하는 게 아니라, 더 중요한 것에 집중하는 것이 목표입니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta" class="fade">
+  <p class="cta-kicker">AI &amp; Brand System</p>
+  <h2 class="cta-title">AI를 활용한 <span class="c-purple">브랜드 운영 구조</span>가<br>필요하다면</h2>
+  <p class="cta-sub">도구를 먼저 고르지 않아도 됩니다.<br>어떻게 운영하고 싶은지 이야기해주세요.</p>
+  <a href="contact.html" class="cta-btn">생각 보내기 →</a>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="footer-brand-quote fade">
+    <p class="fbq-text">브랜드를 만들어드리는 것이 아닙니다. 당신이 말할 수 있는 구조를 함께 만듭니다.</p>
+    <p class="fbq-sub">Brand Research &amp; Building Lab</p>
+  </div>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">FINDIER LAB</div>
+      <div class="footer-tagline">BRAND RESEARCH &amp; BUILDING LAB</div>
+    </div>
+    <div class="footer-links">
+      <a href="process.html">PROCESS</a>
+      <a href="works.html">WORK</a>
+      <a href="service.html">SERVICE</a>
+      <a href="lab.html">LAB</a>
+      <a href="about.html">ABOUT</a>
+      <a href="contact.html">CONTACT</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 FINDIER LAB. All rights reserved.</span>
+    <div class="footer-gradbar"></div>
+  </div>
+</footer>
+
+<script>
+const fader = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -48px 0px' });
+document.querySelectorAll('.fade').forEach(el => fader.observe(el));
+</script>
+<script>
+(function(){var b=document.getElementById('navBurger'),m=document.getElementById('mobileMenu');if(!b)return;b.addEventListener('click',function(){b.classList.toggle('open');m.classList.toggle('open');document.body.style.overflow=m.classList.contains('open')?'hidden':'';});})();
+</script>
+</body>
+</html>
