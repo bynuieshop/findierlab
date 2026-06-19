@@ -130,6 +130,18 @@
       .footer-top { padding: 36px 48px; }
       .footer-bottom { padding: 20px 48px 28px; }
     }
+    /* HAMBURGER */
+    .nav-burger { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px 4px; flex-shrink: 0; }
+    .nav-burger span { display: block; width: 22px; height: 2px; background: #111; border-radius: 1px; transition: transform .25s, opacity .25s; }
+    .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    #mobileMenu { display: none; position: fixed; top: 64px; left: 0; right: 0; bottom: 0; background: #fff; z-index: 9998; flex-direction: column; padding: 36px 24px; overflow-y: auto; }
+    #mobileMenu.open { display: flex; }
+    .mob-link { font-family: 'Inter',sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #888; text-decoration: none; padding: 18px 0; border-bottom: 1px solid #f0eeeb; transition: color .2s; }
+    .mob-link.active { color: #111; }
+    .mob-cta-wrap { margin-top: 32px; }
+    .mob-cta { display: inline-flex; align-items: center; gap: 8px; background: #111; color: #fff; font-family: 'Pretendard','Inter',sans-serif; font-size: 14px; font-weight: 700; padding: 14px 28px; border-radius: 100px; text-decoration: none; }
     @media (max-width: 768px) {
       #nav { padding: 0 20px; } .nav-menu { display: none; } .nav-burger { display: flex; } .nav-cta { padding: 8px 16px; font-size: 12px; }
       #hero { height: auto; padding: 100px 24px 56px; }
@@ -163,6 +175,7 @@
     <li><a href="contact.html" class="active">CONTACT</a></li>
   </ul>
   <a href="contact.html" class="nav-cta"><span class="nav-cta-dot"></span>생각 보내기</a>
+<button class="nav-burger" id="navBurger" aria-label="메뉴"><span></span><span></span><span></span></button>
 </header>
 <div id="mobileMenu">
   <a href="about.html" class="mob-link">ABOUT</a>
