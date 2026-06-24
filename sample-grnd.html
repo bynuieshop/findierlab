@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GRND — Specialty Coffee Roastery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0E0D0B;
+      --bg2: #151310;
+      --cream: #F2EBE0;
+      --cream2: #D9CEBC;
+      --amber: #C4883A;
+      --brown: #7A6548;
+      --muted: rgba(242,235,224,.38);
+      --border: rgba(242,235,224,.07);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Pretendard','Inter',-apple-system,sans-serif; background: var(--bg); color: var(--cream); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+
+    .fade { opacity: 0; transform: translateY(32px); transition: opacity 1s cubic-bezier(.16,1,.3,1), transform 1s cubic-bezier(.16,1,.3,1); }
+    .fade.in { opacity: 1; transform: none; }
+    .d1{transition-delay:.12s}.d2{transition-delay:.24s}.d3{transition-delay:.38s}.d4{transition-delay:.52s}
+
+    /* FINDIER BADGE */
+    .fl-badge { position: fixed; bottom: 28px; right: 28px; z-index: 9999; display: flex; align-items: center; gap: 8px; background: rgba(14,13,11,.9); border: 1px solid rgba(242,235,224,.12); backdrop-filter: blur(12px); padding: 10px 18px; border-radius: 100px; }
+    .fl-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: #D3F45A; }
+    .fl-badge-text { font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 700; letter-spacing: .14em; color: rgba(242,235,224,.45); text-transform: uppercase; }
+    .fl-badge-brand { font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 800; letter-spacing: .1em; color: rgba(242,235,224,.75); }
+
+    /* NAV */
+    #nav { position: fixed; top: 0; left: 0; right: 0; height: 64px; z-index: 998; display: flex; align-items: center; justify-content: space-between; padding: 0 56px; transition: background .4s, border-color .4s; border-bottom: 1px solid transparent; }
+    #nav.scrolled { background: rgba(14,13,11,.92); backdrop-filter: blur(20px); border-color: var(--border); }
+    .nav-logo { font-family: 'Inter',sans-serif; font-size: 20px; font-weight: 900; letter-spacing: .12em; color: var(--cream); }
+    .nav-center { display: flex; gap: 36px; }
+    .nav-center a { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 600; letter-spacing: .16em; color: var(--muted); text-transform: uppercase; transition: color .2s; }
+    .nav-center a:hover { color: var(--cream); }
+    .nav-right { display: flex; align-items: center; gap: 20px; }
+    .nav-shop { display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(242,235,224,.2); color: var(--cream); font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .12em; padding: 9px 20px; border-radius: 100px; text-transform: uppercase; transition: all .2s; }
+    .nav-shop:hover { background: var(--cream); color: var(--bg); }
+
+    /* HERO */
+    #hero { min-height: 100vh; display: grid; grid-template-rows: 1fr auto; padding: 0; position: relative; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; }
+    .hero-photo { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1800&q=80&fit=crop') center/cover no-repeat; opacity: .22; }
+    .hero-noise { position: absolute; inset: 0; opacity: .035; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); background-size: 200px; }
+    .hero-gradient { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 70% at 60% 40%, rgba(196,136,58,.07) 0%, transparent 65%), radial-gradient(ellipse 40% 50% at 20% 80%, rgba(122,101,72,.08) 0%, transparent 60%); }
+    .hero-lines { position: absolute; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 100px 100px; }
+    .hero-main { display: flex; flex-direction: column; justify-content: flex-end; padding: 0 56px 80px; position: relative; z-index: 1; padding-top: 64px; }
+    .hero-eyebrow { font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 700; letter-spacing: .28em; color: var(--amber); text-transform: uppercase; margin-bottom: 40px; display: flex; align-items: center; gap: 14px; }
+    .hero-eyebrow::before { content:''; width:36px; height:1px; background: var(--amber); opacity: .5; }
+    .hero-title { font-family: 'Inter',sans-serif; font-size: clamp(5rem,11vw,12rem); font-weight: 900; letter-spacing: -.04em; line-height: .95; color: var(--cream); }
+    .hero-title-sub { font-family: 'Cormorant Garamond',serif; font-size: clamp(1.4rem,3vw,3rem); font-weight: 300; font-style: italic; letter-spacing: .02em; color: var(--cream2); margin-top: 24px; line-height: 1.4; }
+    .hero-bottom { display: grid; grid-template-columns: 1fr 1fr 1fr; border-top: 1px solid var(--border); position: relative; z-index: 1; }
+    .hero-stat { padding: 28px 56px; border-right: 1px solid var(--border); display: flex; flex-direction: column; gap: 6px; }
+    .hero-stat:last-child { border-right: none; }
+    .hero-stat-num { font-family: 'Inter',sans-serif; font-size: 1.6rem; font-weight: 800; letter-spacing: -.04em; color: var(--cream); }
+    .hero-stat-label { font-size: .75rem; color: var(--muted); letter-spacing: .06em; }
+
+    /* MANIFESTO */
+    #manifesto { padding: 160px 56px; position: relative; overflow: hidden; }
+    .manifesto-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(196,136,58,.05) 0%, transparent 70%); }
+    .manifesto-inner { position: relative; z-index: 1; max-width: 960px; margin: 0 auto; text-align: center; }
+    .manifesto-quote { font-family: 'Cormorant Garamond',serif; font-size: clamp(1.8rem,3.8vw,4rem); font-weight: 300; font-style: italic; line-height: 1.5; letter-spacing: .01em; color: var(--cream); }
+    .manifesto-quote em { color: var(--amber); font-style: normal; }
+    .manifesto-attr { margin-top: 48px; font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 700; letter-spacing: .24em; color: var(--muted); text-transform: uppercase; }
+
+    /* PHILOSOPHY */
+    #philosophy { padding: 0 0 160px; }
+    .phi-top { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-bottom: 2px; }
+    .phi-top-left { padding: 80px 56px; }
+    .phi-section-label { font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 800; letter-spacing: .24em; color: var(--amber); text-transform: uppercase; margin-bottom: 28px; }
+    .phi-section-title { font-size: clamp(1.8rem,3vw,3.2rem); font-weight: 900; line-height: 1.2; letter-spacing: -.04em; }
+    .phi-top-right { padding: 80px 56px; border-left: 1px solid var(--border); display: flex; align-items: center; }
+    .phi-top-desc { font-size: .9rem; color: var(--muted); line-height: 1.9; }
+    .phi-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; margin: 0 0; }
+    .phi-card { padding: 52px 48px; background: var(--bg2); border: 1px solid var(--border); position: relative; overflow: hidden; transition: background .3s; }
+    .phi-card:hover { background: rgba(21,19,16,.8); }
+    .phi-card-num { font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 700; letter-spacing: .2em; color: rgba(242,235,224,.18); margin-bottom: 40px; }
+    .phi-card-en { font-family: 'Cormorant Garamond',serif; font-size: clamp(2rem,2.8vw,3rem); font-weight: 300; font-style: italic; color: var(--amber); margin-bottom: 10px; line-height: 1; }
+    .phi-card-kr { font-size: 1rem; font-weight: 700; letter-spacing: -.01em; color: var(--cream); margin-bottom: 20px; }
+    .phi-card-desc { font-size: .78rem; color: var(--muted); line-height: 1.85; }
+    .phi-card-line { position: absolute; top: 0; left: 0; right: 0; height: 2px; }
+
+    /* ORIGIN / FOUNDER */
+    #origin { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .origin-visual { background: var(--bg2); min-height: 600px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; border-right: 1px solid var(--border); }
+    .origin-photo { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=900&q=80&fit=crop') center/cover no-repeat; opacity: .18; }
+    .origin-visual-art { position: absolute; inset: 0; }
+    .origin-rings { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+    .origin-ring { border: 1px solid rgba(196,136,58,.15); border-radius: 50%; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+    .origin-center-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--amber); position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); opacity: .7; }
+    .origin-label-art { position: absolute; bottom: 40px; left: 40px; font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 700; letter-spacing: .2em; color: rgba(242,235,224,.2); text-transform: uppercase; }
+    .origin-content { padding: 80px 72px; display: flex; flex-direction: column; justify-content: center; }
+    .origin-section-label { font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 800; letter-spacing: .24em; color: var(--amber); text-transform: uppercase; margin-bottom: 36px; }
+    .origin-title { font-size: clamp(1.6rem,2.4vw,2.8rem); font-weight: 900; line-height: 1.25; letter-spacing: -.04em; margin-bottom: 32px; }
+    .origin-body { font-size: .88rem; color: var(--muted); line-height: 2; margin-bottom: 24px; }
+    .origin-body strong { color: var(--cream); font-weight: 600; }
+    .origin-founder { display: flex; align-items: center; gap: 16px; margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--border); }
+    .origin-founder-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--amber), var(--brown)); opacity: .7; }
+    .origin-founder-name { font-size: .88rem; font-weight: 700; letter-spacing: -.01em; color: var(--cream); }
+    .origin-founder-role { font-size: .75rem; color: var(--muted); margin-top: 2px; }
+
+    /* ROASTS */
+    #roasts { padding: 160px 56px; }
+    .roasts-header { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-bottom: 80px; align-items: end; }
+    .roasts-title { font-size: clamp(2rem,3.5vw,4rem); font-weight: 900; line-height: 1.15; letter-spacing: -.04em; }
+    .roasts-title em { font-family: 'Cormorant Garamond',serif; font-style: italic; font-weight: 300; color: var(--amber); font-size: 1.1em; }
+    .roasts-sub { font-size: .88rem; color: var(--muted); line-height: 1.9; }
+    .roasts-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; }
+    .roast-card { background: var(--bg2); border: 1px solid var(--border); overflow: hidden; }
+    .roast-visual { height: 220px; position: relative; display: flex; align-items: center; justify-content: center; }
+    .roast-visual-bg { position: absolute; inset: 0; }
+    .roast-circle { width: 100px; height: 100px; border-radius: 50%; position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; }
+    .roast-circle-label { font-family: 'Inter',sans-serif; font-size: 8px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+    .roast-body { padding: 36px 36px 40px; }
+    .roast-origin { font-family: 'Inter',sans-serif; font-size: 8px; font-weight: 700; letter-spacing: .2em; color: var(--amber); text-transform: uppercase; margin-bottom: 10px; }
+    .roast-name { font-size: 1.6rem; font-weight: 900; letter-spacing: -.03em; margin-bottom: 16px; }
+    .roast-desc { font-size: .8rem; color: var(--muted); line-height: 1.75; margin-bottom: 28px; }
+    .roast-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+    .roast-tag { font-family: 'Inter',sans-serif; font-size: .65rem; font-weight: 600; padding: 4px 12px; border: 1px solid var(--border); border-radius: 100px; color: var(--muted); }
+
+    /* SHOP LOCKED */
+    #shop { padding: 0 56px 160px; }
+    .locked-section { position: relative; overflow: hidden; border-radius: 2px; }
+    .locked-content { filter: blur(5px); pointer-events: none; user-select: none; }
+    .shop-grid-preview { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; }
+    .shop-item-preview { background: var(--bg2); border: 1px solid var(--border); }
+    .shop-item-img { height: 200px; background: linear-gradient(135deg, rgba(196,136,58,.08), rgba(122,101,72,.05)); border-bottom: 1px solid var(--border); }
+    .shop-item-info { padding: 20px 24px; }
+    .shop-item-name { height: 14px; background: rgba(242,235,224,.08); border-radius: 3px; margin-bottom: 8px; }
+    .shop-item-name.short { width: 70%; }
+    .shop-item-price { height: 18px; width: 60px; background: rgba(196,136,58,.15); border-radius: 3px; margin-top: 16px; }
+    .locked-overlay { position: absolute; inset: 0; z-index: 10; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(14,13,11,.6); backdrop-filter: blur(3px); gap: 18px; }
+    .lock-icon { width: 56px; height: 56px; border-radius: 50%; background: rgba(242,235,224,.05); border: 1px solid rgba(242,235,224,.1); display: flex; align-items: center; justify-content: center; }
+    .locked-label { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 800; letter-spacing: .22em; color: rgba(242,235,224,.4); text-transform: uppercase; }
+    .locked-desc { font-size: .8rem; color: rgba(242,235,224,.28); text-align: center; line-height: 1.65; }
+    .locked-btn { display: inline-flex; align-items: center; gap: 10px; background: var(--amber); color: #fff; font-family: 'Inter',sans-serif; font-size: 11px; font-weight: 800; padding: 13px 26px; border-radius: 100px; letter-spacing: .04em; transition: opacity .2s; }
+    .locked-btn:hover { opacity: .85; }
+
+    /* FINDIER CTA */
+    #fl-cta { background: var(--bg2); border-top: 1px solid var(--border); padding: 120px 56px; position: relative; overflow: hidden; }
+    .fl-cta-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 50% 70% at 50% 100%, rgba(211,244,90,.04) 0%, transparent 60%); }
+    .fl-cta-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center; }
+    .fl-cta-left {}
+    .fl-cta-eyebrow { font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 800; letter-spacing: .22em; color: rgba(211,244,90,.6); text-transform: uppercase; margin-bottom: 28px; display: flex; align-items: center; gap: 10px; }
+    .fl-cta-eyebrow::before { content:''; width:6px; height:6px; border-radius:50%; background:#D3F45A; }
+    .fl-cta-title { font-size: clamp(1.6rem,2.8vw,3.2rem); font-weight: 900; line-height: 1.25; letter-spacing: -.04em; margin-bottom: 20px; }
+    .fl-cta-title .t-lime { color: #D3F45A; }
+    .fl-cta-desc { font-size: .88rem; color: var(--muted); line-height: 1.85; }
+    .fl-cta-right { display: flex; flex-direction: column; gap: 20px; }
+    .fl-cta-card { background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.06); padding: 28px 32px; }
+    .fl-cta-card-label { font-family: 'Inter',sans-serif; font-size: 8px; font-weight: 700; letter-spacing: .18em; color: rgba(242,235,224,.28); text-transform: uppercase; margin-bottom: 10px; }
+    .fl-cta-card-text { font-size: .88rem; color: var(--cream2); line-height: 1.65; }
+    .fl-cta-btn { display: inline-flex; align-items: center; gap: 10px; background: #D3F45A; color: #111; font-family: 'Inter',sans-serif; font-size: 13px; font-weight: 800; padding: 16px 36px; border-radius: 100px; margin-top: 12px; transition: opacity .2s; letter-spacing: .02em; }
+    .fl-cta-btn:hover { opacity: .85; }
+    .fl-cta-note { font-size: .75rem; color: rgba(242,235,224,.25); line-height: 1.6; }
+
+    /* FOOTER */
+    #footer { padding: 36px 56px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+    .footer-logo { font-family: 'Inter',sans-serif; font-size: 18px; font-weight: 900; letter-spacing: .1em; }
+    .footer-meta { text-align: center; }
+    .footer-tagline { font-family: 'Cormorant Garamond',serif; font-size: .9rem; font-style: italic; color: var(--muted); }
+    .footer-copy { font-family: 'Inter',sans-serif; font-size: 9px; color: rgba(242,235,224,.18); letter-spacing: .06em; margin-top: 4px; }
+    .footer-nav { display: flex; gap: 24px; }
+    .footer-nav a { font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 600; letter-spacing: .14em; color: rgba(242,235,224,.25); text-transform: uppercase; transition: color .2s; }
+    .footer-nav a:hover { color: var(--cream); }
+
+    @media (max-width: 768px) {
+      #nav { padding: 0 20px; }
+      .nav-center { display: none; }
+      #hero .hero-main, #manifesto, #roasts, #shop, #fl-cta, #footer { padding-left: 24px; padding-right: 24px; }
+      .hero-title { font-size: clamp(3.8rem,13vw,6rem); }
+      .hero-bottom { grid-template-columns: 1fr; }
+      .hero-stat { padding: 20px 24px; }
+      .phi-top, #origin, .fl-cta-inner { grid-template-columns: 1fr; }
+      .origin-visual { min-height: 300px; }
+      .origin-content { padding: 52px 24px; }
+      .roasts-header, .phi-cards, .roasts-grid, .shop-grid-preview { grid-template-columns: 1fr; }
+      .roasts-header { gap: 24px; }
+      #footer { flex-direction: column; gap: 20px; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- FINDIER LAB BADGE -->
+<a href="index.html" class="fl-badge">
+  <span class="fl-badge-dot"></span>
+  <span class="fl-badge-text">Powered by</span>
+  <span class="fl-badge-brand">FINDIER LAB</span>
+</a>
+
+<!-- NAV -->
+<header id="nav">
+  <span class="nav-logo">GRND</span>
+  <nav class="nav-center">
+    <a href="#philosophy">PHILOSOPHY</a>
+    <a href="#origin">ORIGIN</a>
+    <a href="#roasts">ROASTS</a>
+    <a href="#shop">SHOP</a>
+  </nav>
+  <div class="nav-right">
+    <a href="#shop" class="nav-shop">Order ↗</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg">
+    <div class="hero-photo"></div>
+    <div class="hero-noise"></div>
+    <div class="hero-gradient"></div>
+    <div class="hero-lines"></div>
+  </div>
+  <div class="hero-main">
+    <p class="hero-eyebrow fade">Specialty Coffee Roastery — Seoul</p>
+    <h1 class="hero-title fade d1">GRND</h1>
+    <p class="hero-title-sub fade d2">멈추는 이유를 만듭니다.</p>
+  </div>
+  <div class="hero-bottom">
+    <div class="hero-stat fade">
+      <span class="hero-stat-num">2006</span>
+      <span class="hero-stat-label">로스팅 시작</span>
+    </div>
+    <div class="hero-stat fade d1">
+      <span class="hero-stat-num">Single Origin</span>
+      <span class="hero-stat-label">직접 소싱한 원두만</span>
+    </div>
+    <div class="hero-stat fade d2">
+      <span class="hero-stat-num">3 Roast</span>
+      <span class="hero-stat-label">Light · Medium · Dark</span>
+    </div>
+  </div>
+</section>
+
+<!-- MANIFESTO -->
+<section id="manifesto">
+  <div class="manifesto-bg"></div>
+  <div class="manifesto-inner fade">
+    <p class="manifesto-quote">
+      "커피 한 잔이 하루의 시작이 아니라,<br>
+      <em>하루의 구조</em>가 될 수 있다면."
+    </p>
+    <p class="manifesto-attr">— GRND Founding Statement, 2006</p>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section id="philosophy">
+  <div class="phi-top fade">
+    <div class="phi-top-left">
+      <p class="phi-section-label">Philosophy</p>
+      <h2 class="phi-section-title">우리가<br>커피를 대하는<br>방식.</h2>
+    </div>
+    <div class="phi-top-right">
+      <p class="phi-top-desc">좋은 커피는 맛으로만 만들어지지 않습니다.<br>어디서 왔는지, 누가 키웠는지, 어떻게 볶았는지.<br>그 모든 과정이 한 잔에 담겨야 합니다.</p>
+    </div>
+  </div>
+  <div class="phi-cards">
+    <div class="phi-card fade d1">
+      <p class="phi-card-num">01</p>
+      <p class="phi-card-en">Origin</p>
+      <p class="phi-card-kr">출처를 기억한다.</p>
+      <p class="phi-card-desc">모든 원두는 농장까지 직접 추적합니다. 이름 없는 블렌드는 없습니다. 어디서 왔는지 알 수 없는 원두는 쓰지 않습니다.</p>
+      <div class="phi-card-line" style="background:linear-gradient(90deg,var(--amber),transparent);"></div>
+    </div>
+    <div class="phi-card fade d2">
+      <p class="phi-card-num">02</p>
+      <p class="phi-card-en">Stillness</p>
+      <p class="phi-card-kr">멈추는 시간을 설계한다.</p>
+      <p class="phi-card-desc">바쁜 사람에게 커피는 연료입니다. 우리는 그것을 거부합니다. GRND 한 잔은 반드시 앉아서 마셔야 합니다.</p>
+      <div class="phi-card-line" style="background:linear-gradient(90deg,rgba(242,235,224,.4),transparent);"></div>
+    </div>
+    <div class="phi-card fade d3">
+      <p class="phi-card-num">03</p>
+      <p class="phi-card-en">Structure</p>
+      <p class="phi-card-kr">반복 가능한 맛을 만든다.</p>
+      <p class="phi-card-desc">감각이 아니라 구조로 로스팅합니다. 오늘의 GRND와 3년 후의 GRND가 같은 맛이어야 합니다.</p>
+      <div class="phi-card-line" style="background:linear-gradient(90deg,rgba(196,136,58,.6),transparent);"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ORIGIN / FOUNDER -->
+<section id="origin">
+  <div class="origin-visual fade">
+    <div class="origin-photo"></div>
+    <div class="origin-visual-art">
+      <div class="origin-rings">
+        <div class="origin-ring" style="width:480px;height:480px;"></div>
+        <div class="origin-ring" style="width:320px;height:320px;opacity:.6;"></div>
+        <div class="origin-ring" style="width:180px;height:180px;opacity:.4;"></div>
+        <div class="origin-ring" style="width:80px;height:80px;background:rgba(196,136,58,.05);opacity:.8;"></div>
+      </div>
+      <div class="origin-center-dot"></div>
+    </div>
+    <p class="origin-label-art">ROASTERY — ORIGIN STORY</p>
+  </div>
+  <div class="origin-content fade d1">
+    <p class="origin-section-label">Origin</p>
+    <h2 class="origin-title">20년 후,<br>나는 커피장인이<br>되어 있었다.</h2>
+    <p class="origin-body">처음엔 그냥 <strong>좋은 커피를 만들고 싶었습니다.</strong> 더 좋은 원두, 더 정확한 온도, 더 완벽한 추출. 20년을 그렇게 살았습니다.</p>
+    <p class="origin-body">그러다 어느 날 깨달았습니다. 내가 만들고 싶었던 건 커피가 아니었습니다. <strong>커피를 마시는 그 5분이었습니다.</strong> 아무것도 생각하지 않아도 되는, 그 멈추는 시간.</p>
+    <p class="origin-body">GRND는 그 5분을 위해 존재합니다.</p>
+    <div class="origin-founder">
+      <div class="origin-founder-avatar"></div>
+      <div>
+        <p class="origin-founder-name">김정호</p>
+        <p class="origin-founder-role">Founder & Head Roaster, GRND</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROASTS -->
+<section id="roasts">
+  <div class="roasts-header fade">
+    <h2 class="roasts-title">세 가지<br><em>로스트.</em></h2>
+    <p class="roasts-sub">밝고, 균형 잡히고, 깊은 — 세 가지 온도로 같은 날을 설계할 수 있습니다. 어떤 하루를 원하는지 고르세요.</p>
+  </div>
+  <div class="roasts-grid">
+    <div class="roast-card fade d1">
+      <div class="roast-visual" style="background:linear-gradient(160deg,rgba(240,220,180,.08),rgba(14,13,11,0));">
+        <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?w=600&q=80&fit=crop" alt="Light Roast" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.28;">
+        <div class="roast-visual-bg" style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,13,11,.3),rgba(14,13,11,.7));"></div>
+        <div class="roast-circle" style="background:rgba(240,220,180,.1);border:1px solid rgba(240,220,180,.2);">
+          <span class="roast-circle-label" style="color:rgba(240,220,180,.6);">Light</span>
+        </div>
+      </div>
+      <div class="roast-body">
+        <p class="roast-origin">Ethiopia · Yirgacheffe</p>
+        <h3 class="roast-name">STILL</h3>
+        <p class="roast-desc">복숭아, 자스민, 밝은 산미. 아침 첫 잔, 아무것도 시작하기 전의 고요함을 담았습니다.</p>
+        <div class="roast-tags">
+          <span class="roast-tag">Light Roast</span>
+          <span class="roast-tag">Floral</span>
+          <span class="roast-tag">Bright Acidity</span>
+        </div>
+      </div>
+    </div>
+    <div class="roast-card fade d2">
+      <div class="roast-visual" style="background:linear-gradient(160deg,rgba(196,136,58,.1),rgba(14,13,11,0));">
+        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600&q=80&fit=crop" alt="Medium Roast" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.28;">
+        <div class="roast-visual-bg" style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,13,11,.3),rgba(14,13,11,.7));"></div>
+        <div class="roast-circle" style="background:rgba(196,136,58,.1);border:1px solid rgba(196,136,58,.25);">
+          <span class="roast-circle-label" style="color:rgba(196,136,58,.7);">Medium</span>
+        </div>
+      </div>
+      <div class="roast-body">
+        <p class="roast-origin">Colombia · Huila</p>
+        <h3 class="roast-name">DEPTH</h3>
+        <p class="roast-desc">카라멜, 견과류, 부드러운 바디. 집중이 필요한 오후, 균형 잡힌 하루 중간의 무게감.</p>
+        <div class="roast-tags">
+          <span class="roast-tag">Medium Roast</span>
+          <span class="roast-tag">Nutty</span>
+          <span class="roast-tag">Balanced</span>
+        </div>
+      </div>
+    </div>
+    <div class="roast-card fade d3">
+      <div class="roast-visual" style="background:linear-gradient(160deg,rgba(122,101,72,.12),rgba(14,13,11,0));">
+        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=600&q=80&fit=crop" alt="Dark Roast" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.28;">
+        <div class="roast-visual-bg" style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,13,11,.3),rgba(14,13,11,.75));"></div>
+        <div class="roast-circle" style="background:rgba(122,101,72,.1);border:1px solid rgba(122,101,72,.25);">
+          <span class="roast-circle-label" style="color:rgba(122,101,72,.8);">Dark</span>
+        </div>
+      </div>
+      <div class="roast-body">
+        <p class="roast-origin">Brazil · Cerrado</p>
+        <h3 class="roast-name">GROUND</h3>
+        <p class="roast-desc">다크 초콜릿, 스모키, 깊은 쓴맛. 하루를 마무리하는 무게. 모든 것이 가라앉는 저녁.</p>
+        <div class="roast-tags">
+          <span class="roast-tag">Dark Roast</span>
+          <span class="roast-tag">Smoky</span>
+          <span class="roast-tag">Full Body</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SHOP LOCKED -->
+<section id="shop">
+  <div class="locked-section fade">
+    <div class="locked-content">
+      <div class="shop-grid-preview">
+        <div class="shop-item-preview">
+          <div class="shop-item-img"></div>
+          <div class="shop-item-info">
+            <div class="shop-item-name"></div>
+            <div class="shop-item-name short"></div>
+            <div class="shop-item-price"></div>
+          </div>
+        </div>
+        <div class="shop-item-preview">
+          <div class="shop-item-img" style="background:linear-gradient(135deg,rgba(196,136,58,.1),rgba(14,13,11,0));"></div>
+          <div class="shop-item-info">
+            <div class="shop-item-name"></div>
+            <div class="shop-item-name short"></div>
+            <div class="shop-item-price"></div>
+          </div>
+        </div>
+        <div class="shop-item-preview">
+          <div class="shop-item-img"></div>
+          <div class="shop-item-info">
+            <div class="shop-item-name"></div>
+            <div class="shop-item-name short"></div>
+            <div class="shop-item-price"></div>
+          </div>
+        </div>
+        <div class="shop-item-preview">
+          <div class="shop-item-img" style="background:linear-gradient(135deg,rgba(122,101,72,.1),rgba(14,13,11,0));"></div>
+          <div class="shop-item-info">
+            <div class="shop-item-name"></div>
+            <div class="shop-item-name short"></div>
+            <div class="shop-item-price"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="locked-overlay">
+      <div class="lock-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(242,235,224,.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+      </div>
+      <p class="locked-label">Shop — Coming Soon</p>
+      <p class="locked-desc">이 페이지는 샘플입니다.<br>실제 스토어는 브랜드 구조 완성 후 오픈됩니다.</p>
+      <a href="contact.html" class="locked-btn">내 브랜드로 만들기 →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FINDIER LAB CTA -->
+<section id="fl-cta">
+  <div class="fl-cta-bg"></div>
+  <div class="fl-cta-inner fade">
+    <div class="fl-cta-left">
+      <p class="fl-cta-eyebrow">FINDIER LAB</p>
+      <h2 class="fl-cta-title">
+        이 브랜드는<br>
+        <span class="t-lime">FINDIER LAB</span>이<br>
+        번역했습니다.
+      </h2>
+      <p class="fl-cta-desc">GRND는 "좋은 커피를 만들고 싶다"는 생각에서 시작했습니다. FINDIER LAB은 그 생각을 꺼내어 브랜드 철학, 제품 구조, 온라인 공간으로 번역했습니다.<br><br>당신의 생각도 이렇게 브랜드가 될 수 있습니다.</p>
+      <a href="contact.html" class="fl-cta-btn">내 이야기 보내기 →</a>
+    </div>
+    <div class="fl-cta-right fade d1">
+      <div class="fl-cta-card">
+        <p class="fl-cta-card-label">Before</p>
+        <p class="fl-cta-card-text">"20년간 커피를 볶아온 장인. 좋은 커피를 더 많은 사람에게 알리고 싶다."</p>
+      </div>
+      <div class="fl-cta-card">
+        <p class="fl-cta-card-label">Discovered</p>
+        <p class="fl-cta-card-text">"커피가 아니라, 멈추는 5분을 만들고 싶었다." — 본질 발굴</p>
+      </div>
+      <div class="fl-cta-card">
+        <p class="fl-cta-card-label">Result</p>
+        <p class="fl-cta-card-text">브랜드명 GRND · 철학 3가지 · 제품 라인 구조 · 홈페이지 · 운영 시스템</p>
+      </div>
+      <p class="fl-cta-note">* GRND는 FINDIER LAB이 제작한 샘플 브랜드입니다.<br>실제 클라이언트 작업 사례는 <a href="works.html" style="color:rgba(242,235,224,.5);text-decoration:underline;">WORKS</a>에서 확인하세요.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <span class="footer-logo">GRND</span>
+  <div class="footer-meta">
+    <p class="footer-tagline">멈추는 이유를 만듭니다.</p>
+    <p class="footer-copy">© 2026 GRND. Sample Brand by FINDIER LAB.</p>
+  </div>
+  <nav class="footer-nav">
+    <a href="#philosophy">Philosophy</a>
+    <a href="#origin">Origin</a>
+    <a href="#roasts">Roasts</a>
+  </nav>
+</footer>
+
+<script>
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.fade').forEach(el => io.observe(el));
+
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+});
+</script>
+</body>
+</html>

@@ -4,6 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WORKS — FINDIER LAB</title>
+  <meta name="description" content="FINDIER LAB 작업 사례 — NUiE, Mellowy 등 실제 브랜드 프로젝트 리뷰.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="WORKS — FINDIER LAB">
+  <meta property="og:description" content="실제로 작동한 브랜드 구조의 기록. FINDIER LAB 프로젝트 사례를 소개합니다.">
+  <meta property="og:url" content="https://findierlab.com/works.html">
+  <meta property="og:image" content="https://findierlab.com/assets/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.min.css">
@@ -39,8 +45,8 @@
     .intro-left { padding: 60px 52px 60px 80px; }
     .intro-kicker { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .22em; color: var(--purple); text-transform: uppercase; display: flex; align-items: center; gap: 8px; margin-bottom: 20px; }
     .intro-kicker::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--purple); }
-    .intro-title { font-size: clamp(2rem,4vw,3.6rem); font-weight: 900; line-height: 1.18; letter-spacing: -.04em; }
-    .intro-sub { font-size: .88rem; color: #888; line-height: 1.7; margin-top: 16px; }
+    .intro-title { font-size: clamp(2rem,3.5vw,3.2rem); font-weight: 900; line-height: 1.18; letter-spacing: -.04em; }
+    .intro-sub { font-size: .92rem; color: #888; line-height: 1.75; margin-top: 16px; }
     .intro-right { padding: 0 80px 60px 0; display: flex; align-items: flex-end; justify-content: flex-end; }
     .intro-count { font-family: 'Inter',sans-serif; font-size: clamp(5rem,9vw,10rem); font-weight: 900; letter-spacing: -.06em; line-height: 1; color: rgba(0,0,0,.06); }
 
@@ -59,8 +65,8 @@
     .case-visual iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; pointer-events: none; }
     .case-meta { padding: 52px 64px; display: flex; flex-direction: column; justify-content: center; }
     .case-num { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .2em; color: #bbb; margin-bottom: 16px; }
-    .case-brand { font-size: clamp(2.2rem,4vw,3.8rem); font-weight: 900; line-height: 1.08; letter-spacing: -.04em; margin-bottom: 12px; }
-    .case-tagline { font-size: .86rem; color: #777; line-height: 1.7; margin-bottom: 24px; max-width: 280px; }
+    .case-brand { font-size: clamp(2rem,3.2vw,3.2rem); font-weight: 900; line-height: 1.08; letter-spacing: -.04em; margin-bottom: 12px; }
+    .case-tagline { font-size: .92rem; color: #777; line-height: 1.75; margin-bottom: 24px; max-width: 280px; }
     .case-services { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 24px; }
     .case-svc { display: flex; align-items: center; gap: 6px; font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 700; letter-spacing: .1em; color: #888; }
     .case-svc-dot { width: 5px; height: 5px; border-radius: 50%; }
@@ -71,14 +77,41 @@
     .flow-col:not(:first-child)::before { content: ''; position: absolute; left: 0; top: 40px; bottom: 40px; width: 1px; background: var(--gray2); }
     .flow-label { font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
     .flow-label-dot { width: 6px; height: 6px; border-radius: 50%; }
-    .flow-keyword { font-size: clamp(1rem,1.8vw,1.5rem); font-weight: 900; line-height: 1.3; letter-spacing: -.025em; margin-bottom: 10px; }
-    .flow-desc { font-size: .8rem; color: #888; line-height: 1.7; }
+    .flow-keyword { font-size: clamp(1rem,1.5vw,1.3rem); font-weight: 900; line-height: 1.3; letter-spacing: -.025em; margin-bottom: 10px; }
+    .flow-desc { font-size: .86rem; color: #888; line-height: 1.8; }
     .flow-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 14px; }
     .flow-tag { font-family: 'Inter',sans-serif; font-size: .65rem; font-weight: 700; padding: 3px 10px; background: var(--gray1); border-radius: 100px; color: #777; }
 
     /* reverse layout (visual on right) */
     .case-article.reverse .case-header { direction: rtl; }
     .case-article.reverse .case-header > * { direction: ltr; }
+
+    /* SAMPLE BRANDS */
+    #samples { background: var(--gray1); padding: 100px 80px; border-top: 1px solid var(--gray2); }
+    .samples-head { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 56px; }
+    .samples-eyebrow { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .22em; color: var(--purple); text-transform: uppercase; display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+    .samples-eyebrow::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--purple); }
+    .samples-title { font-size: clamp(1.4rem,2.2vw,2rem); font-weight: 900; letter-spacing: -.025em; color: var(--black); line-height: 1.3; }
+    .samples-note { font-size: .78rem; color: #999; line-height: 1.75; max-width: 240px; text-align: right; }
+    .samples-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+    .sample-card { display: flex; flex-direction: column; text-decoration: none; overflow: hidden; background: var(--white); border: 1px solid var(--gray2); transition: box-shadow .2s; }
+    .sample-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,.08); }
+    .sample-card:hover .sample-visual-inner { transform: scale(1.03); }
+    .sample-visual { height: 300px; overflow: hidden; position: relative; }
+    .sample-visual-inner { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; transition: transform .8s cubic-bezier(.16,1,.3,1); }
+    .grnd-bg { background: #0E0D0D; }
+    .mere-bg { background: #F7F4F0; }
+    .sample-visual-logo { font-family: 'Inter',sans-serif; font-size: clamp(3.5rem,6vw,5.5rem); font-weight: 900; letter-spacing: -.02em; }
+    .grnd-logo { color: #C4883A; }
+    .mere-logo { color: #28231F; }
+    .sample-visual-tag { position: absolute; bottom: 18px; left: 20px; font-family: 'Inter',sans-serif; font-size: 8px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; padding: 5px 12px; border-radius: 100px; }
+    .grnd-tag { background: rgba(196,136,58,.15); color: rgba(196,136,58,.9); border: 1px solid rgba(196,136,58,.25); }
+    .mere-tag { background: rgba(40,35,31,.06); color: rgba(40,35,31,.5); border: 1px solid rgba(40,35,31,.12); }
+    .sample-info { padding: 28px 32px 32px; display: flex; flex-direction: column; gap: 8px; }
+    .sample-kicker { font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: #bbb; }
+    .sample-name { font-size: 1.1rem; font-weight: 900; letter-spacing: -.025em; color: var(--black); }
+    .sample-desc { font-size: .8rem; color: #888; line-height: 1.8; }
+    .sample-link { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .1em; color: var(--purple); margin-top: 6px; }
 
     /* COMING SOON */
     #coming { background: var(--black); padding: 130px 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
@@ -141,6 +174,13 @@
       .case-flow { grid-template-columns: 1fr; }
       .flow-col { padding: 24px 24px; }
       .flow-col:not(:first-child)::before { left: 24px; right: 24px; top: 0; bottom: auto; width: auto; height: 1px; }
+      #samples { padding: 64px 24px; }
+      .samples-head { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .samples-note { text-align: left; max-width: 100%; }
+      .samples-grid { grid-template-columns: 1fr; gap: 16px; }
+      .sample-visual { height: 220px; }
+      .sample-visual-logo { font-size: clamp(2.8rem,12vw,4rem); }
+      .sample-info { padding: 20px 24px 24px; }
       #coming { grid-template-columns: 1fr; padding: 64px 24px; gap: 36px; }
       .coming-right { border-left: none; padding-left: 0; border-top: 1px solid rgba(255,255,255,.08); padding-top: 36px; }
       .footer-brand-quote { padding: 40px 24px 32px; }
@@ -197,33 +237,35 @@
     <div class="case-meta">
       <p class="case-num">CASE 00</p>
       <h2 class="case-brand">NUiE</h2>
-      <p class="case-tagline">감정을 해결하지 않고,<br>존재를 인정하는 향 브랜드.</p>
+      <p class="case-tagline">향 브랜드로 시작해<br>온라인 전시 공간 작가가 된 이야기.</p>
       <div class="case-services">
         <span class="case-svc"><span class="case-svc-dot" style="background:var(--lime);"></span>BRAND</span>
         <span class="case-svc"><span class="case-svc-dot" style="background:var(--cyan);"></span>WEBSITE</span>
+        <span class="case-svc"><span class="case-svc-dot" style="background:var(--purple);"></span>WORLD</span>
       </div>
+      <a href="https://bynuie.com" target="_blank" style="margin-top:24px;display:inline-flex;align-items:center;gap:8px;font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;color:#888;border-bottom:1px solid #ddd;padding-bottom:4px;">bynuie.com →</a>
     </div>
   </div>
   <div class="case-flow">
     <div class="flow-col">
       <div class="flow-label">
         <span class="flow-label-dot" style="background:#D3F45A;"></span>
-        <span style="color:#888;">BEFORE — 대표의 생각</span>
+        <span style="color:#888;">BEFORE — 처음의 생각</span>
       </div>
-      <h3 class="flow-keyword">엄마를 위한 향</h3>
-      <p class="flow-desc">"엄마들은 왜 자신을 위한 향수를 쓰지 않을까."<br>이 질문에서 브랜드가 시작되었습니다.</p>
+      <h3 class="flow-keyword">향 브랜드를<br>만들고 싶었다</h3>
+      <p class="flow-desc">엄마들이 자신을 위한 향수를 쓰지 않는다는 관찰에서 시작됐습니다. 좋은 생각이었습니다. 하지만 진짜 하고 싶은 말은 따로 있었습니다.</p>
     </div>
     <div class="flow-col">
       <div class="flow-label">
         <span class="flow-label-dot" style="background:#7B61FF;"></span>
-        <span style="color:#888;">TRANSLATE — 번역</span>
+        <span style="color:#888;">DISCOVER — 발견</span>
       </div>
-      <h3 class="flow-keyword">인정이라는 철학</h3>
-      <p class="flow-desc">"당신의 감정은 틀리지 않았다"는 철학으로 번역했습니다. 위로가 아닌 인정, 해결이 아닌 존재의 긍정.</p>
+      <h3 class="flow-keyword">곁에 있고<br>싶었던 것</h3>
+      <p class="flow-desc">AI 시대의 포모, 가스라이팅, 깊어지는 우울. 문제인지도 모른 채 지쳐가는 사람들에게 "그냥 곁에 있다"고 말하고 싶었습니다. 향이 수단이었던 게 아니라, 그 마음이 본질이었습니다.</p>
       <div class="flow-tags">
-        <span class="flow-tag">브랜드 세계관</span>
-        <span class="flow-tag">브랜드 언어</span>
-        <span class="flow-tag">네이밍</span>
+        <span class="flow-tag">브랜드 철학</span>
+        <span class="flow-tag">세계관 발굴</span>
+        <span class="flow-tag">방향 전환</span>
       </div>
     </div>
     <div class="flow-col">
@@ -231,12 +273,12 @@
         <span class="flow-label-dot" style="background:#4DE7FF;"></span>
         <span style="color:#888;">BUILD — 결과</span>
       </div>
-      <h3 class="flow-keyword">브랜드 구조 + VI</h3>
-      <p class="flow-desc">브랜드 세계관, 제품 언어, 비주얼 아이덴티티, 홈페이지 전 과정을 번역했습니다.</p>
+      <h3 class="flow-keyword">온라인 전시<br>공간 작가</h3>
+      <p class="flow-desc">알고리즘도, 좋아요도, 팔로워도 없는 공간. 감정을 해결하지 않고 그냥 알고 있어 주는 곳. bynuie.com은 그 철학을 그대로 구현한 전시 공간입니다.</p>
       <div class="flow-tags">
-        <span class="flow-tag">VI</span>
-        <span class="flow-tag">홈페이지</span>
-        <span class="flow-tag">마케팅 언어</span>
+        <span class="flow-tag">온라인 전시</span>
+        <span class="flow-tag">공간 설계</span>
+        <span class="flow-tag">세계관 구현</span>
       </div>
     </div>
   </div>
@@ -297,15 +339,57 @@
   </div>
 </article>
 
-<!-- COMING SOON -->
+<!-- SAMPLE BRANDS -->
+<section id="samples" class="fade">
+  <div class="samples-head">
+    <div>
+      <p class="samples-eyebrow">Sample Brands</p>
+      <h2 class="samples-title">이런 브랜드를<br>만듭니다.</h2>
+    </div>
+    <p class="samples-note">FINDIER LAB이 직접 제작한<br>샘플 브랜드 사이트입니다.<br>클릭해서 확인해보세요.</p>
+  </div>
+  <div class="samples-grid">
+    <a href="sample-grnd.html" class="sample-card" target="_blank">
+      <div class="sample-visual grnd-bg">
+        <div class="sample-visual-inner">
+          <span class="sample-visual-logo grnd-logo">GRND</span>
+        </div>
+        <span class="sample-visual-tag grnd-tag">Specialty Coffee</span>
+      </div>
+      <div class="sample-info">
+        <span class="sample-kicker">Dark Editorial</span>
+        <p class="sample-name">GRND — 스페셜티 커피</p>
+        <p class="sample-desc">원두의 밀도로 말하는 브랜드. 어둡고 진한 에디토리얼 세계관으로 제품 철학을 번역했습니다.</p>
+        <span class="sample-link">샘플 사이트 보기 →</span>
+      </div>
+    </a>
+    <a href="sample-mere.html" class="sample-card" target="_blank">
+      <div class="sample-visual mere-bg">
+        <div class="sample-visual-inner">
+          <span class="sample-visual-logo mere-logo">MERE</span>
+        </div>
+        <span class="sample-visual-tag mere-tag">Clean Skincare</span>
+      </div>
+      <div class="sample-info">
+        <span class="sample-kicker">Light Editorial</span>
+        <p class="sample-name">MERE — 클린 스킨케어</p>
+        <p class="sample-desc">예민한 피부를 위한 클린 포뮬러. 밝고 에디토리얼한 챕터 구조로 성분 철학을 풀어냈습니다.</p>
+        <span class="sample-link">샘플 사이트 보기 →</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- INSTAGRAM REDIRECT -->
 <section id="coming">
   <h2 class="coming-title fade">
-    다음 케이스는<br>
-    <span class="c-lime">당신의 이야기</span>입니다.
+    진행 중인 작업은<br>
+    <span class="c-lime">인스타그램</span>에서.
   </h2>
   <div class="coming-right fade d1">
-    <p class="coming-sub">지금 머릿속에 있는 생각을<br>그대로 들고 오세요.<br><br>정리되어 있지 않아도 괜찮습니다.</p>
-    <a href="contact.html" class="coming-cta">생각 보내기 →</a>
+    <p class="coming-sub">브랜드 구조 설계 과정,<br>실제 작업 기록, 연구 노트.<br><br>@findier.lab에서 계속 업데이트됩니다.</p>
+    <a href="https://instagram.com/findier.lab" target="_blank" class="coming-cta">@findier.lab 보러가기 →</a>
+    <a href="contact.html" class="coming-cta" style="background:transparent;color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.15);margin-top:-4px;">다음 케이스가 되고 싶다면 →</a>
   </div>
 </section>
 
@@ -320,6 +404,7 @@
       <a href="service.html">SERVICE</a><a href="works.html">WORK</a>
       <a href="process.html">PROCESS</a><a href="lab.html">LAB</a>
       <a href="about.html">ABOUT</a><a href="contact.html">CONTACT</a>
+      <a href="https://instagram.com/findier.lab" target="_blank">@INSTAGRAM</a>
     </div>
   </div>
   <div class="footer-bottom">

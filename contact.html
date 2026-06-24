@@ -4,6 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CONTACT — FINDIER LAB</title>
+  <meta name="description" content="FINDIER LAB에 문의하기 — 대표의 생각을 구조로 만들고 싶다면, 먼저 이야기를 나눠봅시다.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="CONTACT — FINDIER LAB">
+  <meta property="og:description" content="생각을 회사로 번역해야 할 때. FINDIER LAB과 첫 대화를 시작하세요.">
+  <meta property="og:url" content="https://findierlab.com/contact.html">
+  <meta property="og:image" content="https://findierlab.com/assets/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.min.css">
@@ -271,9 +277,9 @@
             <path d="M6 14l6 6 10-10" stroke="#111" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
-        <p class="success-title">문의 내용이 준비되었습니다.</p>
-        <p class="success-sub">메일 연결 후 정상 발송됩니다.<br>현재는 폼 화면 구현 단계입니다.</p>
-        <span class="success-note">메일 발송 기능은 추후 연결됩니다</span>
+        <p class="success-title">문의가 접수되었습니다.</p>
+        <p class="success-sub">1–2일 내로 연락드리겠습니다.<br>급하신 경우 인스타그램 DM을 이용해주세요.</p>
+        <a href="https://instagram.com/findier.lab" target="_blank" class="success-note" style="text-decoration:none;">@findier.lab DM 바로가기</a>
       </div>
     </div>
   </div>
@@ -313,6 +319,7 @@
       <a href="service.html">SERVICE</a><a href="works.html">WORK</a>
       <a href="process.html">PROCESS</a><a href="lab.html">LAB</a>
       <a href="about.html">ABOUT</a><a href="contact.html">CONTACT</a>
+      <a href="https://instagram.com/findier.lab" target="_blank">@INSTAGRAM</a>
     </div>
   </div>
   <div class="footer-bottom">
@@ -350,8 +357,8 @@ if (tel) {
   });
 }
 
-/* Form submit (temp: UI only) */
-document.getElementById('contact-form').addEventListener('submit', function(e) {
+/* Form submit — Formspree */
+document.getElementById('contact-form').addEventListener('submit', async function(e) {
   e.preventDefault();
   const fields = this.querySelectorAll('[required]');
   let valid = true;
@@ -360,9 +367,31 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
     if (!f.value.trim()) { f.style.borderColor = '#FF6B6B'; valid = false; }
   });
   if (!valid) return;
-  document.getElementById('contact-form').style.display = 'none';
-  document.getElementById('form-success').style.display = 'block';
-  document.getElementById('form-success').scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+  const btn = this.querySelector('.submit-btn');
+  btn.textContent = '전송 중…';
+  btn.disabled = true;
+
+  try {
+    const res = await fetch('https://formspree.io/f/xojojwog', {
+      method: 'POST',
+      body: new FormData(this),
+      headers: { 'Accept': 'application/json' }
+    });
+    if (res.ok) {
+      document.getElementById('contact-form').style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
+      document.getElementById('form-success').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } else {
+      btn.textContent = '생각 보내기';
+      btn.disabled = false;
+      alert('전송 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
+    }
+  } catch {
+    btn.textContent = '생각 보내기';
+    btn.disabled = false;
+    alert('네트워크 오류입니다. 잠시 후 다시 시도해주세요.');
+  }
 });
 </script>
 <script>
