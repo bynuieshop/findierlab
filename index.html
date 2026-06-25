@@ -137,7 +137,7 @@
     .step-portal-dot { width: 4px; height: 4px; border-radius: 50%; }
 
     /* CLIENTS */
-    #clients { padding: 100px 80px 120px; background: var(--white); }
+    #clients { padding: 100px 80px 64px; background: var(--white); }
     .clients-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 48px; }
     .clients-title { font-size: clamp(1.4rem,2.2vw,1.9rem); font-weight: 900; letter-spacing: -.025em; color: var(--black); }
     .clients-stat { display: flex; align-items: center; gap: 10px; }
@@ -206,19 +206,23 @@
     .cta-btn:hover { opacity: .8; }
     .cta-watermark { position: absolute; bottom: 32px; right: 48px; opacity: .12; }
     /* FREE RESOURCES */
-    #free-resources { padding: 80px 64px; max-width: 1200px; margin: 0 auto; }
-    .fr-eyebrow { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .2em; color: var(--t-muted); text-transform: uppercase; margin-bottom: 24px; display: flex; align-items: center; gap: 8px; }
+    #free-resources { background: var(--gray1); padding: 80px 0; }
+    .fr-inner { max-width: 1200px; margin: 0 auto; padding: 0 64px; }
+    .fr-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 40px; }
+    .fr-eyebrow { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .2em; color: var(--t-muted); text-transform: uppercase; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
     .fr-eyebrow::before { content: ''; width: 20px; height: 1px; background: currentColor; }
+    .fr-title { font-size: clamp(1.4rem,2.2vw,1.9rem); font-weight: 900; letter-spacing: -.03em; color: var(--black); }
+    .fr-header-note { font-size: .82rem; color: var(--t-muted); line-height: 1.75; text-align: right; }
     .fr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .fr-card { border: 1.5px solid #E8E8E8; border-radius: 20px; padding: 32px; display: flex; flex-direction: column; gap: 16px; transition: border-color .2s, transform .2s; text-decoration: none; color: inherit; }
-    .fr-card:hover { border-color: #bbb; transform: translateY(-3px); }
+    .fr-card { background: var(--white); border-radius: 20px; padding: 36px; display: flex; flex-direction: column; gap: 16px; transition: box-shadow .25s, transform .25s; text-decoration: none; color: inherit; box-shadow: 0 2px 8px rgba(0,0,0,.04); }
+    .fr-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,.10); transform: translateY(-4px); }
     .fr-tag { display: inline-flex; align-items: center; gap: 6px; font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; padding: 5px 12px; border-radius: 100px; width: fit-content; }
     .fr-tag.diag { background: rgba(123,97,255,.08); color: var(--purple); }
     .fr-tag.guide { background: rgba(24,119,242,.08); color: #1877F2; }
-    .fr-card-title { font-size: 1.1rem; font-weight: 900; letter-spacing: -.025em; line-height: 1.3; }
-    .fr-card-desc { font-size: .85rem; color: var(--t-soft); line-height: 1.65; flex: 1; }
-    .fr-card-cta { display: flex; align-items: center; gap: 6px; font-family: 'Inter',sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .06em; color: #999; margin-top: 4px; }
-    .fr-card:hover .fr-card-cta { color: var(--black); }
+    .fr-card-title { font-size: 1.15rem; font-weight: 900; letter-spacing: -.025em; line-height: 1.3; }
+    .fr-card-desc { font-size: .85rem; color: var(--t-soft); line-height: 1.7; flex: 1; }
+    .fr-card-cta { display: inline-flex; align-items: center; gap: 6px; font-family: 'Inter',sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .06em; color: #aaa; margin-top: 8px; transition: color .2s, gap .2s; }
+    .fr-card:hover .fr-card-cta { color: var(--black); gap: 10px; }
 
     /* FOOTER */
     #footer { background: var(--black); padding: 0; }
@@ -256,7 +260,8 @@
       .nav-menu { gap: 20px; }
       .hero-left { padding: 40px 36px 40px 48px; }
       #how { padding: 80px 48px; }
-      #clients { padding: 60px 48px 80px; }
+      #clients { padding: 60px 48px 56px; }
+      .fr-inner { padding: 0 48px; }
       #cta { margin: 0 48px 64px; padding: 60px; }
       .footer-brand-quote { padding: 48px 48px 40px; }
       .footer-top { padding: 36px 48px; }
@@ -291,7 +296,10 @@
       .voice-left { border-right: none; border-bottom: 1px solid rgba(255,255,255,.06); padding: 32px 24px; }
       .voice-right { padding: 28px 24px; }
       .voice-bubble { padding: 20px 22px; }
-      #free-resources { padding: 0 24px; margin-bottom: 48px; }
+      #free-resources { padding: 56px 0; }
+      .fr-inner { padding: 0 24px; }
+      .fr-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .fr-header-note { text-align: left; }
       #cta { margin: 0 16px 48px; padding: 40px 28px; grid-template-columns: 1fr; gap: 24px; }
       .cta-circle { width: 64px; height: 64px; }
       .cta-watermark { display: none; }
@@ -509,20 +517,28 @@
 
 <!-- FREE RESOURCES -->
 <section id="free-resources">
-  <p class="fr-eyebrow">무료 자료</p>
-  <div class="fr-grid">
-    <a href="diagnose.html" class="fr-card">
-      <div class="fr-tag diag">BRAND DIAGNOSIS</div>
-      <div class="fr-card-title">내 브랜드,<br>지금 어디쯤 있나요?</div>
-      <div class="fr-card-desc">6가지 질문으로 현재 브랜드 상태를 진단합니다. 3분이면 충분해요.</div>
-      <div class="fr-card-cta">무료 진단 시작하기 →</div>
-    </a>
-    <a href="guide-meta.html" class="fr-card">
-      <div class="fr-tag guide">FREE GUIDE</div>
-      <div class="fr-card-title">인스타그램 광고,<br>처음부터 끝까지</div>
-      <div class="fr-card-desc">계정 세팅 · 타겟 · 예산 · 성과 분석까지. 사장님 기준으로 쉽게 정리했습니다.</div>
-      <div class="fr-card-cta">가이드 보러가기 →</div>
-    </a>
+  <div class="fr-inner">
+    <div class="fr-header">
+      <div>
+        <p class="fr-eyebrow">Free Tools</p>
+        <h2 class="fr-title">지금 바로 써보세요.</h2>
+      </div>
+      <p class="fr-header-note">비용도 조건도 없습니다.<br>필요할 때 가져다 쓰세요.</p>
+    </div>
+    <div class="fr-grid">
+      <a href="diagnose.html" class="fr-card">
+        <div class="fr-tag diag">BRAND DIAGNOSIS</div>
+        <div class="fr-card-title">내 브랜드,<br>지금 어디쯤 있나요?</div>
+        <div class="fr-card-desc">6가지 질문으로 현재 브랜드 상태를 진단합니다. 3분이면 충분해요.</div>
+        <div class="fr-card-cta">무료 진단 시작하기 →</div>
+      </a>
+      <a href="guide-meta.html" class="fr-card">
+        <div class="fr-tag guide">FREE GUIDE</div>
+        <div class="fr-card-title">인스타그램 광고,<br>처음부터 끝까지</div>
+        <div class="fr-card-desc">계정 세팅 · 타겟 · 예산 · 성과 분석까지. 사장님 기준으로 쉽게 정리했습니다.</div>
+        <div class="fr-card-cta">가이드 보러가기 →</div>
+      </a>
+    </div>
   </div>
 </section>
 
