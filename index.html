@@ -87,8 +87,11 @@
     .hero-step { display: flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 500; color: var(--t-soft); }
     .hero-step + .hero-step { padding-left: 6px; border-left: 1px solid var(--gray2); }
     .step-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+    .hero-cta-wrap { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
     .hero-cta { display: inline-flex; align-items: center; gap: 10px; background: var(--black); color: var(--white); font-size: 13px; font-weight: 700; letter-spacing: .04em; padding: 14px 28px; border-radius: 100px; width: fit-content; transition: opacity .2s; }
     .hero-cta:hover { opacity: .8; }
+    .hero-cta-sub { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: #555; font-size: 13px; font-weight: 600; padding: 14px 22px; border-radius: 100px; border: 1.5px solid #ddd; width: fit-content; transition: all .2s; }
+    .hero-cta-sub:hover { border-color: var(--purple); color: var(--purple); }
     .hero-right { background-color: #f0eeeb; background-image: url('assets/hero-object.png'); background-size: cover; background-position: right center; }
 
     /* HOW SECTION */
@@ -353,7 +356,10 @@
       <span class="hero-step"><span class="step-dot" style="background:#4DE7FF;"></span>시스템</span>
       <span class="hero-step"><span class="step-dot" style="background:#7B61FF;"></span>콘텐츠</span>
     </div>
-    <a href="contact.html" class="hero-cta">30분 무료 상담 →</a>
+    <div class="hero-cta-wrap">
+      <a href="contact.html" class="hero-cta">30분 무료 상담 →</a>
+      <a href="diagnose.html" class="hero-cta-sub">무료 브랜드 진단 →</a>
+    </div>
   </div>
   <div class="hero-right"></div>
 </section>
