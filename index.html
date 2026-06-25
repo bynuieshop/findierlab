@@ -213,19 +213,35 @@
     .fr-eyebrow::before { content: ''; width: 20px; height: 1px; background: currentColor; }
     .fr-title { font-size: clamp(1.4rem,2.2vw,1.9rem); font-weight: 900; letter-spacing: -.03em; color: var(--black); }
     .fr-header-note { font-size: .82rem; color: var(--t-muted); line-height: 1.75; text-align: right; }
-    .fr-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
-    .fr-card.featured { grid-column: span 3; display: grid; grid-template-columns: 1fr 1fr; align-items: center; }
-    .fr-card.featured .fr-card-content { display: flex; flex-direction: column; gap: 16px; }
-    .fr-card.featured .fr-card-visual { background: linear-gradient(135deg,rgba(123,97,255,.12),rgba(211,244,90,.15)); border-radius: 12px; height: 120px; display: flex; align-items: center; justify-content: center; font-family:'Inter',sans-serif; font-size:36px; }
-    .fr-card { background: var(--white); border-radius: 20px; padding: 36px; display: flex; flex-direction: column; gap: 16px; transition: box-shadow .25s, transform .25s; text-decoration: none; color: inherit; box-shadow: 0 2px 8px rgba(0,0,0,.04); }
-    .fr-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,.10); transform: translateY(-4px); }
-    .fr-tag { display: inline-flex; align-items: center; gap: 6px; font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; padding: 5px 12px; border-radius: 100px; width: fit-content; }
-    .fr-tag.diag { background: rgba(123,97,255,.08); color: var(--purple); }
-    .fr-tag.guide { background: rgba(24,119,242,.08); color: #1877F2; }
-    .fr-card-title { font-size: 1.15rem; font-weight: 900; letter-spacing: -.025em; line-height: 1.3; }
-    .fr-card-desc { font-size: .85rem; color: var(--t-soft); line-height: 1.7; flex: 1; }
-    .fr-card-cta { display: inline-flex; align-items: center; gap: 6px; font-family: 'Inter',sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .06em; color: #aaa; margin-top: 8px; transition: color .2s, gap .2s; }
-    .fr-card:hover .fr-card-cta { color: var(--black); gap: 10px; }
+    /* 진단 카드 (단독) */
+    .fr-diag { background: var(--white); border-radius: 20px; padding: 40px 44px; display: flex; align-items: center; justify-content: space-between; gap: 32px; text-decoration: none; color: inherit; box-shadow: 0 2px 8px rgba(0,0,0,.04); transition: box-shadow .25s, transform .25s; margin-bottom: 12px; }
+    .fr-diag:hover { box-shadow: 0 12px 40px rgba(0,0,0,.10); transform: translateY(-3px); }
+    .fr-diag-left { display: flex; flex-direction: column; gap: 12px; }
+    .fr-diag-title { font-size: clamp(1.2rem,2vw,1.5rem); font-weight: 900; letter-spacing: -.03em; line-height: 1.25; }
+    .fr-diag-desc { font-size: .85rem; color: var(--t-soft); line-height: 1.7; max-width: 380px; }
+    .fr-diag-cta { display: inline-flex; align-items: center; gap: 8px; font-family: 'Inter',sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .06em; color: var(--purple); margin-top: 4px; transition: gap .2s; }
+    .fr-diag:hover .fr-diag-cta { gap: 12px; }
+    .fr-diag-badge { font-family:'Inter',sans-serif; font-size:9px; font-weight:800; letter-spacing:.16em; color:var(--purple); background:rgba(123,97,255,.08); padding:5px 12px; border-radius:100px; width:fit-content; text-transform:uppercase; }
+    .fr-diag-visual { font-size: 52px; flex-shrink: 0; opacity: .7; }
+    /* Basic 가이드 그리드 */
+    .fr-section-label { font-family:'Inter',sans-serif; font-size:9px; font-weight:800; letter-spacing:.2em; color:#bbb; text-transform:uppercase; margin: 28px 0 14px; display:flex; align-items:center; gap:10px; }
+    .fr-section-label::after { content:''; flex:1; height:1px; background:#E2E0DC; }
+    .fr-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+    .fr-card { background: var(--white); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 12px; transition: box-shadow .25s, transform .25s; text-decoration: none; color: inherit; box-shadow: 0 2px 8px rgba(0,0,0,.04); }
+    .fr-card:hover { box-shadow: 0 10px 32px rgba(0,0,0,.09); transform: translateY(-3px); }
+    .fr-tag { display: inline-flex; align-items: center; gap: 6px; font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; padding: 4px 10px; border-radius: 100px; width: fit-content; }
+    .fr-card-title { font-size: .95rem; font-weight: 900; letter-spacing: -.02em; line-height: 1.3; }
+    .fr-card-desc { font-size: .78rem; color: var(--t-soft); line-height: 1.65; flex: 1; }
+    .fr-card-cta { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 700; color: #ccc; margin-top: 4px; transition: color .2s; }
+    .fr-card:hover .fr-card-cta { color: var(--black); }
+    /* Advanced 배너 */
+    .fr-advanced { margin-top: 12px; background: var(--black); border-radius: 16px; padding: 28px 36px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .fr-adv-left { display: flex; flex-direction: column; gap: 6px; }
+    .fr-adv-badge { font-family:'Inter',sans-serif; font-size:9px; font-weight:800; letter-spacing:.2em; color:var(--lime); text-transform:uppercase; }
+    .fr-adv-title { font-size: 1rem; font-weight: 800; color: #fff; letter-spacing: -.02em; }
+    .fr-adv-desc { font-size: .8rem; color: rgba(255,255,255,.35); }
+    .fr-adv-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--lime); color: var(--black); font-family:'Pretendard',sans-serif; font-size: 12px; font-weight: 800; padding: 12px 22px; border-radius: 100px; white-space: nowrap; transition: opacity .2s; text-decoration: none; }
+    .fr-adv-btn:hover { opacity: .85; }
 
     /* FOOTER */
     #footer { background: var(--black); padding: 0; }
@@ -303,9 +319,11 @@
       .fr-inner { padding: 0 24px; }
       .fr-header { flex-direction: column; align-items: flex-start; gap: 8px; }
       .fr-header-note { text-align: left; }
-      .fr-grid { grid-template-columns: 1fr; gap: 12px; }
-      .fr-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
-      .fr-card.featured .fr-card-visual { display: none; }
+      .fr-diag { flex-direction: column; gap: 20px; padding: 28px 24px; }
+      .fr-diag-visual { display: none; }
+      .fr-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .fr-advanced { flex-direction: column; gap: 16px; padding: 24px; }
+      .fr-adv-btn { justify-content: center; }
       #cta { margin: 0 16px 48px; padding: 40px 28px; grid-template-columns: 1fr; gap: 24px; }
       .cta-circle { width: 64px; height: 64px; }
       .cta-watermark { display: none; }
@@ -531,52 +549,60 @@
       </div>
       <p class="fr-header-note">비용도 조건도 없습니다.<br>필요할 때 가져다 쓰세요.</p>
     </div>
+    <!-- 브랜드 진단 (단독) -->
+    <a href="diagnose.html" class="fr-diag">
+      <div class="fr-diag-left">
+        <div class="fr-diag-badge">Brand Diagnosis · 무료</div>
+        <div class="fr-diag-title">내 브랜드,<br>지금 어디쯤 있나요?</div>
+        <div class="fr-diag-desc">6가지 질문으로 브랜드 현재 상태를 진단합니다. 3분이면 충분해요.</div>
+        <div class="fr-diag-cta">무료 진단 시작하기 →</div>
+      </div>
+      <div class="fr-diag-visual">🔍</div>
+    </a>
+
+    <!-- Basic 가이드 -->
+    <div class="fr-section-label">Basic · 무료 공개</div>
     <div class="fr-grid">
-      <a href="diagnose.html" class="fr-card featured">
-        <div class="fr-card-content">
-          <div class="fr-tag diag">BRAND DIAGNOSIS</div>
-          <div class="fr-card-title">내 브랜드,<br>지금 어디쯤 있나요?</div>
-          <div class="fr-card-desc">6가지 질문으로 현재 브랜드 상태를 진단합니다. 무료, 3분이면 충분해요.</div>
-          <div class="fr-card-cta">무료 진단 시작하기 →</div>
-        </div>
-        <div class="fr-card-visual">🔍</div>
-      </a>
-      <a href="guide-meta.html" class="fr-card">
-        <div class="fr-tag guide">FREE GUIDE</div>
-        <div class="fr-card-title">메타 광고<br>처음부터 끝까지</div>
-        <div class="fr-card-desc">계정 세팅 · 타겟 · 예산 · 성과 분석까지. 사장님 기준으로 쉽게 정리.</div>
-        <div class="fr-card-cta">가이드 보기 →</div>
-      </a>
       <a href="guide-instagram.html" class="fr-card">
-        <div class="fr-tag guide" style="background:rgba(225,48,108,.08);color:#E1306C;">FREE GUIDE</div>
-        <div class="fr-card-title">인스타그램<br>운영 전략</div>
-        <div class="fr-card-desc">콘텐츠 4유형 · 주간 루틴 · 해시태그 · 릴스. 숫자로 증명하는 법.</div>
-        <div class="fr-card-cta">가이드 보기 →</div>
+        <div class="fr-tag" style="background:rgba(225,48,108,.08);color:#E1306C;">인스타그램</div>
+        <div class="fr-card-title">운영 전략</div>
+        <div class="fr-card-desc">콘텐츠 4유형 · 주간 루틴 · 해시태그 · 릴스</div>
+        <div class="fr-card-cta">보기 →</div>
       </a>
       <a href="guide-naver.html" class="fr-card">
-        <div class="fr-tag guide" style="background:rgba(3,199,90,.08);color:#03C75A;">FREE GUIDE</div>
-        <div class="fr-card-title">네이버 블로그<br>SEO 전략</div>
-        <div class="fr-card-desc">C-Rank · 키워드 찾기 · 제목 공식 · 주2~3회 발행으로 검색 노출 잡기.</div>
-        <div class="fr-card-cta">가이드 보기 →</div>
+        <div class="fr-tag" style="background:rgba(3,199,90,.08);color:#03C75A;">네이버 블로그</div>
+        <div class="fr-card-title">SEO 전략</div>
+        <div class="fr-card-desc">C-Rank · 키워드 · 제목 공식 · 발행 루틴</div>
+        <div class="fr-card-cta">보기 →</div>
       </a>
       <a href="guide-email.html" class="fr-card">
-        <div class="fr-tag guide" style="background:rgba(123,97,255,.08);color:#7B61FF;">FREE GUIDE</div>
-        <div class="fr-card-title">이메일 마케팅<br>처음 세팅</div>
-        <div class="fr-card-desc">스티비 · 웰컴 메일 · 제목 쓰는 법 · 발행 주기. 열리는 이메일의 공식.</div>
-        <div class="fr-card-cta">가이드 보기 →</div>
+        <div class="fr-tag" style="background:rgba(123,97,255,.08);color:#7B61FF;">이메일</div>
+        <div class="fr-card-title">마케팅 세팅</div>
+        <div class="fr-card-desc">스티비 · 웰컴 메일 · 제목 공식 · 발행 주기</div>
+        <div class="fr-card-cta">보기 →</div>
       </a>
       <a href="guide-google.html" class="fr-card">
-        <div class="fr-tag guide" style="background:rgba(66,133,244,.08);color:#4285F4;">FREE GUIDE</div>
-        <div class="fr-card-title">구글 애즈<br>검색 광고</div>
-        <div class="fr-card-desc">키워드 · RSA · 예산 설정 · CTR 5% 넘기는 광고 문구 공식.</div>
-        <div class="fr-card-cta">가이드 보기 →</div>
+        <div class="fr-tag" style="background:rgba(66,133,244,.08);color:#4285F4;">구글 애즈</div>
+        <div class="fr-card-title">검색 광고</div>
+        <div class="fr-card-desc">키워드 · RSA · 예산 · CTR 5% 공식</div>
+        <div class="fr-card-cta">보기 →</div>
       </a>
       <a href="guide-crm.html" class="fr-card">
-        <div class="fr-tag guide" style="background:rgba(254,229,0,.12);color:#8a7200;">FREE GUIDE</div>
-        <div class="fr-card-title">카카오 채널<br>CRM 자동화</div>
-        <div class="fr-card-desc">자동 메시지 · 고객 단계 관리 · 재구매 유도. 문의 놓치지 않는 법.</div>
-        <div class="fr-card-cta">가이드 보기 →</div>
+        <div class="fr-tag" style="background:rgba(254,229,0,.12);color:#8a7200;">카카오 CRM</div>
+        <div class="fr-card-title">자동화 세팅</div>
+        <div class="fr-card-desc">자동 메시지 · 고객 단계 관리 · 재구매 유도</div>
+        <div class="fr-card-cta">보기 →</div>
       </a>
+    </div>
+
+    <!-- Advanced 허브 유도 -->
+    <div class="fr-advanced">
+      <div class="fr-adv-left">
+        <div class="fr-adv-badge">Advanced · 클라이언트 허브</div>
+        <div class="fr-adv-title">더 깊은 실전 자료는 허브에서 공개됩니다</div>
+        <div class="fr-adv-desc">메타 광고 심화 · 네이버 검색광고 · GA4 분석 · 운영 루틴 템플릿</div>
+      </div>
+      <a href="portal/login.html" class="fr-adv-btn">허브 입장하기 →</a>
     </div>
   </div>
 </section>
