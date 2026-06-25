@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root { --lime: #D3F45A; --purple: #7B61FF; --black: #111111; color-scheme: light; }
@@ -137,9 +138,20 @@ body {
   </div>
 
   <h1 class="login-title">운영 허브</h1>
-  <p class="login-sub">파인디어랩 클라이언트 전용 공간입니다.<br>전달받은 비밀번호를 입력해주세요.</p>
+  <p class="login-sub">파인디어랩 클라이언트 전용 공간입니다.<br>전달받은 이메일과 비밀번호를 입력해주세요.</p>
 
   <div class="form-group">
+    <label class="form-label" for="email">이메일</label>
+    <input
+      type="email"
+      id="email"
+      class="form-input"
+      placeholder="이메일 입력"
+      autocomplete="email"
+    >
+  </div>
+
+  <div class="form-group" style="margin-top:12px;">
     <label class="form-label" for="password">비밀번호</label>
     <input
       type="password"
@@ -151,41 +163,55 @@ body {
   </div>
 
   <button class="login-btn" onclick="doLogin()">입장하기 →</button>
-  <div class="error-msg" id="errorMsg">비밀번호가 올바르지 않습니다.</div>
+  <div class="error-msg" id="errorMsg">이메일 또는 비밀번호가 올바르지 않습니다.</div>
 
   <a href="../index.html" class="back-link">← 파인디어랩 홈으로</a>
 </div>
 
 <script>
+  const _sb = window.supabase.createClient(
+    'https://gfpmdrhpyclkkfkraojq.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdmcG1kcmhweWNsa2tma3Jhb2pxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIzNDA5NzAsImV4cCI6MjA5NzkxNjk3MH0.GZuxspwG-s1Z3lD5GCGhWDuYXt8cfChD56xrTQqbXC0'
+  );
+
   // 이미 로그인된 경우 바로 진입
-  if (localStorage.getItem('fl_portal_auth') === 'granted') {
-    window.location.href = 'index.html';
-  }
+  _sb.auth.getSession().then(({ data: { session } }) => {
+    if (session) window.location.href = 'index.html';
+  });
 
-  // 비밀번호 (변경하려면 이 값을 수정)
-  const PORTAL_PASSWORD = 'findier2026';
-
-  function doLogin() {
-    const input = document.getElementById('password').value;
+  async function doLogin() {
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
     const err = document.getElementById('errorMsg');
-    if (input === PORTAL_PASSWORD) {
-      localStorage.setItem('fl_portal_auth', 'granted');
-      window.location.href = 'index.html';
-    } else {
+    const btn = document.querySelector('.login-btn');
+
+    btn.disabled = true;
+    btn.textContent = '확인 중...';
+
+    const { error } = await _sb.auth.signInWithPassword({ email, password });
+
+    if (error) {
       err.classList.add('show');
       document.getElementById('password').style.borderColor = '#FF6B6B';
+      btn.disabled = false;
+      btn.textContent = '입장하기 →';
+    } else {
+      window.location.href = 'index.html';
     }
   }
 
-  // 엔터키 지원
   document.getElementById('password').addEventListener('keydown', (e) => {
     if (e.key === 'Enter') doLogin();
   });
+  document.getElementById('email').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') document.getElementById('password').focus();
+  });
 
-  // 입력 시 에러 초기화
-  document.getElementById('password').addEventListener('input', () => {
-    document.getElementById('errorMsg').classList.remove('show');
-    document.getElementById('password').style.borderColor = '';
+  ['email', 'password'].forEach(id => {
+    document.getElementById(id).addEventListener('input', () => {
+      document.getElementById('errorMsg').classList.remove('show');
+      document.getElementById('password').style.borderColor = '';
+    });
   });
 </script>
 </body>

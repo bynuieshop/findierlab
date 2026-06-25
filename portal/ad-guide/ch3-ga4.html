@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root { --lime: #D3F45A; --purple: #7B61FF; --black: #111111; --ga4: #E37400; --border: rgba(255,255,255,.1); color-scheme: light; }
@@ -76,12 +77,14 @@ footer { border-top: 1px solid var(--border); padding: 48px; text-align: center;
 }
 </style>
 <script>
-  (function(){
-    if (localStorage.getItem('fl_portal_auth') !== 'granted') {
-      window.location.replace('../login.html');
-    } else {
-      document.body.style.visibility = 'visible';
-    }
+  const _sb = window.supabase.createClient(
+    'https://gfpmdrhpyclkkfkraojq.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdmcG1kcmhweWNsa2tma3Jhb2pxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIzNDA5NzAsImV4cCI6MjA5NzkxNjk3MH0.GZuxspwG-s1Z3lD5GCGhWDuYXt8cfChD56xrTQqbXC0'
+  );
+  (async function() {
+    const { data: { session } } = await _sb.auth.getSession();
+    if (!session) window.location.replace('../login.html');
+    else document.body.style.visibility = 'visible';
   })();
 </script>
 </head>
