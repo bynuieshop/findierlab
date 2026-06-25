@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Advanced · 월간 성과 리포트 — FINDIER LAB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --lime: #D3F45A; --report: #D3F45A; --reportdim: rgba(211,244,90,.7); --black: #111111; --border: rgba(255,255,255,.1); }
+body { font-family: 'Pretendard','Inter',sans-serif; background: var(--black); color: #fff; min-height: 100vh; }
+nav { position: fixed; top: 0; left: 0; right: 0; height: 64px; background: rgba(17,17,17,.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 48px; justify-content: space-between; z-index: 100; }
+.nav-logo { font-family:'Inter',sans-serif; font-size:13px; font-weight:900; letter-spacing:.18em; color:#fff; text-decoration:none; text-transform:uppercase; }
+.nav-links { display:flex; gap:28px; }
+.nav-links a { font-size:12px; font-weight:600; color:rgba(255,255,255,.3); text-decoration:none; letter-spacing:.04em; transition:color .2s; }
+.nav-links a:hover { color:#fff; }
+.page-hero { padding:120px 48px 64px; max-width:900px; margin:0 auto; border-bottom:1px solid var(--border); }
+.breadcrumb { font-size:12px; color:rgba(255,255,255,.3); letter-spacing:.06em; margin-bottom:24px; }
+.breadcrumb span { color:var(--lime); }
+.page-tag { display:inline-block; font-family:'Inter',sans-serif; font-size:10px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--black); background:var(--lime); padding:5px 12px; margin-bottom:24px; }
+.page-title { font-family:'Inter',sans-serif; font-size:clamp(32px,5vw,56px); font-weight:900; line-height:1.08; letter-spacing:-.04em; margin-bottom:20px; }
+.page-desc { font-size:17px; color:rgba(255,255,255,.45); line-height:1.7; max-width:560px; }
+.content { max-width:900px; margin:0 auto; padding:0 48px 120px; }
+.guide-section { padding:64px 0; border-bottom:1px solid var(--border); }
+.guide-section:last-child { border-bottom:none; }
+.gs-header { display:flex; align-items:flex-start; gap:24px; margin-bottom:40px; }
+.gs-num { font-family:'Inter',sans-serif; font-size:11px; font-weight:700; letter-spacing:.16em; color:var(--lime); text-transform:uppercase; padding:4px 10px; border:1px solid rgba(211,244,90,.25); flex-shrink:0; margin-top:4px; }
+.gs-title { font-family:'Inter',sans-serif; font-size:26px; font-weight:900; letter-spacing:-.03em; line-height:1.2; }
+.gs-sub { font-size:14px; color:rgba(255,255,255,.4); margin-top:8px; line-height:1.6; }
+.tip { display:flex; gap:16px; align-items:flex-start; padding:18px 22px; background:rgba(211,244,90,.05); border-left:3px solid rgba(211,244,90,.3); margin-top:16px; }
+.tip-text { font-size:13px; color:rgba(255,255,255,.6); line-height:1.6; }
+.tip-text strong { color:var(--lime); }
+.kpi-table { display:flex; flex-direction:column; gap:2px; margin-top:16px; }
+.kpi-row { display:grid; grid-template-columns:100px 140px 80px 1fr; gap:12px; align-items:center; padding:14px 20px; background:rgba(255,255,255,.04); }
+.kpi-row.header { background:rgba(211,244,90,.07); }
+.kpi-ch { font-family:'Inter',sans-serif; font-size:12px; font-weight:800; color:var(--lime); }
+.kpi-name { font-size:12px; color:rgba(255,255,255,.7); }
+.kpi-bench { font-family:'Inter',sans-serif; font-size:12px; font-weight:800; color:rgba(255,255,255,.55); }
+.kpi-note { font-size:11px; color:rgba(255,255,255,.3); line-height:1.5; }
+.kpi-row.header .kpi-ch, .kpi-row.header .kpi-name, .kpi-row.header .kpi-bench, .kpi-row.header .kpi-note { font-size:10px; font-weight:700; letter-spacing:.1em; color:rgba(255,255,255,.25); text-transform:uppercase; }
+.formula-block { display:flex; flex-direction:column; gap:2px; margin-top:16px; }
+.formula-item { display:grid; grid-template-columns:120px 1fr; gap:20px; align-items:flex-start; padding:20px 24px; background:rgba(255,255,255,.04); }
+.formula-name { font-family:'Inter',sans-serif; font-size:12px; font-weight:800; color:var(--lime); }
+.formula-eq { font-family:'Inter',sans-serif; font-size:14px; font-weight:800; color:#fff; margin-bottom:6px; }
+.formula-eq span { color:var(--lime); }
+.formula-desc { font-size:12px; color:rgba(255,255,255,.4); line-height:1.6; }
+.report-template { display:flex; flex-direction:column; gap:2px; margin-top:16px; }
+.rt-section { background:rgba(255,255,255,.04); }
+.rt-header { padding:14px 20px; background:rgba(211,244,90,.08); font-family:'Inter',sans-serif; font-size:11px; font-weight:800; letter-spacing:.14em; color:var(--lime); text-transform:uppercase; }
+.rt-items { display:flex; flex-direction:column; gap:1px; }
+.rt-item { display:grid; grid-template-columns:1fr 120px; align-items:center; padding:12px 20px; background:rgba(255,255,255,.025); gap:16px; }
+.rt-label { font-size:13px; color:rgba(255,255,255,.6); }
+.rt-input { background:rgba(255,255,255,.06); border:none; border-bottom:1px solid rgba(255,255,255,.1); color:#fff; font-family:'Pretendard',sans-serif; font-size:13px; font-weight:600; padding:6px 10px; width:100%; text-align:right; outline:none; }
+.rt-input:focus { border-color:var(--lime); }
+.rt-input::placeholder { color:rgba(255,255,255,.2); }
+.action-steps { display:flex; flex-direction:column; gap:12px; margin-top:16px; }
+.action-step { display:grid; grid-template-columns:36px 1fr; gap:20px; align-items:flex-start; padding:22px 24px; background:rgba(255,255,255,.04); }
+.as-num { width:36px; height:36px; background:rgba(211,244,90,.12); display:flex; align-items:center; justify-content:center; font-family:'Inter',sans-serif; font-size:13px; font-weight:800; color:var(--lime); flex-shrink:0; }
+.as-title { font-size:15px; font-weight:700; margin-bottom:7px; }
+.as-desc { font-size:13px; color:rgba(255,255,255,.5); line-height:1.65; }
+.nav-buttons { display:flex; gap:12px; margin-top:72px; }
+.btn { display:inline-block; padding:14px 32px; font-family:'Inter',sans-serif; font-size:12px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; text-decoration:none; transition:opacity .2s; }
+.btn-primary { background:var(--lime); color:var(--black); }
+.btn-secondary { background:rgba(255,255,255,.08); color:#fff; }
+.btn:hover { opacity:.8; }
+footer { border-top:1px solid var(--border); padding:40px 48px; display:flex; justify-content:space-between; align-items:center; margin-top:80px; }
+.footer-logo { font-family:'Inter',sans-serif; font-size:11px; font-weight:900; letter-spacing:.2em; color:rgba(255,255,255,.15); text-transform:uppercase; }
+.footer-sub { font-size:12px; color:rgba(255,255,255,.15); }
+@media (max-width:768px) {
+  nav { padding:0 20px; } .nav-links { display:none; }
+  .page-hero, .content { padding-left:20px; padding-right:20px; }
+  .kpi-row { grid-template-columns:80px 1fr; }
+  .kpi-bench, .kpi-note { display:none; }
+  .formula-item { grid-template-columns:1fr; gap:8px; }
+  .rt-item { grid-template-columns:1fr; }
+  .rt-input { text-align:left; }
+}
+</style>
+<script>
+  const _sb = window.supabase.createClient(
+    'https://gfpmdrhpyclkkfkraojq.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdmcG1kcmhweWNsa2tma3Jhb2pxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIzNDA5NzAsImV4cCI6MjA5NzkxNjk3MH0.GZuxspwG-s1Z3lD5GCGhWDuYXt8cfChD56xrTQqbXC0'
+  );
+  (async function() {
+    const { data: { session } } = await _sb.auth.getSession();
+    if (!session) window.location.replace('login.html');
+    else document.body.style.visibility = 'visible';
+  })();
+</script>
+</head>
+<body style="visibility:hidden;">
+
+<nav>
+  <a href="index.html" class="nav-logo">Findier Lab</a>
+  <div class="nav-links">
+    <a href="adv-instagram.html">인스타그램</a>
+    <a href="adv-crm.html">카카오 CRM</a>
+    <a href="adv-email.html">이메일</a>
+    <a href="adv-report.html" style="color:#fff;">월간 리포트</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="breadcrumb">Advanced 채널별 심화 <span>/ 월간 성과 리포트</span></div>
+  <div class="page-tag">ADVANCED · 월간 리포트</div>
+  <h1 class="page-title">숫자로 읽고<br>다음 달을 설계하기</h1>
+  <p class="page-desc">채널별 KPI 기준표 · 예산 효율 계산 공식 · 다음 달 액션 플랜 작성법. 월말 30분이면 됩니다.</p>
+</div>
+
+<div class="content">
+
+  <div class="guide-section">
+    <div class="gs-header">
+      <div class="gs-num">01</div>
+      <div>
+        <div class="gs-title">채널별 KPI 기준표</div>
+        <div class="gs-sub">이 숫자보다 낮으면 해당 채널 전략을 수정해야 합니다.</div>
+      </div>
+    </div>
+    <div class="kpi-table">
+      <div class="kpi-row header">
+        <div class="kpi-ch">채널</div>
+        <div class="kpi-name">지표</div>
+        <div class="kpi-bench">기준</div>
+        <div class="kpi-note">미달 시 점검 포인트</div>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi-ch" style="color:#E1306C;">인스타</div>
+        <div class="kpi-name">저장수 / 게시물</div>
+        <div class="kpi-bench">10+</div>
+        <div class="kpi-note">정보성 콘텐츠 비중 높이기</div>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi-ch" style="color:#E1306C;">인스타</div>
+        <div class="kpi-name">도달 / 팔로워</div>
+        <div class="kpi-bench">30%+</div>
+        <div class="kpi-note">릴스 비중 늘리기, 발행 시간 조정</div>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi-ch" style="color:#03C75A;">블로그</div>
+        <div class="kpi-name">월 방문자</div>
+        <div class="kpi-bench">500+</div>
+        <div class="kpi-note">키워드 재점검, 제목 A/B 테스트</div>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi-ch" style="color:#03C75A;">블로그</div>
+        <div class="kpi-name">평균 체류 시간</div>
+        <div class="kpi-bench">2분+</div>
+        <div class="kpi-note">글 구조 개선, 목차 추가</div>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi-ch" style="color:#7B61FF;">이메일</div>
+        <div class="kpi-name">오픈율</div>
+        <div class="kpi-bench">20%+</div>
+        <div class="kpi-note">제목 패턴 변경, 발송 시간 조정</div>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi-ch" style="color:#7B61FF;">이메일</div>
+        <div class="kpi-name">클릭률</div>
+        <div class="kpi-bench">3%+</div>
+        <div class="kpi-note">CTA 1개로 줄이기, 버튼 위치 조정</div>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi-ch" style="color:#4285F4;">광고</div>
+        <div class="kpi-name">CTR (구글)</div>
+        <div class="kpi-bench">5%+</div>
+        <div class="kpi-note">광고 문구 수정, 키워드 정리</div>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi-ch" style="color:#4285F4;">광고</div>
+        <div class="kpi-name">전환율 (문의)</div>
+        <div class="kpi-bench">3%+</div>
+        <div class="kpi-note">랜딩 페이지 개선, CTA 강화</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="guide-section">
+    <div class="gs-header">
+      <div class="gs-num">02</div>
+      <div>
+        <div class="gs-title">예산 효율 계산 공식</div>
+        <div class="gs-sub">광고비를 쓰고 있다면 이 숫자를 매달 계산하세요.</div>
+      </div>
+    </div>
+    <div class="formula-block">
+      <div class="formula-item">
+        <div class="formula-name">CPA</div>
+        <div>
+          <div class="formula-eq">CPA = 총 광고비 <span>÷</span> 전환 수 (문의·상담·구매)</div>
+          <div class="formula-desc">고객 1명을 데려오는 데 든 비용. 서비스 단가의 20% 이하면 건강한 수준.</div>
+        </div>
+      </div>
+      <div class="formula-item">
+        <div class="formula-name">ROAS</div>
+        <div>
+          <div class="formula-eq">ROAS = 광고로 발생한 매출 <span>÷</span> 광고비 <span>× 100</span></div>
+          <div class="formula-desc">300% 이상이면 수익, 100% 미만이면 적자. B2B 서비스는 리드 추적이 어려우니 상담 전환 기준으로 계산.</div>
+        </div>
+      </div>
+      <div class="formula-item">
+        <div class="formula-name">LTV</div>
+        <div>
+          <div class="formula-eq">LTV = 평균 거래 금액 <span>×</span> 평균 거래 횟수</div>
+          <div class="formula-desc">고객 1명의 생애 가치. CPA가 LTV의 1/3 이하면 지속 가능한 구조.</div>
+        </div>
+      </div>
+    </div>
+    <div class="tip">
+      <div class="tip-text"><strong>숫자가 나빠도 당황하지 마세요.</strong> CPA가 높으면 랜딩 페이지 문제, CTR이 낮으면 소재 문제, 전환율이 낮으면 제안 구조 문제입니다. 진단이 먼저입니다.</div>
+    </div>
+  </div>
+
+  <div class="guide-section">
+    <div class="gs-header">
+      <div class="gs-num">03</div>
+      <div>
+        <div class="gs-title">월간 리포트 양식 — 직접 입력</div>
+        <div class="gs-sub">숫자를 입력하면 월말 회고가 됩니다.</div>
+      </div>
+    </div>
+    <div class="report-template">
+      <div class="rt-section">
+        <div class="rt-header">이번 달 채널 성과</div>
+        <div class="rt-items">
+          <div class="rt-item"><div class="rt-label">인스타그램 — 팔로워 증가수</div><input class="rt-input" placeholder="0" type="number"></div>
+          <div class="rt-item"><div class="rt-label">인스타그램 — 평균 저장수 / 게시물</div><input class="rt-input" placeholder="0" type="number"></div>
+          <div class="rt-item"><div class="rt-label">블로그 — 월 방문자</div><input class="rt-input" placeholder="0" type="number"></div>
+          <div class="rt-item"><div class="rt-label">이메일 — 구독자 수 / 오픈율</div><input class="rt-input" placeholder="0명 / 0%"></div>
+          <div class="rt-item"><div class="rt-label">광고 — 총 집행 예산</div><input class="rt-input" placeholder="0원"></div>
+          <div class="rt-item"><div class="rt-label">광고 — 발생 문의 수 / CPA</div><input class="rt-input" placeholder="0건 / 0원"></div>
+        </div>
+      </div>
+      <div class="rt-section">
+        <div class="rt-header">이번 달 매출</div>
+        <div class="rt-items">
+          <div class="rt-item"><div class="rt-label">신규 계약 건수 / 금액</div><input class="rt-input" placeholder="0건 / 0원"></div>
+          <div class="rt-item"><div class="rt-label">재구매 / 소개 건수</div><input class="rt-input" placeholder="0건"></div>
+          <div class="rt-item"><div class="rt-label">상담 → 계약 전환율</div><input class="rt-input" placeholder="0%"></div>
+        </div>
+      </div>
+      <div class="rt-section">
+        <div class="rt-header">이번 달 잘 된 것 / 안 된 것</div>
+        <div class="rt-items">
+          <div class="rt-item" style="grid-template-columns:1fr;"><textarea class="rt-input" style="text-align:left;resize:vertical;min-height:80px;" placeholder="잘 된 것: &#10;안 된 것: &#10;다음 달 바꿀 것:"></textarea></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="guide-section">
+    <div class="gs-header">
+      <div class="gs-num">04</div>
+      <div>
+        <div class="gs-title">다음 달 액션 플랜 작성법</div>
+        <div class="gs-sub">리포트가 끝나면 다음 달 행동 계획으로 이어져야 합니다.</div>
+      </div>
+    </div>
+    <div class="action-steps">
+      <div class="action-step">
+        <div class="as-num">1</div>
+        <div>
+          <div class="as-title">가장 잘 된 채널에 더 투자</div>
+          <div class="as-desc">모든 채널을 동등하게 키우려 하지 마세요. 이번 달 성과가 가장 좋은 채널의 예산·시간을 20% 늘리세요. 잘 되는 걸 더 잘 되게 하는 게 먼저입니다.</div>
+        </div>
+      </div>
+      <div class="action-step">
+        <div class="as-num">2</div>
+        <div>
+          <div class="as-title">가장 안 된 것 1가지만 고치기</div>
+          <div class="as-desc">모두 고치려 하면 아무것도 안 됩니다. 가장 임팩트가 큰 문제 1개만 골라서 다음 달에 집중 개선합니다. 나머지는 그 다음 달에.</div>
+        </div>
+      </div>
+      <div class="action-step">
+        <div class="as-num">3</div>
+        <div>
+          <div class="as-title">3개 이하의 실행 과제로 마감</div>
+          <div class="as-desc">"다음 달 할 일" 목록이 5개를 넘으면 아무것도 안 됩니다. 반드시 해야 하는 것 3개로 좁히세요. 그게 이번 달의 리포트가 다음 달에 줘야 할 것입니다.</div>
+        </div>
+      </div>
+    </div>
+    <div class="nav-buttons">
+      <a href="adv-email.html" class="btn btn-secondary">← 이메일</a>
+      <a href="index.html" class="btn btn-primary">허브로 돌아가기 →</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">Findier Lab · 운영 허브</div>
+  <div class="footer-sub">클라이언트 전용 · 외부 공유 금지</div>
+</footer>
+</body>
+</html>

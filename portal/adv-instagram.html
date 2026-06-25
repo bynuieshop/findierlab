@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Advanced · 인스타그램 콘텐츠 시스템 — FINDIER LAB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --lime: #D3F45A; --purple: #7B61FF; --black: #111111; --insta: #E1306C; --border: rgba(255,255,255,.1); }
+body { font-family: 'Pretendard','Inter',sans-serif; background: var(--black); color: #fff; min-height: 100vh; }
+nav { position: fixed; top: 0; left: 0; right: 0; height: 64px; background: rgba(17,17,17,.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 48px; justify-content: space-between; z-index: 100; }
+.nav-logo { font-family:'Inter',sans-serif; font-size:13px; font-weight:900; letter-spacing:.18em; color:#fff; text-decoration:none; text-transform:uppercase; }
+.nav-links { display:flex; gap:28px; align-items:center; }
+.nav-links a { font-size:12px; font-weight:600; color:rgba(255,255,255,.3); text-decoration:none; letter-spacing:.04em; transition:color .2s; }
+.nav-links a:hover { color:#fff; }
+.nav-back { font-size:12px; font-weight:700; color:rgba(255,255,255,.35); text-decoration:none; letter-spacing:.04em; display:flex; align-items:center; gap:6px; transition:color .2s; }
+.nav-back:hover { color:#fff; }
+.page-hero { padding:120px 48px 64px; max-width:900px; margin:0 auto; border-bottom:1px solid var(--border); }
+.breadcrumb { font-size:12px; color:rgba(255,255,255,.3); letter-spacing:.06em; margin-bottom:24px; }
+.breadcrumb span { color:var(--insta); }
+.page-tag { display:inline-block; font-family:'Inter',sans-serif; font-size:10px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:#fff; background:var(--insta); padding:5px 12px; margin-bottom:24px; }
+.page-title { font-family:'Inter',sans-serif; font-size:clamp(32px,5vw,56px); font-weight:900; line-height:1.08; letter-spacing:-.04em; margin-bottom:20px; }
+.page-desc { font-size:17px; color:rgba(255,255,255,.45); line-height:1.7; max-width:560px; }
+.content { max-width:900px; margin:0 auto; padding:0 48px 120px; }
+.guide-section { padding:64px 0; border-bottom:1px solid var(--border); }
+.guide-section:last-child { border-bottom:none; }
+.gs-header { display:flex; align-items:flex-start; gap:24px; margin-bottom:40px; }
+.gs-num { font-family:'Inter',sans-serif; font-size:11px; font-weight:700; letter-spacing:.16em; color:var(--insta); text-transform:uppercase; padding:4px 10px; border:1px solid rgba(225,48,108,.3); flex-shrink:0; margin-top:4px; }
+.gs-title { font-family:'Inter',sans-serif; font-size:26px; font-weight:900; letter-spacing:-.03em; line-height:1.2; }
+.gs-sub { font-size:14px; color:rgba(255,255,255,.4); margin-top:8px; line-height:1.6; }
+.steps { display:flex; flex-direction:column; gap:12px; }
+.step { display:grid; grid-template-columns:36px 1fr; gap:20px; align-items:flex-start; padding:22px 24px; background:rgba(255,255,255,.04); }
+.step-n { width:36px; height:36px; background:rgba(225,48,108,.15); display:flex; align-items:center; justify-content:center; font-family:'Inter',sans-serif; font-size:13px; font-weight:800; color:var(--insta); flex-shrink:0; }
+.step-title { font-size:15px; font-weight:700; margin-bottom:7px; }
+.step-desc { font-size:13px; color:rgba(255,255,255,.5); line-height:1.65; }
+.tip { display:flex; gap:16px; align-items:flex-start; padding:18px 22px; background:rgba(225,48,108,.07); border-left:3px solid rgba(225,48,108,.4); margin-top:12px; }
+.tip-text { font-size:13px; color:rgba(255,255,255,.6); line-height:1.6; }
+.tip-text strong { color:#ff6090; }
+.calendar-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:2px; margin-top:16px; }
+.cal-head { padding:10px 8px; text-align:center; font-family:'Inter',sans-serif; font-size:10px; font-weight:700; letter-spacing:.1em; color:rgba(255,255,255,.3); background:rgba(255,255,255,.04); }
+.cal-day { padding:14px 8px; text-align:center; background:rgba(255,255,255,.03); }
+.cal-day.has-post { background:rgba(225,48,108,.1); border:1px solid rgba(225,48,108,.2); }
+.cal-day.empty { opacity:.2; }
+.cal-num { font-family:'Inter',sans-serif; font-size:11px; color:rgba(255,255,255,.3); margin-bottom:6px; }
+.cal-tag { font-size:10px; font-weight:700; color:var(--insta); line-height:1.4; }
+.script-box { background:rgba(255,255,255,.04); padding:24px; margin-top:16px; display:flex; flex-direction:column; gap:12px; }
+.script-row { display:grid; grid-template-columns:80px 1fr; gap:16px; align-items:flex-start; }
+.script-label { font-family:'Inter',sans-serif; font-size:10px; font-weight:800; letter-spacing:.14em; color:var(--insta); text-transform:uppercase; padding-top:2px; }
+.script-content { font-size:13px; color:rgba(255,255,255,.65); line-height:1.65; }
+.script-content strong { color:#fff; }
+.tag-row { display:flex; gap:8px; flex-wrap:wrap; margin-top:16px; }
+.tag-item { padding:8px 14px; font-size:12px; font-weight:600; letter-spacing:.02em; }
+.metrics-table { display:flex; flex-direction:column; gap:2px; margin-top:16px; }
+.mt-row { display:grid; grid-template-columns:140px 100px 1fr; gap:16px; align-items:center; padding:14px 20px; background:rgba(255,255,255,.04); }
+.mt-row.header { background:rgba(225,48,108,.08); }
+.mt-metric { font-family:'Inter',sans-serif; font-size:13px; font-weight:800; color:var(--insta); }
+.mt-target { font-size:13px; font-weight:700; color:rgba(255,255,255,.7); }
+.mt-note { font-size:12px; color:rgba(255,255,255,.35); line-height:1.5; }
+.mt-row.header .mt-metric, .mt-row.header .mt-target, .mt-row.header .mt-note { font-size:10px; font-weight:700; letter-spacing:.1em; color:rgba(255,255,255,.25); text-transform:uppercase; }
+.nav-buttons { display:flex; gap:12px; margin-top:72px; }
+.btn { display:inline-block; padding:14px 32px; font-family:'Inter',sans-serif; font-size:12px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; text-decoration:none; transition:opacity .2s; }
+.btn-primary { background:var(--lime); color:var(--black); }
+.btn-secondary { background:rgba(255,255,255,.08); color:#fff; }
+.btn:hover { opacity:.8; }
+footer { border-top:1px solid var(--border); padding:40px 48px; display:flex; justify-content:space-between; align-items:center; margin-top:80px; }
+.footer-logo { font-family:'Inter',sans-serif; font-size:11px; font-weight:900; letter-spacing:.2em; color:rgba(255,255,255,.15); text-transform:uppercase; }
+.footer-sub { font-size:12px; color:rgba(255,255,255,.15); }
+@media (max-width:768px) {
+  nav { padding:0 20px; } .nav-links { display:none; }
+  .page-hero, .content { padding-left:20px; padding-right:20px; }
+  .calendar-grid { grid-template-columns:repeat(4,1fr); }
+  .mt-row { grid-template-columns:1fr; gap:4px; }
+  .script-row { grid-template-columns:1fr; }
+}
+</style>
+<script>
+  const _sb = window.supabase.createClient(
+    'https://gfpmdrhpyclkkfkraojq.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdmcG1kcmhweWNsa2tma3Jhb2pxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIzNDA5NzAsImV4cCI6MjA5NzkxNjk3MH0.GZuxspwG-s1Z3lD5GCGhWDuYXt8cfChD56xrTQqbXC0'
+  );
+  (async function() {
+    const { data: { session } } = await _sb.auth.getSession();
+    if (!session) window.location.replace('login.html');
+    else document.body.style.visibility = 'visible';
+  })();
+</script>
+</head>
+<body style="visibility:hidden;">
+
+<nav>
+  <a href="index.html" class="nav-logo">Findier Lab</a>
+  <div class="nav-links">
+    <a href="adv-instagram.html" style="color:#fff;">인스타그램</a>
+    <a href="adv-crm.html">카카오 CRM</a>
+    <a href="adv-email.html">이메일</a>
+    <a href="adv-report.html">월간 리포트</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="breadcrumb">Advanced 채널별 심화 <span>/ 인스타그램 콘텐츠 시스템</span></div>
+  <div class="page-tag">ADVANCED · 인스타그램</div>
+  <h1 class="page-title">월간 콘텐츠를<br>시스템으로 만들기</h1>
+  <p class="page-desc">무엇을 언제 올릴지 매번 고민하지 않아도 되는 구조를 만듭니다. 월간 캘린더 · 릴스 스크립트 · 성과 추적까지.</p>
+</div>
+
+<div class="content">
+
+  <div class="guide-section">
+    <div class="gs-header">
+      <div class="gs-num">01</div>
+      <div>
+        <div class="gs-title">월간 콘텐츠 캘린더 짜는 법</div>
+        <div class="gs-sub">한 달치를 미리 설계하면 당일 고민이 사라집니다.</div>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">1</div>
+        <div>
+          <div class="step-title">이번 달 메인 메시지 1개 결정</div>
+          <div class="step-desc">한 달 동안 관통하는 주제를 정하세요. 예) "브랜드를 만드는 것은 감성이 아니라 구조입니다." 모든 콘텐츠가 이 메시지 주변을 맴돌게 됩니다.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">2</div>
+        <div>
+          <div class="step-title">주 3회 × 4주 = 12개 슬롯 채우기</div>
+          <div class="step-desc">월/수/금 고정 발행. 주제 유형별 비율 지키기: 정보 4개 · 공감/비하인드 4개 · 전환 2개 · 릴스 2개 (정보 또는 공감을 릴스로 전환).</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">3</div>
+        <div>
+          <div class="step-title">각 슬롯에 제목 한 줄씩 채우기</div>
+          <div class="step-desc">완성된 글이 아니라 제목만 먼저 채우세요. 예) "대표가 인스타에 직접 나와야 하는 이유 3가지". 제목이 정해지면 소재가 명확해집니다.</div>
+        </div>
+      </div>
+    </div>
+    <div class="calendar-grid" style="margin-top:24px;">
+      <div class="cal-head">월</div><div class="cal-head">화</div><div class="cal-head">수</div><div class="cal-head">목</div><div class="cal-head">금</div><div class="cal-head">토</div><div class="cal-head">일</div>
+      <div class="cal-day has-post"><div class="cal-num">1</div><div class="cal-tag">정보</div></div>
+      <div class="cal-day"><div class="cal-num">2</div></div>
+      <div class="cal-day has-post"><div class="cal-num">3</div><div class="cal-tag">공감</div></div>
+      <div class="cal-day"><div class="cal-num">4</div></div>
+      <div class="cal-day has-post"><div class="cal-num">5</div><div class="cal-tag">릴스</div></div>
+      <div class="cal-day empty"><div class="cal-num">6</div></div>
+      <div class="cal-day empty"><div class="cal-num">7</div></div>
+      <div class="cal-day has-post"><div class="cal-num">8</div><div class="cal-tag">정보</div></div>
+      <div class="cal-day"><div class="cal-num">9</div></div>
+      <div class="cal-day has-post"><div class="cal-num">10</div><div class="cal-tag">비하인드</div></div>
+      <div class="cal-day"><div class="cal-num">11</div></div>
+      <div class="cal-day has-post"><div class="cal-num">12</div><div class="cal-tag">전환</div></div>
+      <div class="cal-day empty"><div class="cal-num">13</div></div>
+      <div class="cal-day empty"><div class="cal-num">14</div></div>
+    </div>
+    <div class="tip" style="margin-top:16px;">
+      <div class="tip-text"><strong>월말 마지막 주에 다음 달 캘린더를 채우세요.</strong> 이번 달 성과를 보면서 어떤 유형이 잘 됐는지 확인하고 다음 달 비율을 조정합니다.</div>
+    </div>
+  </div>
+
+  <div class="guide-section">
+    <div class="gs-header">
+      <div class="gs-num">02</div>
+      <div>
+        <div class="gs-title">릴스 스크립트 구조</div>
+        <div class="gs-sub">릴스는 처음 1초가 전부입니다. 구조를 외우면 매번 고민하지 않아도 됩니다.</div>
+      </div>
+    </div>
+    <div class="script-box">
+      <div class="script-row">
+        <div class="script-label">훅 (0~2초)</div>
+        <div class="script-content"><strong>시청자를 멈추게 하는 문장 1개.</strong><br>예) "인스타 3년 했는데 매출이 없었던 이유" / "대표님, 이거 모르면 광고비 날립니다"<br>→ 공포·궁금증·공감 중 하나를 건드려야 합니다.</div>
+      </div>
+      <div class="script-row">
+        <div class="script-label">본론 (3~25초)</div>
+        <div class="script-content"><strong>핵심 정보 또는 이야기를 빠르게.</strong><br>포인트는 3개 이하로. 자막 필수. 말하는 속도는 평소보다 20% 빠르게.<br>→ 정보형: "첫째 ~ 둘째 ~ 셋째~" / 공감형: 상황 묘사 → 반전 → 결론</div>
+      </div>
+      <div class="script-row">
+        <div class="script-label">CTA (마지막 3초)</div>
+        <div class="script-content"><strong>행동 하나만 요청.</strong><br>"저장해두세요" / "팔로우하면 이런 내용 계속 올려요" / "댓글에 OO 남겨주세요"<br>→ 두 개 이상 요청하면 아무것도 안 합니다.</div>
+      </div>
+    </div>
+    <div class="tip">
+      <div class="tip-text"><strong>릴스는 세로 촬영(9:16), 자막 필수, 30초 이내가 기본.</strong> 음악은 인스타 제공 트렌드 음악을 쓰면 알고리즘에 유리합니다.</div>
+    </div>
+  </div>
+
+  <div class="guide-section">
+    <div class="gs-header">
+      <div class="gs-num">03</div>
+      <div>
+        <div class="gs-title">해시태그 전략 — 5+5+3</div>
+        <div class="gs-sub">많이 쓴다고 좋은 게 아닙니다. 구조가 있어야 합니다.</div>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">A</div>
+        <div>
+          <div class="step-title">브랜드 해시태그 5개 (항상 고정)</div>
+          <div class="step-desc">매 게시물에 고정으로 넣는 태그. 나중에 검색하면 내 콘텐츠가 모여 브랜드 자산이 됩니다.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">B</div>
+        <div>
+          <div class="step-title">세부 주제 태그 5개 (게시물별 맞춤)</div>
+          <div class="step-desc">월간 조회수 10만~50만 사이의 중간 규모 태그. 경쟁이 적어 내 글이 노출될 확률이 높습니다.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">C</div>
+        <div>
+          <div class="step-title">대형 태그 3개 (노출 실험용)</div>
+          <div class="step-desc">조회수 100만 이상 태그. 노출 가능성은 낮지만 가끔 터집니다. 실험용으로 3개만 유지.</div>
+        </div>
+      </div>
+    </div>
+    <div class="tag-row">
+      <div class="tag-item" style="background:rgba(225,48,108,.1);color:#E1306C;">#파인디어랩</div>
+      <div class="tag-item" style="background:rgba(225,48,108,.1);color:#E1306C;">#브랜드전략</div>
+      <div class="tag-item" style="background:rgba(225,48,108,.1);color:#E1306C;">#findierlab</div>
+      <div class="tag-item" style="background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);">#스타트업마케팅</div>
+      <div class="tag-item" style="background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);">#소상공인브랜딩</div>
+      <div class="tag-item" style="background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);">#1인기업마케팅</div>
+      <div class="tag-item" style="background:rgba(255,255,255,.04);color:rgba(255,255,255,.3);">#마케팅</div>
+      <div class="tag-item" style="background:rgba(255,255,255,.04);color:rgba(255,255,255,.3);">#브랜딩</div>
+    </div>
+  </div>
+
+  <div class="guide-section">
+    <div class="gs-header">
+      <div class="gs-num">04</div>
+      <div>
+        <div class="gs-title">성과 추적 기준표</div>
+        <div class="gs-sub">월말에 이 숫자를 확인하고 다음 달 전략을 수정합니다.</div>
+      </div>
+    </div>
+    <div class="metrics-table">
+      <div class="mt-row header">
+        <div class="mt-metric">지표</div>
+        <div class="mt-target">목표</div>
+        <div class="mt-note">판단 기준</div>
+      </div>
+      <div class="mt-row">
+        <div class="mt-metric">저장수</div>
+        <div class="mt-target">게시물당 10+</div>
+        <div class="mt-note">저장이 없으면 콘텐츠 가치가 낮다는 신호. 정보성 강화 필요.</div>
+      </div>
+      <div class="mt-row">
+        <div class="mt-metric">도달수</div>
+        <div class="mt-target">팔로워의 30%+</div>
+        <div class="mt-note">30% 미만이면 알고리즘에서 밀리는 중. 릴스 비중 늘리기.</div>
+      </div>
+      <div class="mt-row">
+        <div class="mt-metric">프로필 방문</div>
+        <div class="mt-target">도달의 5%+</div>
+        <div class="mt-note">구매 의도 지표. 낮으면 CTA 또는 계정 소개글 수정.</div>
+      </div>
+      <div class="mt-row">
+        <div class="mt-metric">팔로우 전환율</div>
+        <div class="mt-target">프로필 방문의 20%+</div>
+        <div class="mt-note">낮으면 프로필 사진·소개글·하이라이트 점검.</div>
+      </div>
+      <div class="mt-row">
+        <div class="mt-metric">링크 클릭</div>
+        <div class="mt-target">월 50회+</div>
+        <div class="mt-note">전환 콘텐츠 발행 주차에 집중 추적. 낮으면 CTA 문구 변경.</div>
+      </div>
+    </div>
+    <div class="nav-buttons">
+      <a href="index.html" class="btn btn-secondary">← 허브로 돌아가기</a>
+      <a href="adv-crm.html" class="btn btn-primary">다음: 카카오 CRM →</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">Findier Lab · 운영 허브</div>
+  <div class="footer-sub">클라이언트 전용 · 외부 공유 금지</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Advanced · 카카오 CRM 자동화 — FINDIER LAB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --lime: #D3F45A; --kakao: #FEE500; --kakaodark: #B89800; --black: #111111; --border: rgba(255,255,255,.1); }
+body { font-family: 'Pretendard','Inter',sans-serif; background: var(--black); color: #fff; min-height: 100vh; }
+nav { position: fixed; top: 0; left: 0; right: 0; height: 64px; background: rgba(17,17,17,.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 48px; justify-content: space-between; z-index: 100; }
+.nav-logo { font-family:'Inter',sans-serif; font-size:13px; font-weight:900; letter-spacing:.18em; color:#fff; text-decoration:none; text-transform:uppercase; }
+.nav-links { display:flex; gap:28px; align-items:center; }
+.nav-links a { font-size:12px; font-weight:600; color:rgba(255,255,255,.3); text-decoration:none; letter-spacing:.04em; transition:color .2s; }
+.nav-links a:hover { color:#fff; }
+.page-hero { padding:120px 48px 64px; max-width:900px; margin:0 auto; border-bottom:1px solid var(--border); }
+.breadcrumb { font-size:12px; color:rgba(255,255,255,.3); letter-spacing:.06em; margin-bottom:24px; }
+.breadcrumb span { color:var(--kakao); }
+.page-tag { display:inline-block; font-family:'Inter',sans-serif; font-size:10px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--black); background:var(--kakao); padding:5px 12px; margin-bottom:24px; }
+.page-title { font-family:'Inter',sans-serif; font-size:clamp(32px,5vw,56px); font-weight:900; line-height:1.08; letter-spacing:-.04em; margin-bottom:20px; }
+.page-desc { font-size:17px; color:rgba(255,255,255,.45); line-height:1.7; max-width:560px; }
+.content { max-width:900px; margin:0 auto; padding:0 48px 120px; }
+.guide-section { padding:64px 0; border-bottom:1px solid var(--border); }
+.guide-section:last-child { border-bottom:none; }
+.gs-header { display:flex; align-items:flex-start; gap:24px; margin-bottom:40px; }
+.gs-num { font-family:'Inter',sans-serif; font-size:11px; font-weight:700; letter-spacing:.16em; color:var(--kakaodark); text-transform:uppercase; padding:4px 10px; border:1px solid rgba(254,229,0,.25); flex-shrink:0; margin-top:4px; }
+.gs-title { font-family:'Inter',sans-serif; font-size:26px; font-weight:900; letter-spacing:-.03em; line-height:1.2; }
+.gs-sub { font-size:14px; color:rgba(255,255,255,.4); margin-top:8px; line-height:1.6; }
+.steps { display:flex; flex-direction:column; gap:12px; }
+.step { display:grid; grid-template-columns:36px 1fr; gap:20px; align-items:flex-start; padding:22px 24px; background:rgba(255,255,255,.04); }
+.step-n { width:36px; height:36px; background:rgba(254,229,0,.12); display:flex; align-items:center; justify-content:center; font-family:'Inter',sans-serif; font-size:13px; font-weight:800; color:var(--kakao); flex-shrink:0; }
+.step-title { font-size:15px; font-weight:700; margin-bottom:7px; }
+.step-desc { font-size:13px; color:rgba(255,255,255,.5); line-height:1.65; }
+.tip { display:flex; gap:16px; align-items:flex-start; padding:18px 22px; background:rgba(254,229,0,.05); border-left:3px solid rgba(254,229,0,.3); margin-top:12px; }
+.tip-text { font-size:13px; color:rgba(255,255,255,.6); line-height:1.6; }
+.tip-text strong { color:var(--kakao); }
+.msg-block { background:rgba(255,255,255,.04); padding:24px; margin-top:16px; display:flex; flex-direction:column; gap:16px; }
+.msg-row { display:flex; flex-direction:column; gap:8px; }
+.msg-when { font-family:'Inter',sans-serif; font-size:10px; font-weight:800; letter-spacing:.14em; color:var(--kakaodark); text-transform:uppercase; }
+.msg-bubble { background:var(--kakao); color:#111; border-radius:0 12px 12px 12px; padding:14px 16px; font-size:13px; line-height:1.75; max-width:85%; }
+.msg-note { font-size:11px; color:rgba(255,255,255,.25); }
+.segment-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; margin-top:16px; }
+.seg-item { padding:24px 20px; background:rgba(255,255,255,.04); }
+.seg-label { font-family:'Inter',sans-serif; font-size:10px; font-weight:800; letter-spacing:.14em; color:var(--kakaodark); text-transform:uppercase; margin-bottom:10px; }
+.seg-name { font-size:16px; font-weight:800; margin-bottom:8px; }
+.seg-cond { font-size:12px; color:rgba(255,255,255,.4); line-height:1.6; margin-bottom:10px; }
+.seg-action { font-size:12px; color:var(--kakao); font-weight:700; }
+.timeline { display:flex; flex-direction:column; gap:2px; margin-top:16px; }
+.tl-row { display:grid; grid-template-columns:80px 1fr; gap:20px; align-items:flex-start; padding:20px 24px; background:rgba(255,255,255,.04); }
+.tl-day { font-family:'Inter',sans-serif; font-size:13px; font-weight:900; color:var(--kakao); }
+.tl-content-title { font-size:14px; font-weight:700; margin-bottom:5px; }
+.tl-content-desc { font-size:12px; color:rgba(255,255,255,.4); line-height:1.6; }
+.nav-buttons { display:flex; gap:12px; margin-top:72px; }
+.btn { display:inline-block; padding:14px 32px; font-family:'Inter',sans-serif; font-size:12px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; text-decoration:none; transition:opacity .2s; }
+.btn-primary { background:var(--lime); color:var(--black); }
+.btn-secondary { background:rgba(255,255,255,.08); color:#fff; }
+.btn:hover { opacity:.8; }
+footer { border-top:1px solid var(--border); padding:40px 48px; display:flex; justify-content:space-between; align-items:center; margin-top:80px; }
+.footer-logo { font-family:'Inter',sans-serif; font-size:11px; font-weight:900; letter-spacing:.2em; color:rgba(255,255,255,.15); text-transform:uppercase; }
+.footer-sub { font-size:12px; color:rgba(255,255,255,.15); }
+@media (max-width:768px) {
+  nav { padding:0 20px; } .nav-links { display:none; }
+  .page-hero, .content { padding-left:20px; padding-right:20px; }
+  .segment-grid { grid-template-columns:1fr; }
+  .tl-row { grid-template-columns:60px 1fr; }
+}
+</style>
+<script>
+  const _sb = window.supabase.createClient(
+    'https://gfpmdrhpyclkkfkraojq.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdmcG1kcmhweWNsa2tma3Jhb2pxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIzNDA5NzAsImV4cCI6MjA5NzkxNjk3MH0.GZuxspwG-s1Z3lD5GCGhWDuYXt8cfChD56xrTQqbXC0'
+  );
+  (async function() {
+    const { data: { session } } = await _sb.auth.getSession();
+    if (!session) window.location.replace('login.html');
+    else document.body.style.visibility = 'visible';
+  })();
+</script>
+</head>
+<body style="visibility:hidden;">
+
+<nav>
+  <a href="index.html" class="nav-logo">Findier Lab</a>
+  <div class="nav-links">
+    <a href="adv-instagram.html">인스타그램</a>
+    <a href="adv-crm.html" style="color:#fff;">카카오 CRM</a>
+    <a href="adv-email.html">이메일</a>
+    <a href="adv-report.html">월간 리포트</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="breadcrumb">Advanced 채널별 심화 <span>/ 카카오 CRM 자동화</span></div>
+  <div class="page-tag">ADVANCED · 카카오 CRM</div>
+  <h1 class="page-title">문의를 매출로<br>바꾸는 자동화</h1>
+  <p class="page-desc">자동 메시지 전문 · 고객 세그먼트 기준 · 재구매 유도 시퀀스까지. 한 번 세팅하면 반복 운영됩니다.</p>
+</div>
+
+<div class="content">
+
+  <div class="guide-section">
+    <div class="gs-header">
+      <div class="gs-num">01</div>
+      <div>
+        <div class="gs-title">자동 메시지 전문 — 복사해서 바로 쓰기</div>
+        <div class="gs-sub">채널 관리자 → 채팅 관리 → 자동응답에 그대로 붙여 넣으세요.</div>
+      </div>
+    </div>
+    <div class="msg-block">
+      <div class="msg-row">
+        <div class="msg-when">① 친구 추가 즉시</div>
+        <div class="msg-bubble">안녕하세요, FINDIER LAB입니다 👋<br><br>채널을 추가해주셔서 감사합니다.<br>"대표의 생각을 브랜드·운영 구조로 번역하는 연구소"입니다.<br><br>📌 30분 무료 상담 → findierlab.com/contact<br>📌 무료 브랜드 진단 → findierlab.com/diagnose<br><br>궁금한 점은 편하게 메시지 주세요.</div>
+        <div class="msg-note">채널 추가 즉시 자동 발송 · 수정 시 브랜드 톤 유지</div>
+      </div>
+      <div class="msg-row">
+        <div class="msg-when">② 문의 메시지 수신 즉시</div>
+        <div class="msg-bubble">문의 주셔서 감사합니다.<br><br>확인 후 영업일 기준 24시간 이내에 답변드리겠습니다.<br><br>빠른 상담을 원하시면 아래 링크로 일정을 잡아주세요.<br>👉 30분 무료 상담 예약 → findierlab.com/contact</div>
+        <div class="msg-note">모든 인바운드 메시지에 자동 응답 · 실제 답변 전 발송됨</div>
+      </div>
+      <div class="msg-row">
+        <div class="msg-when">③ 운영 시간 외 (평일 18시~익일 10시, 주말)</div>
+        <div class="msg-bubble">현재 운영 시간(평일 10:00~18:00)이 아닙니다.<br><br>메시지를 확인하고 다음 영업일 오전 중으로 답변드리겠습니다.<br><br>급하신 분은 이메일로 보내주세요.<br>📧 findierlab@gmail.com</div>
+        <div class="msg-note">부재중 메시지 · 운영 시간 설정은 채널 관리자 → 채팅 설정</div>
+      </div>
+    </div>
+    <div class="tip">
+      <div class="tip-text"><strong>자동 응답 뒤에 실제 답변을 꼭 보내야 합니다.</strong> 자동 메시지는 "읽고 있다"는 신호일 뿐, 진짜 답변을 대체하지 않아요. 24시간 내 실제 답변이 전환율을 결정합니다.</div>
+    </div>
+  </div>
+
+  <div class="guide-section">
+    <div class="gs-header">
+      <div class="gs-num">02</div>
+      <div>
+        <div class="gs-title">고객 세그먼트 — 누구에게 어떤 메시지를</div>
+        <div class="gs-sub">같은 메시지를 모두에게 보내면 스팸이 됩니다.</div>
+      </div>
+    </div>
+    <div class="segment-grid">
+      <div class="seg-item">
+        <div class="seg-label">COLD</div>
+        <div class="seg-name">관심 고객</div>
+        <div class="seg-cond">채널 추가 · 무료 자료 다운로드 · 웹사이트 방문만 한 사람</div>
+        <div class="seg-action">→ 무료 자료 공유, 정보 제공</div>
+      </div>
+      <div class="seg-item" style="background:rgba(254,229,0,.06);">
+        <div class="seg-label">WARM</div>
+        <div class="seg-name">문의 고객</div>
+        <div class="seg-cond">메시지를 보냈거나 상담 신청을 한 사람</div>
+        <div class="seg-action">→ 24h 내 응답, 상담 일정 제안</div>
+      </div>
+      <div class="seg-item">
+        <div class="seg-label">HOT</div>
+        <div class="seg-name">상담 완료 고객</div>
+        <div class="seg-cond">30분 상담을 진행한 사람 · 견적을 받은 사람</div>
+        <div class="seg-action">→ 견적 후속, 결정 지원</div>
+      </div>
+      <div class="seg-item" style="background:rgba(211,244,90,.05);">
+        <div class="seg-label">ACTIVE</div>
+        <div class="seg-name">진행 중 고객</div>
+        <div class="seg-cond">계약 후 프로젝트 진행 중인 사람</div>
+        <div class="seg-action">→ 진행 상황 공유, 밀착 소통</div>
+      </div>
+      <div class="seg-item">
+        <div class="seg-label">DONE</div>
+        <div class="seg-name">완료 고객</div>
+        <div class="seg-cond">프로젝트가 끝난 사람</div>
+        <div class="seg-action">→ 재구매·소개 유도 시퀀스</div>
+      </div>
+      <div class="seg-item">
+        <div class="seg-label">HOLD</div>
+        <div class="seg-name">보류 고객</div>
+        <div class="seg-cond">"나중에"라고 한 사람 · 견적 후 묵묵부답인 사람</div>
+        <div class="seg-action">→ 3개월 후 팔로업</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="guide-section">
+    <div class="gs-header">
+      <div class="gs-num">03</div>
+      <div>
+        <div class="gs-title">재구매 유도 시퀀스 — 완료 고객 전용</div>
+        <div class="gs-sub">프로젝트가 끝난 날부터 D+90까지 자동으로 팔로업합니다.</div>
+      </div>
+    </div>
+    <div class="timeline">
+      <div class="tl-row">
+        <div class="tl-day">D+0</div>
+        <div>
+          <div class="tl-content-title">완료 감사 메시지</div>
+          <div class="tl-content-desc">"함께 작업해주셔서 감사합니다. 운영하시면서 궁금한 점 있으면 언제든 연락 주세요." 짧고 따뜻하게. 판매 없음.</div>
+        </div>
+      </div>
+      <div class="tl-row" style="background:rgba(254,229,0,.04);">
+        <div class="tl-day">D+7</div>
+        <div>
+          <div class="tl-content-title">후기 요청</div>
+          <div class="tl-content-desc">"론칭하고 일주일이 지났네요. 어떻게 운영되고 있나요? 혹시 후기를 남겨주실 수 있다면 큰 힘이 됩니다." 부담 없이.</div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-day">D+30</div>
+        <div>
+          <div class="tl-content-title">가치 제공 + 근황 확인</div>
+          <div class="tl-content-desc">"한 달이 됐네요. 운영하다 막히는 부분 없으신가요? 새로 만든 무료 가이드 공유드려요." 도움 먼저, 판매 나중.</div>
+        </div>
+      </div>
+      <div class="tl-row" style="background:rgba(254,229,0,.04);">
+        <div class="tl-day">D+90</div>
+        <div>
+          <div class="tl-content-title">다음 단계 제안</div>
+          <div class="tl-content-desc">"3개월 지났는데 브랜드 다음 단계로 넘어갈 타이밍이에요. 30분 가볍게 이야기 나눠볼까요?" 자연스럽게.</div>
+        </div>
+      </div>
+    </div>
+    <div class="tip" style="margin-top:16px;">
+      <div class="tip-text"><strong>D+90 이후에도 분기마다 1회 연락을 유지하세요.</strong> 완료 고객이 소개를 줄 가능성이 가장 높습니다. 단, 연락할 때마다 가치를 먼저 줘야 합니다.</div>
+    </div>
+    <div class="nav-buttons">
+      <a href="adv-instagram.html" class="btn btn-secondary">← 인스타그램</a>
+      <a href="adv-email.html" class="btn btn-primary">다음: 이메일 →</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">Findier Lab · 운영 허브</div>
+  <div class="footer-sub">클라이언트 전용 · 외부 공유 금지</div>
+</footer>
+</body>
+</html>
