@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5VTZY9P51Z"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-5VTZY9P51Z');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FINDIER LAB — Brand World</title>
+  <meta name="description" content="대표의 생각을 브랜드·운영·실행 구조로 번역하는 연구소.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --lime: #D3F45A; --purple: #7B61FF; --cyan: #4DE7FF;
+      --black: #0D0D0D; --white: #FFFFFF;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Pretendard','Inter',-apple-system,sans-serif; background: var(--black); color: var(--white); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+
+    /* FADE */
+    .fade { opacity: 0; transform: translateY(40px); transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); }
+    .fade.in { opacity: 1; transform: none; }
+    .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.45s}
+
+    /* SAMPLE BADGE */
+    .sample-badge { position: fixed; top: 20px; right: 20px; z-index: 9999; background: rgba(211,244,90,.12); border: 1px solid rgba(211,244,90,.3); color: var(--lime); font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 800; letter-spacing: .2em; padding: 6px 14px; border-radius: 100px; backdrop-filter: blur(8px); }
+
+    /* NAV */
+    #nav { position: fixed; top: 0; left: 0; right: 0; height: 60px; z-index: 999; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; background: rgba(13,13,13,.8); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,.05); }
+    .nav-logo { font-family: 'Inter',sans-serif; font-size: 14px; font-weight: 800; letter-spacing: .08em; }
+    .nav-logo span { color: var(--lime); }
+    .nav-right { display: flex; align-items: center; gap: 32px; }
+    .nav-link { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 600; letter-spacing: .14em; color: rgba(255,255,255,.35); text-transform: uppercase; transition: color .2s; }
+    .nav-link:hover { color: #fff; }
+    .nav-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--lime); color: #111; font-family: 'Inter',sans-serif; font-size: 11px; font-weight: 800; padding: 9px 20px; border-radius: 100px; letter-spacing: .04em; transition: opacity .2s; }
+    .nav-cta:hover { opacity: .85; }
+
+    /* HERO */
+    #hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 80px 100px; position: relative; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; }
+    .hero-bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px); background-size: 80px 80px; }
+    .hero-bg-glow { position: absolute; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(123,97,255,.18) 0%, transparent 70%); top: 10%; left: 30%; }
+    .hero-kicker { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .22em; color: rgba(255,255,255,.35); text-transform: uppercase; margin-bottom: 28px; display: flex; align-items: center; gap: 10px; position: relative; z-index: 1; }
+    .hero-kicker::before { content: ''; width: 28px; height: 1px; background: rgba(255,255,255,.25); }
+    .hero-title { font-size: clamp(3.2rem,6.5vw,7rem); font-weight: 900; line-height: 1.04; letter-spacing: -.05em; position: relative; z-index: 1; }
+    .hero-title .t-lime { color: var(--lime); }
+    .hero-title .t-purple { color: var(--purple); }
+    .hero-bottom { display: flex; align-items: flex-end; justify-content: space-between; margin-top: 56px; position: relative; z-index: 1; }
+    .hero-desc { font-size: .92rem; color: rgba(255,255,255,.4); line-height: 1.8; max-width: 360px; border-left: 1px solid rgba(255,255,255,.1); padding-left: 20px; }
+    .hero-scroll { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    .hero-scroll-line { width: 1px; height: 48px; background: linear-gradient(180deg, rgba(255,255,255,.0), rgba(255,255,255,.3)); animation: scrollpulse 2s ease-in-out infinite; }
+    .hero-scroll-text { font-family: 'Inter',sans-serif; font-size: 8px; font-weight: 700; letter-spacing: .2em; color: rgba(255,255,255,.2); text-transform: uppercase; writing-mode: vertical-rl; }
+    @keyframes scrollpulse { 0%,100%{opacity:.3}50%{opacity:1} }
+
+    /* DIVIDER */
+    .section-divider { height: 1px; background: rgba(255,255,255,.06); margin: 0 80px; }
+
+    /* PHILOSOPHY */
+    #philosophy { padding: 140px 80px; }
+    .section-kicker { font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 800; letter-spacing: .24em; color: var(--purple); text-transform: uppercase; margin-bottom: 64px; display: flex; align-items: center; gap: 12px; }
+    .section-kicker::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--purple); }
+    .phi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; }
+    .phi-card { background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.06); padding: 52px 48px; position: relative; overflow: hidden; transition: background .3s; }
+    .phi-card:hover { background: rgba(255,255,255,.055); }
+    .phi-num { font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 700; letter-spacing: .2em; color: rgba(255,255,255,.2); margin-bottom: 32px; }
+    .phi-keyword { font-size: clamp(1.6rem,2.4vw,2.4rem); font-weight: 900; line-height: 1.2; letter-spacing: -.04em; margin-bottom: 20px; }
+    .phi-keyword .hl { display: block; }
+    .phi-keyword .hl-lime { color: var(--lime); }
+    .phi-keyword .hl-purple { color: var(--purple); }
+    .phi-keyword .hl-cyan { color: var(--cyan); }
+    .phi-desc { font-size: .82rem; color: rgba(255,255,255,.4); line-height: 1.8; }
+    .phi-card-accent { position: absolute; bottom: 0; left: 0; right: 0; height: 2px; }
+
+    /* METHOD */
+    #method { padding: 140px 80px; background: rgba(255,255,255,.015); }
+    .method-header { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-bottom: 80px; align-items: end; }
+    .method-title { font-size: clamp(2rem,3.5vw,3.8rem); font-weight: 900; line-height: 1.15; letter-spacing: -.04em; }
+    .method-title .t-lime { color: var(--lime); }
+    .method-sub { font-size: .88rem; color: rgba(255,255,255,.4); line-height: 1.85; }
+    .method-steps { display: grid; grid-template-columns: repeat(3,1fr); position: relative; }
+    .method-steps::before { content: ''; position: absolute; top: 28px; left: calc(16.6% + 16px); right: calc(16.6% + 16px); height: 1px; background: linear-gradient(90deg, var(--lime), var(--purple), var(--cyan)); opacity: .3; }
+    .method-step { padding: 0 40px 0 0; }
+    .step-dot { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 28px; font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 800; }
+    .step-label { font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 700; letter-spacing: .2em; color: rgba(255,255,255,.3); text-transform: uppercase; margin-bottom: 12px; }
+    .step-keyword { font-size: clamp(1.2rem,1.8vw,1.8rem); font-weight: 900; line-height: 1.25; letter-spacing: -.03em; margin-bottom: 14px; }
+    .step-desc { font-size: .8rem; color: rgba(255,255,255,.4); line-height: 1.75; }
+
+    /* CASE */
+    #case { padding: 140px 80px; }
+    .case-label { font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 800; letter-spacing: .24em; color: var(--cyan); text-transform: uppercase; margin-bottom: 64px; display: flex; align-items: center; gap: 12px; }
+    .case-label::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--cyan); }
+    .case-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+    .case-preview { background: #111; border: 1px solid rgba(255,255,255,.06); min-height: 520px; overflow: hidden; position: relative; }
+    .case-preview iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; pointer-events: none; transform: scale(1); transform-origin: top left; }
+    .case-preview-overlay { position: absolute; bottom: 0; left: 0; right: 0; height: 80px; background: linear-gradient(0deg, #111 0%, transparent 100%); }
+    .case-info { background: rgba(255,255,255,.025); border: 1px solid rgba(255,255,255,.06); padding: 64px 56px; display: flex; flex-direction: column; justify-content: center; }
+    .case-brand-name { font-size: clamp(2.8rem,4vw,4.8rem); font-weight: 900; line-height: 1.05; letter-spacing: -.05em; margin-bottom: 20px; }
+    .case-tagline { font-size: .88rem; color: rgba(255,255,255,.45); line-height: 1.8; margin-bottom: 40px; border-left: 1px solid rgba(255,255,255,.1); padding-left: 18px; }
+    .case-flow-mini { display: flex; flex-direction: column; gap: 0; }
+    .cfm-row { display: grid; grid-template-columns: 80px 1fr; gap: 20px; padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,.05); }
+    .cfm-row:last-child { border-bottom: none; }
+    .cfm-label { font-family: 'Inter',sans-serif; font-size: 8px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.25); padding-top: 3px; }
+    .cfm-content { font-size: .85rem; color: rgba(255,255,255,.7); line-height: 1.65; }
+    .cfm-content strong { color: #fff; font-weight: 700; }
+    .case-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 36px; font-family: 'Inter',sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .1em; color: var(--cyan); border-bottom: 1px solid rgba(77,231,255,.25); padding-bottom: 4px; transition: border-color .2s; }
+    .case-link:hover { border-color: var(--cyan); }
+
+    /* LOCKED */
+    .locked-section { position: relative; overflow: hidden; }
+    .locked-content { filter: blur(6px); pointer-events: none; user-select: none; }
+    .locked-overlay { position: absolute; inset: 0; z-index: 10; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(13,13,13,.55); backdrop-filter: blur(2px); gap: 20px; }
+    .lock-icon { width: 52px; height: 52px; border-radius: 50%; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); display: flex; align-items: center; justify-content: center; }
+    .locked-title { font-family: 'Inter',sans-serif; font-size: 11px; font-weight: 800; letter-spacing: .2em; color: rgba(255,255,255,.5); text-transform: uppercase; }
+    .locked-sub { font-size: .8rem; color: rgba(255,255,255,.3); text-align: center; line-height: 1.6; }
+    .locked-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--lime); color: #111; font-family: 'Inter',sans-serif; font-size: 11px; font-weight: 800; padding: 12px 24px; border-radius: 100px; letter-spacing: .04em; transition: opacity .2s; }
+    .locked-btn:hover { opacity: .85; }
+
+    /* SERVICE (locked preview) */
+    #service { padding: 140px 80px; }
+    .service-header { margin-bottom: 60px; }
+    .service-grid-preview { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; }
+    .svc-card-preview { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07); padding: 40px 36px; }
+    .svc-card-num { font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 700; letter-spacing: .2em; color: rgba(255,255,255,.2); margin-bottom: 24px; }
+    .svc-card-title { font-size: 1.3rem; font-weight: 900; letter-spacing: -.03em; margin-bottom: 14px; color: rgba(255,255,255,.25); }
+    .svc-card-body { height: 12px; background: rgba(255,255,255,.06); border-radius: 4px; margin-bottom: 8px; }
+    .svc-card-body.short { width: 60%; }
+    .svc-card-price { margin-top: 32px; width: 80px; height: 28px; background: rgba(255,255,255,.06); border-radius: 4px; }
+
+    /* INVESTMENT (locked preview) */
+    #investment { padding: 0 80px 140px; }
+    .invest-preview { display: grid; grid-template-columns: 1fr 2fr; gap: 2px; }
+    .invest-left { background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.06); padding: 52px 48px; }
+    .invest-label-preview { height: 10px; background: rgba(255,255,255,.06); border-radius: 3px; width: 60px; margin-bottom: 28px; }
+    .invest-num-preview { height: 56px; background: rgba(255,255,255,.05); border-radius: 6px; width: 140px; margin-bottom: 16px; }
+    .invest-desc-preview { height: 10px; background: rgba(255,255,255,.04); border-radius: 3px; margin-bottom: 8px; }
+    .invest-desc-preview.short { width: 75%; }
+    .invest-right { background: rgba(255,255,255,.02); border: 1px solid rgba(255,255,255,.06); padding: 52px 48px; display: flex; flex-direction: column; gap: 20px; }
+    .invest-row-preview { height: 56px; background: rgba(255,255,255,.04); border-radius: 4px; }
+
+    /* CTA */
+    #cta { padding: 160px 80px; position: relative; overflow: hidden; }
+    .cta-bg-glow { position: absolute; width: 800px; height: 800px; border-radius: 50%; background: radial-gradient(circle, rgba(211,244,90,.08) 0%, transparent 65%); top: 50%; left: 50%; transform: translate(-50%,-50%); }
+    .cta-inner { position: relative; z-index: 1; text-align: center; }
+    .cta-kicker { font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 800; letter-spacing: .24em; color: rgba(255,255,255,.3); text-transform: uppercase; margin-bottom: 36px; }
+    .cta-title { font-size: clamp(2.4rem,5vw,5.6rem); font-weight: 900; line-height: 1.1; letter-spacing: -.05em; margin-bottom: 28px; }
+    .cta-title .t-lime { color: var(--lime); }
+    .cta-sub { font-size: .92rem; color: rgba(255,255,255,.4); line-height: 1.8; margin-bottom: 56px; }
+    .cta-buttons { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+    .cta-btn-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--lime); color: #111; font-family: 'Inter',sans-serif; font-size: 14px; font-weight: 800; padding: 18px 40px; border-radius: 100px; transition: opacity .2s; letter-spacing: .02em; }
+    .cta-btn-primary:hover { opacity: .85; }
+    .cta-btn-secondary { display: inline-flex; align-items: center; gap: 10px; border: 1px solid rgba(255,255,255,.15); color: rgba(255,255,255,.6); font-family: 'Inter',sans-serif; font-size: 14px; font-weight: 600; padding: 18px 40px; border-radius: 100px; transition: all .2s; }
+    .cta-btn-secondary:hover { border-color: rgba(255,255,255,.35); color: #fff; }
+
+    /* FOOTER */
+    #footer { border-top: 1px solid rgba(255,255,255,.06); padding: 40px 80px; display: flex; align-items: center; justify-content: space-between; }
+    .footer-logo { font-family: 'Inter',sans-serif; font-size: 13px; font-weight: 800; letter-spacing: .08em; }
+    .footer-copy { font-size: 10px; color: rgba(255,255,255,.2); letter-spacing: .06em; }
+    .footer-back { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 600; letter-spacing: .12em; color: rgba(255,255,255,.3); text-transform: uppercase; transition: color .2s; }
+    .footer-back:hover { color: rgba(255,255,255,.7); }
+
+    @media (max-width: 768px) {
+      #nav { padding: 0 20px; }
+      .nav-right .nav-link { display: none; }
+      #hero, #philosophy, #method, #case, #service, #investment, #cta { padding-left: 24px; padding-right: 24px; }
+      .hero-title { font-size: clamp(2.4rem,9vw,4rem); }
+      .hero-bottom { flex-direction: column; align-items: flex-start; gap: 32px; }
+      .section-divider { margin: 0 24px; }
+      .phi-grid, .method-steps, .case-inner, .service-grid-preview, .invest-preview { grid-template-columns: 1fr; }
+      .method-header { grid-template-columns: 1fr; gap: 24px; }
+      .method-steps::before { display: none; }
+      .method-step { padding: 0 0 36px; border-bottom: 1px solid rgba(255,255,255,.05); }
+      .case-info { padding: 40px 28px; }
+      #footer { padding: 28px 24px; flex-direction: column; gap: 16px; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="sample-badge">SAMPLE</div>
+
+<header id="nav">
+  <a href="index.html" class="nav-logo">FINDIER <span>LAB</span></a>
+  <div class="nav-right">
+    <a href="works.html" class="nav-link">WORKS</a>
+    <a href="about.html" class="nav-link">ABOUT</a>
+    <a href="contact.html" class="nav-cta">생각 보내기</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-bg-glow"></div>
+  </div>
+  <p class="hero-kicker fade">FINDIER LAB — BRAND WORLD</p>
+  <h1 class="hero-title fade d1">
+    대표의 생각을<br>
+    <span class="t-lime">회사로</span><br>
+    번역합니다.
+  </h1>
+  <div class="hero-bottom fade d2">
+    <p class="hero-desc">브랜드는 감성이 아닙니다.<br>브랜드는 구조입니다.<br>당신이 말할 수 있는 구조를 함께 만듭니다.</p>
+    <div class="hero-scroll">
+      <div class="hero-scroll-line"></div>
+      <span class="hero-scroll-text">SCROLL</span>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- PHILOSOPHY -->
+<section id="philosophy">
+  <p class="section-kicker fade">PHILOSOPHY</p>
+  <div class="phi-grid">
+    <div class="phi-card fade d1">
+      <p class="phi-num">01</p>
+      <h2 class="phi-keyword">
+        브랜드는<br>
+        <span class="hl hl-lime">구조다.</span>
+      </h2>
+      <p class="phi-desc">감각으로 만드는 브랜드는 반복되지 않습니다. 대표가 없어도 유지되는 구조를 만드는 것이 브랜드입니다.</p>
+      <div class="phi-card-accent" style="background:linear-gradient(90deg,var(--lime),transparent);"></div>
+    </div>
+    <div class="phi-card fade d2">
+      <p class="phi-num">02</p>
+      <h2 class="phi-keyword">
+        생각이<br>
+        <span class="hl hl-purple">자산이다.</span>
+      </h2>
+      <p class="phi-desc">대표의 머릿속에 있는 생각은 가장 강력한 자산입니다. 꺼내서 구조로 만들면 회사가 됩니다.</p>
+      <div class="phi-card-accent" style="background:linear-gradient(90deg,var(--purple),transparent);"></div>
+    </div>
+    <div class="phi-card fade d3">
+      <p class="phi-num">03</p>
+      <h2 class="phi-keyword">
+        실행이<br>
+        <span class="hl hl-cyan">증명이다.</span>
+      </h2>
+      <p class="phi-desc">전략은 실행되어야 존재합니다. 말할 수 있고, 반복 가능하고, 측정 가능한 것만 만듭니다.</p>
+      <div class="phi-card-accent" style="background:linear-gradient(90deg,var(--cyan),transparent);"></div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- METHOD -->
+<section id="method">
+  <div class="method-header">
+    <div class="fade">
+      <p class="section-kicker" style="margin-bottom:28px;">METHOD</p>
+      <h2 class="method-title">번역의<br><span class="t-lime">세 단계.</span></h2>
+    </div>
+    <p class="method-sub fade d1">정리되어 있지 않아도 괜찮습니다.<br>대표가 가진 생각의 원석을 꺼내는 것에서 시작합니다.<br>그 생각이 어떻게 브랜드가 되는지, 그 과정입니다.</p>
+  </div>
+  <div class="method-steps">
+    <div class="method-step fade d1">
+      <div class="step-dot" style="background:rgba(211,244,90,.12);color:var(--lime);">01</div>
+      <p class="step-label">BEFORE — 발굴</p>
+      <h3 class="step-keyword">대표의 생각을<br>꺼냅니다.</h3>
+      <p class="step-desc">왜 이 일을 하는지, 누구에게 하는지, 어떤 세계를 만들고 싶은지. 정리되지 않은 언어 속에서 핵심을 찾습니다.</p>
+    </div>
+    <div class="method-step fade d2">
+      <div class="step-dot" style="background:rgba(123,97,255,.12);color:var(--purple);">02</div>
+      <p class="step-label">TRANSLATE — 번역</p>
+      <h3 class="step-keyword">구조의 언어로<br>번역합니다.</h3>
+      <p class="step-desc">브랜드 철학, 포지션, 언어 체계, 운영 구조로 번역합니다. 대표가 말할 수 있는 형태로 만드는 것이 핵심입니다.</p>
+    </div>
+    <div class="method-step fade d3">
+      <div class="step-dot" style="background:rgba(77,231,255,.12);color:var(--cyan);">03</div>
+      <p class="step-label">BUILD — 실행</p>
+      <h3 class="step-keyword">실행 가능한<br>회사를 만듭니다.</h3>
+      <p class="step-desc">홈페이지, 콘텐츠 구조, 운영 시스템까지. 대표 없이도 유지되는 실행 구조를 완성합니다.</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- CASE: NUiE -->
+<section id="case">
+  <p class="case-label fade">CASE STUDY — NUiE</p>
+  <div class="case-inner fade d1">
+    <div class="case-preview">
+      <iframe src="https://bynuie.com" scrolling="no" loading="lazy" title="NUiE"></iframe>
+      <div class="case-preview-overlay"></div>
+    </div>
+    <div class="case-info">
+      <h2 class="case-brand-name">NUiE</h2>
+      <p class="case-tagline">향 브랜드로 시작해<br>온라인 전시 공간 작가가 된 이야기.</p>
+      <div class="case-flow-mini">
+        <div class="cfm-row">
+          <span class="cfm-label" style="color:rgba(211,244,90,.5);">시작</span>
+          <p class="cfm-content">향 브랜드로 시작했습니다. 처음의 생각은 좋은 생각이었지만, <strong>진짜 하고 싶은 말은 따로 있었습니다.</strong></p>
+        </div>
+        <div class="cfm-row">
+          <span class="cfm-label" style="color:rgba(123,97,255,.7);">발견</span>
+          <p class="cfm-content">AI 시대의 포모, 가스라이팅, 깊어지는 우울. <strong>그냥 곁에 있어주고 싶다는 마음</strong>이 본질이었습니다.</p>
+        </div>
+        <div class="cfm-row">
+          <span class="cfm-label" style="color:rgba(77,231,255,.7);">결과</span>
+          <p class="cfm-content">알고리즘도, 좋아요도 없는 온라인 전시 공간. <strong>bynuie.com</strong>은 그 철학을 그대로 구현했습니다.</p>
+        </div>
+      </div>
+      <a href="https://bynuie.com" target="_blank" class="case-link">bynuie.com 방문하기 →</a>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- SERVICE (LOCKED) -->
+<section id="service">
+  <div class="service-header fade">
+    <p class="section-kicker" style="--purple:#7B61FF;">SERVICE STRUCTURE</p>
+  </div>
+  <div class="locked-section fade d1">
+    <div class="locked-content">
+      <div class="service-grid-preview">
+        <div class="svc-card-preview">
+          <p class="svc-card-num">SERVICE 01</p>
+          <h3 class="svc-card-title">브랜드 번역</h3>
+          <div class="svc-card-body"></div>
+          <div class="svc-card-body"></div>
+          <div class="svc-card-body short"></div>
+          <div class="svc-card-price"></div>
+        </div>
+        <div class="svc-card-preview">
+          <p class="svc-card-num">SERVICE 02</p>
+          <h3 class="svc-card-title">운영 구조 설계</h3>
+          <div class="svc-card-body"></div>
+          <div class="svc-card-body"></div>
+          <div class="svc-card-body short"></div>
+          <div class="svc-card-price"></div>
+        </div>
+        <div class="svc-card-preview">
+          <p class="svc-card-num">SERVICE 03</p>
+          <h3 class="svc-card-title">실행 시스템</h3>
+          <div class="svc-card-body"></div>
+          <div class="svc-card-body"></div>
+          <div class="svc-card-body short"></div>
+          <div class="svc-card-price"></div>
+        </div>
+      </div>
+    </div>
+    <div class="locked-overlay">
+      <div class="lock-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+      </div>
+      <p class="locked-title">Service Detail</p>
+      <p class="locked-sub">서비스 구조 및 상세 내용은<br>문의 후 공개됩니다.</p>
+      <a href="contact.html" class="locked-btn">문의하고 전체 보기 →</a>
+    </div>
+  </div>
+</section>
+
+<!-- INVESTMENT (LOCKED) -->
+<section id="investment">
+  <div class="locked-section fade">
+    <div class="locked-content">
+      <div class="invest-preview">
+        <div class="invest-left">
+          <div class="invest-label-preview"></div>
+          <div class="invest-num-preview"></div>
+          <div class="invest-desc-preview"></div>
+          <div class="invest-desc-preview short"></div>
+          <div class="invest-desc-preview"></div>
+        </div>
+        <div class="invest-right">
+          <div class="invest-row-preview"></div>
+          <div class="invest-row-preview"></div>
+          <div class="invest-row-preview"></div>
+        </div>
+      </div>
+    </div>
+    <div class="locked-overlay">
+      <div class="lock-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+      </div>
+      <p class="locked-title">Investment</p>
+      <p class="locked-sub">투자 구조 및 단가 정보는<br>문의 후 공개됩니다.</p>
+      <a href="contact.html" class="locked-btn">문의하고 전체 보기 →</a>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-bg-glow"></div>
+  <div class="cta-inner fade">
+    <p class="cta-kicker">NEXT STEP</p>
+    <h2 class="cta-title">
+      생각이 있다면<br>
+      <span class="t-lime">그걸로 충분합니다.</span>
+    </h2>
+    <p class="cta-sub">정리되어 있지 않아도 괜찮습니다.<br>그 생각을 가지고 오세요. 나머지는 함께 만듭니다.</p>
+    <div class="cta-buttons">
+      <a href="contact.html" class="cta-btn-primary">생각 보내기 →</a>
+      <a href="works.html" class="cta-btn-secondary">작업 사례 보기</a>
+    </div>
+  </div>
+</section>
+
+<footer id="footer">
+  <span class="footer-logo">FINDIER LAB</span>
+  <span class="footer-copy">© 2026 FINDIER LAB. All rights reserved.</span>
+  <a href="index.html" class="footer-back">← 메인으로</a>
+</footer>
+
+<script>
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -48px 0px' });
+document.querySelectorAll('.fade').forEach(el => io.observe(el));
+</script>
+</body>
+</html>

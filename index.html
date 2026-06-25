@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5VTZY9P51Z"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-5VTZY9P51Z');
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FINDIER LAB — Brand Research & Building Lab</title>
@@ -67,9 +75,11 @@
     .hero-eyebrow { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 600; letter-spacing: .2em; color: var(--t-muted); text-transform: uppercase; margin-bottom: 16px; }
     .hero-headline { font-family: 'Pretendard',sans-serif; font-size: clamp(2.8rem,4.6vw,4.4rem); font-weight: 900; line-height: 1.16; letter-spacing: -.03em; color: var(--black); margin-bottom: 20px; }
     .typing-cursor { display: inline-block; margin-left: 3px; color: var(--purple); font-weight: 300; }
-    .hero-body { font-size: .93rem; color: var(--t-soft); line-height: 1.7; margin-bottom: 6px; }
+    .hero-body { font-size: .93rem; color: var(--t-soft); line-height: 1.7; margin-bottom: 18px; }
     .hero-body strong { color: var(--black); font-weight: 700; }
-    .hero-sub { font-size: .88rem; color: var(--t-muted); line-height: 1.75; margin-bottom: 22px; padding-left: 14px; border-left: 2.5px solid var(--gray2); }
+    .hero-symptoms { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:22px; }
+    .hero-symptom { font-size:11px; font-weight:600; color:var(--t-muted); border:1px solid var(--gray2); border-radius:100px; padding:5px 13px 5px 10px; background:var(--gray1); display:flex; align-items:center; gap:6px; }
+    .hs-x { font-size:9px; color:#bbb; font-weight:800; letter-spacing:.04em; }
     .hero-steps { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-bottom: 26px; }
     .hero-step { display: flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 500; color: var(--t-soft); }
     .hero-step + .hero-step { padding-left: 6px; border-left: 1px solid var(--gray2); }
@@ -98,22 +108,36 @@
     .text-link { font-size: 12px; font-weight: 700; letter-spacing: .06em; color: var(--black); border-bottom: 1.5px solid var(--black); padding-bottom: 2px; transition: opacity .2s; display: inline-block; }
     .text-link:hover { opacity: .5; }
 
+    /* HOW — Translation Formula */
+    .how-formula { margin: 24px 0 28px; display: flex; flex-direction: column; gap: 0; border: 1px solid var(--gray2); border-radius: 12px; overflow: hidden; }
+    .how-formula-row { display: grid; grid-template-columns: 1fr 20px 1fr; align-items: center; padding: 12px 16px; gap: 10px; border-bottom: 1px solid var(--gray2); }
+    .how-formula-row:last-child { border-bottom: none; }
+    .hf-in { font-size: 11px; font-weight: 500; color: var(--t-muted); }
+    .hf-arrow { font-size: 11px; color: var(--gray2); text-align: center; }
+    .hf-out { font-size: 11px; font-weight: 700; color: var(--black); }
+
     .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); align-items: start; gap: 0; }
     .step-card { padding: 0 28px; position: relative; }
     .step-card:first-child { padding-left: 0; }
     .step-card:last-child { padding-right: 0; }
     .step-card:not(:first-child)::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: var(--gray2); }
-    .step-num { font-family: 'Inter',sans-serif; font-size: 1.6rem; font-weight: 900; letter-spacing: -.03em; margin-bottom: 20px; display: block; }
-    .step-icon { margin-bottom: 14px; }
-    .step-name { font-family: 'Inter',sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .08em; margin-bottom: 2px; }
-    .step-ko { font-size: 11px; color: var(--t-muted); margin-bottom: 12px; }
+    .step-num { font-family: 'Inter',sans-serif; font-size: 2rem; font-weight: 900; letter-spacing: -.04em; margin-bottom: 16px; display: block; }
+    .step-icon { margin-bottom: 16px; }
+    .step-icon svg { width: 44px; height: 44px; }
+    .step-name { font-family: 'Inter',sans-serif; font-size: 13px; font-weight: 800; letter-spacing: .06em; margin-bottom: 8px; }
+    .step-ko { display:inline-flex; align-items:center; font-family:'Inter',sans-serif; font-size:9px; font-weight:700; letter-spacing:.1em; color:var(--t-muted); border:1px solid var(--gray2); border-radius:100px; padding:3px 10px; margin-bottom:14px; text-transform:uppercase; }
     .step-desc { font-size: 12px; color: var(--t-soft); line-height: 1.75; }
     .step-portal { margin-top: 14px; display: flex; align-items: center; gap: 5px; font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 700; letter-spacing: .1em; color: var(--t-muted); text-transform: uppercase; }
     .step-portal-dot { width: 4px; height: 4px; border-radius: 50%; }
 
     /* CLIENTS */
     #clients { padding: 100px 80px 120px; background: var(--white); }
-    .clients-title { font-size: clamp(1.4rem,2.2vw,1.9rem); font-weight: 900; letter-spacing: -.025em; margin-bottom: 48px; color: var(--black); }
+    .clients-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 48px; }
+    .clients-title { font-size: clamp(1.4rem,2.2vw,1.9rem); font-weight: 900; letter-spacing: -.025em; color: var(--black); }
+    .clients-stat { display: flex; align-items: center; gap: 10px; }
+    .clients-stat-bar { display: flex; gap: 5px; }
+    .cs-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .clients-stat-label { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 600; letter-spacing: .1em; color: var(--t-muted); text-transform: uppercase; }
     .clients-row { display: flex; align-items: stretch; }
     .client-item { flex: 1; text-align: center; padding: 22px 8px; border-right: 1px solid var(--gray2); font-weight: 700; font-size: 15px; color: #AAAAAA; letter-spacing: -.01em; transition: color .2s; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
     .client-item:last-child { border-right: none; }
@@ -122,9 +146,42 @@
     .client-item.recruiting { color: var(--black); background: var(--lime); border-radius: 8px; cursor: pointer; border-right: none; margin-left: 8px; text-decoration: none; }
     .client-item.recruiting:hover { background: #c4e84e; }
 
+    /* VOICES */
+    #voices { background: var(--black); padding: 120px 80px 100px; }
+    .voices-head { display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:80px; }
+    .voices-eyebrow { font-family:'Inter',sans-serif; font-size:10px; font-weight:700; letter-spacing:.2em; color:rgba(255,255,255,.28); text-transform:uppercase; margin-bottom:16px; }
+    .voices-title { font-size:clamp(1.4rem,2.2vw,2rem); font-weight:900; letter-spacing:-.025em; color:#fff; line-height:1.3; }
+    .voices-head-note { font-size:.78rem; color:rgba(255,255,255,.22); line-height:1.75; text-align:right; max-width:220px; }
+    .voice-list { display:flex; flex-direction:column; gap:2px; }
+    .voice-item { display:grid; grid-template-columns:1fr 1fr; background:rgba(255,255,255,.02); border:1px solid rgba(255,255,255,.06); transition:background .2s; border-left:3px solid transparent; }
+    .voice-item:nth-child(1) { border-left-color:#7C62E3; }
+    .voice-item:nth-child(2) { border-left-color:#3ABFD4; }
+    .voice-item:nth-child(3) { border-left-color:#C4883A; }
+    .voice-item:hover { background:rgba(255,255,255,.035); }
+    .voice-left { padding:48px 52px; border-right:1px solid rgba(255,255,255,.06); display:flex; flex-direction:column; gap:20px; }
+    .voice-avatar-row { display:flex; align-items:center; gap:14px; }
+    .voice-avatar { width:56px; height:56px; border-radius:50%; flex-shrink:0; overflow:hidden; background:#f0edf8; }
+    .voice-avatar img { width:100%; height:100%; object-fit:cover; display:block; }
+    .voice-item:nth-child(1) .voice-avatar { background:#dfe9f7; }
+    .voice-item:nth-child(2) .voice-avatar { background:#d4f0ec; }
+    .voice-item:nth-child(3) .voice-avatar { background:#fde8cc; }
+    .voice-who { font-family:'Inter',sans-serif; font-size:8px; font-weight:700; letter-spacing:.14em; color:rgba(255,255,255,.35); text-transform:uppercase; }
+    .voice-num { font-family:'Inter',sans-serif; font-size:8px; font-weight:700; letter-spacing:.16em; color:rgba(255,255,255,.18); text-transform:uppercase; }
+    .voice-bubble { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); border-radius:4px 16px 16px 16px; padding:24px 28px; flex:1; }
+    .voice-quote { font-size:clamp(.92rem,1.3vw,1.05rem); font-weight:400; line-height:1.85; color:rgba(255,255,255,.65); }
+    .voice-right { padding:48px 52px; display:flex; flex-direction:column; justify-content:space-between; }
+    .voice-answer-label { font-family:'Inter',sans-serif; font-size:9px; font-weight:700; letter-spacing:.2em; color:var(--lime); text-transform:uppercase; margin-bottom:20px; display:flex; align-items:center; gap:8px; }
+    .voice-answer-label::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--lime); flex-shrink:0; }
+    .voice-answer { font-size:clamp(1.05rem,1.6vw,1.35rem); font-weight:900; line-height:1.5; letter-spacing:-.03em; color:#fff; flex:1; }
+    .voice-result-done { font-family:'Inter',sans-serif; font-size:10px; font-weight:600; letter-spacing:.04em; color:rgba(255,255,255,.3); margin-top:32px; padding-top:24px; border-top:1px solid rgba(255,255,255,.07); }
+    .voice-result-done a { color:var(--lime); border-bottom:1px solid rgba(211,244,90,.3); padding-bottom:1px; transition:opacity .2s; }
+    .voice-result-done a:hover { opacity:.7; }
+    .voice-result-open { font-family:'Inter',sans-serif; font-size:9px; font-weight:700; letter-spacing:.12em; color:rgba(255,255,255,.18); margin-top:32px; padding-top:24px; border-top:1px solid rgba(255,255,255,.07); text-transform:uppercase; display:flex; align-items:center; gap:8px; }
+    .voice-result-open::before { content:''; width:4px; height:4px; border-radius:50%; background:rgba(255,255,255,.18); flex-shrink:0; }
+
     /* CTA */
     #cta {
-      margin: 0 64px 80px;
+      margin: 80px 64px 80px;
       border-radius: 24px;
       background: linear-gradient(135deg,#EAE3FF 0%,#CBF0FF 55%,#D8FAFF 100%);
       padding: 100px 80px;
@@ -144,18 +201,20 @@
     .cta-watermark { position: absolute; bottom: 32px; right: 48px; opacity: .12; }
 
     /* FOOTER */
-    #footer { background: var(--black); padding: 0 0 0; }
-    .footer-brand-quote { padding: 56px 80px 48px; border-bottom: 1px solid rgba(255,255,255,.06); }
-    .fbq-text { font-size: clamp(.95rem,1.6vw,1.3rem); font-weight: 900; line-height: 1.5; letter-spacing: -.025em; color: rgba(255,255,255,.55); margin-bottom: 8px; }
-    .fbq-sub { font-size: .8rem; color: rgba(255,255,255,.22); letter-spacing: .06em; }
-    .footer-top { display: flex; justify-content: space-between; align-items: center; padding: 40px 80px; border-bottom: 1px solid rgba(255,255,255,.08); }
+    #footer { background: var(--black); padding: 0; }
+    .footer-brand-quote { padding: 80px 80px 56px; }
+    .fbq-eyebrow { font-family:'Inter',sans-serif; font-size:9px; font-weight:700; letter-spacing:.2em; color:rgba(255,255,255,.18); text-transform:uppercase; margin-bottom:24px; }
+    .fbq-line1 { font-size:clamp(1rem,1.8vw,1.4rem); font-weight:900; line-height:1.5; letter-spacing:-.02em; color:rgba(255,255,255,.25); margin-bottom:4px; }
+    .fbq-line2 { font-size:clamp(1.8rem,3.4vw,3.2rem); font-weight:900; line-height:1.18; letter-spacing:-.035em; color:#fff; }
+    .footer-divider { margin: 56px 80px 0; height: 1px; background: rgba(255,255,255,.08); }
+    .footer-top { display: flex; justify-content: space-between; align-items: center; padding: 32px 80px; }
     .footer-logo { font-family: 'Inter',sans-serif; font-size: 15px; font-weight: 800; letter-spacing: .06em; color: #fff; }
-    .footer-tagline { font-size: 10px; color: rgba(255,255,255,.3); letter-spacing: .14em; margin-top: 6px; }
+    .footer-tagline { font-size: 10px; color: rgba(255,255,255,.25); letter-spacing: .14em; margin-top: 6px; }
     .footer-links { display: flex; gap: 28px; }
-    .footer-links a { font-size: 11px; font-weight: 500; letter-spacing: .1em; color: rgba(255,255,255,.35); text-transform: uppercase; transition: color .2s; }
+    .footer-links a { font-size: 11px; font-weight: 500; letter-spacing: .1em; color: rgba(255,255,255,.3); text-transform: uppercase; transition: color .2s; }
     .footer-links a:hover { color: rgba(255,255,255,.8); }
-    .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding: 24px 80px 32px; }
-    .footer-copy { font-size: 10px; color: rgba(255,255,255,.18); letter-spacing: .06em; }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding: 20px 80px 36px; }
+    .footer-copy { font-size: 10px; color: rgba(255,255,255,.15); letter-spacing: .06em; }
     .footer-gradbar { width: 100px; height: 2px; border-radius: 2px; background: linear-gradient(90deg,#D3F45A,#7B61FF,#4DE7FF); }
 
     /* HAMBURGER */
@@ -200,16 +259,25 @@
       .step-card:not(:first-child)::before { display: none; }
       .step-card:not(:first-child) { padding-top: 24px; border-top: 1px solid var(--gray2); }
       #clients { padding: 56px 24px 72px; }
+      .clients-header { flex-direction: column; gap: 16px; align-items: flex-start; }
       .clients-row { flex-wrap: wrap; }
       .client-item { flex: 0 0 50%; border-right: none; border-bottom: 1px solid var(--gray2); font-size: 13px; }
       .client-item.recruiting { flex: 0 0 100%; margin-left: 0; margin-top: 12px; border-bottom: none; }
+      #voices { padding: 72px 24px; }
+      .voices-head { flex-direction: column; align-items: flex-start; gap: 16px; margin-bottom: 48px; }
+      .voices-head-note { text-align: left; }
+      .voice-item { grid-template-columns: 1fr; }
+      .voice-left { border-right: none; border-bottom: 1px solid rgba(255,255,255,.06); padding: 32px 24px; }
+      .voice-right { padding: 28px 24px; }
+      .voice-bubble { padding: 20px 22px; }
       #cta { margin: 0 16px 48px; padding: 40px 28px; grid-template-columns: 1fr; gap: 24px; }
       .cta-circle { width: 64px; height: 64px; }
       .cta-watermark { display: none; }
-      .footer-brand-quote { padding: 40px 24px 32px; }
+      .footer-brand-quote { padding: 48px 24px 40px; }
+      .footer-divider { margin: 0 24px; }
       .footer-top { padding: 28px 24px; flex-direction: column; gap: 20px; align-items: flex-start; }
       .footer-links { flex-wrap: wrap; gap: 14px; }
-      .footer-bottom { padding: 16px 24px 24px; flex-direction: column; gap: 10px; align-items: flex-start; }
+      .footer-bottom { padding: 16px 24px 28px; flex-direction: column; gap: 10px; align-items: flex-start; }
     }
   </style>
 </head>
@@ -255,11 +323,10 @@
       <span id="hero-typed"></span><span id="hero-cursor" class="typing-cursor">|</span>
     </h1>
     <p class="hero-body">방향이 없는 게 아닙니다.<br><strong>아직 번역이 안 된 겁니다.</strong></p>
-    <p class="hero-sub">
-      외주를 맡겼는데 내 이야기가 사라진 적 있다면,<br>
-      AI를 써봤는데 일이 오히려 늘었다면,<br>
-      대표의 생각을 직접 브랜드로 번역합니다.
-    </p>
+    <div class="hero-symptoms">
+      <span class="hero-symptom"><span class="hs-x">✕</span>외주 후 내 이야기 사라짐</span>
+      <span class="hero-symptom"><span class="hs-x">✕</span>AI 써봤더니 일만 늘어남</span>
+    </div>
     <div class="hero-steps">
       <span class="hero-step"><span class="step-dot" style="background:#D3F45A;"></span>브랜드</span>
       <span class="hero-step"><span class="step-dot" style="background:#4DE7FF;"></span>시스템</span>
@@ -280,8 +347,23 @@
         번역하는<br>
         우리의 방식
       </h2>
-      <p class="how-body">대표와 직접 대화하고,<br>그 언어에서 브랜드 구조를 설계합니다.</p>
-      <p class="how-quote">브랜드를 만들어드리는 것이 아닙니다.<br>당신이 말할 수 있는 구조를 함께 만듭니다.</p>
+      <div class="how-formula">
+        <div class="how-formula-row">
+          <span class="hf-in">대표의 언어</span>
+          <span class="hf-arrow">→</span>
+          <span class="hf-out" style="color:#D3F45A;">브랜드 언어</span>
+        </div>
+        <div class="how-formula-row">
+          <span class="hf-in">직관과 아이디어</span>
+          <span class="hf-arrow">→</span>
+          <span class="hf-out" style="color:#7B61FF;">실행 구조</span>
+        </div>
+        <div class="how-formula-row">
+          <span class="hf-in">혼자 버티는 운영</span>
+          <span class="hf-arrow">→</span>
+          <span class="hf-out" style="color:#4DE7FF;">혼자 돌아가는 시스템</span>
+        </div>
+      </div>
       <a href="process.html" class="text-link">PROCESS 자세히 보기 →</a>
     </div>
 
@@ -299,7 +381,7 @@
           </svg>
         </div>
         <p class="step-name">RESEARCH</p>
-        <p class="step-ko">리서치 — 7일</p>
+        <p class="step-ko">리서치 · 7일</p>
         <p class="step-desc">대표의 말 안에서 브랜드의 방향을 발견합니다.</p>
         <div class="step-portal">
           <span class="step-portal-dot" style="background:#D3F45A;"></span>
@@ -318,7 +400,7 @@
           </svg>
         </div>
         <p class="step-name">TRANSLATE</p>
-        <p class="step-ko">번역 — 14일</p>
+        <p class="step-ko">번역 · 14일</p>
         <p class="step-desc">생각을 브랜드 언어와 실행 구조로 번역합니다.</p>
         <div class="step-portal">
           <span class="step-portal-dot" style="background:#7B61FF;"></span>
@@ -336,7 +418,7 @@
           </svg>
         </div>
         <p class="step-name">BUILD</p>
-        <p class="step-ko">구축 — 30일</p>
+        <p class="step-ko">구축 · 30일</p>
         <p class="step-desc">혼자서도 움직이는 운영 구조를 만듭니다.</p>
         <div class="step-portal">
           <span class="step-portal-dot" style="background:#4DE7FF;"></span>
@@ -349,8 +431,22 @@
 
 <!-- CLIENTS -->
 <section id="clients" class="fade">
-  <p class="section-eyebrow" style="margin-bottom:16px;">We Work With</p>
-  <h2 class="clients-title">현재 함께하는 브랜드</h2>
+  <div class="clients-header">
+    <div>
+      <p class="section-eyebrow" style="margin-bottom:12px;">We Work With</p>
+      <h2 class="clients-title">현재 함께하는 브랜드</h2>
+    </div>
+    <div class="clients-stat">
+      <div class="clients-stat-bar">
+        <div class="cs-dot" style="background:#D3F45A;"></div>
+        <div class="cs-dot" style="background:#D3F45A;"></div>
+        <div class="cs-dot" style="background:var(--gray2);"></div>
+        <div class="cs-dot" style="background:var(--gray2);"></div>
+        <div class="cs-dot" style="background:var(--gray2);"></div>
+      </div>
+      <span class="clients-stat-label">2 / 5 Brands</span>
+    </div>
+  </div>
   <div class="clients-row">
     <div class="client-item">
       NUiE
@@ -366,6 +462,92 @@
   </div>
 </section>
 
+<!-- VOICES -->
+<section id="voices" class="fade">
+  <div class="voices-head">
+    <div>
+      <p class="voices-eyebrow">Real Voices</p>
+      <h2 class="voices-title">이런 고민을<br>들었습니다.</h2>
+    </div>
+    <p class="voices-head-note">실제 대표들이<br>꺼낸 말에서 시작합니다.</p>
+  </div>
+  <div class="voice-list">
+
+    <div class="voice-item">
+      <div class="voice-left">
+        <div class="voice-avatar-row">
+          <div class="voice-avatar">
+            <img src="https://api.dicebear.com/9.x/avataaars/svg?seed=startup-ceo&backgroundColor=dfe9f7&mouth=smile&eyes=happy" alt="스타트업 대표">
+          </div>
+          <div>
+            <p class="voice-num">VOICE 01</p>
+            <p class="voice-who">스타트업 대표</p>
+          </div>
+        </div>
+        <div class="voice-bubble">
+          <p class="voice-quote">사업 설명을 해도 사람들이 잘 모르겠다고 해요. 제가 설명을 못하는 건지, 사업이 이상한 건지 모르겠어요.</p>
+        </div>
+      </div>
+      <div class="voice-right">
+        <div>
+          <p class="voice-answer-label">FINDIER LAB</p>
+          <p class="voice-answer">설명을 못하는 게 아닙니다.<br>아직 번역이 안 된 겁니다.</p>
+        </div>
+        <p class="voice-result-done">결과 → <a href="works.html">NUiE — 온라인 전시 공간 작가로 번역</a></p>
+      </div>
+    </div>
+
+    <div class="voice-item">
+      <div class="voice-left">
+        <div class="voice-avatar-row">
+          <div class="voice-avatar">
+            <img src="https://api.dicebear.com/9.x/avataaars/svg?seed=solo-founder&backgroundColor=d4f0ec&mouth=smile&eyes=squint" alt="1인 창업자">
+          </div>
+          <div>
+            <p class="voice-num">VOICE 02</p>
+            <p class="voice-who">1인 창업자</p>
+          </div>
+        </div>
+        <div class="voice-bubble">
+          <p class="voice-quote">주변에서 다 AI 쓴다고 하는데, 저도 써봤는데 오히려 할 일만 늘어난 것 같아요.</p>
+        </div>
+      </div>
+      <div class="voice-right">
+        <div>
+          <p class="voice-answer-label">FINDIER LAB</p>
+          <p class="voice-answer">AI는 구조가 있는 사람한테만<br>도구입니다.</p>
+        </div>
+        <p class="voice-result-open">다음 케이스 모집 중</p>
+      </div>
+    </div>
+
+    <div class="voice-item">
+      <div class="voice-left">
+        <div class="voice-avatar-row">
+          <div class="voice-avatar">
+            <img src="https://api.dicebear.com/9.x/avataaars/svg?seed=team-lead-kr&backgroundColor=fde8cc&mouth=smile&eyes=default" alt="소규모 팀 대표">
+          </div>
+          <div>
+            <p class="voice-num">VOICE 03</p>
+            <p class="voice-who">소규모 팀 대표</p>
+          </div>
+        </div>
+        <div class="voice-bubble">
+          <p class="voice-quote">혼자 다 하다 보니까 브랜드고 뭐고, 그냥 하루하루 버티는 느낌이에요.</p>
+        </div>
+      </div>
+      <div class="voice-right">
+        <div>
+          <p class="voice-answer-label">FINDIER LAB</p>
+          <p class="voice-answer">대표 없이도 돌아가는 구조를<br>만드는 게 먼저입니다.</p>
+        </div>
+        <p class="voice-result-open">다음 케이스 모집 중</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- CTA -->
 <section id="cta" class="fade">
   <div class="cta-circle"></div>
@@ -375,7 +557,6 @@
       <span class="c-purple">구조가 있어야</span><br>
       이야기가 됩니다.
     </h2>
-    <p class="cta-body">아이디어에서 브랜드로, 브랜드에서 운영까지.<br>대표의 생각을 함께 번역합니다.</p>
     <a href="contact.html" class="cta-btn">함께 시작하기 →</a>
   </div>
   <svg class="cta-watermark" width="88" height="88" viewBox="0 0 88 88" fill="none">
@@ -388,9 +569,11 @@
 <!-- FOOTER -->
 <footer id="footer">
   <div class="footer-brand-quote fade">
-    <p class="fbq-text">브랜드를 만들어드리는 것이 아닙니다. 당신이 말할 수 있는 구조를 함께 만듭니다.</p>
-    <p class="fbq-sub">Brand Research &amp; Building Lab</p>
+    <p class="fbq-eyebrow">FINDIER LAB — Manifesto</p>
+    <p class="fbq-line1">브랜드를 만들어드리는 것이 아닙니다.</p>
+    <p class="fbq-line2">당신이 말할 수 있는<br>구조를 함께 만듭니다.</p>
   </div>
+  <div class="footer-divider"></div>
   <div class="footer-top">
     <div>
       <div class="footer-logo">FINDIER LAB</div>
