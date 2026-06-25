@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="noindex">
+<title>운영 허브 — FINDIER LAB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.min.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --lime: #D3F45A; --purple: #7B61FF; --black: #111111; --border: rgba(255,255,255,.1); color-scheme: light; }
+body { font-family: 'Pretendard', 'Inter', sans-serif; background: var(--black); color: #fff; min-height: 100vh; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; height: 64px;
+  background: rgba(17,17,17,.92); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; padding: 0 48px;
+  justify-content: space-between; z-index: 100;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 900;
+  letter-spacing: .18em; color: #fff; text-decoration: none; text-transform: uppercase;
+}
+.nav-right { display: flex; align-items: center; gap: 24px; }
+.nav-tag {
+  font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--black); background: var(--lime); padding: 4px 10px;
+}
+.nav-logout {
+  font-size: 12px; font-weight: 600; color: rgba(255,255,255,.3);
+  background: none; border: none; cursor: pointer;
+  letter-spacing: .06em; transition: color .2s;
+}
+.nav-logout:hover { color: rgba(255,255,255,.6); }
+
+/* HERO */
+.hero {
+  padding: 120px 48px 64px;
+  max-width: 1100px; margin: 0 auto;
+  border-bottom: 1px solid var(--border);
+}
+.hero-label {
+  font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: .22em; color: var(--lime); text-transform: uppercase; margin-bottom: 24px;
+}
+.hero-title {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(36px, 5vw, 64px); font-weight: 900;
+  line-height: 1.05; letter-spacing: -.04em; margin-bottom: 16px;
+}
+.hero-desc { font-size: 17px; color: rgba(255,255,255,.45); line-height: 1.7; }
+
+/* SECTION */
+.section { max-width: 1100px; margin: 0 auto; padding: 64px 48px; }
+.section-label {
+  font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: .22em; color: rgba(255,255,255,.25); text-transform: uppercase; margin-bottom: 32px;
+}
+
+/* AD GUIDE GRID */
+.guide-grid { display: flex; flex-direction: column; gap: 2px; }
+.guide-card {
+  display: grid; grid-template-columns: 72px 1fr auto;
+  align-items: center; gap: 28px;
+  padding: 28px 32px;
+  background: rgba(255,255,255,.04);
+  text-decoration: none; color: #fff;
+  transition: background .2s;
+}
+.guide-card:hover { background: rgba(255,255,255,.08); }
+.guide-card.prep { border-left: 3px solid var(--lime); }
+.guide-card.meta { border-left: 3px solid #1877F2; }
+.guide-card.naver { border-left: 3px solid #03C75A; }
+.guide-card.ga4 { border-left: 3px solid #E37400; }
+.guide-card.routine { border-left: 3px solid var(--purple); }
+.gc-num {
+  font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: .12em; color: rgba(255,255,255,.2); text-transform: uppercase;
+}
+.gc-title { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+.gc-desc { font-size: 13px; color: rgba(255,255,255,.35); }
+.gc-arrow {
+  font-family: 'Inter', sans-serif; font-size: 18px;
+  color: rgba(255,255,255,.2); transition: color .2s;
+}
+.guide-card:hover .gc-arrow { color: rgba(255,255,255,.6); }
+
+/* MORE COMING */
+.coming-soon {
+  margin-top: 48px;
+  padding: 32px;
+  background: rgba(255,255,255,.03);
+  border: 1px dashed rgba(255,255,255,.1);
+}
+.cs-title { font-size: 14px; font-weight: 700; color: rgba(255,255,255,.3); margin-bottom: 12px; }
+.cs-items { display: flex; gap: 12px; flex-wrap: wrap; }
+.cs-tag {
+  font-size: 12px; font-weight: 600;
+  padding: 6px 14px;
+  background: rgba(255,255,255,.05);
+  color: rgba(255,255,255,.2);
+  letter-spacing: .04em;
+}
+
+/* CONTACT */
+.contact-bar {
+  margin: 0 48px;
+  max-width: 1100px;
+  padding: 32px 40px;
+  background: rgba(211,244,90,.06);
+  border: 1px solid rgba(211,244,90,.15);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.cb-text { font-size: 15px; color: rgba(255,255,255,.6); line-height: 1.6; }
+.cb-text strong { color: #fff; }
+.cb-link {
+  font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 800;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--lime); text-decoration: none; white-space: nowrap;
+  transition: opacity .2s;
+}
+.cb-link:hover { opacity: .7; }
+
+footer { border-top: 1px solid var(--border); padding: 40px 48px; display: flex; justify-content: space-between; align-items: center; margin-top: 80px; }
+.footer-logo { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 900; letter-spacing: .2em; color: rgba(255,255,255,.15); text-transform: uppercase; }
+.footer-sub { font-size: 12px; color: rgba(255,255,255,.15); }
+
+@media (max-width: 768px) {
+  nav { padding: 0 20px; }
+  .hero, .section { padding-left: 20px; padding-right: 20px; }
+  .guide-card { grid-template-columns: 56px 1fr; } .gc-arrow { display: none; }
+  .contact-bar { flex-direction: column; gap: 16px; margin: 0 20px; }
+  footer { flex-direction: column; gap: 8px; padding: 32px 20px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">
+    <svg width="26" height="26" viewBox="0 0 34 34" fill="none">
+      <circle cx="10" cy="9.5" r="4.5" fill="#D3F45A"/>
+      <path d="M17 5 L28 5 L28 20" stroke="#7B61FF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M6.5 21 Q10.5 29.5 20 27" stroke="#fff" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+    </svg>
+    Findier Lab
+  </a>
+  <div class="nav-right">
+    <span class="nav-tag">운영 허브</span>
+    <button class="nav-logout" onclick="logout()">로그아웃</button>
+  </div>
+</nav>
+
+<div class="hero">
+  <p class="hero-label">Client Portal · 운영 허브</p>
+  <h1 class="hero-title">사장님을 위한<br>운영 자료실</h1>
+  <p class="hero-desc">파인디어랩 클라이언트 전용 공간입니다.<br>광고 가이드, 운영 자료, 템플릿을 여기서 확인하세요.</p>
+</div>
+
+<div class="section">
+  <p class="section-label">온라인 광고 완전 정복</p>
+  <div class="guide-grid">
+
+    <a href="ad-guide/ch0-setup.html" class="guide-card prep">
+      <div class="gc-num">PREP</div>
+      <div>
+        <div class="gc-title">광고 시작 전 준비</div>
+        <div class="gc-desc">GA4 설치 · 메타 픽셀 설치 · 측정 준비</div>
+      </div>
+      <div class="gc-arrow">→</div>
+    </a>
+
+    <a href="ad-guide/ch1-meta.html" class="guide-card meta">
+      <div class="gc-num">CH 01</div>
+      <div>
+        <div class="gc-title">메타(인스타그램) 광고</div>
+        <div class="gc-desc">비즈니스 계정 · 타겟 설정 · 소재 올리기 · 성과 지표</div>
+      </div>
+      <div class="gc-arrow">→</div>
+    </a>
+
+    <a href="ad-guide/ch2-naver.html" class="guide-card naver">
+      <div class="gc-num">CH 02</div>
+      <div>
+        <div class="gc-title">네이버 검색광고</div>
+        <div class="gc-desc">키워드 선택 · 소재 작성 · 입찰가 · 성과 확인</div>
+      </div>
+      <div class="gc-arrow">→</div>
+    </a>
+
+    <a href="ad-guide/ch3-ga4.html" class="guide-card ga4">
+      <div class="gc-num">CH 03</div>
+      <div>
+        <div class="gc-title">GA4 데이터 읽기</div>
+        <div class="gc-desc">핵심 지표 · 보고서 경로 · 광고 효과 확인</div>
+      </div>
+      <div class="gc-arrow">→</div>
+    </a>
+
+    <a href="ad-guide/ch4-routine.html" class="guide-card routine">
+      <div class="gc-num">CH 04</div>
+      <div>
+        <div class="gc-title">광고 운영 루틴</div>
+        <div class="gc-desc">매일 5분 · 주간 30분 · 월간 전략 · 의사결정 기준표</div>
+      </div>
+      <div class="gc-arrow">→</div>
+    </a>
+
+  </div>
+
+  <div class="coming-soon">
+    <div class="cs-title">추가 예정 자료</div>
+    <div class="cs-items">
+      <span class="cs-tag">브랜드 언어 가이드</span>
+      <span class="cs-tag">콘텐츠 기획 템플릿</span>
+      <span class="cs-tag">월간 성과 리포트 양식</span>
+      <span class="cs-tag">SNS 운영 루틴</span>
+    </div>
+  </div>
+</div>
+
+<div class="contact-bar">
+  <div class="cb-text"><strong>자료에 없는 내용이 있거나 도움이 필요하다면</strong><br>언제든지 연락 주세요. 함께 해결합니다.</div>
+  <a href="../contact.html" class="cb-link">문의하기 →</a>
+</div>
+
+<footer>
+  <div class="footer-logo">Findier Lab · 운영 허브</div>
+  <div class="footer-sub">클라이언트 전용 · 외부 공유 금지</div>
+</footer>
+
+<script>
+  // 인증 확인
+  if (localStorage.getItem('fl_portal_auth') !== 'granted') {
+    window.location.href = 'login.html';
+  }
+
+  function logout() {
+    localStorage.removeItem('fl_portal_auth');
+    window.location.href = 'login.html';
+  }
+</script>
+</body>
+</html>

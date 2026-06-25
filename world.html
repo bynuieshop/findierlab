@@ -35,13 +35,16 @@
     .sample-badge { position: fixed; top: 20px; right: 20px; z-index: 9999; background: rgba(211,244,90,.12); border: 1px solid rgba(211,244,90,.3); color: var(--lime); font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 800; letter-spacing: .2em; padding: 6px 14px; border-radius: 100px; backdrop-filter: blur(8px); }
 
     /* NAV */
-    #nav { position: fixed; top: 0; left: 0; right: 0; height: 60px; z-index: 999; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; background: rgba(13,13,13,.8); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,.05); }
+    #nav { position: fixed; top: 0; left: 0; right: 0; height: 60px; z-index: 999; display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 0 48px; background: rgba(13,13,13,.8); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,.05); }
     .nav-logo { font-family: 'Inter',sans-serif; font-size: 14px; font-weight: 800; letter-spacing: .08em; }
     .nav-logo span { color: var(--lime); }
     .nav-right { display: flex; align-items: center; gap: 32px; }
     .nav-link { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 600; letter-spacing: .14em; color: rgba(255,255,255,.35); text-transform: uppercase; transition: color .2s; }
     .nav-link:hover { color: #fff; }
     .nav-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--lime); color: #111; font-family: 'Inter',sans-serif; font-size: 11px; font-weight: 800; padding: 9px 20px; border-radius: 100px; letter-spacing: .04em; transition: opacity .2s; }
+    .nav-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .nav-portal { display: inline-flex; align-items: center; background: #D3F45A; color: #111; font-family: 'Pretendard',sans-serif; font-size: 13px; font-weight: 600; padding: 10px 22px; border-radius: 100px; text-decoration: none; white-space: nowrap; transition: opacity .2s; flex-shrink: 0; }
+    .nav-portal:hover { opacity: .75; }
     .nav-cta:hover { opacity: .85; }
 
     /* HERO */
@@ -205,7 +208,9 @@
   <div class="nav-right">
     <a href="works.html" class="nav-link">WORKS</a>
     <a href="about.html" class="nav-link">ABOUT</a>
-    <a href="contact.html" class="nav-cta">생각 보내기</a>
+    <div class="nav-actions">
+  <a href="portal/login.html" class="nav-portal">운영 허브</a>
+  <a href="contact.html" class="nav-cta">생각 보내기</a>
   </div>
 </header>
 

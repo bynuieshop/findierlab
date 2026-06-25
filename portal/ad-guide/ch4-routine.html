@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>CH 04 · 광고 운영 루틴 — FINDIER LAB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.min.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --lime: #D3F45A; --purple: #7B61FF; --black: #111111; --border: rgba(255,255,255,.1); color-scheme: light; }
+body { font-family: 'Pretendard', 'Inter', sans-serif; background: var(--black); color: #fff; min-height: 100vh; }
+nav { position: fixed; top: 0; left: 0; right: 0; height: 64px; background: rgba(17,17,17,.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 48px; justify-content: space-between; z-index: 100; }
+.nav-logo { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 900; letter-spacing: .18em; color: #fff; text-decoration: none; text-transform: uppercase; }
+.nav-links { display: flex; gap: 32px; }
+.nav-links a { font-size: 13px; font-weight: 600; color: rgba(255,255,255,.35); text-decoration: none; letter-spacing: .04em; transition: color .2s; }
+.nav-links a:hover, .nav-links a.active { color: #fff; }
+.page-hero { padding: 120px 48px 64px; max-width: 900px; margin: 0 auto; border-bottom: 1px solid var(--border); }
+.breadcrumb { font-size: 12px; color: rgba(255,255,255,.3); letter-spacing: .06em; margin-bottom: 24px; }
+.breadcrumb span { color: var(--purple); }
+.page-tag { display: inline-block; font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: #fff; background: var(--purple); padding: 5px 12px; margin-bottom: 24px; }
+.page-title { font-family: 'Inter', sans-serif; font-size: clamp(36px, 5vw, 64px); font-weight: 900; line-height: 1.05; letter-spacing: -.04em; margin-bottom: 20px; }
+.page-desc { font-size: 18px; color: rgba(255,255,255,.5); line-height: 1.7; max-width: 600px; }
+.content { max-width: 900px; margin: 0 auto; padding: 0 48px 120px; }
+.guide-section { padding: 72px 0; border-bottom: 1px solid var(--border); }
+.guide-section:last-child { border-bottom: none; }
+.gs-header { display: flex; align-items: flex-start; gap: 24px; margin-bottom: 48px; }
+.gs-num { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .16em; color: var(--purple); text-transform: uppercase; padding: 4px 10px; border: 1px solid rgba(123,97,255,.3); flex-shrink: 0; margin-top: 4px; }
+.gs-title { font-family: 'Inter', sans-serif; font-size: 28px; font-weight: 900; letter-spacing: -.03em; line-height: 1.2; }
+.gs-sub { font-size: 15px; color: rgba(255,255,255,.4); margin-top: 8px; line-height: 1.6; }
+
+/* ROUTINE CARD */
+.routine-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-bottom: 48px; }
+.rc { padding: 32px 28px; background: rgba(255,255,255,.04); }
+.rc-freq { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .18em; color: var(--purple); text-transform: uppercase; margin-bottom: 12px; }
+.rc-time { font-family: 'Inter', sans-serif; font-size: 40px; font-weight: 900; letter-spacing: -.04em; color: #fff; margin-bottom: 4px; }
+.rc-time-unit { font-size: 14px; color: rgba(255,255,255,.3); margin-bottom: 16px; }
+.rc-desc { font-size: 14px; color: rgba(255,255,255,.4); line-height: 1.6; }
+
+/* CHECKLIST */
+.routine-list { display: flex; flex-direction: column; gap: 8px; }
+.rl-item { display: grid; grid-template-columns: 24px 1fr auto; gap: 16px; padding: 18px 20px; background: rgba(255,255,255,.04); align-items: center; }
+.rl-num { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 800; color: rgba(255,255,255,.2); }
+.rl-text { font-size: 15px; font-weight: 600; }
+.rl-sub { font-size: 12px; color: rgba(255,255,255,.3); margin-top: 3px; }
+.rl-tag { font-size: 11px; font-weight: 700; letter-spacing: .06em; padding: 4px 10px; white-space: nowrap; }
+.rl-tag.meta { background: rgba(24,119,242,.2); color: #5BA4FF; }
+.rl-tag.naver { background: rgba(3,199,90,.15); color: #4DCC7A; }
+.rl-tag.ga4 { background: rgba(227,116,0,.15); color: #FFB74D; }
+.rl-tag.both { background: rgba(123,97,255,.15); color: #A48CFF; }
+
+/* DECISION TABLE */
+.decision-table { display: flex; flex-direction: column; gap: 2px; }
+.dt-row { display: grid; grid-template-columns: 180px 1fr 200px; gap: 16px; padding: 16px 20px; background: rgba(255,255,255,.04); align-items: flex-start; }
+.dt-row.header { background: rgba(123,97,255,.1); }
+.dt-situation { font-size: 14px; font-weight: 700; }
+.dt-cause { font-size: 13px; color: rgba(255,255,255,.45); line-height: 1.5; }
+.dt-action { font-size: 13px; font-weight: 700; color: var(--lime); }
+.dt-label { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.3); }
+
+.warn { display: flex; gap: 16px; align-items: flex-start; padding: 20px 24px; background: rgba(255,80,80,.08); border-left: 3px solid #FF5050; margin-top: 16px; }
+.warn-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+.warn-text { font-size: 14px; color: rgba(255,255,255,.6); line-height: 1.6; }
+.warn-text strong { color: #FF8080; }
+.tip { display: flex; gap: 16px; align-items: flex-start; padding: 20px 24px; background: rgba(123,97,255,.07); border-left: 3px solid rgba(123,97,255,.3); margin-top: 16px; }
+.tip-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+.tip-text { font-size: 14px; color: rgba(255,255,255,.6); line-height: 1.6; }
+.tip-text strong { color: #A48CFF; }
+
+/* FINAL CTA */
+.final-cta {
+  padding: 72px 48px;
+  background: var(--lime);
+  text-align: center;
+  margin-top: 80px;
+}
+.cta-label { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .22em; color: rgba(17,17,17,.5); text-transform: uppercase; margin-bottom: 20px; }
+.cta-title { font-family: 'Inter', sans-serif; font-size: clamp(28px, 4vw, 48px); font-weight: 900; letter-spacing: -.04em; color: var(--black); line-height: 1.15; margin-bottom: 16px; }
+.cta-desc { font-size: 16px; color: rgba(17,17,17,.55); margin-bottom: 36px; line-height: 1.6; }
+.cta-btn {
+  display: inline-block;
+  background: var(--black);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px; font-weight: 800;
+  letter-spacing: .06em; text-transform: uppercase;
+  padding: 18px 48px;
+  text-decoration: none;
+  transition: opacity .2s;
+}
+.cta-btn:hover { opacity: .8; }
+
+.nav-buttons { display: flex; gap: 16px; margin-top: 80px; }
+.btn { display: inline-block; padding: 16px 40px; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; text-decoration: none; transition: opacity .2s; }
+.btn-secondary { background: rgba(255,255,255,.08); color: #fff; }
+.btn:hover { opacity: .8; }
+footer { border-top: 1px solid var(--border); padding: 48px; text-align: center; }
+.footer-logo { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 900; letter-spacing: .2em; color: rgba(255,255,255,.2); text-transform: uppercase; margin-bottom: 8px; }
+.footer-sub { font-size: 13px; color: rgba(255,255,255,.2); }
+@media (max-width: 768px) {
+  nav { padding: 0 24px; } .nav-links { display: none; }
+  .page-hero, .content { padding-left: 24px; padding-right: 24px; }
+  .routine-cards { grid-template-columns: 1fr; }
+  .rl-item { grid-template-columns: 24px 1fr; } .rl-tag { display: none; }
+  .dt-row { grid-template-columns: 1fr; } .dt-row.header { display: none; }
+  .final-cta { padding: 48px 24px; }
+}
+</style>
+<script>
+  if (localStorage.getItem('fl_portal_auth') !== 'granted') {
+    window.location.href = '../login.html';
+  }
+</script>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Findier Lab</a>
+  <div class="nav-links">
+    <a href="ch0-setup.html">PREP</a>
+    <a href="ch1-meta.html">CH 01 메타</a>
+    <a href="ch2-naver.html">CH 02 네이버</a>
+    <a href="ch3-ga4.html">CH 03 GA4</a>
+    <a href="ch4-routine.html" class="active">CH 04 루틴</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="breadcrumb">광고 완전 정복 <span>/ CH 04 운영 루틴</span></div>
+  <div class="page-tag">CH 04 · 광고 운영 루틴</div>
+  <h1 class="page-title">광고는 세팅이<br>끝이 아닙니다.</h1>
+  <p class="page-desc">매일 5분, 주간 30분의 루틴으로 광고비 낭비를 막고 성과를 키워갑니다.</p>
+</div>
+
+<div class="content">
+
+  <!-- 루틴 개요 -->
+  <div class="guide-section">
+    <div class="gs-header">
+      <div class="gs-num">OVERVIEW</div>
+      <div>
+        <div class="gs-title">3단계 운영 루틴</div>
+        <div class="gs-sub">매일 · 주간 · 월간으로 확인하는 항목이 다릅니다.</div>
+      </div>
+    </div>
+    <div class="routine-cards">
+      <div class="rc">
+        <div class="rc-freq">DAILY</div>
+        <div class="rc-time">5</div>
+        <div class="rc-time-unit">분</div>
+        <div class="rc-desc">이상 신호 확인. 광고가 정상 작동 중인지, 예산이 소진됐는지 체크.</div>
+      </div>
+      <div class="rc">
+        <div class="rc-freq">WEEKLY</div>
+        <div class="rc-time">30</div>
+        <div class="rc-time-unit">분</div>
+        <div class="rc-desc">성과 비교 및 예산 조정. 잘 되는 소재에 예산을 더 쓰고, 안 되는 건 끊습니다.</div>
+      </div>
+      <div class="rc">
+        <div class="rc-freq">MONTHLY</div>
+        <div class="rc-time">1</div>
+        <div class="rc-time-unit">시간</div>
+        <div class="rc-desc">전략 검토. 채널별 성과 비교, 다음 달 소재 계획, 타겟 재검토.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 매일 루틴 -->
+  <div class="guide-section">
+    <div class="gs-header">
+      <div class="gs-num">DAILY</div>
+      <div>
+        <div class="gs-title">매일 5분 체크리스트</div>
+        <div class="gs-sub">아침에 커피 한 잔 마시면서 확인하는 루틴입니다.</div>
+      </div>
+    </div>
+    <div class="routine-list">
+      <div class="rl-item">
+        <div class="rl-num">01</div>
+        <div>
+          <div class="rl-text">광고 게재 상태 확인</div>
+          <div class="rl-sub">메타/네이버 광고가 "게재 중"인지 확인. "학습 제한", "검수 중" 등 비정상 상태 체크.</div>
+        </div>
+        <div class="rl-tag both">META + 네이버</div>
+      </div>
+      <div class="rl-item">
+        <div class="rl-num">02</div>
+        <div>
+          <div class="rl-text">어제 예산 소진 확인</div>
+          <div class="rl-sub">일 예산의 70~100% 소진되면 정상. 50% 미만이면 타겟이 너무 좁거나 입찰가가 낮은 것.</div>
+        </div>
+        <div class="rl-tag both">META + 네이버</div>
+      </div>
+      <div class="rl-item">
+        <div class="rl-num">03</div>
+        <div>
+          <div class="rl-text">GA4 어제 방문자 수 확인</div>
+          <div class="rl-sub">평소보다 50% 이상 감소하면 사이트 문제 또는 광고 중단 여부 확인.</div>
+        </div>
+        <div class="rl-tag ga4">GA4</div>
+      </div>
+      <div class="rl-item">
+        <div class="rl-num">04</div>
+        <div>
+          <div class="rl-text">메타 광고 빈도(Frequency) 확인</div>
+          <div class="rl-sub">같은 사람이 광고를 몇 번 봤는지. 빈도 3 이상이면 소재를 교체해야 할 시점.</div>
+        </div>
+        <div class="rl-tag meta">META</div>
+      </div>
+    </div>
+    <div class="warn" style="margin-top:24px;">
+      <div class="warn-icon">⚠️</div>
+      <div class="warn-text"><strong>광고 학습 기간(7일) 중에는 수정하지 마세요.</strong> 입찰가, 타겟, 예산을 수정하면 학습이 초기화됩니다. 확인만 하고 참으세요.</div>
+    </div>
+  </div>
+
+  <!-- 주간 루틴 -->
+  <div class="guide-section">
+    <div class="gs-header">
+      <div class="gs-num">WEEKLY</div>
+      <div>
+        <div class="gs-title">주간 30분 성과 검토</div>
+        <div class="gs-sub">매주 월요일, 지난 주 성과를 보고 다음 주 전략을 조정합니다.</div>
+      </div>
+    </div>
+    <div class="routine-list">
+      <div class="rl-item">
+        <div class="rl-num">01</div>
+        <div>
+          <div class="rl-text">소재별 CTR 비교</div>
+          <div class="rl-sub">여러 소재 중 CTR 가장 높은 것 → 예산 증가. CTR 0.5% 미만은 교체 검토.</div>
+        </div>
+        <div class="rl-tag meta">META</div>
+      </div>
+      <div class="rl-item">
+        <div class="rl-num">02</div>
+        <div>
+          <div class="rl-text">키워드별 전환 확인</div>
+          <div class="rl-sub">클릭은 많은데 전환 없는 키워드는 일시 정지. 전환율 높은 키워드 입찰가 상향.</div>
+        </div>
+        <div class="rl-tag naver">네이버</div>
+      </div>
+      <div class="rl-item">
+        <div class="rl-num">03</div>
+        <div>
+          <div class="rl-text">GA4 유입 채널 분석</div>
+          <div class="rl-sub">어느 채널에서 온 방문자의 참여율이 높은지 확인. 좋은 채널에 예산 집중.</div>
+        </div>
+        <div class="rl-tag ga4">GA4</div>
+      </div>
+      <div class="rl-item">
+        <div class="rl-num">04</div>
+        <div>
+          <div class="rl-text">다음 주 소재 준비</div>
+          <div class="rl-sub">빈도 3 이상이거나 2주 이상 된 소재는 교체 준비. 새 이미지/영상 기획.</div>
+        </div>
+        <div class="rl-tag meta">META</div>
+      </div>
+      <div class="rl-item">
+        <div class="rl-num">05</div>
+        <div>
+          <div class="rl-text">주간 예산 결산</div>
+          <div class="rl-sub">메타 + 네이버 총 광고비 vs 발생한 문의 수. 문의 1건당 비용(CPA) 계산.</div>
+        </div>
+        <div class="rl-tag both">META + 네이버</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 의사결정 기준 -->
+  <div class="guide-section">
+    <div class="gs-header">
+      <div class="gs-num">DECISIONS</div>
+      <div>
+        <div class="gs-title">상황별 판단 기준표</div>
+        <div class="gs-sub">이런 상황에서 어떻게 해야 할지 헷갈릴 때 보세요.</div>
+      </div>
+    </div>
+    <div class="decision-table">
+      <div class="dt-row header">
+        <div class="dt-label">상황</div>
+        <div class="dt-label">원인</div>
+        <div class="dt-label">행동</div>
+      </div>
+      <div class="dt-row">
+        <div class="dt-situation">CTR 0.5% 미만 (메타)</div>
+        <div class="dt-cause">소재가 스크롤을 멈추지 못하고 있음. 광고처럼 보이는 이미지 문제.</div>
+        <div class="dt-action">소재 교체. 일상적인 이미지로 바꾸기.</div>
+      </div>
+      <div class="dt-row">
+        <div class="dt-situation">클릭은 많은데 문의가 없음</div>
+        <div class="dt-cause">랜딩 페이지에서 이탈. 광고 내용과 페이지 내용 불일치.</div>
+        <div class="dt-action">GA4에서 랜딩 페이지 이탈률 확인. 페이지 개선.</div>
+      </div>
+      <div class="dt-row">
+        <div class="dt-situation">예산이 50% 미만으로 소진</div>
+        <div class="dt-cause">타겟이 너무 좁거나 네이버 입찰가가 낮아 노출 기회 부족.</div>
+        <div class="dt-action">타겟 범위 확대 또는 입찰가 상향. 10~20% 씩 조정.</div>
+      </div>
+      <div class="dt-row">
+        <div class="dt-situation">광고비는 늘었는데 성과 그대로</div>
+        <div class="dt-cause">예산을 너무 빠르게 늘리면 메타 알고리즘이 재학습. 타겟 포화 상태.</div>
+        <div class="dt-action">예산 늘릴 때 1주일에 20% 이하로 점진적 증가.</div>
+      </div>
+      <div class="dt-row">
+        <div class="dt-situation">같은 소재 2주 이상 운영</div>
+        <div class="dt-cause">빈도 증가로 광고 피로도 상승. CTR 자연 하락 시작.</div>
+        <div class="dt-action">새 소재 추가 후 성과 비교. 구 소재는 일시 정지.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 월간 루틴 -->
+  <div class="guide-section">
+    <div class="gs-header">
+      <div class="gs-num">MONTHLY</div>
+      <div>
+        <div class="gs-title">월간 전략 검토 (1시간)</div>
+        <div class="gs-sub">매월 1일, 지난 달 전체를 보고 다음 달 방향을 결정합니다.</div>
+      </div>
+    </div>
+    <div class="routine-list">
+      <div class="rl-item">
+        <div class="rl-num">01</div>
+        <div>
+          <div class="rl-text">채널별 ROAS 비교</div>
+          <div class="rl-sub">메타 vs 네이버, 어느 채널이 더 효율적인지 한 달 데이터로 비교. 효율 좋은 채널에 다음 달 예산 집중.</div>
+        </div>
+        <div class="rl-tag both">META + 네이버</div>
+      </div>
+      <div class="rl-item">
+        <div class="rl-num">02</div>
+        <div>
+          <div class="rl-text">상위 소재 분석</div>
+          <div class="rl-sub">지난 달 CTR·전환율 상위 3개 소재 분석. 공통점 파악 → 다음 달 소재 방향으로 활용.</div>
+        </div>
+        <div class="rl-tag meta">META</div>
+      </div>
+      <div class="rl-item">
+        <div class="rl-num">03</div>
+        <div>
+          <div class="rl-text">타겟 재검토</div>
+          <div class="rl-sub">메타 인사이트에서 실제로 반응한 연령대·성별·관심사 확인. 가정과 다르면 타겟 조정.</div>
+        </div>
+        <div class="rl-tag meta">META</div>
+      </div>
+      <div class="rl-item">
+        <div class="rl-num">04</div>
+        <div>
+          <div class="rl-text">다음 달 예산 계획</div>
+          <div class="rl-sub">이번 달 총 광고비 결산. CPA(문의당 비용) 확인 후 다음 달 목표 문의 수 × CPA = 예산.</div>
+        </div>
+        <div class="rl-tag both">META + 네이버</div>
+      </div>
+    </div>
+    <div class="tip" style="margin-top:24px;">
+      <div class="tip-icon">💡</div>
+      <div class="tip-text"><strong>광고비 계획 공식:</strong> 원하는 문의 수 × 문의당 비용(CPA) = 다음 달 광고 예산. 처음엔 CPA를 모르니 작게 시작해서 CPA를 먼저 파악하는 게 순서입니다.</div>
+    </div>
+  </div>
+
+  <div class="nav-buttons">
+    <a href="ch3-ga4.html" class="btn btn-secondary">← CH 03 GA4</a>
+  </div>
+
+</div>
+
+<div class="final-cta">
+  <div class="cta-label">Findier Lab</div>
+  <div class="cta-title">광고 구조를 잡았다면,<br>다음은 브랜드 구조입니다.</div>
+  <div class="cta-desc">광고는 브랜드를 더 많은 사람에게 보여주는 도구입니다.<br>브랜드 언어와 구조가 없으면, 광고비를 올릴수록 손해입니다.</div>
+  <a href="https://findierlab.com" class="cta-btn">파인디어랩 알아보기 →</a>
+</div>
+
+<footer>
+  <div class="footer-logo">Findier Lab</div>
+  <div class="footer-sub">브랜드 구조 설계 · 운영 시스템 구축 · findierlab.com</div>
+</footer>
+
+</body>
+</html>

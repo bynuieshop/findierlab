@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>PREP · 광고 시작 전 준비 — FINDIER LAB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.min.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --lime: #D3F45A; --purple: #7B61FF; --black: #111111; --border: rgba(255,255,255,.1); color-scheme: light; }
+body { font-family: 'Pretendard', 'Inter', sans-serif; background: var(--black); color: #fff; min-height: 100vh; }
+
+nav {
+  position: fixed; top: 0; left: 0; right: 0; height: 64px;
+  background: rgba(17,17,17,.92); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; padding: 0 48px;
+  justify-content: space-between; z-index: 100;
+}
+.nav-logo { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 900; letter-spacing: .18em; color: #fff; text-decoration: none; text-transform: uppercase; }
+.nav-links { display: flex; gap: 32px; }
+.nav-links a { font-size: 13px; font-weight: 600; color: rgba(255,255,255,.35); text-decoration: none; letter-spacing: .04em; transition: color .2s; }
+.nav-links a:hover, .nav-links a.active { color: #fff; }
+
+.page-hero {
+  padding: 120px 48px 64px;
+  max-width: 900px; margin: 0 auto;
+  border-bottom: 1px solid var(--border);
+}
+.breadcrumb { font-size: 12px; color: rgba(255,255,255,.3); letter-spacing: .06em; margin-bottom: 24px; }
+.breadcrumb span { color: var(--lime); }
+.page-tag {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--black);
+  background: var(--lime);
+  padding: 5px 12px;
+  margin-bottom: 24px;
+}
+.page-title {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 900; line-height: 1.05;
+  letter-spacing: -.04em;
+  margin-bottom: 20px;
+}
+.page-desc { font-size: 18px; color: rgba(255,255,255,.5); line-height: 1.7; max-width: 600px; }
+
+.content { max-width: 900px; margin: 0 auto; padding: 0 48px 120px; }
+
+/* SECTION BLOCK */
+.guide-section { padding: 72px 0; border-bottom: 1px solid var(--border); }
+.guide-section:last-child { border-bottom: none; }
+.gs-header { display: flex; align-items: flex-start; gap: 24px; margin-bottom: 48px; }
+.gs-num {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .16em;
+  color: var(--lime);
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border: 1px solid rgba(211,244,90,.3);
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+.gs-title { font-family: 'Inter', sans-serif; font-size: 28px; font-weight: 900; letter-spacing: -.03em; line-height: 1.2; }
+.gs-sub { font-size: 15px; color: rgba(255,255,255,.4); margin-top: 8px; line-height: 1.6; }
+
+/* STEPS */
+.steps { display: flex; flex-direction: column; gap: 16px; }
+.step {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 20px;
+  align-items: flex-start;
+  padding: 24px;
+  background: rgba(255,255,255,.04);
+}
+.step-n {
+  width: 36px; height: 36px;
+  background: rgba(255,255,255,.08);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px; font-weight: 800;
+  flex-shrink: 0;
+}
+.step-body {}
+.step-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+.step-desc { font-size: 14px; color: rgba(255,255,255,.5); line-height: 1.65; }
+.step-path {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px; font-weight: 600;
+  color: rgba(255,255,255,.35);
+  background: rgba(255,255,255,.06);
+  padding: 6px 12px;
+}
+.step-path .arr { color: rgba(255,255,255,.2); }
+
+/* WARNING */
+.warn {
+  display: flex; gap: 16px; align-items: flex-start;
+  padding: 20px 24px;
+  background: rgba(255,80,80,.08);
+  border-left: 3px solid #FF5050;
+  margin-top: 16px;
+}
+.warn-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+.warn-text { font-size: 14px; color: rgba(255,255,255,.6); line-height: 1.6; }
+.warn-text strong { color: #FF8080; }
+
+/* TIP */
+.tip {
+  display: flex; gap: 16px; align-items: flex-start;
+  padding: 20px 24px;
+  background: rgba(211,244,90,.05);
+  border-left: 3px solid rgba(211,244,90,.4);
+  margin-top: 16px;
+}
+.tip-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+.tip-text { font-size: 14px; color: rgba(255,255,255,.6); line-height: 1.6; }
+.tip-text strong { color: var(--lime); }
+
+/* CHECK */
+.checklist { display: flex; flex-direction: column; gap: 8px; margin-top: 32px; }
+.check-item {
+  display: flex; gap: 16px; align-items: center;
+  padding: 16px 20px;
+  background: rgba(255,255,255,.04);
+  font-size: 15px; font-weight: 600;
+}
+.check-box {
+  width: 20px; height: 20px;
+  border: 2px solid rgba(255,255,255,.2);
+  flex-shrink: 0;
+}
+
+/* NAV BUTTONS */
+.nav-buttons {
+  display: flex; gap: 16px; margin-top: 80px;
+}
+.btn {
+  display: inline-block; padding: 16px 40px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px; font-weight: 800;
+  letter-spacing: .06em; text-transform: uppercase;
+  text-decoration: none; transition: opacity .2s;
+}
+.btn-primary { background: var(--lime); color: var(--black); }
+.btn-secondary { background: rgba(255,255,255,.08); color: #fff; }
+.btn:hover { opacity: .8; }
+
+footer { border-top: 1px solid var(--border); padding: 48px; text-align: center; }
+.footer-logo { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 900; letter-spacing: .2em; color: rgba(255,255,255,.2); text-transform: uppercase; margin-bottom: 8px; }
+.footer-sub { font-size: 13px; color: rgba(255,255,255,.2); }
+
+@media (max-width: 768px) {
+  nav { padding: 0 24px; }
+  .nav-links { display: none; }
+  .page-hero, .content { padding-left: 24px; padding-right: 24px; }
+}
+</style>
+<script>
+  if (localStorage.getItem('fl_portal_auth') !== 'granted') {
+    window.location.href = '../login.html';
+  }
+</script>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Findier Lab</a>
+  <div class="nav-links">
+    <a href="ch0-setup.html" class="active">PREP</a>
+    <a href="ch1-meta.html">CH 01 메타</a>
+    <a href="ch2-naver.html">CH 02 네이버</a>
+    <a href="ch3-ga4.html">CH 03 GA4</a>
+    <a href="ch4-routine.html">CH 04 루틴</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="breadcrumb">광고 완전 정복 <span>/ PREP</span></div>
+  <div class="page-tag">PREP · 준비 단계</div>
+  <h1 class="page-title">광고 전에<br>반드시 해야 할 것</h1>
+  <p class="page-desc">광고를 돌리기 전, 측정 도구부터 설치해야 합니다. GA4와 메타 픽셀이 없으면 광고비가 어디로 갔는지 알 수 없습니다.</p>
+</div>
+
+<div class="content">
+
+  <!-- SECTION 1: 왜 필요한가 -->
+  <div class="guide-section">
+    <div class="gs-header">
+      <div class="gs-num">WHY</div>
+      <div>
+        <div class="gs-title">측정 없이 광고하면 안 되는 이유</div>
+        <div class="gs-sub">광고를 켜기 전 5분을 투자하면, 광고비 낭비를 막을 수 있습니다.</div>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">→</div>
+        <div class="step-body">
+          <div class="step-title">GA4 (구글 애널리틱스)</div>
+          <div class="step-desc">내 사이트에 누가 왔는지, 어느 페이지를 봤는지, 얼마나 머물렀는지 기록합니다. 광고 채널 구분 없이 전체 방문자 데이터를 한 곳에서 봅니다.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">→</div>
+        <div class="step-body">
+          <div class="step-title">메타 픽셀</div>
+          <div class="step-desc">인스타그램·페이스북 광고를 클릭한 사람이 내 사이트에서 어떤 행동을 했는지 메타에 전달합니다. 픽셀이 없으면 메타가 광고를 최적화할 데이터가 없어 성과가 낮아집니다.</div>
+        </div>
+      </div>
+    </div>
+    <div class="tip" style="margin-top:32px;">
+      <div class="tip-icon">💡</div>
+      <div class="tip-text"><strong>이미 설치했다면 넘어가세요.</strong> 이전에 개발자나 대행사가 설치해 뒀을 수 있습니다. 설치 여부 확인은 각 섹션 끝에 안내합니다.</div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: GA4 -->
+  <div class="guide-section">
+    <div class="gs-header">
+      <div class="gs-num">STEP 1</div>
+      <div>
+        <div class="gs-title">GA4 계정 만들기</div>
+        <div class="gs-sub">구글 계정이 있으면 무료로 만들 수 있습니다. 약 10분 소요.</div>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">1</div>
+        <div class="step-body">
+          <div class="step-title">Google Analytics 접속</div>
+          <div class="step-desc">analytics.google.com 접속 후 구글 계정으로 로그인합니다.</div>
+          <div class="step-path">analytics.google.com</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">2</div>
+        <div class="step-body">
+          <div class="step-title">계정 만들기 클릭</div>
+          <div class="step-desc">"측정 시작" 또는 "계정 만들기" 버튼을 클릭합니다.</div>
+          <div class="step-path">측정 시작</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">3</div>
+        <div class="step-body">
+          <div class="step-title">계정 이름 입력</div>
+          <div class="step-desc">계정 이름: 브랜드명 또는 회사명 (예: 파인디어랩). 계정은 여러 사이트를 묶는 최상위 단위입니다.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">4</div>
+        <div class="step-body">
+          <div class="step-title">속성 만들기</div>
+          <div class="step-desc">속성 이름: 사이트 주소 (예: findierlab.com). 시간대: 한국, 통화: KRW(원) 선택.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">5</div>
+        <div class="step-body">
+          <div class="step-title">플랫폼 선택</div>
+          <div class="step-desc">"웹"을 선택합니다. 앱이 없는 경우 웹만 선택하면 됩니다.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">6</div>
+        <div class="step-body">
+          <div class="step-title">측정 ID 확인</div>
+          <div class="step-desc">완료하면 <strong style="color:#fff">G-XXXXXXXXXX</strong> 형태의 측정 ID가 발급됩니다. 이것이 내 GA4 고유 코드입니다.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: GA4 설치 -->
+  <div class="guide-section">
+    <div class="gs-header">
+      <div class="gs-num">STEP 2</div>
+      <div>
+        <div class="gs-title">GA4를 사이트에 설치하기</div>
+        <div class="gs-sub">발급받은 코드를 사이트에 넣어야 방문자가 기록되기 시작합니다.</div>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">1</div>
+        <div class="step-body">
+          <div class="step-title">직접 코드 삽입 (HTML 사이트)</div>
+          <div class="step-desc">사이트가 HTML 파일로 되어 있다면, 모든 페이지의 &lt;head&gt; 태그 안에 아래 코드를 추가합니다.</div>
+          <div class="step-path" style="font-size:11px; display:block; margin-top:16px; padding:16px; line-height:1.8; background:rgba(255,255,255,.04);">
+            &lt;!-- Google tag (gtag.js) --&gt;<br>
+            &lt;script async src="https://www.googletagmanager.com/gtag/js?id=<strong style="color:var(--lime)">G-XXXXXXXX</strong>"&gt;&lt;/script&gt;<br>
+            &lt;script&gt;<br>
+            &nbsp;&nbsp;window.dataLayer = window.dataLayer || [];<br>
+            &nbsp;&nbsp;function gtag(){"{"}dataLayer.push(arguments);{"}"}<br>
+            &nbsp;&nbsp;gtag('js', new Date());<br>
+            &nbsp;&nbsp;gtag('config', '<strong style="color:var(--lime)">G-XXXXXXXX</strong>');<br>
+            &lt;/script&gt;
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">2</div>
+        <div class="step-body">
+          <div class="step-title">워드프레스 사용 시</div>
+          <div class="step-desc">플러그인 "Site Kit by Google" 설치 → 구글 계정 연결 → 자동 설치됩니다. 코드를 직접 건드릴 필요 없습니다.</div>
+          <div class="step-path">플러그인 → Site Kit by Google → 활성화</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">3</div>
+        <div class="step-body">
+          <div class="step-title">설치 확인하기</div>
+          <div class="step-desc">GA4 → 관리 → 데이터 스트림 → 웹스트림 선택 → 태그 안내 옆 "태그 작동 여부 테스트" 클릭. 초록 체크 뜨면 정상입니다.</div>
+        </div>
+      </div>
+    </div>
+    <div class="warn">
+      <div class="warn-icon">⚠️</div>
+      <div class="warn-text"><strong>설치 후 24시간은 기다려야 합니다.</strong> GA4는 실시간 보고서에서 먼저 확인되고, 다음 날부터 정식 데이터가 보입니다. 설치 직후 빈 화면이어도 정상입니다.</div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: 메타 픽셀 -->
+  <div class="guide-section">
+    <div class="gs-header">
+      <div class="gs-num">STEP 3</div>
+      <div>
+        <div class="gs-title">메타 픽셀 만들기</div>
+        <div class="gs-sub">메타 광고를 돌리기 전 반드시 필요합니다. 약 10분 소요.</div>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">1</div>
+        <div class="step-body">
+          <div class="step-title">Meta Business Suite 접속</div>
+          <div class="step-desc">business.facebook.com 접속 후 페이스북 계정으로 로그인합니다. 처음이라면 비즈니스 계정을 먼저 만들어야 합니다.</div>
+          <div class="step-path">business.facebook.com</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">2</div>
+        <div class="step-body">
+          <div class="step-title">이벤트 관리자 이동</div>
+          <div class="step-desc">좌측 메뉴 → 이벤트 관리자 (Events Manager) 클릭.</div>
+          <div class="step-path">좌측 메뉴 <span class="arr">→</span> 이벤트 관리자</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">3</div>
+        <div class="step-body">
+          <div class="step-title">데이터 소스 연결</div>
+          <div class="step-desc">"데이터 소스 연결" 또는 "+ 추가" 클릭 → "웹" 선택 → 픽셀 이름 입력 (예: 파인디어랩) → 사이트 URL 입력.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">4</div>
+        <div class="step-body">
+          <div class="step-title">픽셀 ID 확인</div>
+          <div class="step-desc">생성 완료 후 15자리 숫자 Pixel ID가 발급됩니다. 이 번호를 복사해 두세요.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: 메타 픽셀 설치 -->
+  <div class="guide-section">
+    <div class="gs-header">
+      <div class="gs-num">STEP 4</div>
+      <div>
+        <div class="gs-title">메타 픽셀을 사이트에 설치하기</div>
+        <div class="gs-sub">발급받은 픽셀 코드를 사이트 모든 페이지에 삽입합니다.</div>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">1</div>
+        <div class="step-body">
+          <div class="step-title">HTML 사이트에 직접 삽입</div>
+          <div class="step-desc">모든 페이지의 &lt;/head&gt; 태그 바로 앞에 아래 코드를 추가합니다. <strong style="color:var(--lime)">PIXEL_ID</strong> 부분을 발급받은 숫자로 교체하세요.</div>
+          <div class="step-path" style="font-size:11px; display:block; margin-top:16px; padding:16px; line-height:1.8; background:rgba(255,255,255,.04);">
+            &lt;script&gt;<br>
+            &nbsp;&nbsp;!function(f,b,e,v,n,t,s){"{"}...{"}"}(window, document,'script',<br>
+            &nbsp;&nbsp;'https://connect.facebook.net/en_US/fbevents.js');<br>
+            &nbsp;&nbsp;fbq('init', '<strong style="color:var(--lime)">PIXEL_ID</strong>');<br>
+            &nbsp;&nbsp;fbq('track', 'PageView');<br>
+            &lt;/script&gt;
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">2</div>
+        <div class="step-body">
+          <div class="step-title">픽셀 작동 확인</div>
+          <div class="step-desc">Chrome 확장 프로그램 "Meta Pixel Helper" 설치 후 내 사이트 접속. 초록 아이콘 뜨면 정상 작동입니다.</div>
+        </div>
+      </div>
+    </div>
+    <div class="tip">
+      <div class="tip-icon">💡</div>
+      <div class="tip-text"><strong>코드 설치가 어려우면:</strong> 이벤트 관리자에서 "파트너 통합" 선택 → Squarespace, Wix, Shopify 등 플랫폼 자동 연결 옵션이 있습니다.</div>
+    </div>
+  </div>
+
+  <!-- FINAL CHECKLIST -->
+  <div class="guide-section">
+    <div class="gs-header">
+      <div class="gs-num">CHECK</div>
+      <div>
+        <div class="gs-title">다음 단계 전 체크리스트</div>
+        <div class="gs-sub">아래 항목이 모두 완료되면 메타 광고를 시작할 준비가 됐습니다.</div>
+      </div>
+    </div>
+    <div class="checklist">
+      <div class="check-item"><div class="check-box"></div>GA4 계정 생성 완료</div>
+      <div class="check-item"><div class="check-box"></div>GA4 측정 ID (G-XXXXXXXX) 발급됨</div>
+      <div class="check-item"><div class="check-box"></div>GA4 코드가 사이트 모든 페이지에 삽입됨</div>
+      <div class="check-item"><div class="check-box"></div>메타 픽셀 생성 완료</div>
+      <div class="check-item"><div class="check-box"></div>픽셀 ID (15자리 숫자) 발급됨</div>
+      <div class="check-item"><div class="check-box"></div>메타 픽셀 코드가 사이트 모든 페이지에 삽입됨</div>
+    </div>
+  </div>
+
+  <div class="nav-buttons">
+    <a href="index.html" class="btn btn-secondary">← 목차로</a>
+    <a href="ch1-meta.html" class="btn btn-primary">CH 01 메타 광고 →</a>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">Findier Lab</div>
+  <div class="footer-sub">브랜드 구조 설계 · 운영 시스템 구축 · findierlab.com</div>
+</footer>
+
+</body>
+</html>
