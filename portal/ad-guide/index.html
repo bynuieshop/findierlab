@@ -240,12 +240,16 @@ footer {
 }
 </style>
 <script>
-  if (localStorage.getItem('fl_portal_auth') !== 'granted') {
-    window.location.href = '../login.html';
-  }
+  (function(){
+    if (localStorage.getItem('fl_portal_auth') !== 'granted') {
+      window.location.replace('../login.html');
+    } else {
+      document.body.style.visibility = 'visible';
+    }
+  })();
 </script>
 </head>
-<body>
+<body style="visibility:hidden;">
 
 <nav>
   <a href="index.html" class="nav-logo">Findier Lab</a>
