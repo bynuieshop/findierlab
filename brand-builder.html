@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5VTZY9P51Z"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-5VTZY9P51Z');</script>
+  <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','4441503009403677');fbq('track','PageView');</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>브랜드 보드 메이커 — FINDIER LAB</title>
+  <meta name="description" content="내 브랜드의 방향, 컬러, 느낌을 3분 만에 정리해보세요. 상담 전 준비를 여기서 시작하세요.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --lime:#D3F45A; --purple:#7B61FF; --black:#111; --white:#fff; --gray1:#F2F0ED; --gray2:#E2E0DC; }
+    html, body { height: 100%; overflow: hidden; }
+    body { font-family:'Pretendard','Inter',-apple-system,sans-serif; color:var(--black); background:var(--white); -webkit-font-smoothing:antialiased; }
+    a { text-decoration:none; color:inherit; }
+    button { font-family:inherit; cursor:pointer; border:none; background:none; }
+
+    /* NAV */
+    #nav {
+      position:fixed; top:0; left:0; right:0; height:60px; z-index:999;
+      background:rgba(255,255,255,.94); backdrop-filter:blur(12px);
+      border-bottom:1px solid #EBEBEB;
+      display:flex; align-items:center; justify-content:space-between; padding:0 32px;
+    }
+    .nav-logo { display:flex; align-items:center; gap:8px; font-family:'Inter',sans-serif; font-size:13px; font-weight:800; letter-spacing:.05em; }
+    .nav-step { font-family:'Inter',sans-serif; font-size:10px; font-weight:800; letter-spacing:.16em; color:#ccc; text-transform:uppercase; }
+
+    /* PROGRESS */
+    .prog-bar { position:fixed; top:60px; left:0; right:0; height:2px; background:#F0F0EE; z-index:998; }
+    .prog-fill { height:100%; background:var(--lime); width:0%; transition:width .5s cubic-bezier(.4,0,.2,1); }
+
+    /* QUIZ */
+    #quiz { position:fixed; top:60px; left:0; right:0; bottom:0; }
+    .screen {
+      position:absolute; inset:0;
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      padding:48px 24px;
+      transform:translateX(100%); opacity:0;
+      transition:transform .42s cubic-bezier(.4,0,.2,1), opacity .42s;
+      pointer-events:none;
+    }
+    .screen.active { transform:translateX(0); opacity:1; pointer-events:all; }
+    .screen.exit { transform:translateX(-100%); opacity:0; pointer-events:none; }
+
+    /* INTRO */
+    .intro-badge {
+      display:inline-flex; align-items:center; gap:8px;
+      background:rgba(123,97,255,.07); border:1px solid rgba(123,97,255,.18);
+      color:var(--purple); font-family:'Inter',sans-serif; font-size:9px; font-weight:800;
+      letter-spacing:.2em; padding:6px 14px; border-radius:100px; margin-bottom:32px;
+    }
+    .intro-title { font-size:clamp(2.2rem,5vw,3.8rem); font-weight:900; line-height:1.1; letter-spacing:-.04em; text-align:center; margin-bottom:18px; }
+    .intro-sub { font-size:.92rem; color:#777; text-align:center; line-height:1.75; margin-bottom:40px; max-width:380px; }
+    .intro-flow { display:flex; align-items:center; gap:10px; margin-bottom:44px; }
+    .flow-step { display:flex; align-items:center; gap:6px; font-family:'Inter',sans-serif; font-size:10px; font-weight:700; letter-spacing:.06em; color:#ccc; }
+    .flow-dot { width:7px; height:7px; border-radius:50%; background:var(--gray2); }
+    .flow-step.hi { color:var(--purple); } .flow-step.hi .flow-dot { background:var(--purple); }
+    .flow-sep { color:#ddd; font-size:10px; }
+    .start-btn {
+      display:inline-flex; align-items:center; gap:10px;
+      background:var(--black); color:var(--white);
+      font-size:15px; font-weight:700; padding:18px 40px; border-radius:100px;
+      transition:opacity .2s;
+    }
+    .start-btn:hover { opacity:.8; }
+    .start-note { font-size:.75rem; color:#ccc; margin-top:14px; text-align:center; }
+
+    /* QUESTION */
+    .q-wrap { width:100%; max-width:560px; }
+    .q-label { font-family:'Inter',sans-serif; font-size:10px; font-weight:800; letter-spacing:.2em; color:#ccc; margin-bottom:12px; }
+    .q-text { font-size:clamp(1.3rem,3vw,1.9rem); font-weight:900; line-height:1.4; letter-spacing:-.03em; margin-bottom:28px; }
+    .q-options { display:flex; flex-direction:column; gap:9px; }
+    .q-opt {
+      display:flex; align-items:center; gap:14px;
+      padding:15px 20px; border-radius:12px;
+      border:1.5px solid var(--gray2); background:var(--white);
+      font-size:.88rem; font-weight:600; text-align:left;
+      transition:all .16s; width:100%;
+    }
+    .q-opt:hover { border-color:#bbb; transform:translateY(-1px); box-shadow:0 4px 16px rgba(0,0,0,.06); }
+    .q-icon { width:30px; height:30px; border-radius:50%; background:var(--gray1); display:flex; align-items:center; justify-content:center; font-size:.85rem; flex-shrink:0; }
+
+    /* COLOR */
+    .picker-wrap { width:100%; max-width:680px; }
+    .picker-label { font-family:'Inter',sans-serif; font-size:10px; font-weight:800; letter-spacing:.2em; color:#ccc; margin-bottom:12px; }
+    .picker-text { font-size:clamp(1.3rem,3vw,1.9rem); font-weight:900; line-height:1.4; letter-spacing:-.03em; margin-bottom:28px; }
+    .color-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+    .color-card { border:1.5px solid var(--gray2); border-radius:14px; overflow:hidden; cursor:pointer; transition:all .16s; }
+    .color-card:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(0,0,0,.08); border-color:#aaa; }
+    .color-swatches { display:flex; height:60px; }
+    .color-swatch { flex:1; }
+    .color-meta { padding:10px 12px; }
+    .color-num { font-family:'Inter',sans-serif; font-size:8px; font-weight:800; letter-spacing:.14em; color:#bbb; margin-bottom:3px; }
+    .color-name { font-size:.75rem; font-weight:800; }
+    .color-kw { font-size:.7rem; color:#aaa; margin-top:2px; }
+
+    /* MOOD */
+    .mood-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:28px; }
+    .mood-card { border:1.5px solid var(--gray2); border-radius:14px; overflow:hidden; cursor:pointer; transition:all .16s; }
+    .mood-card:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(0,0,0,.08); border-color:#aaa; }
+    .mood-preview { height:96px; padding:14px 12px; display:flex; flex-direction:column; justify-content:flex-end; gap:5px; }
+    .mp-line { border-radius:2px; }
+    .mood-meta { padding:10px 12px; background:var(--white); }
+    .mood-name { font-family:'Inter',sans-serif; font-size:7.5px; font-weight:800; letter-spacing:.1em; color:var(--black); margin-bottom:3px; }
+    .mood-desc { font-size:.68rem; color:#aaa; line-height:1.4; }
+
+    /* RESULT */
+    #s-result {
+      overflow-y:auto; -webkit-overflow-scrolling:touch;
+      align-items:flex-start; padding:40px 24px 80px;
+      justify-content:flex-start; background:var(--gray1);
+    }
+    .result-inner { width:100%; max-width:600px; margin:0 auto; }
+    .result-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; }
+    .draft-badge { font-family:'Inter',sans-serif; font-size:9px; font-weight:800; letter-spacing:.18em; color:#bbb; border:1px solid #ddd; padding:5px 12px; border-radius:100px; }
+    .result-num { font-family:'Inter',sans-serif; font-size:10px; font-weight:700; color:#ddd; }
+    .board { background:var(--white); border-radius:20px; padding:32px; margin-bottom:12px; }
+    .bd-row { padding-bottom:24px; margin-bottom:24px; border-bottom:1px solid var(--gray2); }
+    .bd-row:last-child { padding-bottom:0; margin-bottom:0; border-bottom:none; }
+    .bd-lbl { font-family:'Inter',sans-serif; font-size:8.5px; font-weight:800; letter-spacing:.2em; color:#ccc; text-transform:uppercase; margin-bottom:14px; }
+    .bd-worldview { display:flex; flex-direction:column; gap:10px; }
+    .bd-wv { display:flex; gap:14px; align-items:flex-start; }
+    .bd-key { font-family:'Inter',sans-serif; font-size:9px; font-weight:800; letter-spacing:.06em; color:#bbb; width:52px; flex-shrink:0; padding-top:3px; }
+    .bd-val { font-size:.9rem; font-weight:700; line-height:1.4; }
+    .bd-archetype { display:inline-flex; align-items:center; gap:8px; background:var(--gray1); padding:8px 14px; border-radius:100px; margin-top:12px; }
+    .bd-arch-label { font-family:'Inter',sans-serif; font-size:9px; font-weight:800; letter-spacing:.12em; color:#888; }
+    .bd-arch-val { font-family:'Inter',sans-serif; font-size:9px; font-weight:800; letter-spacing:.08em; color:var(--black); }
+    .bd-palette { display:flex; height:44px; border-radius:8px; overflow:hidden; margin-bottom:10px; }
+    .bd-ps { flex:1; }
+    .bd-pname { font-size:.82rem; font-weight:700; }
+    .bd-pkw { font-size:.75rem; color:#999; margin-top:2px; }
+    .bd-mood-preview { height:72px; border-radius:8px; padding:12px; display:flex; flex-direction:column; justify-content:flex-end; gap:4px; margin-bottom:10px; overflow:hidden; }
+    .bd-mline { border-radius:2px; }
+    .bd-mname { font-family:'Inter',sans-serif; font-size:.82rem; font-weight:800; letter-spacing:.06em; }
+    .bd-mdesc { font-size:.75rem; color:#999; margin-top:2px; }
+
+    /* NEXT STEP */
+    .next-card { background:var(--black); border-radius:20px; padding:32px 36px; margin-bottom:12px; }
+    .nc-kicker { font-family:'Inter',sans-serif; font-size:9px; font-weight:800; letter-spacing:.18em; color:rgba(255,255,255,.2); margin-bottom:10px; }
+    .nc-title { font-size:1.05rem; font-weight:900; color:#fff; letter-spacing:-.02em; margin-bottom:8px; line-height:1.4; }
+    .nc-desc { font-size:.8rem; color:rgba(255,255,255,.38); line-height:1.7; margin-bottom:24px; }
+    .nc-btns { display:flex; gap:10px; }
+    .nc-primary {
+      flex:1; display:inline-flex; align-items:center; justify-content:center; gap:8px;
+      background:var(--white); color:var(--black);
+      font-size:13px; font-weight:800; padding:14px 20px; border-radius:100px;
+      transition:opacity .2s;
+    }
+    .nc-primary:hover { opacity:.9; }
+    .nc-secondary {
+      display:inline-flex; align-items:center; justify-content:center; gap:7px;
+      background:rgba(255,255,255,.08); color:rgba(255,255,255,.5);
+      font-size:12px; font-weight:700; padding:14px 18px; border-radius:100px;
+      transition:all .2s; white-space:nowrap;
+    }
+    .nc-secondary:hover { background:rgba(255,255,255,.14); color:#fff; }
+    .nc-dot { width:6px; height:6px; border-radius:50%; background:var(--lime); flex-shrink:0; }
+    .result-retry { display:block; text-align:center; font-size:.78rem; color:#ccc; cursor:pointer; transition:color .2s; }
+    .result-retry:hover { color:#555; }
+
+    @media (max-width:640px) {
+      #nav { padding:0 20px; }
+      .screen { padding:32px 20px; }
+      #s-result { padding:24px 20px 80px; }
+      .color-grid { grid-template-columns:repeat(2,1fr); }
+      .mood-grid { grid-template-columns:repeat(2,1fr); }
+      .nc-btns { flex-direction:column; }
+      .board { padding:22px; }
+      .next-card { padding:24px; }
+    }
+  </style>
+</head>
+<body>
+
+<header id="nav">
+  <a href="index.html" class="nav-logo">
+    <svg width="20" height="20" viewBox="0 0 34 34" fill="none"><circle cx="10" cy="9.5" r="4.5" fill="#D3F45A"/><path d="M17 5 L28 5 L28 20" stroke="#7B61FF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 21 Q10.5 29.5 20 27" stroke="#111" stroke-width="2.8" stroke-linecap="round"/></svg>
+    FINDIER LAB
+  </a>
+  <span class="nav-step" id="navStep">BRAND BOARD MAKER</span>
+</header>
+
+<div class="prog-bar"><div class="prog-fill" id="progFill"></div></div>
+
+<div id="quiz">
+
+  <!-- INTRO -->
+  <div class="screen active" id="s-intro">
+    <div class="intro-badge">Brand Board Maker · FINDIER LAB</div>
+    <h1 class="intro-title">내 브랜드의<br>방향을 잡아보세요</h1>
+    <p class="intro-sub">세계관 · 컬러 · 사이트 느낌 3가지를 정리합니다.<br>상담 전 3분이면 충분해요.</p>
+    <div class="intro-flow">
+      <div class="flow-step hi"><div class="flow-dot"></div>세계관</div>
+      <span class="flow-sep">→</span>
+      <div class="flow-step"><div class="flow-dot"></div>컬러</div>
+      <span class="flow-sep">→</span>
+      <div class="flow-step"><div class="flow-dot"></div>무드</div>
+      <span class="flow-sep">→</span>
+      <div class="flow-step"><div class="flow-dot"></div>보드</div>
+    </div>
+    <button class="start-btn" onclick="start()">시작하기 →</button>
+    <p class="start-note">회원가입 없음 &nbsp;·&nbsp; 3분 소요 &nbsp;·&nbsp; 결과 링크 공유 가능</p>
+  </div>
+
+  <!-- Q1 -->
+  <div class="screen" id="s-q1"><div class="q-wrap" id="q1-wrap"></div></div>
+
+  <!-- Q2 -->
+  <div class="screen" id="s-q2"><div class="q-wrap" id="q2-wrap"></div></div>
+
+  <!-- Q3 -->
+  <div class="screen" id="s-q3"><div class="q-wrap" id="q3-wrap"></div></div>
+
+  <!-- COLOR -->
+  <div class="screen" id="s-color">
+    <div class="picker-wrap">
+      <div class="picker-label">컬러 · COLOR PALETTE</div>
+      <div class="picker-text">브랜드 컬러의 방향을 골라보세요</div>
+      <div class="color-grid" id="colorGrid"></div>
+    </div>
+  </div>
+
+  <!-- MOOD -->
+  <div class="screen" id="s-mood">
+    <div class="picker-wrap">
+      <div class="picker-label">무드 · SITE MOOD</div>
+      <div class="picker-text">사이트의 전체 느낌은?</div>
+      <div class="mood-grid" id="moodGrid"></div>
+    </div>
+  </div>
+
+  <!-- RESULT -->
+  <div class="screen" id="s-result">
+    <div class="result-inner">
+      <div class="result-top">
+        <div class="draft-badge">BRAND BOARD · DRAFT</div>
+        <div class="result-num" id="resultNum"></div>
+      </div>
+      <div class="board" id="resultBoard"></div>
+      <div class="next-card">
+        <div class="nc-kicker">NEXT STEP · FINDIER LAB</div>
+        <div class="nc-title">이 보드를 실제 브랜드로<br>번역해드립니다</div>
+        <div class="nc-desc">컬러와 무드는 출발점이에요. 여기서 브랜드 언어·구조·시스템을 만드는 작업이 진짜 시작입니다. 이 보드를 갖고 상담에 오세요.</div>
+        <div class="nc-btns">
+          <a href="contact.html" class="nc-primary"><span class="nc-dot"></span>30분 무료 상담 신청</a>
+          <button class="nc-secondary" onclick="copyLink()">🔗 링크 복사</button>
+        </div>
+      </div>
+      <span class="result-retry" onclick="restart()">처음부터 다시하기</span>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const QUESTIONS = [
+  {
+    id:'q1', label:'세계관 01 · INDUSTRY',
+    text:'어떤 업종의 브랜드인가요?',
+    opts:[
+      { icon:'💄', text:'뷰티·스킨케어·웰니스' },
+      { icon:'☕', text:'식음료·카페·베이커리' },
+      { icon:'📚', text:'교육·코칭·컨설팅' },
+      { icon:'🛋️', text:'패션·라이프스타일·인테리어' },
+      { icon:'💻', text:'기술·IT·디지털서비스' },
+    ]
+  },
+  {
+    id:'q2', label:'세계관 02 · EMOTION',
+    text:'고객이 내 브랜드를 보고 느꼈으면 하는 감정은?',
+    opts:[
+      { icon:'🛡️', text:'신뢰와 안정감' },
+      { icon:'✨', text:'영감과 자극' },
+      { icon:'☕', text:'편안함과 친근함' },
+      { icon:'🔥', text:'설렘과 기대감' },
+      { icon:'🎯', text:'전문성과 권위' },
+    ]
+  },
+  {
+    id:'q3', label:'세계관 03 · CHARACTER',
+    text:'브랜드 성격을 딱 하나만 고른다면?',
+    opts:[
+      { icon:'🤗', text:'따뜻하고 다정한' },
+      { icon:'⚡', text:'날카롭고 전략적인' },
+      { icon:'💎', text:'고급스럽고 절제된' },
+      { icon:'😄', text:'친근하고 유쾌한' },
+      { icon:'🌀', text:'독립적이고 실험적인' },
+    ]
+  }
+];
+
+const ARCHETYPES = {
+  '따뜻하고 다정한': 'WARM COMPANION',
+  '날카롭고 전략적인': 'SHARP STRATEGIST',
+  '고급스럽고 절제된': 'QUIET PREMIUM',
+  '친근하고 유쾌한': 'FRIENDLY PARTNER',
+  '독립적이고 실험적인': 'BOLD PIONEER',
+};
+
+const PALETTES = [
+  { id:'dark-amber',    num:'NO.01', name:'다크 앰버',      colors:['#111111','#C4883A','#F7F0E6'], kw:'강렬한' },
+  { id:'terracotta',    num:'NO.02', name:'테라코타',        colors:['#FBF6F0','#C96F4A','#3D1200'], kw:'감각적인' },
+  { id:'black-lime',    num:'NO.03', name:'블랙 라임',      colors:['#111111','#D3F45A','#7B61FF'], kw:'현대적인' },
+  { id:'navy-gold',     num:'NO.04', name:'네이비 골드',    colors:['#0F1729','#D4A844','#F0EBD8'], kw:'고급스러운' },
+  { id:'white-coral',   num:'NO.05', name:'화이트 코랄',    colors:['#FFFFFF','#FF6B47','#FFE8E0'], kw:'활기찬' },
+  { id:'forest-cream',  num:'NO.06', name:'포레스트 크림',  colors:['#1A2E1A','#7AB648','#F5F0E8'], kw:'싱그러운' },
+  { id:'lavender-mist', num:'NO.07', name:'라벤더 미스트',  colors:['#F0EEFF','#9B59B6','#2C0A4A'], kw:'몽환적인' },
+  { id:'burgundy',      num:'NO.08', name:'버건디 아이보리', colors:['#FAF0EC','#8B1A1A','#1A0010'], kw:'우아한' },
+  { id:'mint-coral',    num:'NO.09', name:'민트 코랄',      colors:['#E8FBF7','#FF6B6B','#00C9A7'], kw:'발랄한' },
+  { id:'ultra-blue',    num:'NO.10', name:'울트라 블루',    colors:['#0A0E2E','#4A90D9','#A8D8FF'], kw:'테크의' },
+  { id:'sunny',         num:'NO.11', name:'써니 옐로우',    colors:['#FFFBEA','#FFD700','#FF6B00'], kw:'밝고 경쾌한' },
+  { id:'mono',          num:'NO.12', name:'모노크롬',        colors:['#111111','#777777','#F5F5F5'], kw:'미니멀한' },
+];
+
+const MOODS = [
+  { id:'dark-editorial', name:'DARK EDITORIAL',  desc:'강렬하고 독립적인',    bg:'#0E0D0D', lines:['#C4883A','rgba(255,255,255,.55)','rgba(255,255,255,.2)','rgba(255,255,255,.2)'] },
+  { id:'light-minimal',  name:'LIGHT MINIMAL',   desc:'밝고 여백 있는',       bg:'#FAFAFA', lines:['#222222','#888888','#CCCCCC','#CCCCCC'] },
+  { id:'bold-type',      name:'BOLD TYPOGRAPHIC',desc:'타이포가 인상인',       bg:'#111111', lines:['#D3F45A','rgba(255,255,255,.65)','rgba(255,255,255,.25)','rgba(255,255,255,.25)'] },
+  { id:'warm-organic',   name:'WARM ORGANIC',    desc:'따뜻하고 자연스러운',  bg:'#F7F4F0', lines:['#2C1810','#8B6B4A','rgba(44,24,16,.3)','rgba(44,24,16,.3)'] },
+  { id:'clean-corp',     name:'CLEAN CORPORATE', desc:'신뢰감 있는 비즈니스', bg:'#F0F2F5', lines:['#1A1B3A','#C9A84C','rgba(26,27,58,.3)','rgba(26,27,58,.3)'] },
+  { id:'playful',        name:'PLAYFUL BRIGHT',  desc:'밝고 경쾌한 에너지',   bg:'#FFFBEA', lines:['#FF6B00','#FF6B6B','rgba(255,107,0,.35)','rgba(255,107,0,.2)'] },
+  { id:'luxury-dark',    name:'LUXURY DARK',     desc:'절제된 고급스러움',    bg:'#0D0A08', lines:['#D4A844','rgba(212,168,68,.6)','rgba(255,255,255,.15)','rgba(255,255,255,.1)'] },
+  { id:'nature-eco',     name:'NATURE ECO',      desc:'자연·에코 감성',       bg:'#EFF5EC', lines:['#1A2E1A','#7AB648','rgba(26,46,26,.3)','rgba(26,46,26,.2)'] },
+];
+
+const ORDER = ['s-intro','s-q1','s-q2','s-q3','s-color','s-mood','s-result'];
+let cur = 0;
+const S = { q1:null, q2:null, q3:null, color:null, mood:null };
+
+// Render questions
+QUESTIONS.forEach((q, qi) => {
+  const wrap = document.getElementById(`q${qi+1}-wrap`);
+  wrap.innerHTML = `
+    <div class="q-label">${q.label}</div>
+    <div class="q-text">${q.text}</div>
+    <div class="q-options">
+      ${q.opts.map((o, i) => `
+        <button class="q-opt" onclick="pickQ('${q.id}',${i},'${o.text}','s-q${qi+1}')">
+          <span class="q-icon">${o.icon}</span>${o.text}
+        </button>
+      `).join('')}
+    </div>`;
+});
+
+// Render colors
+document.getElementById('colorGrid').innerHTML = PALETTES.map(p => `
+  <div class="color-card" onclick="pickColor('${p.id}')">
+    <div class="color-swatches">${p.colors.map(c=>`<div class="color-swatch" style="background:${c}"></div>`).join('')}</div>
+    <div class="color-meta">
+      <div class="color-num">${p.num}</div>
+      <div class="color-name">${p.name}</div>
+      <div class="color-kw">${p.kw}</div>
+    </div>
+  </div>`).join('');
+
+// Render moods
+document.getElementById('moodGrid').innerHTML = MOODS.map(m => `
+  <div class="mood-card" onclick="pickMood('${m.id}')">
+    <div class="mood-preview" style="background:${m.bg}">
+      <div class="mp-line" style="height:13px;width:65%;background:${m.lines[0]}"></div>
+      <div class="mp-line" style="height:7px;width:88%;background:${m.lines[1]}"></div>
+      <div class="mp-line" style="height:5px;width:80%;background:${m.lines[2]}"></div>
+      <div class="mp-line" style="height:5px;width:55%;background:${m.lines[3]}"></div>
+    </div>
+    <div class="mood-meta">
+      <div class="mood-name">${m.name}</div>
+      <div class="mood-desc">${m.desc}</div>
+    </div>
+  </div>`).join('');
+
+function goTo(from, to) {
+  document.getElementById(from).classList.remove('active');
+  document.getElementById(from).classList.add('exit');
+  setTimeout(() => document.getElementById(from).classList.remove('exit'), 450);
+  document.getElementById(to).classList.add('active');
+  cur = ORDER.indexOf(to);
+  document.getElementById('progFill').style.width = (cur / (ORDER.length-1) * 100) + '%';
+  const labels = ['','01 / 03','02 / 03','03 / 03','COLOUR','MOOD','COMPLETE'];
+  document.getElementById('navStep').textContent = labels[cur] || 'BRAND BOARD';
+}
+
+function next() { if (cur < ORDER.length-1) goTo(ORDER[cur], ORDER[cur+1]); }
+
+function start() {
+  next();
+  gtag('event','board_start');
+  fbq('track','ViewContent',{content_name:'brand_board_maker'});
+}
+
+function pickQ(key, idx, val, fromScreen) {
+  S[key] = val;
+  document.querySelectorAll(`#${fromScreen} .q-opt`).forEach(b => b.disabled = true);
+  setTimeout(next, 240);
+  gtag('event', `board_q${key.slice(1)}`, {value: idx});
+}
+
+function pickColor(id) {
+  S.color = PALETTES.find(p => p.id === id);
+  document.querySelectorAll('.color-card').forEach(c => c.style.pointerEvents = 'none');
+  setTimeout(next, 240);
+  gtag('event','board_color',{color_id: id});
+}
+
+function pickMood(id) {
+  S.mood = MOODS.find(m => m.id === id);
+  document.querySelectorAll('.mood-card').forEach(c => c.style.pointerEvents = 'none');
+  setTimeout(() => { buildResult(); next(); }, 280);
+  gtag('event','board_mood',{mood_id: id});
+  fbq('track','Lead',{content_name:'brand_board_complete'});
+}
+
+function buildResult() {
+  document.getElementById('resultNum').textContent = `#${Date.now().toString().slice(-5)}`;
+  const contactUrl = `contact.html?from=board&q1=${encodeURIComponent(S.q1||'')}&q2=${encodeURIComponent(S.q2||'')}&q3=${encodeURIComponent(S.q3||'')}&color=${encodeURIComponent(S.color?.name||'')}&mood=${encodeURIComponent(S.mood?.name||'')}`;
+  document.querySelector('.nc-primary').href = contactUrl;
+  const arch = ARCHETYPES[S.q3] || '—';
+  document.getElementById('resultBoard').innerHTML = `
+    <div class="bd-row">
+      <div class="bd-lbl">세계관 · WORLDVIEW</div>
+      <div class="bd-worldview">
+        <div class="bd-wv"><div class="bd-key">타겟</div><div class="bd-val">${S.q1||'—'}</div></div>
+        <div class="bd-wv"><div class="bd-key">감정</div><div class="bd-val">${S.q2||'—'}</div></div>
+        <div class="bd-wv"><div class="bd-key">성격</div><div class="bd-val">${S.q3||'—'}</div></div>
+      </div>
+      <div class="bd-archetype">
+        <div class="bd-arch-label">ARCHETYPE</div>
+        <div class="bd-arch-val">${arch}</div>
+      </div>
+    </div>
+    <div class="bd-row">
+      <div class="bd-lbl">컬러 · COLOR</div>
+      <div class="bd-palette">
+        ${S.color ? S.color.colors.map(c=>`<div class="bd-ps" style="background:${c}"></div>`).join('') : ''}
+      </div>
+      <div class="bd-pname">${S.color ? S.color.name : '—'}</div>
+      <div class="bd-pkw">${S.color ? S.color.kw + ' 브랜드' : ''}</div>
+    </div>
+    <div class="bd-row">
+      <div class="bd-lbl">무드 · MOOD</div>
+      ${S.mood ? `
+        <div class="bd-mood-preview" style="background:${S.mood.bg}">
+          <div class="bd-mline" style="height:11px;width:62%;background:${S.mood.lines[0]};margin-bottom:5px"></div>
+          <div class="bd-mline" style="height:6px;width:80%;background:${S.mood.lines[1]}"></div>
+        </div>
+        <div class="bd-mname">${S.mood.name}</div>
+        <div class="bd-mdesc">${S.mood.desc}</div>` : '—'}
+    </div>`;
+
+  const p = new URLSearchParams({ q1:S.q1||'', q2:S.q2||'', q3:S.q3||'', color:S.color?.id||'', mood:S.mood?.id||'' });
+  history.replaceState(null,'',`?${p}`);
+}
+
+function copyLink() {
+  navigator.clipboard.writeText(location.href).then(() => {
+    const btn = document.querySelector('.nc-secondary');
+    btn.textContent = '복사됨 ✓';
+    setTimeout(() => { btn.textContent = '🔗 링크 복사'; }, 2000);
+  });
+}
+
+function restart() {
+  Object.keys(S).forEach(k => S[k] = null);
+  history.replaceState(null,'',location.pathname);
+  document.querySelectorAll('.q-opt').forEach(b => { b.disabled = false; });
+  document.querySelectorAll('.color-card, .mood-card').forEach(c => { c.style.pointerEvents = ''; });
+  goTo('s-result','s-intro');
+}
+
+// URL restore
+(function() {
+  const p = new URLSearchParams(location.search);
+  if (!p.get('color') || !p.get('mood')) return;
+  S.q1 = p.get('q1'); S.q2 = p.get('q2'); S.q3 = p.get('q3');
+  S.color = PALETTES.find(x => x.id === p.get('color'));
+  S.mood = MOODS.find(x => x.id === p.get('mood'));
+  if (S.color && S.mood) {
+    buildResult();
+    document.getElementById('s-intro').classList.remove('active');
+    document.getElementById('s-result').classList.add('active');
+    cur = ORDER.length - 1;
+    document.getElementById('progFill').style.width = '100%';
+    document.getElementById('navStep').textContent = 'COMPLETE';
+  }
+})();
+</script>
+</body>
+</html>
