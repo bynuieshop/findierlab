@@ -99,7 +99,12 @@ footer { border-top: 1px solid var(--border); padding: 48px; text-align: center;
   (async function() {
     const { data: { session } } = await _sb.auth.getSession();
     if (!session) window.location.replace('../login.html');
-    else document.body.style.visibility = 'visible';
+    else {
+      if (document.body) document.body.style.visibility = 'visible';
+      else document.addEventListener('DOMContentLoaded', function() {
+        document.body.style.visibility = 'visible';
+      });
+    }
   })();
 </script>
 </head>
