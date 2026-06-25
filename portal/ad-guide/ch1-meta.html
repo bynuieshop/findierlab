@@ -80,6 +80,22 @@ nav { position: fixed; top: 0; left: 0; right: 0; height: 64px; background: rgba
 .btn-primary { background: var(--lime); color: var(--black); }
 .btn-secondary { background: rgba(255,255,255,.08); color: #fff; }
 .btn:hover { opacity: .8; }
+/* DIAGNOSTIC */
+.diag { display: flex; flex-direction: column; gap: 2px; margin-top: 16px; }
+.diag-row { display: grid; grid-template-columns: 180px 1fr 1fr; gap: 16px; align-items: flex-start; padding: 18px 20px; background: rgba(255,255,255,.04); }
+.diag-row.header { background: rgba(24,119,242,.08); }
+.diag-signal { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 800; color: #FF8080; line-height: 1.4; }
+.diag-cause { font-size: 13px; color: rgba(255,255,255,.4); line-height: 1.55; }
+.diag-action { font-size: 13px; color: rgba(255,255,255,.65); line-height: 1.55; }
+.diag-row.header .diag-signal, .diag-row.header .diag-cause, .diag-row.header .diag-action { font-size: 11px; font-weight: 700; letter-spacing: .08em; color: rgba(255,255,255,.3); text-transform: uppercase; }
+/* STOP CRITERIA */
+.stop-grid { display: flex; flex-direction: column; gap: 2px; margin-top: 16px; }
+.stop-row { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; padding: 20px 24px; background: rgba(255,255,255,.04); }
+.stop-cond { font-size: 15px; font-weight: 600; }
+.stop-verdict { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 6px 14px; flex-shrink: 0; white-space: nowrap; }
+.stop-verdict.stop { background: rgba(255,80,80,.15); color: #FF8080; }
+.stop-verdict.wait { background: rgba(211,244,90,.1); color: #D3F45A; }
+.stop-verdict.scale { background: rgba(24,119,242,.15); color: #5BA4FF; }
 footer { border-top: 1px solid var(--border); padding: 48px; text-align: center; }
 .footer-logo { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 900; letter-spacing: .2em; color: rgba(255,255,255,.2); text-transform: uppercase; margin-bottom: 8px; }
 .footer-sub { font-size: 13px; color: rgba(255,255,255,.2); }
@@ -89,6 +105,9 @@ footer { border-top: 1px solid var(--border); padding: 48px; text-align: center;
   .structure, .budget-grid { grid-template-columns: 1fr; }
   .metric-row { grid-template-columns: 100px 1fr; }
   .metric-full { display: none; }
+  .diag-row { grid-template-columns: 1fr; }
+  .diag-cause { display: none; }
+  .stop-row { grid-template-columns: 1fr; gap: 8px; }
 }
 </style>
 <script>
@@ -312,6 +331,26 @@ footer { border-top: 1px solid var(--border); padding: 48px; text-align: center;
           <div class="step-desc">"Advantage+ 게재 위치"(자동)를 선택하면 메타가 알아서 최적 위치에 노출합니다. 처음엔 자동 추천.</div>
         </div>
       </div>
+      <div class="step" style="border-left:3px solid rgba(211,244,90,.3);margin-top:24px;">
+        <div class="step-n" style="background:rgba(211,244,90,.08);color:#D3F45A;">5</div>
+        <div class="step-body">
+          <div class="step-title">맞춤 타겟 — 내 사이트 방문자에게 다시 보여주기 <span style="font-size:11px;font-weight:700;color:#D3F45A;background:rgba(211,244,90,.1);padding:3px 8px;margin-left:8px;">방문자 100명+ 이후</span></div>
+          <div class="step-desc">한 번 방문한 사람에게 다시 광고를 보여주는 리타겟팅입니다. 이미 관심을 보인 사람이라 전환율이 관심사 타겟의 2~3배 높습니다.<br><br>광고 세트 → 맞춤 타겟 → "새 맞춤 타겟 만들기" → 웹사이트 → 최근 30일 방문자 선택</div>
+          <div class="step-path">광고 세트 <span style="color:rgba(255,255,255,.2)">→</span> 맞춤 타겟 <span style="color:rgba(255,255,255,.2)">→</span> 새 맞춤 타겟 만들기 <span style="color:rgba(255,255,255,.2)">→</span> 웹사이트 30일</div>
+        </div>
+      </div>
+      <div class="step" style="border-left:3px solid rgba(211,244,90,.3);">
+        <div class="step-n" style="background:rgba(211,244,90,.08);color:#D3F45A;">6</div>
+        <div class="step-body">
+          <div class="step-title">유사 타겟 — 기존 고객과 비슷한 신규 고객 자동 탐색 <span style="font-size:11px;font-weight:700;color:#D3F45A;background:rgba(211,244,90,.1);padding:3px 8px;margin-left:8px;">맞춤 타겟 50명+ 이후</span></div>
+          <div class="step-desc">기존 방문자·구매자 데이터를 기반으로 메타가 비슷한 성향의 새로운 사람을 찾아줍니다. 관심사 타겟보다 정확도가 높습니다.<br><br>맞춤 타겟 → "유사 타겟 만들기" → 소스: 방문자 맞춤 타겟 선택 → 국가: 대한민국 → 유사율 1~3%</div>
+          <div class="step-path">맞춤 타겟 <span style="color:rgba(255,255,255,.2)">→</span> 유사 타겟 만들기 <span style="color:rgba(255,255,255,.2)">→</span> 유사율 1~3%</div>
+        </div>
+      </div>
+    </div>
+    <div class="tip" style="margin-top:16px;">
+      <div class="tip-icon">📈</div>
+      <div class="tip-text"><strong>타겟 성장 순서:</strong> ① 관심사 타겟으로 시작 → ② 방문자 100명 쌓이면 맞춤 타겟(리타겟팅) 추가 → ③ 구매·리드 50명 쌓이면 유사 타겟으로 신규 고객 확장. 이 순서를 지키면 광고 효율이 단계적으로 높아집니다.</div>
     </div>
   </div>
 
@@ -344,6 +383,10 @@ footer { border-top: 1px solid var(--border); padding: 48px; text-align: center;
     <div class="warn" style="margin-top:24px;">
       <div class="warn-icon">⚠️</div>
       <div class="warn-text"><strong>광고 학습 기간은 최소 7일입니다.</strong> 메타가 최적화하려면 데이터가 필요합니다. 3일 만에 성과가 없다고 끄지 마세요. 학습 기간 중 임의로 수정하면 학습이 초기화됩니다.</div>
+    </div>
+    <div class="tip" style="margin-top:16px;">
+      <div class="tip-icon">📐</div>
+      <div class="tip-text"><strong>예산 늘리는 공식 (20% 룰):</strong> 성과가 검증된 광고의 예산은 한 번에 최대 20%씩만 올리세요. 1만원 → 1.2만원 → 1.5만원 → 1.8만원 식으로 단계적으로. 한 번에 2배 이상 올리면 학습이 리셋됩니다. 올린 후 최소 3일은 유지하고 다시 평가하세요.</div>
     </div>
   </div>
 
@@ -433,6 +476,73 @@ footer { border-top: 1px solid var(--border); padding: 48px; text-align: center;
       <div class="tip-icon">💡</div>
       <div class="tip-text"><strong>손익분기점 ROAS 계산:</strong> 광고비를 회수하려면 ROAS가 (판매가 ÷ 마진) × 100% 이상이어야 합니다. 판매가 10만원, 마진 40%라면 손익분기 ROAS = 250%.</div>
     </div>
+    <div style="margin-top:48px;">
+      <div style="font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:.2em;color:rgba(255,255,255,.25);text-transform:uppercase;margin-bottom:16px;">지표 이상 징후 → 진단 가이드</div>
+      <div class="diag">
+        <div class="diag-row header">
+          <div class="diag-signal">이런 신호가 보이면</div>
+          <div class="diag-cause">원인</div>
+          <div class="diag-action">해결책</div>
+        </div>
+        <div class="diag-row">
+          <div class="diag-signal">CPM이 높다<br><span style="font-size:11px;color:rgba(255,255,255,.3);font-weight:400;">1만원 이상</span></div>
+          <div class="diag-cause">타겟이 너무 좁거나, 경쟁이 많은 오디언스에 겹침. 계정 초기엔 원래 높음</div>
+          <div class="diag-action">타겟을 조금 넓히거나, 노출 위치를 자동(Advantage+)으로 설정. 계정 초기라면 정상 범위</div>
+        </div>
+        <div class="diag-row">
+          <div class="diag-signal">CTR이 낮다<br><span style="font-size:11px;color:rgba(255,255,255,.3);font-weight:400;">1% 미만</span></div>
+          <div class="diag-cause">소재가 스크롤을 멈추게 하지 못함. 타겟과 소재가 맞지 않음</div>
+          <div class="diag-action">이미지·영상 교체. 첫 줄 문구 수정. 소재 2~3종 A/B 테스트 진행</div>
+        </div>
+        <div class="diag-row">
+          <div class="diag-signal">CPC가 높다<br><span style="font-size:11px;color:rgba(255,255,255,.3);font-weight:400;">2,000원 이상</span></div>
+          <div class="diag-cause">CTR이 낮아 클릭 한 번을 얻기 어려움. CTR과 CPC는 반비례 관계</div>
+          <div class="diag-action">CTR 높이기가 우선. 소재 개선 → CTR 오르면 CPC는 자연히 낮아짐</div>
+        </div>
+        <div class="diag-row">
+          <div class="diag-signal">클릭은 많은데<br>문의·구매가 없다</div>
+          <div class="diag-cause">광고 자체는 잘 되고 있음. 랜딩 페이지(사이트)에서 이탈하는 것</div>
+          <div class="diag-action">랜딩 페이지 개선. 문의 버튼 위치 확인. GA4로 이탈 구간 확인</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 광고 멈추는 기준 -->
+  <div class="guide-section">
+    <div class="gs-header">
+      <div class="gs-num">STEP 8</div>
+      <div>
+        <div class="gs-title">광고 멈추는 기준</div>
+        <div class="gs-sub">언제 끄고, 언제 기다리고, 언제 올릴지. 초보 사장님이 가장 많이 실수하는 부분입니다.</div>
+      </div>
+    </div>
+    <div class="stop-grid">
+      <div class="stop-row">
+        <div class="stop-cond">학습 기간(7일) 이전인데 성과가 안 나온다</div>
+        <div class="stop-verdict wait">기다리기</div>
+      </div>
+      <div class="stop-row">
+        <div class="stop-cond">CPM·CTR·CPC는 정상인데 문의·구매가 없다</div>
+        <div class="stop-verdict wait">랜딩 페이지 점검</div>
+      </div>
+      <div class="stop-row">
+        <div class="stop-cond">7일 이상 지났는데 CTR이 계속 1% 미만</div>
+        <div class="stop-verdict stop">소재 교체</div>
+      </div>
+      <div class="stop-row">
+        <div class="stop-cond">목표 CPC의 3배 이상이 2주 이상 지속된다</div>
+        <div class="stop-verdict stop">광고 세트 재설정</div>
+      </div>
+      <div class="stop-row">
+        <div class="stop-cond">ROAS가 손익분기점을 안정적으로 넘긴다</div>
+        <div class="stop-verdict scale">예산 20% 증액</div>
+      </div>
+    </div>
+    <div class="warn" style="margin-top:24px;">
+      <div class="warn-icon">⚠️</div>
+      <div class="warn-text"><strong>광고를 껐다 켜면 학습이 초기화됩니다.</strong> 7일은 무조건 유지하세요. 수정이 필요하다면 "광고" 단위(소재·문구)만 교체하고, 캠페인과 광고 세트는 건드리지 마세요.</div>
+    </div>
   </div>
 
   <!-- 체크리스트 -->
@@ -448,9 +558,12 @@ footer { border-top: 1px solid var(--border); padding: 48px; text-align: center;
       <div class="check-item"><div class="check-box"></div>광고 계정 생성 + 결제 수단 등록</div>
       <div class="check-item"><div class="check-box"></div>인스타그램 계정 연결됨</div>
       <div class="check-item"><div class="check-box"></div>메타 픽셀 사이트에 설치됨 (PREP 완료 확인)</div>
-      <div class="check-item"><div class="check-box"></div>소재 이미지 2종 이상 준비됨</div>
-      <div class="check-item"><div class="check-box"></div>랜딩 페이지 URL 확인됨</div>
-      <div class="check-item"><div class="check-box"></div>일 예산 설정됨 (테스트: 1~3만원)</div>
+      <div class="check-item"><div class="check-box"></div>소재 이미지 2종 이상 준비됨 (1080×1080 또는 1080×1350)</div>
+      <div class="check-item"><div class="check-box"></div>광고 문구 작성됨 (메인 텍스트 + 헤드라인)</div>
+      <div class="check-item"><div class="check-box"></div>랜딩 페이지 URL 확인 + 페이지 정상 작동</div>
+      <div class="check-item"><div class="check-box"></div>캠페인 목표: 트래픽 선택 (초기 단계)</div>
+      <div class="check-item"><div class="check-box"></div>일 예산 설정됨 (테스트: 1~3만원, 최소 7일 유지 결심)</div>
+      <div class="check-item"><div class="check-box"></div>광고 미리보기에서 모바일 화면 확인됨</div>
     </div>
   </div>
 
