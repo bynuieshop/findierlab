@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5VTZY9P51Z"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-5VTZY9P51Z');
+  </script>
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '4441503009403677');
+    fbq('track', 'PageView');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FINDIER LAB — Links</title>
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --lime:   #D3F45A;
+      --purple: #7B61FF;
+      --cyan:   #4DE7FF;
+      --black:  #111111;
+      --gray:   #1E1E1E;
+      --border: rgba(255,255,255,0.1);
+    }
+    html, body {
+      min-height: 100%;
+      background: var(--black);
+      font-family: 'Pretendard', 'Inter', -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      color: #fff;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 56px 24px 48px;
+    }
+
+    /* 프로필 */
+    .profile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 40px;
+    }
+    .profile-logo {
+      width: 64px;
+      height: 64px;
+      background: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .profile-name {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: .06em;
+      color: #fff;
+    }
+    .profile-handle {
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.45);
+      margin-top: -8px;
+    }
+    .profile-bio {
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      text-align: center;
+      line-height: 1.6;
+      max-width: 240px;
+    }
+
+    /* 링크 버튼 */
+    .links {
+      width: 100%;
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .link-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 22px;
+      border-radius: 14px;
+      text-decoration: none;
+      transition: transform .15s, opacity .15s;
+      border: 1px solid var(--border);
+    }
+    .link-btn:active { transform: scale(.97); opacity: .85; }
+    .link-btn-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .link-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      opacity: .55;
+    }
+    .link-title {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -.02em;
+    }
+    .link-arrow {
+      font-size: 18px;
+      opacity: .5;
+      flex-shrink: 0;
+    }
+
+    /* 버튼별 컬러 */
+    .btn-lime   { background: var(--lime);   color: var(--black); border-color: transparent; }
+    .btn-lime .link-label { opacity: .5; }
+    .btn-purple { background: var(--purple); color: #fff; border-color: transparent; }
+    .btn-dark   { background: var(--gray);   color: #fff; }
+    .btn-white  { background: #fff;          color: var(--black); border-color: transparent; }
+    .btn-white .link-label { opacity: .45; }
+
+    /* 푸터 */
+    .footer {
+      margin-top: 48px;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      color: rgba(255,255,255,0.2);
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="profile">
+    <div class="profile-logo">
+      <svg width="36" height="36" viewBox="0 0 34 34" fill="none">
+        <circle cx="10" cy="9.5" r="4.5" fill="#D3F45A"/>
+        <path d="M17 5 L28 5 L28 20" stroke="#7B61FF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M6.5 21 Q10.5 29.5 20 27" stroke="#111" stroke-width="2.8" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="profile-name">FINDIER LAB</div>
+    <div class="profile-handle">@findier.lab</div>
+    <div class="profile-bio">대표의 생각을<br>실행 가능한 회사로 번역합니다.</div>
+  </div>
+
+  <div class="links">
+    <a href="https://findierlab.com/guide-meta" class="link-btn btn-lime" onclick="gtag('event','link_click',{link:'guide-meta'});fbq('track','Lead');">
+      <div class="link-btn-inner">
+        <span class="link-label">무료 자료</span>
+        <span class="link-title">메타광고 무료 가이드</span>
+      </div>
+      <span class="link-arrow">→</span>
+    </a>
+
+    <a href="https://findierlab.com/diagnose" class="link-btn btn-purple" onclick="gtag('event','link_click',{link:'diagnose'});fbq('track','Lead');">
+      <div class="link-btn-inner">
+        <span class="link-label">무료 진단</span>
+        <span class="link-title">무료 브랜드 진단</span>
+      </div>
+      <span class="link-arrow">→</span>
+    </a>
+
+    <a href="https://findierlab.com" class="link-btn btn-dark" onclick="gtag('event','link_click',{link:'home'});">
+      <div class="link-btn-inner">
+        <span class="link-label">공식 사이트</span>
+        <span class="link-title">파인디어랩 홈페이지</span>
+      </div>
+      <span class="link-arrow">→</span>
+    </a>
+
+    <a href="https://findierlab.com/contact" class="link-btn btn-white" onclick="gtag('event','link_click',{link:'contact'});fbq('track','Contact');">
+      <div class="link-btn-inner">
+        <span class="link-label">상담 신청</span>
+        <span class="link-title">30분 무료 상담</span>
+      </div>
+      <span class="link-arrow">→</span>
+    </a>
+  </div>
+
+  <div class="footer">FINDIER LAB © 2026</div>
+
+</body>
+</html>
