@@ -395,7 +395,7 @@
     <h1 class="hero-headline">
       <span id="hero-typed"></span><span id="hero-cursor" class="typing-cursor">|</span>
     </h1>
-    <p class="hero-body">방향이 없는 게 아닙니다.<br><strong>아직 번역이 안 된 겁니다.</strong></p>
+    <p class="hero-body">디자이너를 찾기 전에, 먼저 브랜드 언어가 필요합니다.<br><strong>파인디어랩은 대표의 생각을 구조로 번역합니다.</strong></p>
     <div class="hero-symptoms">
       <span class="hero-symptom"><span class="hs-x">✕</span>뭐부터 해야 할지 모르겠음</span>
       <span class="hero-symptom"><span class="hs-x">✕</span>외주 후 내 이야기 사라짐</span>
@@ -752,17 +752,19 @@ document.querySelectorAll('.fade').forEach(el => fader.observe(el));
 (function () {
   const texts = [
     {
-      str: window.innerWidth < 768 ? "방향이 없는 게\n아닙니다" : "방향이 없는 게 아닙니다",
+      str: window.innerWidth < 768 ? "브랜딩하기 전에\n번역부터 하세요." : "브랜딩하기 전에 번역부터 하세요.",
       segs: [
-        { s: 0, e: 3,  color: '#D3F45A' },
-        { s: 3, e: 99, color: null      }
+        { s: 0,  e: 6,  color: null       },
+        { s: 6,  e: 8,  color: '#D3F45A'  },
+        { s: 8,  e: 99, color: null       }
       ]
     },
     {
-      str: "번역이 없는 겁니다",
+      str: "우리는 번역하는 연구소입니다.",
       segs: [
-        { s: 0, e: 3, color: '#7B61FF' },
-        { s: 3, e: 99, color: null     }
+        { s: 0, e: 4,  color: null      },
+        { s: 4, e: 8,  color: '#7B61FF' },
+        { s: 8, e: 99, color: null      }
       ]
     }
   ];
