@@ -113,18 +113,16 @@
     .cta-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--lime); }
 
     /* FOOTER */
-    #footer { background: var(--black); padding: 0; }
-    .footer-brand-quote { padding: 56px 80px 48px; }
-    .fbq-text { font-size: clamp(.95rem,1.6vw,1.3rem); font-weight: 900; line-height: 1.5; letter-spacing: -.025em; color: rgba(255,255,255,.55); margin-bottom: 8px; }
-    .fbq-sub { font-size: .8rem; color: rgba(255,255,255,.22); letter-spacing: .06em; }
-    .footer-top { display: flex; justify-content: space-between; align-items: center; padding: 40px 80px; border-bottom: 1px solid rgba(255,255,255,.08); }
+    #footer { background: var(--black); padding: 0; border-top: 1px solid rgba(255,255,255,.08); }
+    .footer-top { display: flex; justify-content: space-between; align-items: center; padding: 40px 80px; }
     .footer-logo { font-family: 'Inter',sans-serif; font-size: 15px; font-weight: 800; letter-spacing: .06em; color: #fff; }
     .footer-tagline { font-size: 10px; color: rgba(255,255,255,.28); letter-spacing: .14em; margin-top: 5px; }
     .footer-links { display: flex; gap: 28px; }
     .footer-links a { font-size: 11px; font-weight: 500; letter-spacing: .1em; color: rgba(255,255,255,.35); text-transform: uppercase; transition: color .2s; }
     .footer-links a:hover { color: rgba(255,255,255,.8); }
     .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding: 24px 80px 32px; }
-    .footer-copy { font-size: 10px; color: rgba(255,255,255,.18); letter-spacing: .06em; }
+    .footer-copy { font-size: 10px; color: rgba(255,255,255,.18); letter-spacing: .06em; line-height: 1.8; }
+    .footer-legal { color: rgba(255,255,255,.3); }
     .footer-gradbar { width: 80px; height: 2px; border-radius: 2px; background: linear-gradient(90deg,#D3F45A,#7B61FF,#4DE7FF); }
 
     @media (max-width: 1024px) {
@@ -139,7 +137,6 @@
       #statement { padding: 60px 48px; gap: 48px; }
       .stmt-right { padding-left: 40px; }
       #cta { padding: 80px 48px; }
-      .footer-brand-quote { padding: 48px 48px 40px; }
       .footer-top { padding: 36px 48px; }
       .footer-bottom { padding: 20px 48px 28px; }
     }
@@ -170,7 +167,6 @@
       #statement { grid-template-columns: 1fr; padding: 52px 24px; gap: 32px; }
       .stmt-right { border-left: none; padding-left: 0; border-top: 1px solid rgba(255,255,255,.08); padding-top: 28px; }
       #cta { padding: 64px 24px; }
-      .footer-brand-quote { padding: 40px 24px 32px; }
       .footer-top { padding: 28px 24px; flex-direction: column; gap: 20px; align-items: flex-start; }
       .footer-links { flex-wrap: wrap; gap: 14px; }
       .footer-bottom { padding: 16px 24px 24px; flex-direction: column; gap: 10px; align-items: flex-start; }
@@ -194,12 +190,12 @@
 
 <header id="nav">
   <a href="index.html" class="nav-logo">
-    <svg width="32" height="32" viewBox="0 0 34 34" fill="none"><circle cx="10" cy="9.5" r="4.5" fill="#D3F45A"/><path d="M17 5 L28 5 L28 20" stroke="#7B61FF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 21 Q10.5 29.5 20 27" stroke="#111" stroke-width="2.8" stroke-linecap="round" fill="none"/></svg>
+    <svg width="34" height="34" viewBox="0 0 34 34" fill="none"><circle cx="10" cy="9.5" r="4.5" fill="#D3F45A"/><path d="M17 5 L28 5 L28 20" stroke="#7B61FF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 21 Q10.5 29.5 20 27" stroke="#111" stroke-width="2.8" stroke-linecap="round" fill="none"/></svg>
     <span class="nav-logo-text">FINDIER LAB</span>
   </a>
   <ul class="nav-menu">
     <li><a href="service.html">SERVICE</a></li>
-    <li><a href="works.html">WORK</a></li>
+    <li><a href="works.html">PORTFOLIO</a></li>
     <li><a href="process.html" class="active">PROCESS</a></li>
     <li><a href="lab.html">LAB</a></li>
     <li><a href="events.html">EVENT</a></li>
@@ -214,7 +210,7 @@
 </header>
 <div id="mobileMenu">
   <a href="service.html" class="mob-link">SERVICE</a>
-  <a href="works.html" class="mob-link">WORK</a>
+  <a href="works.html" class="mob-link">PORTFOLIO</a>
   <a href="process.html" class="mob-link active">PROCESS</a>
   <a href="lab.html" class="mob-link">LAB</a>
   <a href="events.html" class="mob-link">EVENT</a>
@@ -402,14 +398,10 @@
 
 <!-- FOOTER -->
 <footer id="footer">
-  <div class="footer-brand-quote fade">
-    <p class="fbq-text">브랜드를 만들어드리는 것이 아닙니다. 당신이 말할 수 있는 구조를 함께 만듭니다.</p>
-    <p class="fbq-sub">대표의 생각을 실행 가능한 회사로 번역합니다.</p>
-  </div>
   <div class="footer-top">
     <div><div class="footer-logo">FINDIER LAB</div><div class="footer-tagline">BRAND RESEARCH &amp; BUILDING LAB</div></div>
     <div class="footer-links">
-      <a href="service.html">SERVICE</a><a href="works.html">WORK</a>
+      <a href="service.html">SERVICE</a><a href="works.html">PORTFOLIO</a>
       <a href="process.html">PROCESS</a><a href="lab.html">LAB</a>
       <a href="events.html">EVENT</a>
       <a href="about.html">ABOUT</a><a href="contact.html">CONTACT</a>
@@ -417,7 +409,10 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <span class="footer-copy">© 2026 FINDIER LAB. All rights reserved.</span>
+    <div class="footer-copy">
+      <div class="footer-legal">FINDIER LAB &nbsp;|&nbsp; 대표 박선유 &nbsp;|&nbsp; findierlab@gmail.com</div>
+      © 2026 FINDIER LAB. All rights reserved.
+    </div>
     <div class="footer-gradbar"></div>
   </div>
 </footer>

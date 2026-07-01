@@ -124,6 +124,7 @@
     }
     .section-eyebrow { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 600; letter-spacing: .2em; color: var(--t-muted); text-transform: uppercase; margin-bottom: 24px; }
     .how-title { font-size: clamp(1.6rem,2.5vw,2.2rem); font-weight: 900; line-height: 1.3; letter-spacing: -.025em; margin-bottom: 20px; color: var(--black); }
+    .how-sub { font-size: .95rem; color: #888; margin-bottom: 24px; }
     .how-title .underbar { position: relative; display: inline-block; }
     .how-title .underbar::after { content: ''; position: absolute; left: 0; right: 0; bottom: -2px; height: 3px; background: linear-gradient(90deg,#D3F45A,#7B61FF,#4DE7FF); border-radius: 2px; }
     .how-body { font-size: .92rem; color: var(--t-soft); line-height: 1.9; margin-bottom: 12px; }
@@ -202,6 +203,20 @@
     .voice-result-open { font-family:'Inter',sans-serif; font-size:9px; font-weight:700; letter-spacing:.12em; color:rgba(255,255,255,.18); margin-top:32px; padding-top:24px; border-top:1px solid rgba(255,255,255,.07); text-transform:uppercase; display:flex; align-items:center; gap:8px; }
     .voice-result-open::before { content:''; width:4px; height:4px; border-radius:50%; background:rgba(255,255,255,.18); flex-shrink:0; }
 
+    /* PRICING TEASER */
+    #price-teaser { padding: 100px 80px; border-top: 1px solid var(--gray2); }
+    .pt-header { margin-bottom: 44px; }
+    .pt-title { font-size: clamp(1.8rem,3vw,2.6rem); font-weight: 900; letter-spacing: -.03em; margin: 12px 0 20px; }
+    .pt-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .pt-card { position: relative; display: block; border: 1.5px solid var(--gray2); border-radius: 20px; padding: 28px 26px; transition: border-color .25s, box-shadow .25s; }
+    .pt-card:hover { border-color: #ccc; box-shadow: 0 8px 32px rgba(0,0,0,.06); }
+    .pt-featured { border-color: var(--purple); box-shadow: 0 8px 36px rgba(123,97,255,.13); }
+    .pt-featured-badge { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: var(--purple); color: #fff; font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; white-space: nowrap; }
+    .pt-num { font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 14px; }
+    .pt-price { font-family: 'Inter',sans-serif; font-size: 1.5rem; font-weight: 900; letter-spacing: -.03em; margin-bottom: 4px; }
+    .pt-period { font-size: .78rem; color: #999; margin-bottom: 14px; }
+    .pt-desc { font-size: .84rem; color: #666; line-height: 1.6; }
+
     /* CTA */
     #cta {
       margin: 80px 64px 80px;
@@ -261,12 +276,7 @@
     .fr-adv-btn:hover { opacity: .85; }
 
     /* FOOTER */
-    #footer { background: var(--black); padding: 0; }
-    .footer-brand-quote { padding: 80px 80px 56px; }
-    .fbq-eyebrow { font-family:'Inter',sans-serif; font-size:9px; font-weight:700; letter-spacing:.2em; color:rgba(255,255,255,.18); text-transform:uppercase; margin-bottom:24px; }
-    .fbq-line1 { font-size:clamp(1rem,1.8vw,1.4rem); font-weight:900; line-height:1.5; letter-spacing:-.02em; color:rgba(255,255,255,.25); margin-bottom:4px; }
-    .fbq-line2 { font-size:clamp(1.8rem,3.4vw,3.2rem); font-weight:900; line-height:1.18; letter-spacing:-.035em; color:#fff; }
-    .footer-divider { margin: 56px 80px 0; height: 1px; background: rgba(255,255,255,.08); }
+    #footer { background: var(--black); padding: 0; border-top: 1px solid rgba(255,255,255,.08); }
     .footer-top { display: flex; justify-content: space-between; align-items: center; padding: 32px 80px; }
     .footer-logo { font-family: 'Inter',sans-serif; font-size: 15px; font-weight: 800; letter-spacing: .06em; color: #fff; }
     .footer-tagline { font-size: 10px; color: rgba(255,255,255,.25); letter-spacing: .14em; margin-top: 6px; }
@@ -274,7 +284,8 @@
     .footer-links a { font-size: 11px; font-weight: 500; letter-spacing: .1em; color: rgba(255,255,255,.3); text-transform: uppercase; transition: color .2s; }
     .footer-links a:hover { color: rgba(255,255,255,.8); }
     .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding: 20px 80px 36px; }
-    .footer-copy { font-size: 10px; color: rgba(255,255,255,.15); letter-spacing: .06em; }
+    .footer-copy { font-size: 10px; color: rgba(255,255,255,.15); letter-spacing: .06em; line-height: 1.8; }
+    .footer-legal { color: rgba(255,255,255,.3); }
     .footer-gradbar { width: 100px; height: 2px; border-radius: 2px; background: linear-gradient(90deg,#D3F45A,#7B61FF,#4DE7FF); }
 
     /* HAMBURGER */
@@ -296,10 +307,9 @@
       .nav-menu { gap: 20px; }
       .hero-left { padding: 40px 36px 40px 48px; }
       #how { padding: 80px 48px; }
-      #clients { padding: 60px 48px 56px; }
-      .fr-inner { padding: 0 48px; }
+      #price-teaser { padding: 64px 48px; }
+      .pt-grid { grid-template-columns: 1fr; }
       #cta { margin: 0 48px 64px; padding: 60px; }
-      .footer-brand-quote { padding: 48px 48px 40px; }
       .footer-top { padding: 36px 48px; }
       .footer-bottom { padding: 20px 48px 28px; }
     }
@@ -320,11 +330,6 @@
       .step-card { padding: 0; }
       .step-card:not(:first-child)::before { display: none; }
       .step-card:not(:first-child) { padding-top: 24px; border-top: 1px solid var(--gray2); }
-      #clients { padding: 56px 24px 72px; }
-      .clients-header { flex-direction: column; gap: 16px; align-items: flex-start; }
-      .clients-row { flex-wrap: wrap; }
-      .client-item { flex: 0 0 50%; border-right: none; border-bottom: 1px solid var(--gray2); font-size: 13px; }
-      .client-item.recruiting { flex: 0 0 100%; margin-left: 0; margin-top: 12px; border-bottom: none; }
       #voices { padding: 72px 24px; }
       .voices-head { flex-direction: column; align-items: flex-start; gap: 16px; margin-bottom: 48px; }
       .voices-head-note { text-align: left; }
@@ -332,20 +337,11 @@
       .voice-left { border-right: none; border-bottom: 1px solid rgba(255,255,255,.06); padding: 32px 24px; }
       .voice-right { padding: 28px 24px; }
       .voice-bubble { padding: 20px 22px; }
-      #free-resources { padding: 56px 0; }
-      .fr-inner { padding: 0 24px; }
-      .fr-header { flex-direction: column; align-items: flex-start; gap: 8px; }
-      .fr-header-note { text-align: left; }
-      .fr-diag { flex-direction: column; gap: 20px; padding: 28px 24px; }
-      .fr-diag-visual { display: none; }
-      .fr-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-      .fr-advanced { flex-direction: column; gap: 16px; padding: 24px; }
-      .fr-adv-btn { justify-content: center; }
+      #price-teaser { padding: 56px 24px; }
+      .pt-grid { grid-template-columns: 1fr; }
       #cta { margin: 0 16px 48px; padding: 40px 28px; grid-template-columns: 1fr; gap: 24px; }
       .cta-circle { width: 64px; height: 64px; }
       .cta-watermark { display: none; }
-      .footer-brand-quote { padding: 48px 24px 40px; }
-      .footer-divider { margin: 0 24px; }
       .footer-top { padding: 28px 24px; flex-direction: column; gap: 20px; align-items: flex-start; }
       .footer-links { flex-wrap: wrap; gap: 14px; }
       .footer-bottom { padding: 16px 24px 28px; flex-direction: column; gap: 10px; align-items: flex-start; }
@@ -381,7 +377,7 @@
   </a>
   <ul class="nav-menu">
     <li><a href="service.html">SERVICE</a></li>
-    <li><a href="works.html">WORK</a></li>
+    <li><a href="works.html">PORTFOLIO</a></li>
     <li><a href="process.html">PROCESS</a></li>
     <li><a href="lab.html">LAB</a></li>
     <li><a href="events.html">EVENT</a></li>
@@ -398,7 +394,7 @@
 </header>
 <div id="mobileMenu">
   <a href="service.html" class="mob-link">SERVICE</a>
-  <a href="works.html" class="mob-link">WORK</a>
+  <a href="works.html" class="mob-link">PORTFOLIO</a>
   <a href="process.html" class="mob-link">PROCESS</a>
   <a href="lab.html" class="mob-link">LAB</a>
   <a href="events.html" class="mob-link">EVENT</a>
@@ -414,16 +410,11 @@
     <h1 class="hero-headline">
       <span id="hero-typed"></span><span id="hero-cursor" class="typing-cursor">|</span>
     </h1>
-    <p class="hero-body">디자이너를 찾기 전에, 먼저 브랜드 언어가 필요합니다.<br><strong>파인디어랩은 대표의 생각을 구조로 번역합니다.</strong></p>
+    <p class="hero-body"><strong>대표의 생각을 구조로 번역하는 곳.</strong></p>
     <div class="hero-symptoms">
       <span class="hero-symptom"><span class="hs-x">✕</span>뭐부터 해야 할지 모르겠음</span>
       <span class="hero-symptom"><span class="hs-x">✕</span>외주 후 내 이야기 사라짐</span>
       <span class="hero-symptom"><span class="hs-x">✕</span>AI 써봤더니 일만 늘어남</span>
-    </div>
-    <div class="hero-steps">
-      <span class="hero-step"><span class="step-dot" style="background:#D3F45A;"></span>브랜드</span>
-      <span class="hero-step"><span class="step-dot" style="background:#4DE7FF;"></span>시스템</span>
-      <span class="hero-step"><span class="step-dot" style="background:#7B61FF;"></span>콘텐츠</span>
     </div>
     <div class="hero-cta-wrap">
       <a href="contact.html" class="hero-cta">30분 무료 상담 →</a>
@@ -443,28 +434,12 @@
         번역하는<br>
         우리의 방식
       </h2>
-      <div class="how-formula">
-        <div class="how-formula-row">
-          <span class="hf-in">대표의 언어</span>
-          <span class="hf-arrow">→</span>
-          <span class="hf-out" style="color:#D3F45A;">브랜드 언어</span>
-        </div>
-        <div class="how-formula-row">
-          <span class="hf-in">직관과 아이디어</span>
-          <span class="hf-arrow">→</span>
-          <span class="hf-out" style="color:#7B61FF;">실행 구조</span>
-        </div>
-        <div class="how-formula-row">
-          <span class="hf-in">혼자 버티는 운영</span>
-          <span class="hf-arrow">→</span>
-          <span class="hf-out" style="color:#4DE7FF;">혼자 돌아가는 시스템</span>
-        </div>
-      </div>
+      <p class="how-sub">7일, 14일, 30일. 세 단계로 끝냅니다.</p>
       <a href="process.html" class="text-link">PROCESS 자세히 보기 →</a>
     </div>
 
     <div class="steps-grid">
-      <!-- 01 RESEARCH -->
+      <!-- 01 DISCOVER -->
       <div class="step-card">
         <span class="step-num" style="color:#D3F45A;">01</span>
         <div class="step-icon">
@@ -476,15 +451,15 @@
             <line x1="9" y1="15" x2="21" y2="15" stroke="#D3F45A" stroke-width="1.2" opacity=".5"/>
           </svg>
         </div>
-        <p class="step-name">RESEARCH</p>
-        <p class="step-ko">리서치 · 7일</p>
+        <p class="step-name">DISCOVER</p>
+        <p class="step-ko">발견 · 7일</p>
         <p class="step-desc">대표의 말 안에서 브랜드의 방향을 발견합니다.</p>
         <div class="step-portal">
           <span class="step-portal-dot" style="background:#D3F45A;"></span>
-          Brand Note
+          Brand Note Portal
         </div>
       </div>
-      <!-- 02 TRANSLATE -->
+      <!-- 02 BUILD -->
       <div class="step-card">
         <span class="step-num" style="color:#7B61FF;">02</span>
         <div class="step-icon">
@@ -495,15 +470,15 @@
             <path d="M15 18l-5 5 5 5" stroke="#7B61FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
-        <p class="step-name">TRANSLATE</p>
+        <p class="step-name">BUILD</p>
         <p class="step-ko">번역 · 14일</p>
         <p class="step-desc">생각을 브랜드 언어와 실행 구조로 번역합니다.</p>
         <div class="step-portal">
           <span class="step-portal-dot" style="background:#7B61FF;"></span>
-          Brand System
+          Brand OS Site
         </div>
       </div>
-      <!-- 03 BUILD -->
+      <!-- 03 OPERATE -->
       <div class="step-card">
         <span class="step-num" style="color:#4DE7FF;">03</span>
         <div class="step-icon">
@@ -513,118 +488,18 @@
             <path d="M9.5 18V13H17" stroke="#4DE7FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2.5 2"/>
           </svg>
         </div>
-        <p class="step-name">BUILD</p>
+        <p class="step-name">OPERATE</p>
         <p class="step-ko">구축 · 30일</p>
         <p class="step-desc">혼자서도 움직이는 운영 구조를 만듭니다.</p>
         <div class="step-portal">
           <span class="step-portal-dot" style="background:#4DE7FF;"></span>
-          Operating System
+          Operating Portal
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CLIENTS -->
-<section id="clients" class="fade">
-  <div class="clients-header">
-    <div>
-      <p class="section-eyebrow" style="margin-bottom:12px;">We Work With</p>
-      <h2 class="clients-title">현재 함께하는 브랜드</h2>
-    </div>
-    <div class="clients-stat">
-      <div class="clients-stat-bar">
-        <div class="cs-dot" style="background:#D3F45A;"></div>
-        <div class="cs-dot" style="background:#D3F45A;"></div>
-        <div class="cs-dot" style="background:var(--gray2);"></div>
-        <div class="cs-dot" style="background:var(--gray2);"></div>
-        <div class="cs-dot" style="background:var(--gray2);"></div>
-      </div>
-      <span class="clients-stat-label">2 / 5 Brands</span>
-    </div>
-  </div>
-  <div class="clients-row">
-    <div class="client-item">
-      NUiE
-      <span class="client-badge">Partner</span>
-    </div>
-    <div class="client-item">
-      Mellowy
-      <span class="client-badge">Partner</span>
-    </div>
-    <a href="contact.html" class="client-item recruiting">
-      클라이언트<br>추가 모집 중 →
-    </a>
-  </div>
-</section>
-
-<!-- FREE RESOURCES -->
-<section id="free-resources">
-  <div class="fr-inner">
-    <div class="fr-header">
-      <div>
-        <p class="fr-eyebrow">Free Tools</p>
-        <h2 class="fr-title">지금 바로 써보세요.</h2>
-      </div>
-      <p class="fr-header-note">비용도 조건도 없습니다.<br>필요할 때 가져다 쓰세요.</p>
-    </div>
-    <!-- 브랜드 진단 (단독) -->
-    <a href="diagnose.html" class="fr-diag">
-      <div class="fr-diag-left">
-        <div class="fr-diag-badge">Brand Diagnosis · 무료</div>
-        <div class="fr-diag-title">내 브랜드,<br>지금 어디쯤 있나요?</div>
-        <div class="fr-diag-desc">6가지 질문으로 브랜드 현재 상태를 진단합니다. 3분이면 충분해요.</div>
-        <div class="fr-diag-cta">무료 진단 시작하기 →</div>
-      </div>
-      <div class="fr-diag-visual">🔍</div>
-    </a>
-
-    <!-- Basic 가이드 -->
-    <div class="fr-section-label">Basic · 무료 공개</div>
-    <div class="fr-grid">
-      <a href="guide-instagram.html" class="fr-card">
-        <div class="fr-tag" style="background:rgba(225,48,108,.08);color:#E1306C;">인스타그램</div>
-        <div class="fr-card-title">운영 전략</div>
-        <div class="fr-card-desc">콘텐츠 4유형 · 주간 루틴 · 해시태그 · 릴스</div>
-        <div class="fr-card-cta">보기 →</div>
-      </a>
-      <a href="guide-naver.html" class="fr-card">
-        <div class="fr-tag" style="background:rgba(3,199,90,.08);color:#03C75A;">네이버 블로그</div>
-        <div class="fr-card-title">SEO 전략</div>
-        <div class="fr-card-desc">C-Rank · 키워드 · 제목 공식 · 발행 루틴</div>
-        <div class="fr-card-cta">보기 →</div>
-      </a>
-      <a href="guide-email.html" class="fr-card">
-        <div class="fr-tag" style="background:rgba(123,97,255,.08);color:#7B61FF;">이메일</div>
-        <div class="fr-card-title">마케팅 세팅</div>
-        <div class="fr-card-desc">스티비 · 웰컴 메일 · 제목 공식 · 발행 주기</div>
-        <div class="fr-card-cta">보기 →</div>
-      </a>
-      <a href="guide-google.html" class="fr-card">
-        <div class="fr-tag" style="background:rgba(66,133,244,.08);color:#4285F4;">구글 애즈</div>
-        <div class="fr-card-title">검색 광고</div>
-        <div class="fr-card-desc">키워드 · RSA · 예산 · CTR 5% 공식</div>
-        <div class="fr-card-cta">보기 →</div>
-      </a>
-      <a href="guide-crm.html" class="fr-card">
-        <div class="fr-tag" style="background:rgba(254,229,0,.12);color:#8a7200;">카카오 CRM</div>
-        <div class="fr-card-title">자동화 세팅</div>
-        <div class="fr-card-desc">자동 메시지 · 고객 단계 관리 · 재구매 유도</div>
-        <div class="fr-card-cta">보기 →</div>
-      </a>
-    </div>
-
-    <!-- Advanced 허브 유도 -->
-    <div class="fr-advanced">
-      <div class="fr-adv-left">
-        <div class="fr-adv-badge">Advanced · 클라이언트 허브</div>
-        <div class="fr-adv-title">더 깊은 실전 자료는 허브에서 공개됩니다</div>
-        <div class="fr-adv-desc">메타 광고 심화 · 네이버 검색광고 · GA4 분석 · 운영 루틴 템플릿</div>
-      </div>
-      <a href="portal/login.html" class="fr-adv-btn">허브 입장하기 →</a>
-    </div>
-  </div>
-</section>
 
 <!-- VOICES -->
 <section id="voices" class="fade">
@@ -657,7 +532,7 @@
           <p class="voice-answer-label">FINDIER LAB</p>
           <p class="voice-answer">설명을 못하는 게 아닙니다.<br>아직 번역이 안 된 겁니다.</p>
         </div>
-        <p class="voice-result-done">결과 → <a href="works.html">NUiE — 온라인 전시 공간 작가로 번역</a></p>
+        <p class="voice-result-done">결과 → <a href="case-nuie.html">NUiE — 온라인 전시 공간 작가로 번역</a></p>
       </div>
     </div>
 
@@ -712,6 +587,35 @@
   </div>
 </section>
 
+<!-- PRICING TEASER -->
+<section id="price-teaser" class="fade">
+  <div class="pt-header">
+    <p class="section-eyebrow">Investment</p>
+    <h2 class="pt-title">39만원부터<br>시작합니다.</h2>
+    <a href="service.html#investment" class="text-link">전체 가격 자세히 보기 →</a>
+  </div>
+  <div class="pt-grid">
+    <a href="service.html#investment" class="pt-card">
+      <p class="pt-num" style="color:#bbb;">01 — START</p>
+      <p class="pt-price">₩390,000</p>
+      <p class="pt-period">최대 7일</p>
+      <p class="pt-desc">대표의 생각을 정리합니다.</p>
+    </a>
+    <a href="service.html#investment" class="pt-card pt-featured">
+      <span class="pt-featured-badge">가장 많이 선택</span>
+      <p class="pt-num" style="color:var(--purple);">02 — BUILD</p>
+      <p class="pt-price" style="color:var(--purple);">₩990,000</p>
+      <p class="pt-period">최대 14일</p>
+      <p class="pt-desc">브랜드와 홈페이지를 함께 만듭니다.</p>
+    </a>
+    <a href="service.html#investment" class="pt-card">
+      <p class="pt-num" style="color:#1aabb8;">03 — OPERATE</p>
+      <p class="pt-price">₩1,990,000</p>
+      <p class="pt-period">최대 30일</p>
+      <p class="pt-desc">혼자서도 움직이는 구조를 만듭니다.</p>
+    </a>
+  </div>
+</section>
 
 <!-- CTA -->
 <section id="cta" class="fade">
@@ -733,12 +637,6 @@
 
 <!-- FOOTER -->
 <footer id="footer">
-  <div class="footer-brand-quote fade">
-    <p class="fbq-eyebrow">FINDIER LAB — Manifesto</p>
-    <p class="fbq-line1">브랜드를 만들어드리는 것이 아닙니다.</p>
-    <p class="fbq-line2">당신이 말할 수 있는<br>구조를 함께 만듭니다.</p>
-  </div>
-  <div class="footer-divider"></div>
   <div class="footer-top">
     <div>
       <div class="footer-logo">FINDIER LAB</div>
@@ -746,7 +644,7 @@
     </div>
     <div class="footer-links">
       <a href="service.html">SERVICE</a>
-      <a href="works.html">WORK</a>
+      <a href="works.html">PORTFOLIO</a>
       <a href="process.html">PROCESS</a>
       <a href="lab.html">LAB</a>
       <a href="events.html">EVENT</a>
@@ -756,7 +654,10 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <span class="footer-copy">© 2026 FINDIER LAB. All rights reserved.</span>
+    <div class="footer-copy">
+      <div class="footer-legal">FINDIER LAB &nbsp;|&nbsp; 대표 박선유 &nbsp;|&nbsp; findierlab@gmail.com</div>
+      © 2026 FINDIER LAB. All rights reserved.
+    </div>
     <div class="footer-gradbar"></div>
   </div>
 </footer>

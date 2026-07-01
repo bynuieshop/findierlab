@@ -24,7 +24,7 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --lime: #D3F45A; --purple: #7B61FF; --cyan: #4DE7FF;
+      --lime: #D3F45A; --purple: #7B61FF; --cyan: #4DE7FF; --coral: #FF6B47;
       --black: #111111; --white: #FFFFFF; --offwhite: #F7F7F5;
       --gray1: #F2F0ED; --gray2: #E2E0DC;
     }
@@ -138,7 +138,7 @@
     .ai-card-desc { font-size: .78rem; color: rgba(255,255,255,.4); line-height: 1.6; }
 
     /* WORKFORCE */
-    #workforce { background: var(--black); border-top: 1px solid rgba(255,255,255,.06); padding: 0 80px 100px; }
+    #workforce { background: var(--black); padding: 0 80px 100px; }
     .wf-inner { border: 1px solid rgba(255,255,255,.07); border-radius: 20px; padding: 52px 60px; display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 0; align-items: center; }
     .wf-node { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; }
     .wf-icon-wrap { width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
@@ -165,23 +165,50 @@
     .cta-ci-val { font-size: .92rem; font-weight: 800; color: var(--black); }
 
     /* FOOTER */
-    #footer { background: var(--black); padding: 0; }
-    .footer-brand-quote { padding: 56px 80px 48px; }
-    .fbq-text { font-size: clamp(.95rem,1.6vw,1.3rem); font-weight: 900; line-height: 1.5; letter-spacing: -.025em; color: rgba(255,255,255,.55); margin-bottom: 8px; }
-    .fbq-sub { font-size: .8rem; color: rgba(255,255,255,.22); letter-spacing: .06em; }
-    .footer-top { display: flex; justify-content: space-between; align-items: center; padding: 40px 80px; border-bottom: 1px solid rgba(255,255,255,.08); }
+    #footer { background: var(--black); padding: 0; border-top: 1px solid rgba(255,255,255,.08); }
+    .footer-top { display: flex; justify-content: space-between; align-items: center; padding: 40px 80px; }
     .footer-logo { font-family: 'Inter',sans-serif; font-size: 15px; font-weight: 800; letter-spacing: .06em; color: #fff; }
     .footer-tagline { font-size: 10px; color: rgba(255,255,255,.28); letter-spacing: .14em; margin-top: 5px; }
     .footer-links { display: flex; gap: 28px; }
     .footer-links a { font-size: 11px; font-weight: 500; letter-spacing: .1em; color: rgba(255,255,255,.35); text-transform: uppercase; transition: color .2s; }
     .footer-links a:hover { color: rgba(255,255,255,.8); }
     .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding: 24px 80px 32px; }
-    .footer-copy { font-size: 10px; color: rgba(255,255,255,.18); letter-spacing: .06em; }
+    .footer-copy { font-size: 10px; color: rgba(255,255,255,.18); letter-spacing: .06em; line-height: 1.8; }
+    .footer-legal { color: rgba(255,255,255,.3); }
     .footer-gradbar { width: 80px; height: 2px; border-radius: 2px; background: linear-gradient(90deg,#D3F45A,#7B61FF,#4DE7FF); }
 
 
+    /* NOT PDF STATEMENT */
+    #not-pdf { background: var(--black); padding: 90px 80px; display: flex; align-items: center; justify-content: space-between; gap: 60px; flex-wrap: wrap; }
+    .pdf-left { flex-shrink: 0; }
+    .pdf-label { font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 700; letter-spacing: .22em; color: rgba(255,255,255,.3); text-transform: uppercase; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+    .pdf-label::before { content: ''; width: 16px; height: 1px; background: rgba(255,255,255,.2); }
+    .pdf-headline { font-size: clamp(1.6rem,3vw,2.6rem); font-weight: 900; line-height: 1.2; letter-spacing: -.045em; color: var(--white); }
+    .pdf-headline .strike { text-decoration: line-through; text-decoration-color: var(--lime); text-decoration-thickness: 3px; color: rgba(255,255,255,.35); }
+    .pdf-right { font-size: .92rem; color: rgba(255,255,255,.45); line-height: 1.9; max-width: 420px; }
+    .pdf-right strong { color: rgba(255,255,255,.8); font-weight: 700; }
+
     /* INVESTMENT SECTION */
     #investment { background: var(--white); padding: 130px 80px 0; }
+
+    /* QUICK TRACK */
+    #quick-track { padding: 0 80px 60px; }
+    .qt-badge { display: inline-flex; font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--coral); background: rgba(255,107,71,.08); border: 1px solid rgba(255,107,71,.2); padding: 6px 14px; border-radius: 100px; margin-bottom: 16px; }
+    .qt-main { display: flex; justify-content: space-between; align-items: center; gap: 40px; border: 1.5px solid var(--gray2); border-radius: 20px; padding: 32px 40px; }
+    .qt-left { flex: 1; }
+    .qt-label { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .15em; color: var(--coral); text-transform: uppercase; margin-bottom: 8px; }
+    .qt-title { font-size: 1.4rem; font-weight: 900; letter-spacing: -.02em; margin-bottom: 12px; }
+    .qt-desc { font-size: .86rem; color: #666; line-height: 1.75; max-width: 520px; margin-bottom: 16px; }
+    .qt-desc strong { color: var(--black); }
+    .qt-targets { display: flex; gap: 8px; flex-wrap: wrap; }
+    .qt-target { font-size: .74rem; font-weight: 600; color: #888; background: var(--gray1); padding: 5px 12px; border-radius: 100px; }
+    .qt-right { text-align: right; flex-shrink: 0; }
+    .qt-price { font-family: 'Inter',sans-serif; font-weight: 900; letter-spacing: -.04em; line-height: 1; }
+    .qt-price .won { font-size: 1.1rem; color: #999; }
+    .qt-price .amount { font-size: clamp(1.6rem,2.6vw,2rem); color: var(--black); }
+    .qt-period { font-size: .8rem; color: #999; margin: 6px 0 16px; }
+    .qt-cta { display: inline-flex; align-items: center; gap: 6px; background: var(--coral); color: #fff; font-size: .85rem; font-weight: 700; padding: 12px 24px; border-radius: 100px; white-space: nowrap; }
+
     #separate-service { background: var(--offwhite); padding: 72px 80px; }
     .inv-kicker { font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 700; letter-spacing: .22em; color: #bbb; text-transform: uppercase; display: flex; align-items: center; gap: 10px; margin-bottom: 40px; }
     .inv-kicker::before { content: ''; width: 20px; height: 1px; background: #ddd; }
@@ -288,10 +315,11 @@
       #workforce { padding: 0 48px 80px; }
       #stats { grid-template-columns: repeat(2,1fr); }
       #cta-section { padding: 80px 48px; gap: 52px; }
-      .footer-brand-quote { padding: 48px 48px 40px; }
       .footer-top { padding: 36px 48px; }
       .footer-bottom { padding: 20px 48px 28px; }
+      #not-pdf { padding: 64px 48px; flex-direction: column; align-items: flex-start; gap: 32px; }
       #investment { padding: 80px 48px 0; }
+      #quick-track { padding: 0 48px 36px; }
       #separate-service { padding: 36px 48px; }
       #portal-panel { margin: 20px 48px 0; }
       .portal-body { height: 340px; }
@@ -318,11 +346,15 @@
       #stats { grid-template-columns: 1fr 1fr; }
       .stat-cell { padding: 40px 28px; }
       #cta-section { grid-template-columns: 1fr; padding: 64px 24px; gap: 40px; }
-      .footer-brand-quote { padding: 40px 24px 32px; }
       .footer-top { padding: 28px 24px; flex-direction: column; gap: 20px; align-items: flex-start; }
       .footer-links { flex-wrap: wrap; gap: 14px; }
       .footer-bottom { padding: 16px 24px 24px; flex-direction: column; gap: 10px; align-items: flex-start; }
+      #not-pdf { padding: 48px 24px; }
+      .pdf-headline { font-size: clamp(1.4rem,6vw,2rem); }
       #investment { padding: 64px 24px 0; }
+      #quick-track { padding: 0 24px 32px; }
+      .qt-main { flex-direction: column; align-items: flex-start; padding: 24px; }
+      .qt-right { text-align: left; }
       #separate-service { padding: 32px 24px; }
       #portal-panel { margin: 16px 0 0; }
       .portal-body { grid-template-columns: 1fr; height: auto; }
@@ -350,12 +382,12 @@
 
 <header id="nav">
   <a href="index.html" class="nav-logo">
-    <svg width="32" height="32" viewBox="0 0 34 34" fill="none"><circle cx="10" cy="9.5" r="4.5" fill="#D3F45A"/><path d="M17 5 L28 5 L28 20" stroke="#7B61FF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 21 Q10.5 29.5 20 27" stroke="#fff" stroke-width="2.8" stroke-linecap="round" fill="none"/></svg>
+    <svg width="34" height="34" viewBox="0 0 34 34" fill="none"><circle cx="10" cy="9.5" r="4.5" fill="#D3F45A"/><path d="M17 5 L28 5 L28 20" stroke="#7B61FF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 21 Q10.5 29.5 20 27" stroke="#fff" stroke-width="2.8" stroke-linecap="round" fill="none"/></svg>
     <span class="nav-logo-text">FINDIER LAB</span>
   </a>
   <ul class="nav-menu">
     <li><a href="service.html" class="active">SERVICE</a></li>
-    <li><a href="works.html">WORK</a></li>
+    <li><a href="works.html">PORTFOLIO</a></li>
     <li><a href="process.html">PROCESS</a></li>
     <li><a href="lab.html">LAB</a></li>
     <li><a href="events.html">EVENT</a></li>
@@ -370,7 +402,7 @@
 </header>
 <div id="mobileMenu">
   <a href="service.html" class="mob-link active">SERVICE</a>
-  <a href="works.html" class="mob-link">WORK</a>
+  <a href="works.html" class="mob-link">PORTFOLIO</a>
   <a href="process.html" class="mob-link">PROCESS</a>
   <a href="lab.html" class="mob-link">LAB</a>
   <a href="events.html" class="mob-link">EVENT</a>
@@ -562,92 +594,6 @@
   </div>
 </section>
 
-<!-- WORKING MODEL -->
-<section id="build">
-  <div class="build-header fade">
-    <p class="build-kicker">WORKING MODEL</p>
-    <h2 class="build-title">직접 구축 +<br>필요 시 연결.</h2>
-    <p class="build-sub">
-      생각의 번역은 직접 합니다.<br>
-      디자인과 생산은 필요한 순간 검증된 파트너를 연결합니다.
-    </p>
-  </div>
-
-  <div class="build-grid" style="grid-template-columns:repeat(3,1fr);">
-
-    <!-- CORE: Brand Builder -->
-    <div class="build-card fade d1" style="background:var(--black);border-color:rgba(211,244,90,.15);">
-      <div class="build-card-bar" style="background:linear-gradient(90deg,var(--lime),var(--purple));"></div>
-      <div class="build-card-head">
-        <span class="build-card-num" style="color:rgba(255,255,255,.2);">CORE</span>
-        <span style="font-family:'Inter';font-size:8px;font-weight:800;letter-spacing:.14em;color:var(--black);background:var(--lime);padding:3px 10px;border-radius:100px;">DIRECT</span>
-      </div>
-      <p class="build-card-role" style="color:var(--lime);">BRAND BUILDER</p>
-      <h3 class="build-card-title" style="color:var(--white);">생각을 브랜드로<br>번역합니다.</h3>
-      <p class="build-card-desc" style="color:rgba(255,255,255,.4);">대표와 직접 대화하고<br>생각을 발견해 언어와 구조로 만듭니다.<br>모든 번역 작업은 외주 없이 직접 수행합니다.</p>
-      <div class="build-card-tags">
-        <span class="build-card-tag" style="background:rgba(255,255,255,.06);color:rgba(255,255,255,.45);border:1px solid rgba(255,255,255,.08);">브랜드 철학</span>
-        <span class="build-card-tag" style="background:rgba(255,255,255,.06);color:rgba(255,255,255,.45);border:1px solid rgba(255,255,255,.08);">세계관</span>
-        <span class="build-card-tag" style="background:rgba(255,255,255,.06);color:rgba(255,255,255,.45);border:1px solid rgba(255,255,255,.08);">브랜드 언어</span>
-        <span class="build-card-tag" style="background:rgba(255,255,255,.06);color:rgba(255,255,255,.45);border:1px solid rgba(255,255,255,.08);">마케팅 언어</span>
-        <span class="build-card-tag" style="background:rgba(255,255,255,.06);color:rgba(255,255,255,.45);border:1px solid rgba(255,255,255,.08);">홈페이지 기획</span>
-        <span class="build-card-tag" style="background:rgba(255,255,255,.06);color:rgba(255,255,255,.45);border:1px solid rgba(255,255,255,.08);">운영 구조</span>
-      </div>
-      <div class="build-card-result" style="border-top-color:rgba(255,255,255,.07);">
-        <b style="color:rgba(211,244,90,.8);">생각</b><span style="color:rgba(255,255,255,.2);">→</span><b style="color:rgba(211,244,90,.8);">브랜드</b><span style="color:rgba(255,255,255,.2);">→</span><b style="color:rgba(211,244,90,.8);">구조</b>
-      </div>
-    </div>
-
-    <!-- OPTIONAL: Visual Partner -->
-    <div class="build-card fade d2" style="position:relative;">
-      <div style="position:absolute;top:20px;right:20px;font-family:'Inter';font-size:8px;font-weight:700;letter-spacing:.12em;color:#bbb;background:var(--gray1);padding:3px 9px;border-radius:100px;">OPTIONAL</div>
-      <div class="build-card-bar" style="background:var(--gray2);"></div>
-      <div class="build-card-head">
-        <span class="build-card-num" style="color:#ddd;">→</span>
-      </div>
-      <p class="build-card-role" style="color:#aaa;">VISUAL PARTNER</p>
-      <h3 class="build-card-title">브랜드 언어가 완성된 후,<br>비주얼로 연결합니다.</h3>
-      <p class="build-card-desc">필요한 시점에 검증된<br>디자이너 파트너를 연결합니다.</p>
-      <div class="build-card-tags">
-        <span class="build-card-tag">로고 · VI</span>
-        <span class="build-card-tag">홈페이지 디자인</span>
-        <span class="build-card-tag">브랜드 패키지</span>
-      </div>
-      <div class="build-card-result">
-        <b>언어</b><span>→</span><b>비주얼</b><span>→</span><b>경험</b>
-      </div>
-    </div>
-
-    <!-- OPTIONAL: Product Partner -->
-    <div class="build-card fade d3" style="position:relative;">
-      <div style="position:absolute;top:20px;right:20px;font-family:'Inter';font-size:8px;font-weight:700;letter-spacing:.12em;color:#bbb;background:var(--gray1);padding:3px 9px;border-radius:100px;">OPTIONAL</div>
-      <div class="build-card-bar" style="background:var(--gray2);"></div>
-      <div class="build-card-head">
-        <span class="build-card-num" style="color:#ddd;">→</span>
-      </div>
-      <p class="build-card-role" style="color:#aaa;">PRODUCT PARTNER</p>
-      <h3 class="build-card-title">제품 기획과 생산이<br>필요한 순간 연결합니다.</h3>
-      <p class="build-card-desc">기획과 생산 파트너를<br>프로젝트 단계에 맞춰 연결합니다.</p>
-      <div class="build-card-tags">
-        <span class="build-card-tag">제품 기획</span>
-        <span class="build-card-tag">생산 구조</span>
-        <span class="build-card-tag">런칭 설계</span>
-      </div>
-      <div class="build-card-result">
-        <b>아이디어</b><span>→</span><b>제품</b><span>→</span><b>출시</b>
-      </div>
-    </div>
-  </div>
-
-  <div class="build-closer fade">
-    <p class="build-closer-text">
-      <span class="line-muted">에이전시가 아닙니다.</span><br><br>
-      파인디어랩은<br>
-      <span class="c-pur">대표의 생각을 번역하는</span> Founder-led Studio입니다.
-    </p>
-  </div>
-</section>
-
 <!-- AI SECTION -->
 <section id="ai">
   <p class="ai-kicker fade">OPERATING SYSTEM — AI WORKFORCE</p>
@@ -754,6 +700,22 @@
     <div class="stat-val" style="color:#555;">∞</div>
     <p class="stat-label">세계관 기반<br>AI 확장성</p>
   </div>
+</section>
+
+<!-- PDF STATEMENT -->
+<section id="not-pdf" class="fade">
+  <div class="pdf-left">
+    <p class="pdf-label">결과물 방식</p>
+    <h2 class="pdf-headline">
+      우리는 <span class="strike">PDF</span>를<br>만들지 않습니다.
+    </h2>
+  </div>
+  <p class="pdf-right">
+    대표가 <strong>언제든 들어와 확인하고</strong>,<br>
+    팀과 공유하고, 운영할 수 있는 상태를 만듭니다.<br><br>
+    결과물은 <strong>대표 전용 Portal 사이트</strong> 형태입니다.<br>
+    대표가 언제든 돌아올 수 있는 공간.
+  </p>
 </section>
 
 <!-- INVESTMENT -->
@@ -928,6 +890,28 @@
   <div style="height:80px;"></div>
 </section>
 
+<!-- QUICK TRACK -->
+<section id="quick-track">
+  <span class="qt-badge">전략 작업 없이, 사이트만 빠르게</span>
+  <div class="qt-main">
+    <div class="qt-left">
+      <p class="qt-label">Quick Track</p>
+      <h3 class="qt-title">홈페이지 단순 복사</h3>
+      <p class="qt-desc">이미 브랜드는 있는데 아직도 유료 구독 홈페이지를 쓰고 계신가요? 지금 사이트 내용은 그대로 옮기면서, <strong>AI 검색이 읽고 추천할 수 있는 구조</strong>(정적 HTML, JS 렌더링 없음)로 다시 짜드립니다.</p>
+      <div class="qt-targets">
+        <span class="qt-target">AI가 내 회사를 추천해줬으면 하는 분</span>
+        <span class="qt-target">유료 구독 홈페이지 사용 중</span>
+        <span class="qt-target">글로벌 홈페이지 필요</span>
+      </div>
+    </div>
+    <div class="qt-right">
+      <div class="qt-price"><span class="amount">19만원</span><span class="won">~</span></div>
+      <p class="qt-period">최대 3일</p>
+      <a href="contact.html" class="qt-cta">문의하기 →</a>
+    </div>
+  </div>
+</section>
+
 <!-- SEPARATE CONSULT -->
 <section id="separate-service">
   <div class="sep-inner fade">
@@ -972,7 +956,7 @@
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8C7.8 13.2 9.8 15.2 12.2 16.4L14 14.6C14.2 14.4 14.6 14.3 14.9 14.5C15.9 14.8 17 15 18 15C18.6 15 19 15.4 19 16V18C19 18.6 18.6 19 18 19C10.8 19 5 13.2 5 6C5 5.4 5.4 5 6 5H8C8.6 5 9 5.4 9 6C9 7 9.2 8 9.5 9.1C9.6 9.4 9.5 9.8 9.4 10L7.6 11.8C7.4 11.4 7 11.1 6.6 10.8Z" stroke="#7a8800" stroke-width="1.8" fill="none"/></svg>
       </div>
       <div>
-        <p class="cta-ci-label">박지민 대표 직통</p>
+        <p class="cta-ci-label">박제나 대표 직통</p>
         <p class="cta-ci-val">010-9920-8258</p>
       </div>
     </a>
@@ -990,14 +974,10 @@
 
 <!-- FOOTER -->
 <footer id="footer">
-  <div class="footer-brand-quote fade">
-    <p class="fbq-text">브랜드를 만들어드리는 것이 아닙니다. 당신이 말할 수 있는 구조를 함께 만듭니다.</p>
-    <p class="fbq-sub">대표의 생각을 실행 가능한 회사로 번역합니다.</p>
-  </div>
   <div class="footer-top">
     <div><div class="footer-logo">FINDIER LAB</div><div class="footer-tagline">BRAND RESEARCH &amp; BUILDING LAB</div></div>
     <div class="footer-links">
-      <a href="service.html">SERVICE</a><a href="works.html">WORK</a>
+      <a href="service.html">SERVICE</a><a href="works.html">PORTFOLIO</a>
       <a href="process.html">PROCESS</a><a href="lab.html">LAB</a>
       <a href="events.html">EVENT</a>
       <a href="about.html">ABOUT</a><a href="contact.html">CONTACT</a>
@@ -1005,7 +985,10 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <span class="footer-copy">© 2026 FINDIER LAB. All rights reserved.</span>
+    <div class="footer-copy">
+      <div class="footer-legal">FINDIER LAB &nbsp;|&nbsp; 대표 박선유 &nbsp;|&nbsp; findierlab@gmail.com</div>
+      © 2026 FINDIER LAB. All rights reserved.
+    </div>
     <div class="footer-gradbar"></div>
   </div>
 </footer>

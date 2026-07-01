@@ -88,24 +88,21 @@
 
     /* FOOTER */
     #footer { background: var(--black); }
-    .footer-brand-quote { padding: 56px 80px 48px; }
-    .fbq-text { font-size: clamp(.95rem,1.6vw,1.3rem); font-weight: 900; line-height: 1.5; letter-spacing: -.025em; color: rgba(255,255,255,.55); margin-bottom: 8px; }
-    .fbq-sub { font-size: .8rem; color: rgba(255,255,255,.22); letter-spacing: .06em; }
-    .footer-top { display: flex; justify-content: space-between; align-items: center; padding: 40px 80px; border-bottom: 1px solid rgba(255,255,255,.08); }
+    .footer-top { display: flex; justify-content: space-between; align-items: center; padding: 40px 80px; }
     .footer-logo { font-family: 'Inter',sans-serif; font-size: 15px; font-weight: 800; letter-spacing: .06em; color: #fff; }
     .footer-tagline { font-size: 10px; color: rgba(255,255,255,.3); letter-spacing: .14em; margin-top: 6px; }
     .footer-links { display: flex; gap: 28px; }
     .footer-links a { font-size: 11px; font-weight: 500; letter-spacing: .1em; color: rgba(255,255,255,.35); text-transform: uppercase; transition: color .2s; }
     .footer-links a:hover { color: rgba(255,255,255,.8); }
     .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding: 24px 80px 32px; }
-    .footer-copy { font-size: 10px; color: rgba(255,255,255,.18); letter-spacing: .06em; }
+    .footer-copy { font-size: 10px; color: rgba(255,255,255,.18); letter-spacing: .06em; line-height: 1.8; }
+    .footer-legal { color: rgba(255,255,255,.3); }
     .footer-gradbar { width: 100px; height: 2px; border-radius: 2px; background: linear-gradient(90deg,#D3F45A,#7B61FF,#4DE7FF); }
 
     @media (max-width: 1024px) {
       #nav { padding: 0 32px; } .nav-menu { gap: 20px; }
       #hero { padding: 96px 48px 60px; }
       #list { padding: 60px 48px 100px; grid-template-columns: repeat(2, 1fr); }
-      .footer-brand-quote { padding: 48px 48px 40px; }
       .footer-top { padding: 36px 48px; }
       .footer-bottom { padding: 20px 48px 28px; }
     }
@@ -118,7 +115,6 @@
       .nav-cta { padding: 8px 16px; font-size: 12px; }
       #hero { padding: 88px 24px 48px; }
       #list { padding: 48px 24px 80px; grid-template-columns: 1fr; }
-      .footer-brand-quote { padding: 40px 24px 32px; }
       .footer-top { padding: 28px 24px; flex-direction: column; gap: 20px; align-items: flex-start; }
       .footer-links { flex-wrap: wrap; gap: 14px; }
       .footer-bottom { padding: 16px 24px 24px; flex-direction: column; gap: 10px; align-items: flex-start; }
@@ -150,7 +146,7 @@
   </a>
   <ul class="nav-menu">
     <li><a href="service.html">SERVICE</a></li>
-    <li><a href="works.html">WORK</a></li>
+    <li><a href="works.html">PORTFOLIO</a></li>
     <li><a href="process.html">PROCESS</a></li>
     <li><a href="lab.html">LAB</a></li>
     <li><a href="events.html" class="active">EVENT</a></li>
@@ -165,7 +161,7 @@
 </header>
 <div id="mobileMenu">
   <a href="service.html" class="mob-link">SERVICE</a>
-  <a href="works.html" class="mob-link">WORK</a>
+  <a href="works.html" class="mob-link">PORTFOLIO</a>
   <a href="process.html" class="mob-link">PROCESS</a>
   <a href="lab.html" class="mob-link">LAB</a>
   <a href="events.html" class="mob-link active">EVENT</a>
@@ -216,10 +212,6 @@
 
 <!-- FOOTER -->
 <footer id="footer">
-  <div class="footer-brand-quote fade">
-    <p class="fbq-text">브랜드를 만들어드리는 것이 아닙니다. 당신이 말할 수 있는 구조를 함께 만듭니다.</p>
-    <p class="fbq-sub">Brand Research &amp; Building Lab</p>
-  </div>
   <div class="footer-top">
     <div>
       <div class="footer-logo">FINDIER LAB</div>
@@ -227,7 +219,7 @@
     </div>
     <div class="footer-links">
       <a href="service.html">SERVICE</a>
-      <a href="works.html">WORK</a>
+      <a href="works.html">PORTFOLIO</a>
       <a href="process.html">PROCESS</a>
       <a href="lab.html">LAB</a>
       <a href="events.html">EVENT</a>
@@ -237,7 +229,10 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <span class="footer-copy">© 2026 FINDIER LAB. All rights reserved.</span>
+    <div class="footer-copy">
+      <div class="footer-legal">FINDIER LAB &nbsp;|&nbsp; 대표 박선유 &nbsp;|&nbsp; findierlab@gmail.com</div>
+      © 2026 FINDIER LAB. All rights reserved.
+    </div>
     <div class="footer-gradbar"></div>
   </div>
 </footer>
