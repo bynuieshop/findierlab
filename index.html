@@ -38,6 +38,23 @@
       --t-muted:#999999;
     }
 
+    /* PROMO POPUP */
+    #promoOverlay { position: fixed; inset: 0; z-index: 10000; background: rgba(17,17,17,.72); display: none; align-items: center; justify-content: center; padding: 24px; opacity: 0; }
+    #promoOverlay.show { display: flex; }
+    .promo-modal { position: relative; background: var(--black); border: 1px solid rgba(255,255,255,.08); border-radius: 24px; padding: 56px 40px 40px; max-width: 400px; width: 100%; text-align: center; transform: scale(.94); opacity: 0; }
+    .promo-close { position: absolute; top: 16px; right: 16px; width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,.06); border: none; color: rgba(255,255,255,.5); font-size: 14px; cursor: pointer; transition: background .2s, color .2s; }
+    .promo-close:hover { background: rgba(255,255,255,.14); color: #fff; }
+    .promo-kicker { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 800; letter-spacing: .16em; color: var(--lime); text-transform: uppercase; margin-bottom: 20px; }
+    .promo-title { font-size: 1.5rem; font-weight: 900; color: #fff; line-height: 1.32; letter-spacing: -.03em; margin-bottom: 28px; }
+    .promo-title em { color: var(--lime); font-style: normal; }
+    .promo-price { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 32px; }
+    .promo-old { font-family: 'Inter',sans-serif; font-size: .88rem; color: rgba(255,255,255,.3); text-decoration: line-through; }
+    .promo-arrow { color: rgba(255,255,255,.28); font-size: .82rem; }
+    .promo-new { font-family: 'Inter',sans-serif; font-size: 1.45rem; font-weight: 900; color: #fff; }
+    .promo-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--lime); color: var(--black); font-size: 14px; font-weight: 800; padding: 15px 32px; border-radius: 100px; transition: opacity .2s; }
+    .promo-cta:hover { opacity: .85; }
+    @media (max-width: 480px) { .promo-modal { padding: 48px 28px 32px; } }
+
     html { scroll-behavior: smooth; font-size: 17px; }
 
     .fade { opacity: 0; transform: translateY(36px); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
@@ -367,6 +384,7 @@
     <li><a href="works.html">WORK</a></li>
     <li><a href="process.html">PROCESS</a></li>
     <li><a href="lab.html">LAB</a></li>
+    <li><a href="events.html">EVENT</a></li>
     <li><a href="about.html">ABOUT</a></li>
     <li><a href="contact.html">CONTACT</a></li>
   </ul>
@@ -383,6 +401,7 @@
   <a href="works.html" class="mob-link">WORK</a>
   <a href="process.html" class="mob-link">PROCESS</a>
   <a href="lab.html" class="mob-link">LAB</a>
+  <a href="events.html" class="mob-link">EVENT</a>
   <a href="about.html" class="mob-link">ABOUT</a>
   <a href="contact.html" class="mob-link">CONTACT</a>
   <div class="mob-cta-wrap"><a href="contact.html" class="mob-cta"><span class="nav-cta-dot"></span>무료 상담받기</a><a href="portal/login.html" class="mob-cta" style="background:#D3F45A;color:#111;">운영 허브</a></div>
@@ -730,6 +749,7 @@
       <a href="works.html">WORK</a>
       <a href="process.html">PROCESS</a>
       <a href="lab.html">LAB</a>
+      <a href="events.html">EVENT</a>
       <a href="about.html">ABOUT</a>
       <a href="contact.html">CONTACT</a>
       <a href="https://instagram.com/findier.lab" target="_blank">@INSTAGRAM</a>
@@ -740,6 +760,20 @@
     <div class="footer-gradbar"></div>
   </div>
 </footer>
+
+<div id="promoOverlay">
+  <div class="promo-modal">
+    <button class="promo-close" id="promoClose" aria-label="닫기">✕</button>
+    <p class="promo-kicker">2026 JULY · 창업 준비 사장님 응원</p>
+    <h3 class="promo-title">사장님의 <em>에이전트</em>를<br>만들어드립니다.</h3>
+    <div class="promo-price">
+      <span class="promo-old">390,000원</span>
+      <span class="promo-arrow">→</span>
+      <span class="promo-new">59,000원</span>
+    </div>
+    <a href="agent-promo.html" class="promo-cta">자세히 보기 →</a>
+  </div>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script>
@@ -814,6 +848,50 @@ document.querySelectorAll('.fade').forEach(el => fader.observe(el));
 </script>
 <script>
 (function(){var b=document.getElementById('navBurger'),m=document.getElementById('mobileMenu');if(!b)return;b.addEventListener('click',function(){b.classList.toggle('open');m.classList.toggle('open');document.body.style.overflow=m.classList.contains('open')?'hidden':'';});})();
+</script>
+<script>
+(function() {
+  const KEY = 'promo_agent_2026_07_dismissed';
+  if (localStorage.getItem(KEY)) return;
+
+  const overlay = document.getElementById('promoOverlay');
+  const modal = overlay.querySelector('.promo-modal');
+  const closeBtn = document.getElementById('promoClose');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function open() {
+    overlay.classList.add('show');
+    document.body.style.overflow = 'hidden';
+    if (reduceMotion || typeof gsap === 'undefined') {
+      overlay.style.opacity = 1;
+      modal.style.opacity = 1;
+      modal.style.transform = 'none';
+      return;
+    }
+    gsap.to(overlay, { opacity: 1, duration: .3, ease: 'power2.out' });
+    gsap.to(modal, { opacity: 1, scale: 1, duration: .4, delay: .05, ease: 'power3.out' });
+  }
+
+  function close() {
+    localStorage.setItem(KEY, '1');
+    if (reduceMotion || typeof gsap === 'undefined') {
+      overlay.classList.remove('show');
+      document.body.style.overflow = '';
+      return;
+    }
+    gsap.to(modal, { opacity: 0, scale: .94, duration: .2, ease: 'power2.in' });
+    gsap.to(overlay, { opacity: 0, duration: .25, delay: .05, ease: 'power2.in', onComplete: function() {
+      overlay.classList.remove('show');
+      document.body.style.overflow = '';
+    }});
+  }
+
+  closeBtn.addEventListener('click', close);
+  overlay.addEventListener('click', function(e) { if (e.target === overlay) close(); });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && overlay.classList.contains('show')) close(); });
+
+  setTimeout(open, 1800);
+})();
 </script>
 </body>
 </html>

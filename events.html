@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5VTZY9P51Z"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-5VTZY9P51Z');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EVENT — FINDIER LAB</title>
+  <meta name="description" content="FINDIER LAB 진행 중인 이벤트·프로모션 소식.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="EVENT — FINDIER LAB">
+  <meta property="og:description" content="FINDIER LAB 진행 중인 이벤트·프로모션 소식.">
+  <meta property="og:url" content="https://findierlab.com/events.html">
+  <meta property="og:image" content="https://findierlab.com/assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --lime: #D3F45A; --purple: #7B61FF; --cyan: #4DE7FF;
+      --black: #111111; --white: #FFFFFF; --offwhite: #F7F7F5;
+      --gray1: #F2F0ED; --gray2: #E2E0DC;
+    }
+    html { scroll-behavior: smooth; font-size: 17px; }
+    body { font-family: 'Pretendard','Inter',-apple-system,sans-serif; color: var(--black); background: var(--white); -webkit-font-smoothing: antialiased; }
+    a { text-decoration: none; color: inherit; }
+
+    .fade { opacity: 0; transform: translateY(36px); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+    .fade.in { opacity: 1; transform: none; }
+    .d1 { transition-delay: .1s; } .d2 { transition-delay: .2s; } .d3 { transition-delay: .3s; }
+
+    /* NAV */
+    #nav { position: fixed; top: 0; left: 0; right: 0; height: 64px; z-index: 9999; background: var(--white); border-bottom: 1px solid #E8E8E8; display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 0 48px; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; }
+    .nav-logo-text { font-family: 'Inter',sans-serif; font-size: 15px; font-weight: 800; letter-spacing: .05em; color: #111; }
+    .nav-menu { display: flex; gap: 28px; list-style: none; justify-content: center; }
+    .nav-menu a { font-family: 'Inter',sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .12em; color: #666; text-transform: uppercase; transition: color .2s; }
+    .nav-menu a:hover { color: #111; }
+    .nav-menu a.active { color: var(--purple); border-bottom: 2px solid var(--purple); padding-bottom: 2px; }
+    .nav-cta { display: inline-flex; align-items: center; gap: 8px; background: #111; color: #fff; font-size: 13px; font-weight: 700; padding: 10px 22px; border-radius: 100px; flex-shrink: 0; transition: opacity .2s; }
+    .nav-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .nav-portal { display: inline-flex; align-items: center; background: #D3F45A; color: #111; font-family: 'Pretendard',sans-serif; font-size: 13px; font-weight: 600; padding: 10px 22px; border-radius: 100px; text-decoration: none; white-space: nowrap; transition: opacity .2s; flex-shrink: 0; }
+    .nav-portal:hover { opacity: .75; }
+    .nav-cta:hover { opacity: .8; }
+    .nav-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--lime); }
+
+    /* HERO */
+    #hero { padding: 160px 80px 80px; background: var(--offwhite); }
+    .hero-kicker { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .22em; color: var(--purple); text-transform: uppercase; display: flex; align-items: center; gap: 8px; margin-bottom: 20px; }
+    .hero-kicker::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--purple); }
+    .hero-title { font-size: clamp(2.2rem,4vw,3.4rem); font-weight: 900; line-height: 1.2; letter-spacing: -.04em; }
+    .hero-sub { font-size: .95rem; color: #888; line-height: 1.75; margin-top: 18px; max-width: 480px; }
+
+    /* LIST */
+    #list { padding: 90px 80px 140px; max-width: 920px; margin: 0 auto; }
+    .ev-card { display: grid; grid-template-columns: 220px 1fr auto; align-items: center; gap: 36px; padding: 40px 0; border-bottom: 1px solid var(--gray2); }
+    .ev-card:first-child { border-top: 1px solid var(--gray2); }
+    .ev-status { display: inline-flex; align-items: center; gap: 8px; font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--purple); }
+    .ev-status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--purple); }
+    .ev-period { font-size: .8rem; color: #aaa; margin-top: 8px; }
+    .ev-title { font-size: 1.3rem; font-weight: 900; letter-spacing: -.02em; margin-bottom: 8px; }
+    .ev-desc { font-size: .88rem; color: #777; line-height: 1.6; }
+    .ev-link { display: inline-flex; align-items: center; gap: 8px; font-size: .85rem; font-weight: 700; color: #111; white-space: nowrap; padding: 12px 22px; border: 1.5px solid var(--gray2); border-radius: 100px; transition: border-color .2s, background .2s; }
+    .ev-link:hover { border-color: #111; background: #111; color: #fff; }
+
+    .ev-empty { text-align: center; padding: 60px 0; color: #aaa; font-size: .9rem; }
+
+    /* HAMBURGER */
+    .nav-burger { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px 4px; flex-shrink: 0; }
+    .nav-burger span { display: block; width: 22px; height: 2px; background: #111; border-radius: 1px; transition: transform .25s, opacity .25s; }
+    .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    #mobileMenu { display: none; position: fixed; top: 64px; left: 0; right: 0; bottom: 0; background: #fff; z-index: 9998; flex-direction: column; padding: 36px 24px; overflow-y: auto; }
+    #mobileMenu.open { display: flex; }
+    .mob-link { font-family: 'Inter',sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #888; text-decoration: none; padding: 18px 0; border-bottom: 1px solid #f0eeeb; transition: color .2s; }
+    .mob-link.active { color: #111; }
+    .mob-cta-wrap { margin-top: 32px; display: flex; gap: 12px; flex-wrap: wrap; }
+    .mob-cta { display: inline-flex; align-items: center; gap: 8px; background: #111; color: #fff; font-size: 14px; font-weight: 700; padding: 14px 28px; border-radius: 100px; text-decoration: none; }
+
+    /* FOOTER */
+    #footer { background: var(--black); }
+    .footer-brand-quote { padding: 56px 80px 48px; border-bottom: 1px solid rgba(255,255,255,.06); }
+    .fbq-text { font-size: clamp(.95rem,1.6vw,1.3rem); font-weight: 900; line-height: 1.5; letter-spacing: -.025em; color: rgba(255,255,255,.55); margin-bottom: 8px; }
+    .fbq-sub { font-size: .8rem; color: rgba(255,255,255,.22); letter-spacing: .06em; }
+    .footer-top { display: flex; justify-content: space-between; align-items: center; padding: 40px 80px; border-bottom: 1px solid rgba(255,255,255,.08); }
+    .footer-logo { font-family: 'Inter',sans-serif; font-size: 15px; font-weight: 800; letter-spacing: .06em; color: #fff; }
+    .footer-tagline { font-size: 10px; color: rgba(255,255,255,.3); letter-spacing: .14em; margin-top: 6px; }
+    .footer-links { display: flex; gap: 28px; }
+    .footer-links a { font-size: 11px; font-weight: 500; letter-spacing: .1em; color: rgba(255,255,255,.35); text-transform: uppercase; transition: color .2s; }
+    .footer-links a:hover { color: rgba(255,255,255,.8); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding: 24px 80px 32px; }
+    .footer-copy { font-size: 10px; color: rgba(255,255,255,.18); letter-spacing: .06em; }
+    .footer-gradbar { width: 100px; height: 2px; border-radius: 2px; background: linear-gradient(90deg,#D3F45A,#7B61FF,#4DE7FF); }
+
+    @media (max-width: 1024px) {
+      #nav { padding: 0 32px; } .nav-menu { gap: 20px; }
+      #hero { padding: 96px 48px 60px; }
+      #list { padding: 60px 48px 100px; }
+      .ev-card { grid-template-columns: 1fr; gap: 16px; }
+      .footer-brand-quote { padding: 48px 48px 40px; }
+      .footer-top { padding: 36px 48px; }
+      .footer-bottom { padding: 20px 48px 28px; }
+    }
+    @media (max-width: 768px) {
+      #nav { padding: 0 20px; display: flex; justify-content: space-between; }
+      .nav-portal { display: none; }
+      .nav-menu { display: none; }
+      .nav-burger { display: flex; }
+      .nav-logo-text { font-size: 13px; }
+      .nav-cta { padding: 8px 16px; font-size: 12px; }
+      #hero { padding: 88px 24px 48px; }
+      #list { padding: 48px 24px 80px; }
+      .footer-brand-quote { padding: 40px 24px 32px; }
+      .footer-top { padding: 28px 24px; flex-direction: column; gap: 20px; align-items: flex-start; }
+      .footer-links { flex-wrap: wrap; gap: 14px; }
+      .footer-bottom { padding: 16px 24px 24px; flex-direction: column; gap: 10px; align-items: flex-start; }
+    }
+  </style>
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '4441503009403677');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=4441503009403677&ev=PageView&noscript=1"/></noscript>
+</head>
+<body>
+
+<header id="nav">
+  <a href="index.html" class="nav-logo">
+    <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+      <circle cx="10" cy="9.5" r="4.5" fill="#D3F45A"/>
+      <path d="M17 5 L28 5 L28 20" stroke="#7B61FF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M6.5 21 Q10.5 29.5 20 27" stroke="#111111" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+    </svg>
+    <span class="nav-logo-text">FINDIER LAB</span>
+  </a>
+  <ul class="nav-menu">
+    <li><a href="service.html">SERVICE</a></li>
+    <li><a href="works.html">WORK</a></li>
+    <li><a href="process.html">PROCESS</a></li>
+    <li><a href="lab.html">LAB</a></li>
+    <li><a href="events.html" class="active">EVENT</a></li>
+    <li><a href="about.html">ABOUT</a></li>
+    <li><a href="contact.html">CONTACT</a></li>
+  </ul>
+  <div class="nav-actions">
+  <a href="portal/login.html" class="nav-portal">운영 허브</a>
+  <a href="contact.html" class="nav-cta"><span class="nav-dot"></span>무료 상담받기</a>
+  <button class="nav-burger" id="navBurger" aria-label="메뉴"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<div id="mobileMenu">
+  <a href="service.html" class="mob-link">SERVICE</a>
+  <a href="works.html" class="mob-link">WORK</a>
+  <a href="process.html" class="mob-link">PROCESS</a>
+  <a href="lab.html" class="mob-link">LAB</a>
+  <a href="events.html" class="mob-link active">EVENT</a>
+  <a href="about.html" class="mob-link">ABOUT</a>
+  <a href="contact.html" class="mob-link">CONTACT</a>
+  <div class="mob-cta-wrap"><a href="contact.html" class="mob-cta"><span class="nav-dot"></span>무료 상담받기</a><a href="portal/login.html" class="mob-cta" style="background:#D3F45A;color:#111;">운영 허브</a></div>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <p class="hero-kicker">Event</p>
+  <h1 class="hero-title">진행 중인 이벤트</h1>
+  <p class="hero-sub">파인디어랩이 지금 진행하고 있는 프로모션과 소식을 모아둡니다.</p>
+</section>
+
+<!-- LIST -->
+<section id="list">
+  <div class="ev-card fade d1">
+    <div>
+      <p class="ev-status"><span class="ev-status-dot"></span>진행 중</p>
+      <p class="ev-period">2026.07.01 — 2026.07.31</p>
+    </div>
+    <div>
+      <p class="ev-title">사장님의 에이전트를 만들어드립니다</p>
+      <p class="ev-desc">390,000원 → 59,000원. 창업을 준비하는 모든 사장님을 응원합니다.</p>
+    </div>
+    <a href="agent-promo.html" class="ev-link">자세히 보기 →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="footer-brand-quote fade">
+    <p class="fbq-text">브랜드를 만들어드리는 것이 아닙니다. 당신이 말할 수 있는 구조를 함께 만듭니다.</p>
+    <p class="fbq-sub">Brand Research &amp; Building Lab</p>
+  </div>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">FINDIER LAB</div>
+      <div class="footer-tagline">BRAND RESEARCH &amp; BUILDING LAB</div>
+    </div>
+    <div class="footer-links">
+      <a href="service.html">SERVICE</a>
+      <a href="works.html">WORK</a>
+      <a href="process.html">PROCESS</a>
+      <a href="lab.html">LAB</a>
+      <a href="events.html">EVENT</a>
+      <a href="about.html">ABOUT</a>
+      <a href="contact.html">CONTACT</a>
+      <a href="https://instagram.com/findier.lab" target="_blank">@INSTAGRAM</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 FINDIER LAB. All rights reserved.</span>
+    <div class="footer-gradbar"></div>
+  </div>
+</footer>
+
+<script>
+const fader = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -48px 0px' });
+document.querySelectorAll('.fade').forEach(el => fader.observe(el));
+</script>
+<script>
+(function(){var b=document.getElementById('navBurger'),m=document.getElementById('mobileMenu');if(!b)return;b.addEventListener('click',function(){b.classList.toggle('open');m.classList.toggle('open');document.body.style.overflow=m.classList.contains('open')?'hidden':'';});})();
+</script>
+</body>
+</html>
