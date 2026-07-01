@@ -467,6 +467,21 @@ document.getElementById('contact-form').addEventListener('submit', async functio
   ].join('\n');
   setTimeout(() => document.getElementById('form-section').scrollIntoView({ behavior:'smooth' }), 300);
 })();
+/* 홈페이지 무료 제작 프로모션 자동 채움 */
+(function() {
+  const p = new URLSearchParams(location.search);
+  if (p.get('from') !== 'free-website') return;
+  const msg = document.querySelector('textarea[name="message"]');
+  if (!msg) return;
+  msg.value = [
+    '[ 홈페이지 무료 제작 — 신청 ]',
+    '선착순 5명 · 사장님의 에이전트(59,000원) 신청자 한정',
+    '',
+    '──────────',
+    '사업자등록 여부와 현재 홈페이지 상태를 간단히 적어주세요.',
+  ].join('\n');
+  setTimeout(() => document.getElementById('form-section').scrollIntoView({ behavior:'smooth' }), 300);
+})();
 /* 사장님의 에이전트 프로모션 자동 채움 */
 (function() {
   const p = new URLSearchParams(location.search);
