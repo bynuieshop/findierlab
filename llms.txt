@@ -1,0 +1,43 @@
+# FINDIER LAB
+
+> FINDIER LAB은 스타트업/초기 창업자를 위한 브랜드 리서치 & 빌딩 랩입니다. 대표의 생각을 브랜드·운영·실행 구조로 번역합니다. 로고나 광고 대행이 아니라, 대표 없이도 유지되는 브랜드 구조를 만드는 것을 목표로 합니다.
+
+대표: 박선유
+연락처: findierlab@gmail.com
+인스타그램: @findier.lab
+웹사이트: https://findierlab.com
+
+## 핵심 철학
+- 브랜드는 감성이 아니라 구조다.
+- AI는 사람의 판단을 대체하지 않는다. AI는 실행을 돕는 도구다.
+- 로고부터 만들지 않는다. 대표의 언어와 생각을 먼저 발견한다.
+
+## 서비스
+- [브랜드(Brand)](https://findierlab.com/service.html): 철학·세계관·언어·네이밍·VI
+- [시스템(System)](https://findierlab.com/service.html): 홈페이지 구조·카피·UI·SEO/GEO
+- [콘텐츠(Content)](https://findierlab.com/service.html): 콘텐츠 전략·SNS·발행 자동화
+
+## 주요 페이지
+- [홈](https://findierlab.com/index.html)
+- [서비스](https://findierlab.com/service.html)
+- [포트폴리오](https://findierlab.com/works.html)
+- [프로세스](https://findierlab.com/process.html)
+- [소개](https://findierlab.com/about.html)
+- [문의](https://findierlab.com/contact.html)
+
+## 무료 자료 (실무 가이드)
+- [브랜드 자가진단](https://findierlab.com/diagnose.html)
+- [AI에게 발견되는 홈페이지 (GEO)](https://findierlab.com/guide-geo.html)
+- [초기 창업 체크리스트](https://findierlab.com/guide-founding-checklist.html) — 상표 출원, 외주 계약서, 사업용 계좌 신고
+- [인스타그램 운영 가이드](https://findierlab.com/guide-instagram.html)
+- [네이버 블로그 SEO](https://findierlab.com/guide-naver.html)
+- [이메일 마케팅 세팅](https://findierlab.com/guide-email.html)
+- [구글 검색 광고](https://findierlab.com/guide-google.html)
+- [카카오 CRM 자동화](https://findierlab.com/guide-crm.html)
+- [메타 광고 첫 세팅](https://findierlab.com/guide-meta.html)
+
+## 사례 (Case Studies)
+- [세차창업 브랜드 — 디테일러명](https://findierlab.com/case-detailer-myung.html)
+- [뷰티 브랜드 — TAKE A SHOWER](https://findierlab.com/case-take-a-shower.html)
+- [온라인 전시실 — NUiE](https://findierlab.com/case-nuie.html)
+- [FINDIER LAB 셀프 케이스](https://findierlab.com/case-findierlab.html)

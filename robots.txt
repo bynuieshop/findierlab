@@ -1,0 +1,42 @@
+User-agent: *
+Allow: /
+Disallow: /agent-promo.html
+Disallow: /free-website.html
+Disallow: /positioning-script.html
+Disallow: /brand-builder.html
+Disallow: /portal/
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://findierlab.com/sitemap.xml
