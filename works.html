@@ -21,6 +21,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -71,6 +72,39 @@
     .work-cat { position: absolute; left: 28px; bottom: 28px; z-index: 1; font-size: clamp(1.3rem,2.4vw,1.9rem); font-weight: 900; letter-spacing: -.02em; color: #fff; transition: color .3s; }
     .work-item:hover .work-cat { color: var(--accent); }
 
+    /* WORKS SWIPER — coverflow, toned down (planninghouse.co.kr 참고, 회전각/속도 절제) */
+    .works-swiper-wrap { padding: 64px 0 88px; background: var(--white); border-top: 1px solid var(--gray2); border-bottom: 1px solid var(--gray2); overflow: hidden; }
+    .works-swiper { width: 100%; padding: 20px 0 48px; }
+    .works-swiper .swiper-slide { width: 460px; }
+    .work-slide { display: block; text-decoration: none; }
+    .work-slide-visual { position: relative; aspect-ratio: 4/3; overflow: hidden; background: #111; border-radius: 16px; border-top: 3px solid var(--accent); box-shadow: 0 20px 48px rgba(0,0,0,.14); transition: transform .45s cubic-bezier(.16,1,.3,1), box-shadow .45s; }
+    .work-slide-visual img { width: 100%; height: 100%; object-fit: cover; }
+    .work-slide-visual::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,.55); transition: background .3s; }
+    .work-slide:hover .work-slide-visual { transform: scale(1.06); box-shadow: 0 28px 64px rgba(0,0,0,.22); }
+    .work-slide:hover .work-slide-visual::after { background: rgba(0,0,0,.3); }
+    .work-slide-cat { position: absolute; left: 26px; bottom: 24px; z-index: 1; font-size: 1.5rem; font-weight: 900; letter-spacing: -.02em; color: #fff; }
+
+    /* CTA color slides — interspersed brand-color boxes (portfolio 안의 바로가기) */
+    .work-cta-slide { position: relative; aspect-ratio: 4/3; border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; text-decoration: none; box-shadow: 0 20px 48px rgba(0,0,0,.14); transition: transform .45s cubic-bezier(.16,1,.3,1), box-shadow .45s; }
+    .work-cta-slide:hover { transform: scale(1.06); box-shadow: 0 28px 64px rgba(0,0,0,.22); }
+    .work-cta-slide.is-purple { background: var(--purple); }
+    .work-cta-slide.is-lime { background: var(--lime); }
+    .work-cta-slide.is-black { background: var(--black); }
+    .work-cta-icon { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; }
+    .work-cta-text { font-size: 1.2rem; font-weight: 900; letter-spacing: -.02em; text-align: center; padding: 0 20px; }
+    .work-cta-slide.is-purple .work-cta-text, .work-cta-slide.is-black .work-cta-text { color: #fff; }
+    .work-cta-slide.is-lime .work-cta-text { color: var(--black); }
+    .work-cta-sub { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; opacity: .55; }
+    .work-cta-slide.is-purple .work-cta-sub, .work-cta-slide.is-black .work-cta-sub { color: #fff; }
+    .work-cta-slide.is-lime .work-cta-sub { color: var(--black); }
+
+    .works-swiper .swiper-pagination { position: relative; margin-top: 8px; }
+    .works-swiper .swiper-pagination-bullet { background: var(--gray2); opacity: 1; width: 6px; height: 6px; }
+    .works-swiper .swiper-pagination-bullet-active { background: var(--purple); width: 18px; border-radius: 3px; }
+    @media (max-width: 768px) {
+      .works-swiper .swiper-slide { width: 78vw; }
+    }
+
     /* SAMPLE BRANDS */
     #samples { background: var(--gray1); padding: 100px 80px; border-top: 1px solid var(--gray2); }
     .samples-head { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 56px; }
@@ -79,9 +113,9 @@
     .samples-title { font-size: clamp(1.4rem,2.2vw,2rem); font-weight: 900; letter-spacing: -.025em; color: var(--black); line-height: 1.3; }
     .samples-note { font-size: .78rem; color: #999; line-height: 1.75; max-width: 240px; text-align: right; }
     .samples-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--gray2); }
-    .sample-card { display: flex; flex-direction: column; text-decoration: none; overflow: hidden; background: var(--white); }
-    .sample-card:hover .sample-visual-inner { transform: scale(1.03); }
-    .sample-visual { height: 300px; overflow: hidden; position: relative; background: #111; }
+    .sample-card { display: flex; flex-direction: column; text-decoration: none; background: var(--white); }
+    .sample-card:hover .sample-visual { transform: scale(1.05); box-shadow: 0 24px 56px rgba(0,0,0,.2); }
+    .sample-visual { height: 300px; overflow: hidden; position: relative; background: #111; border-radius: 16px; transition: transform .45s cubic-bezier(.16,1,.3,1), box-shadow .45s; }
     .grnd-bg { border-top: 3px solid #C4883A; }
     .mere-bg { border-top: 3px solid #A99B7D; }
     .sample-visual-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .3; }
@@ -235,31 +269,62 @@
   <div class="intro-right"><span class="intro-count">02</span></div>
 </section>
 
-<div class="works-grid">
-  <a href="case-detailer-myung.html" class="work-item" style="--accent:#C9A15A;">
-    <div class="work-visual">
-      <img src="https://images.unsplash.com/photo-1708805282706-f44730b7e527?auto=format&fit=crop&w=1200&q=80" alt="세차창업 브랜드">
-      <span class="work-cat">세차창업 브랜드</span>
+<div class="works-swiper-wrap">
+  <div class="works-swiper swiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <a href="case-detailer-myung.html" class="work-slide" style="--accent:#C9A15A;">
+          <div class="work-slide-visual">
+            <img src="https://images.unsplash.com/photo-1708805282706-f44730b7e527?auto=format&fit=crop&w=1200&q=80" alt="세차창업 브랜드">
+            <span class="work-slide-cat">세차창업 브랜드</span>
+          </div>
+        </a>
+      </div>
+      <div class="swiper-slide">
+        <a href="https://instagram.com/findier.lab" target="_blank" class="work-cta-slide is-purple">
+          <div class="work-cta-icon">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="6" stroke="#fff" stroke-width="1.8"/><circle cx="12" cy="12" r="4.2" stroke="#fff" stroke-width="1.8"/><circle cx="17.4" cy="6.6" r="1.1" fill="#fff"/></svg>
+          </div>
+          <span class="work-cta-text">인스타그램<br>콘텐츠 자동화</span>
+          <span class="work-cta-sub">@findier.lab</span>
+        </a>
+      </div>
+      <div class="swiper-slide">
+        <a href="case-take-a-shower.html" class="work-slide" style="--accent:#2A9D8F;">
+          <div class="work-slide-visual">
+            <img src="assets/case-shots/tas-ubud.webp" alt="뷰티 브랜드">
+            <span class="work-slide-cat">뷰티 브랜드</span>
+          </div>
+        </a>
+      </div>
+      <div class="swiper-slide">
+        <a href="case-nuie.html" class="work-slide" style="--accent:#8A9E2E;">
+          <div class="work-slide-visual">
+            <img src="https://images.unsplash.com/photo-1681676705948-92716147a0d7?auto=format&fit=crop&w=1200&q=80" alt="온라인 전시실">
+            <span class="work-slide-cat">온라인 전시실</span>
+          </div>
+        </a>
+      </div>
+      <div class="swiper-slide">
+        <a href="portal/login.html" class="work-cta-slide is-black">
+          <div class="work-cta-icon">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#fff" stroke-width="1.8"/><path d="M12 7v5l3.5 2" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <span class="work-cta-text">운영 허브<br>인트라넷</span>
+          <span class="work-cta-sub">Client Portal System</span>
+        </a>
+      </div>
+      <div class="swiper-slide">
+        <a href="case-findierlab.html" class="work-slide" style="--accent:#7B61FF;">
+          <div class="work-slide-visual">
+            <img src="assets/hero-object.png" alt="파인디어랩">
+            <span class="work-slide-cat">파인디어랩</span>
+          </div>
+        </a>
+      </div>
     </div>
-  </a>
-  <a href="case-take-a-shower.html" class="work-item" style="--accent:#2A9D8F;">
-    <div class="work-visual">
-      <img src="assets/case-shots/tas-ubud.webp" alt="뷰티 브랜드">
-      <span class="work-cat">뷰티 브랜드</span>
-    </div>
-  </a>
-  <a href="case-nuie.html" class="work-item" style="--accent:#8A9E2E;">
-    <div class="work-visual">
-      <img src="https://images.unsplash.com/photo-1681676705948-92716147a0d7?auto=format&fit=crop&w=1200&q=80" alt="온라인 전시실">
-      <span class="work-cat">온라인 전시실</span>
-    </div>
-  </a>
-  <a href="case-findierlab.html" class="work-item" style="--accent:#7B61FF;">
-    <div class="work-visual">
-      <img src="assets/hero-object.png" alt="파인디어랩">
-      <span class="work-cat">파인디어랩</span>
-    </div>
-  </a>
+    <div class="swiper-pagination"></div>
+  </div>
 </div>
 
 <!-- SAMPLE BRANDS -->
@@ -351,6 +416,27 @@ document.querySelectorAll('.fade').forEach(el => fader.observe(el));
 </script>
 
 <div class="cursor-dot" id="cursorDot"></div>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+new Swiper('.works-swiper', {
+  slidesPerView: 'auto',
+  centeredSlides: true,
+  spaceBetween: 24,
+  speed: 900,
+  loop: true,
+  effect: 'coverflow',
+  autoplay: { delay: 4500, disableOnInteraction: false, pauseOnMouseEnter: true },
+  coverflowEffect: { rotate: -3, stretch: -10, depth: 80, modifier: 1, slideShadows: false },
+  pagination: { el: '.works-swiper .swiper-pagination', clickable: true },
+  breakpoints: {
+    0: { slidesPerView: 1.15, spaceBetween: 16 },
+    768: { slidesPerView: 1.6, spaceBetween: 20 },
+    1024: { slidesPerView: 'auto', spaceBetween: 24 }
+  },
+  observer: true,
+  observeParents: true
+});
+</script>
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
 <script>
 (function(){
