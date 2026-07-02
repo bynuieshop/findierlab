@@ -239,7 +239,21 @@ footer {
   .rules { grid-template-columns: 1fr; }
   .rule-box { margin-left: 24px; margin-right: 24px; padding: 32px 24px; }
 }
-</style>
+
+    /* CUSTOM CURSOR */
+    .cursor-dot {
+      position: fixed; top: 0; left: 0; width: 8px; height: 8px;
+      border-radius: 50%; background: #7B61FF;
+      pointer-events: none; z-index: 9999;
+      opacity: 0; transform: translate(-50%, -50%) scale(1);
+      transition: opacity .2s ease, transform .25s ease;
+    }
+    .cursor-dot.visible { opacity: .55; }
+    .cursor-dot.hover { transform: translate(-50%, -50%) scale(3.75); opacity: .16; }
+    @media (hover: none), (max-width: 768px) {
+      .cursor-dot { display: none; }
+    }
+  </style>
 <script>
   const _sb = window.supabase.createClient(
     'https://gfpmdrhpyclkkfkraojq.supabase.co',
@@ -395,5 +409,34 @@ footer {
   <div class="footer-sub">브랜드 구조 설계 · 운영 시스템 구축 · findierlab.com</div>
 </footer>
 
+
+<div class="cursor-dot" id="cursorDot"></div>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+(function(){
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isTouch = window.matchMedia('(hover: none)').matches;
+
+  if (!reduceMotion && !isTouch && typeof Lenis !== 'undefined') {
+    const lenis = new Lenis({ duration: 1.0, easing: (t) => 1 - Math.pow(1 - t, 3) });
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+  }
+
+  if (!reduceMotion && !isTouch) {
+    const dot = document.getElementById('cursorDot');
+    document.addEventListener('mousemove', (e) => {
+      dot.classList.add('visible');
+      dot.style.left = e.clientX + 'px';
+      dot.style.top = e.clientY + 'px';
+    });
+    document.addEventListener('mouseleave', () => dot.classList.remove('visible'));
+    document.querySelectorAll('a, button').forEach((el) => {
+      el.addEventListener('mouseenter', () => dot.classList.add('hover'));
+      el.addEventListener('mouseleave', () => dot.classList.remove('hover'));
+    });
+  }
+})();
+</script>
 </body>
 </html>
