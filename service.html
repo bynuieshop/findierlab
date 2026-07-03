@@ -95,6 +95,10 @@
     .svc-right { padding-top: 4px; }
     .svc-delivs { display: flex; flex-direction: column; }
     .svc-deliv { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--gray2); font-size: .82rem; color: #555; }
+    .svc-sample-link { display: inline-flex; align-items: center; gap: 10px; margin-top: 22px; background: var(--purple); color: #fff; font-size: 14px; font-weight: 700; letter-spacing: -.01em; padding: 14px 24px; border-radius: 100px; transition: opacity .2s, gap .2s; }
+    .svc-sample-link:hover { opacity: .85; gap: 14px; }
+    .svc-sample-links { display: flex; flex-wrap: wrap; gap: 10px; }
+    .svc-sample-link.secondary { background: var(--gray1); color: var(--black); }
     .svc-deliv:last-child { border-bottom: none; }
     .svc-deliv-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
 
@@ -218,6 +222,21 @@
     .inv-card.active-card { border-color: var(--purple); box-shadow: 0 8px 32px rgba(123,97,255,.12); }
     .inv-card.featured { border-color: var(--purple); box-shadow: 0 8px 36px rgba(123,97,255,.13); }
     .featured-badge { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: var(--purple); color: #fff; font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; white-space: nowrap; }
+    /* PREMIUM (03 OPERATE) — 최상위 등급, 다크 톤으로 무게감 차별화 */
+    .inv-card.premium { background: var(--black); border-color: var(--black); box-shadow: 0 12px 40px rgba(0,0,0,.22); }
+    .inv-card.premium:hover { border-color: var(--black); box-shadow: 0 16px 48px rgba(0,0,0,.3); }
+    .inv-card.premium.active-card { border-color: var(--lime); box-shadow: 0 12px 40px rgba(211,244,90,.18); }
+    .premium-badge { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: var(--lime); color: #111; font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; white-space: nowrap; }
+    .inv-card.premium .card-num,
+    .inv-card.premium .card-plan,
+    .inv-card.premium .card-price,
+    .inv-card.premium .card-item { color: #fff; }
+    .inv-card.premium .card-period,
+    .inv-card.premium .card-desc,
+    .inv-card.premium .card-item.inherited { color: rgba(255,255,255,.45); }
+    .inv-card.premium .card-divider { background: rgba(255,255,255,.12); }
+    .inv-card.premium .card-access { border-color: rgba(255,255,255,.12); }
+    .inv-card.premium .card-target { background: rgba(255,255,255,.1); color: rgba(255,255,255,.6); }
     .card-bar { height: 3px; border-radius: 2px; margin-bottom: 24px; }
     .card-num { font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 700; letter-spacing: .16em; color: #ccc; text-transform: uppercase; margin-bottom: 14px; }
     .card-price { font-family: 'Inter',sans-serif; font-weight: 900; letter-spacing: -.04em; line-height: 1; margin-bottom: 5px; }
@@ -235,10 +254,10 @@
     .card-item.inherited { color: #bbb; font-style: italic; }
     .card-access { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 20px; padding-top: 16px; border-top: 1px solid var(--gray1); }
     .card-access-tag { font-size: .65rem; font-weight: 700; padding: 3px 9px; border-radius: 100px; border: 1px solid; display: flex; align-items: center; gap: 4px; }
-    .card-preview-btn { display: flex; align-items: center; justify-content: space-between; width: 100%; background: none; border: none; padding: 12px 0 0; cursor: pointer; transition: opacity .2s; }
-    .card-preview-btn:hover { opacity: .7; }
-    .preview-btn-label { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
-    .preview-btn-arrow { font-size: .9rem; transition: transform .2s; }
+    .card-preview-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; background: var(--gray1); border: none; border-radius: 100px; padding: 15px 20px; margin-top: 14px; cursor: pointer; transition: opacity .2s, transform .2s; }
+    .card-preview-btn:hover { opacity: .85; transform: translateY(-2px); }
+    .preview-btn-label { font-family: 'Pretendard',sans-serif; font-size: 14px; font-weight: 800; letter-spacing: -.01em; }
+    .preview-btn-arrow { font-size: 1.15rem; font-weight: 700; transition: transform .2s; }
     .inv-card.active-card .preview-btn-arrow { transform: rotate(90deg); }
     #portal-panel { margin: 24px 80px 80px; display: none; }
     #portal-panel.open { display: block; }
@@ -284,7 +303,7 @@
     .sep-note { font-size: .78rem; color: #aaa; line-height: 1.7; max-width: 340px; }
     @media (max-width: 900px) {
       .cards-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
-      .inv-card.featured { margin-top: 14px; }
+      .inv-card.featured, .inv-card.premium { margin-top: 14px; }
       #portal-panel { margin: 20px 0 0; }
       .portal-body { grid-template-columns: 180px 1fr; height: 300px; }
       .content-card-row { grid-template-columns: 1fr 1fr; }
@@ -448,7 +467,7 @@
           </div>
           <div class="cs-bar" style="background:#7B61FF;"></div>
           <div class="cs-name">BRAND</div>
-          <div class="cs-ko">대표의 생각을<br>브랜드 언어로 번역합니다.</div>
+          <div class="cs-ko">브랜드 이름, 슬로건,<br>핵심 메시지를 만들어드립니다.</div>
           <div class="cs-tags">
             <span class="cs-tag">브랜드 네임</span>
             <span class="cs-tag">슬로건</span>
@@ -468,7 +487,7 @@
           </div>
           <div class="cs-bar" style="background:#4DE7FF;"></div>
           <div class="cs-name">SYSTEM</div>
-          <div class="cs-ko">브랜드 언어를<br>온라인 경험으로 구현합니다.</div>
+          <div class="cs-ko">실제로 접속되는<br>홈페이지를 만들어드립니다.</div>
           <div class="cs-tags">
             <span class="cs-tag">브랜드 사이트</span>
             <span class="cs-tag">포트폴리오</span>
@@ -487,7 +506,7 @@
           </div>
           <div class="cs-bar" style="background:#D3F45A;"></div>
           <div class="cs-name">CONTENT</div>
-          <div class="cs-ko">브랜드 세계관이 콘텐츠로<br>지속되는 구조를 만듭니다.</div>
+          <div class="cs-ko">SNS에 올릴 콘텐츠를<br>계속 만들어드립니다.</div>
           <div class="cs-tags">
             <span class="cs-tag">콘텐츠 전략</span>
             <span class="cs-tag">SNS 시스템</span>
@@ -526,7 +545,7 @@
         </svg>
       </div>
       <h2 class="svc-name">브랜드</h2>
-      <p class="svc-tagline">대표의 생각을 브랜드 언어로 번역합니다.</p>
+      <p class="svc-tagline">이름, 슬로건, 로고까지 만들어드립니다.</p>
     </div>
     <div class="svc-right">
       <div class="svc-delivs">
@@ -536,6 +555,7 @@
         <div class="svc-deliv"><span class="svc-deliv-dot" style="background:var(--lime);"></span>네이밍 & 슬로건</div>
         <div class="svc-deliv"><span class="svc-deliv-dot" style="background:var(--lime);"></span>비주얼 아이덴티티 (VI)</div>
       </div>
+      <a href="deliverable-sample.html" class="svc-sample-link">브랜드 컬러보드 샘플 보기 →</a>
     </div>
   </div>
 
@@ -557,7 +577,7 @@
         </svg>
       </div>
       <h2 class="svc-name">시스템</h2>
-      <p class="svc-tagline">브랜드 언어가 경험되는 웹 구조를 설계합니다.</p>
+      <p class="svc-tagline">실제로 작동하는 홈페이지를 만들어드립니다.</p>
     </div>
     <div class="svc-right">
       <div class="svc-delivs">
@@ -566,6 +586,10 @@
         <div class="svc-deliv"><span class="svc-deliv-dot" style="background:var(--cyan);"></span>UI 디자인 & 반응형 개발</div>
         <div class="svc-deliv"><span class="svc-deliv-dot" style="background:var(--cyan);"></span>문의 전환 구조 설계</div>
         <div class="svc-deliv"><span class="svc-deliv-dot" style="background:var(--cyan);"></span>SEO & GEO(생성형 AI 검색 최적화) & 퍼포먼스 최적화</div>
+      </div>
+      <div class="svc-sample-links">
+        <a href="works.html" class="svc-sample-link">실제 제작 홈페이지 보기 →</a>
+        <a href="intranet-sample.html" class="svc-sample-link secondary">인트라넷 샘플 보기 →</a>
       </div>
     </div>
   </div>
@@ -593,7 +617,7 @@
         </svg>
       </div>
       <h2 class="svc-name">콘텐츠</h2>
-      <p class="svc-tagline">브랜드 세계관이 콘텐츠로<br>지속되는 구조를 만듭니다.</p>
+      <p class="svc-tagline">인스타그램에 꾸준히 올라가는<br>콘텐츠를 만들어드립니다.</p>
     </div>
     <div class="svc-right">
       <div class="svc-delivs">
@@ -604,6 +628,7 @@
         <div class="svc-deliv"><span class="svc-deliv-dot" style="background:var(--purple);"></span>AI 보조 콘텐츠 파이프라인</div>
         <div class="svc-deliv"><span class="svc-deliv-dot" style="background:var(--purple);"></span>발행 자동화 & 운영 가이드</div>
       </div>
+      <a href="https://instagram.com/findier.lab" target="_blank" class="svc-sample-link">실제 발행 콘텐츠 보기 →</a>
     </div>
   </div>
 </section>
@@ -747,7 +772,7 @@
       </div>
       <p class="card-period">최대 7일</p>
       <div class="card-divider"></div>
-      <p class="card-plan">대표의 생각을 정리합니다.</p>
+      <p class="card-plan">인터뷰 + 브랜드 방향 문서 6종을 받습니다.</p>
       <p class="card-desc">아이디어가 있지만 어디서 시작할지 모를 때.<br>방향이 명확해지면 실행이 빠릅니다.</p>
       <div class="card-targets">
         <span class="card-target">아이템 단계</span>
@@ -766,9 +791,9 @@
         <span class="card-access-tag" style="color:#888; border-color:var(--gray2);">🔒 비공개 웹페이지</span>
         <span class="card-access-tag" style="color:#888; border-color:var(--gray2);">대표 전용 접근</span>
       </div>
-      <button class="card-preview-btn">
-        <span class="preview-btn-label" style="color:#888;">Portal Preview</span>
-        <span class="preview-btn-arrow" style="color:#bbb;">›</span>
+      <button class="card-preview-btn" style="background:var(--gray1);">
+        <span class="preview-btn-label" style="color:#555;">포털 미리보기</span>
+        <span class="preview-btn-arrow" style="color:#555;">›</span>
       </button>
     </div>
 
@@ -782,7 +807,7 @@
       </div>
       <p class="card-period">최대 14일</p>
       <div class="card-divider" style="background:rgba(123,97,255,.15);"></div>
-      <p class="card-plan">대표의 생각을 브랜드로 번역합니다.</p>
+      <p class="card-plan">로고·컬러부터 홈페이지까지 완성됩니다.</p>
       <p class="card-desc">언제든 확인하고 운영할 수 있는<br>대표 전용 브랜드 사이트를 만듭니다.</p>
       <div class="card-targets">
         <span class="card-target">브랜드 구축</span>
@@ -804,22 +829,23 @@
         <span class="card-access-tag" style="color:var(--purple); border-color:rgba(123,97,255,.25);">도메인 연결 가능</span>
         <span class="card-access-tag" style="color:var(--purple); border-color:rgba(123,97,255,.25);">로그인</span>
       </div>
-      <button class="card-preview-btn">
-        <span class="preview-btn-label" style="color:var(--purple);">Portal Preview</span>
-        <span class="preview-btn-arrow" style="color:var(--purple);">›</span>
+      <button class="card-preview-btn" style="background:var(--purple);">
+        <span class="preview-btn-label" style="color:#fff;">포털 미리보기</span>
+        <span class="preview-btn-arrow" style="color:#fff;">›</span>
       </button>
     </div>
 
     <!-- 03 OPERATE -->
-    <div class="inv-card fade d3" onclick="openPortal('operate', this)">
-      <div class="card-bar" style="background:var(--cyan);"></div>
-      <p class="card-num">03 — OPERATE</p>
-      <div class="card-price" style="color:var(--black);">
+    <div class="inv-card premium fade d3" onclick="openPortal('operate', this)">
+      <span class="premium-badge">최상위 · 완전 자동화</span>
+      <div class="card-bar" style="background:var(--lime);"></div>
+      <p class="card-num" style="color:rgba(255,255,255,.4);">03 — OPERATE</p>
+      <div class="card-price" style="color:var(--lime);">
         <span class="won">₩</span><span class="amount">1,990,000</span>
       </div>
       <p class="card-period">최대 30일</p>
       <div class="card-divider"></div>
-      <p class="card-plan">혼자서도 움직일 수 있는 구조를 만듭니다.</p>
+      <p class="card-plan">로그인 운영 허브 + AI 발행까지 완성됩니다.</p>
       <p class="card-desc">대표가 운영 기준을 언제든 확인할 수 있는<br>운영 매뉴얼 사이트를 제공합니다.</p>
       <div class="card-targets">
         <span class="card-target">운영 체계 구축</span>
@@ -841,9 +867,9 @@
         <span class="card-access-tag" style="color:#1aabb8; border-color:rgba(77,231,255,.3);">로그인</span>
         <span class="card-access-tag" style="color:#1aabb8; border-color:rgba(77,231,255,.3);">지속 업데이트</span>
       </div>
-      <button class="card-preview-btn">
-        <span class="preview-btn-label" style="color:#1aabb8;">Portal Preview</span>
-        <span class="preview-btn-arrow" style="color:var(--cyan);">›</span>
+      <button class="card-preview-btn" style="background:var(--lime);">
+        <span class="preview-btn-label" style="color:#111;">포털 미리보기</span>
+        <span class="preview-btn-arrow" style="color:#111;">›</span>
       </button>
     </div>
 
@@ -856,7 +882,7 @@
       <button class="portal-tab" onclick="switchPortal('build')" data-plan="build">02 Brand OS Site</button>
       <button class="portal-tab" onclick="switchPortal('operate')" data-plan="operate">03 Operating Portal</button>
     </div>
-    <div class="portal-browser">
+    <div class="portal-browser" id="portal-browser-el">
       <div class="browser-chrome">
         <div class="browser-dots">
           <div class="browser-dot" style="background:#FF5F57;"></div>
@@ -1092,7 +1118,15 @@ function renderPortal(plan) {
   sn.textContent = d.siteName; sn.style.color = d.accentColor;
   document.getElementById('sidebar-site-type').textContent = d.siteType;
   document.getElementById('active-section-name').textContent = d.sections[d.activeIdx];
-  document.getElementById('content-title-bar').style.background = d.accentColor === '#888' ? 'var(--gray2)' : d.accentColor + '22';
+  var isPlain = d.accentColor === '#888';
+  var titleTint = isPlain ? 'var(--gray2)' : d.accentColor + '30';
+  var blockTint = isPlain ? 'var(--gray1)' : d.accentColor + '1c';
+  var cardTint = isPlain ? 'var(--gray1)' : (plan === 'operate' ? d.accentColor + '20' : d.accentColor + '16');
+  document.getElementById('content-title-bar').style.background = titleTint;
+  document.querySelectorAll('.content-sub-block').forEach(function(el){ el.style.background = blockTint; });
+  document.querySelectorAll('.content-card-block').forEach(function(el){ el.style.background = cardTint; el.style.border = isPlain ? 'none' : '1px solid ' + d.accentColor + '35'; });
+  document.querySelectorAll('.content-tag-ph').forEach(function(el){ el.style.background = isPlain ? 'var(--gray1)' : d.accentColor + '22'; });
+  document.getElementById('portal-browser-el') && (document.getElementById('portal-browser-el').style.borderColor = isPlain ? 'var(--gray2)' : d.accentColor + '40');
   var nav = document.getElementById('sidebar-nav');
   nav.innerHTML = '';
   d.sections.forEach(function(s, i) {

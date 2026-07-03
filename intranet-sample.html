@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5VTZY9P51Z"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-5VTZY9P51Z');</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>산출물 예시 — 인트라넷/운영 허브 — FINDIER LAB</title>
+  <meta name="description" content="FINDIER LAB이 실제로 만드는 로그인 기반 인트라넷 예시. 대표 전용 운영 허브가 어떻게 생겼는지 보여드립니다.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --lime: #D3F45A; --purple: #7B61FF; --black: #111; --white: #fff; --gray1: #F2F0ED; --gray2: #E2E0DC; }
+    body { font-family: 'Pretendard','Inter',-apple-system,sans-serif; background: var(--white); color: var(--black); -webkit-font-smoothing: antialiased; }
+    a { text-decoration: none; color: inherit; }
+
+    #nav { position: fixed; top: 0; left: 0; right: 0; height: 64px; z-index: 999; background: #fff; border-bottom: 1px solid #EBEBEB; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; font-family: 'Inter',sans-serif; font-size: 15px; font-weight: 800; letter-spacing: .05em; }
+    .nav-cta { display: inline-flex; align-items: center; gap: 8px; background: #111; color: #fff; font-size: 13px; font-weight: 600; padding: 10px 22px; border-radius: 100px; transition: opacity .2s; }
+    .nav-cta:hover { opacity: .8; }
+    .nav-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--lime); }
+
+    #hero { padding: 140px 80px 56px; max-width: 980px; }
+    .hero-kicker { display: inline-flex; align-items: center; gap: 8px; background: rgba(123,97,255,.07); border: 1px solid rgba(123,97,255,.2); color: #5a40cc; font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .16em; padding: 6px 14px; border-radius: 100px; margin-bottom: 28px; text-transform: uppercase; }
+    .hero-title { font-size: clamp(2rem,4.2vw,3.4rem); font-weight: 900; line-height: 1.18; letter-spacing: -.03em; margin-bottom: 20px; }
+    .hero-title .c-purple { color: var(--purple); }
+    .hero-desc { font-size: .95rem; color: #666; line-height: 1.85; max-width: 560px; }
+    .hero-note { display: inline-block; margin-top: 20px; font-size: .78rem; color: #aaa; }
+
+    #mock { padding: 0 80px 40px; }
+    .mock-frame { border-radius: 20px; overflow: hidden; border: 1px solid var(--gray2); box-shadow: 0 24px 64px rgba(0,0,0,.1); background: #111; }
+
+    /* mock intranet UI, matching real portal design language */
+    .mock-nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 36px; border-bottom: 1px solid rgba(255,255,255,.1); }
+    .mock-nav-logo { font-family: 'Inter',sans-serif; font-size: 12px; font-weight: 900; letter-spacing: .18em; color: #fff; text-transform: uppercase; }
+    .mock-nav-tag { font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #111; background: var(--lime); padding: 4px 10px; }
+    .mock-hero { padding: 56px 36px 40px; border-bottom: 1px solid rgba(255,255,255,.1); }
+    .mock-hero-label { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .2em; color: var(--lime); text-transform: uppercase; margin-bottom: 16px; }
+    .mock-hero-title { font-family: 'Inter',sans-serif; font-size: clamp(24px,3.5vw,38px); font-weight: 900; letter-spacing: -.03em; color: #fff; margin-bottom: 10px; }
+    .mock-hero-desc { font-size: .82rem; color: rgba(255,255,255,.4); line-height: 1.7; }
+    .mock-section { padding: 36px; }
+    .mock-section-label { font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 700; letter-spacing: .2em; color: rgba(255,255,255,.25); text-transform: uppercase; margin-bottom: 18px; }
+    .mock-grid { display: flex; flex-direction: column; gap: 2px; }
+    .mock-card { display: grid; grid-template-columns: 56px 1fr auto; align-items: center; gap: 20px; padding: 18px 20px; background: rgba(255,255,255,.04); border-left: 3px solid; }
+    .mock-card-num { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 700; color: rgba(255,255,255,.2); }
+    .mock-card-title { font-size: .88rem; font-weight: 700; color: #fff; margin-bottom: 2px; }
+    .mock-card-desc { font-size: .72rem; color: rgba(255,255,255,.35); }
+    .mock-card-arrow { font-family: 'Inter',sans-serif; font-size: 16px; color: rgba(255,255,255,.2); }
+
+    #note { padding: 40px 80px 90px; max-width: 780px; }
+    .note-title { font-size: 1.1rem; font-weight: 900; margin-bottom: 16px; letter-spacing: -.02em; }
+    .note-list { display: flex; flex-direction: column; gap: 10px; }
+    .note-row { display: flex; align-items: flex-start; gap: 12px; font-size: .86rem; color: #555; line-height: 1.7; }
+    .note-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--purple); margin-top: 8px; flex-shrink: 0; }
+
+    #upgrade { max-width: 980px; margin: 0 auto 100px; padding: 0 80px; }
+    .upgrade-card { background: #111; border-radius: 20px; padding: 44px 48px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+    .upgrade-kicker { font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 800; letter-spacing: .2em; color: rgba(255,255,255,.3); margin-bottom: 10px; text-transform: uppercase; }
+    .upgrade-title { font-size: 1.15rem; font-weight: 900; color: #fff; letter-spacing: -.02em; margin-bottom: 8px; }
+    .upgrade-desc { font-size: .85rem; color: rgba(255,255,255,.45); line-height: 1.7; }
+    .upgrade-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--lime); color: #111; font-size: 14px; font-weight: 800; padding: 15px 26px; border-radius: 100px; white-space: nowrap; transition: opacity .2s; }
+    .upgrade-btn:hover { opacity: .88; }
+
+    footer { border-top: 1px solid #EBEBEB; padding: 28px 80px; display: flex; align-items: center; justify-content: space-between; }
+    .footer-logo { font-family: 'Inter',sans-serif; font-size: 11px; font-weight: 800; letter-spacing: .12em; color: #ccc; }
+    .footer-right { font-size: .75rem; color: #ccc; }
+
+    @media (max-width: 768px) {
+      #nav { padding: 0 20px; }
+      #hero { padding: 100px 20px 40px; }
+      #mock { padding: 0 20px 32px; }
+      .mock-frame { border-radius: 14px; }
+      .mock-nav, .mock-hero, .mock-section { padding-left: 20px; padding-right: 20px; }
+      .mock-card { grid-template-columns: 40px 1fr auto; gap: 12px; }
+      #note { padding: 0 20px 56px; }
+      #upgrade { padding: 0 20px; }
+      .upgrade-card { flex-direction: column; align-items: flex-start; padding: 32px 24px; }
+      .upgrade-btn { width: 100%; justify-content: center; }
+      footer { flex-direction: column; gap: 10px; padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<header id="nav">
+  <a href="index.html" class="nav-logo">
+    <svg width="34" height="34" viewBox="0 0 34 34" fill="none"><circle cx="10" cy="9.5" r="4.5" fill="#D3F45A"/><path d="M17 5 L28 5 L28 20" stroke="#7B61FF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 21 Q10.5 29.5 20 27" stroke="#111" stroke-width="2.8" stroke-linecap="round"/></svg>
+    FINDIER LAB
+  </a>
+  <a href="contact.html" class="nav-cta"><span class="nav-dot"></span>무료 상담받기</a>
+</header>
+
+<section id="hero">
+  <div class="hero-kicker">산출물 예시 · Deliverable Sample</div>
+  <h1 class="hero-title">로그인되는 인트라넷,<br><span class="c-purple">이렇게 만들어드립니다.</span></h1>
+  <p class="hero-desc">대표님 전용 운영 허브 — 브랜드 가이드, 실행 자료, 운영 매뉴얼을 한 곳에서 언제든 확인할 수 있는 비공개 공간입니다. 실제 클라이언트 데이터는 보여드릴 수 없어서, 동일한 구조의 샘플 화면으로 대신합니다.</p>
+  <span class="hero-note">※ 아래는 실제 클라이언트 데이터가 아닌 대표 샘플 구성입니다</span>
+</section>
+
+<section id="mock">
+  <div class="mock-frame">
+    <div class="mock-nav">
+      <span class="mock-nav-logo">FINDIER LAB</span>
+      <span class="mock-nav-tag">Client Only</span>
+    </div>
+    <div class="mock-hero">
+      <p class="mock-hero-label">Operating Hub</p>
+      <h2 class="mock-hero-title">운영 허브</h2>
+      <p class="mock-hero-desc">대표님 전용 공간입니다. 브랜드 가이드부터 실행 자료까지 한 곳에서 확인하세요.</p>
+    </div>
+    <div class="mock-section">
+      <p class="mock-section-label">Brand Guide</p>
+      <div class="mock-grid">
+        <div class="mock-card" style="border-color:#D3F45A;">
+          <span class="mock-card-num">01</span>
+          <div><div class="mock-card-title">브랜드 세계관 &amp; 철학</div><div class="mock-card-desc">대표 인터뷰 기반 핵심 철학 정리</div></div>
+          <span class="mock-card-arrow">→</span>
+        </div>
+        <div class="mock-card" style="border-color:#7B61FF;">
+          <span class="mock-card-num">02</span>
+          <div><div class="mock-card-title">비주얼 아이덴티티 가이드</div><div class="mock-card-desc">로고, 컬러, 폰트 사용 규칙</div></div>
+          <span class="mock-card-arrow">→</span>
+        </div>
+        <div class="mock-card" style="border-color:#4DE7FF;">
+          <span class="mock-card-num">03</span>
+          <div><div class="mock-card-title">브랜드 언어 &amp; 마케팅 카피</div><div class="mock-card-desc">채널별 톤앤매너 예시</div></div>
+          <span class="mock-card-arrow">→</span>
+        </div>
+      </div>
+    </div>
+    <div class="mock-section">
+      <p class="mock-section-label">Operating Guide</p>
+      <div class="mock-grid">
+        <div class="mock-card" style="border-color:#D3F45A;">
+          <span class="mock-card-num">04</span>
+          <div><div class="mock-card-title">운영 매뉴얼</div><div class="mock-card-desc">일간·주간 체크리스트</div></div>
+          <span class="mock-card-arrow">→</span>
+        </div>
+        <div class="mock-card" style="border-color:#7B61FF;">
+          <span class="mock-card-num">05</span>
+          <div><div class="mock-card-title">AI Agent 세팅 가이드</div><div class="mock-card-desc">자동화 워크플로우 안내</div></div>
+          <span class="mock-card-arrow">→</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="note">
+  <h2 class="note-title">이 안에 들어가는 것</h2>
+  <div class="note-list">
+    <div class="note-row"><span class="note-dot"></span>대표님만 접근 가능한 로그인 시스템 (이메일 인증)</div>
+    <div class="note-row"><span class="note-dot"></span>브랜드 가이드 · 운영 매뉴얼 · 실행 자료를 한 곳에 정리</div>
+    <div class="note-row"><span class="note-dot"></span>필요할 때마다 업데이트 · 지속 관리 가능</div>
+    <div class="note-row"><span class="note-dot"></span>도메인 연결 &amp; 모바일 반응형 지원</div>
+  </div>
+</section>
+
+<section id="upgrade">
+  <div class="upgrade-card">
+    <div>
+      <div class="upgrade-kicker">Operate · 구축 단계 산출물</div>
+      <div class="upgrade-title">이런 인트라넷, 대표님 회사로도 만들어드립니다</div>
+      <div class="upgrade-desc">번역·구축(BUILD) 단계 이후, 30일 이내 완성됩니다.</div>
+    </div>
+    <a href="contact.html" class="upgrade-btn">무료 상담 신청 →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">FINDIER LAB</div>
+  <div class="footer-right">findierlab.com</div>
+</footer>
+
+</body>
+</html>
