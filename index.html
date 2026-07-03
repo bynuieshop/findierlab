@@ -158,6 +158,23 @@
     .step-portal { margin-top: 14px; display: flex; align-items: center; gap: 5px; font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 700; letter-spacing: .1em; color: var(--t-muted); text-transform: uppercase; }
     .step-portal-dot { width: 4px; height: 4px; border-radius: 50%; }
 
+    /* RESULTS (아! 이런 결과물 받고) */
+    #results { padding: 100px 80px; background: var(--white); }
+    .results-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 44px; gap: 24px; }
+    .results-title { font-size: clamp(1.4rem,2.2vw,2rem); font-weight: 900; letter-spacing: -.025em; color: var(--black); line-height: 1.3; }
+    .results-note { font-size: .82rem; color: var(--t-muted); line-height: 1.75; text-align: right; max-width: 260px; }
+    .results-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--gray2); border: 1px solid var(--gray2); margin-bottom: 14px; }
+    .result-item { display: block; background: var(--white); }
+    .result-visual { position: relative; aspect-ratio: 4/5; overflow: hidden; background: #111; }
+    .result-visual img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s cubic-bezier(.16,1,.3,1); }
+    .result-item:hover .result-visual img { transform: scale(1.05); }
+    .result-visual::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,.35); transition: background .3s; }
+    .result-item:hover .result-visual::after { background: rgba(0,0,0,.15); }
+    .result-label { position: absolute; left: 20px; bottom: 18px; z-index: 1; font-size: 1rem; font-weight: 900; letter-spacing: -.02em; color: #fff; }
+    .results-sample-strip { display: flex; align-items: center; justify-content: space-between; gap: 24px; background: var(--gray1); border-radius: 16px; padding: 22px 28px; }
+    .results-sample-text { font-size: .85rem; font-weight: 700; color: #555; }
+    .results-sample-link { font-family: 'Inter',sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .06em; color: var(--purple); flex-shrink: 0; white-space: nowrap; }
+
     /* CLIENTS */
     #clients { padding: 100px 80px 64px; background: var(--white); }
     .clients-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 48px; }
@@ -332,6 +349,11 @@
       .steps-grid { grid-template-columns: 1fr; gap: 28px; }
       .step-card { padding: 0; }
       .step-card:not(:first-child)::before { display: none; }
+      #results { padding: 56px 24px; }
+      .results-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .results-note { text-align: left; max-width: 100%; }
+      .results-grid { grid-template-columns: 1fr 1fr; }
+      .results-sample-strip { flex-direction: column; align-items: flex-start; gap: 14px; }
       .step-card:not(:first-child) { padding-top: 24px; border-top: 1px solid var(--gray2); }
       #voices { padding: 72px 24px; }
       .voices-head { flex-direction: column; align-items: flex-start; gap: 16px; margin-bottom: 48px; }
@@ -542,6 +564,47 @@
   </div>
 </section>
 
+
+<!-- RESULTS -->
+<section id="results" class="fade">
+  <div class="results-header">
+    <div>
+      <p class="section-eyebrow">Real Results</p>
+      <h2 class="results-title">이런 결과물을<br>받으셨습니다.</h2>
+    </div>
+    <p class="results-note">개념이 아니라 실제로 배포된<br>브랜드·홈페이지·운영 시스템입니다.</p>
+  </div>
+  <div class="results-grid">
+    <a href="case-detailer-myung.html" class="result-item">
+      <div class="result-visual">
+        <img src="https://images.unsplash.com/photo-1708805282706-f44730b7e527?auto=format&fit=crop&w=800&q=80" alt="세차창업 브랜드">
+        <span class="result-label">세차창업 브랜드</span>
+      </div>
+    </a>
+    <a href="case-take-a-shower.html" class="result-item">
+      <div class="result-visual">
+        <img src="assets/case-shots/tas-ubud.webp" alt="뷰티 브랜드">
+        <span class="result-label">뷰티 브랜드</span>
+      </div>
+    </a>
+    <a href="case-nuie.html" class="result-item">
+      <div class="result-visual">
+        <img src="https://images.unsplash.com/photo-1681676705948-92716147a0d7?auto=format&fit=crop&w=800&q=80" alt="온라인 전시실">
+        <span class="result-label">온라인 전시실</span>
+      </div>
+    </a>
+    <a href="case-findierlab.html" class="result-item">
+      <div class="result-visual">
+        <img src="assets/hero-object.png" alt="파인디어랩 셀프 케이스">
+        <span class="result-label">파인디어랩</span>
+      </div>
+    </a>
+  </div>
+  <div class="results-sample-strip">
+    <p class="results-sample-text">브랜드 컬러보드는 어떻게 생겼을까요? 실제 산출물 한 장을 그대로 보여드립니다.</p>
+    <a href="deliverable-sample.html" class="results-sample-link">산출물 예시 보기 →</a>
+  </div>
+</section>
 
 <!-- VOICES -->
 <section id="voices" class="fade">
