@@ -133,7 +133,7 @@ footer { border-top: 1px solid var(--border); padding: 48px; text-align: center;
     const { data: { session } } = await _sb.auth.getSession();
     if (!session) { window.location.replace('../login.html'); return; }
     // 회원 확인 — 운영 허브는 파인디어랩 서비스 이용 고객 전용
-    const { data: _member } = await _sb.from('portal_members').select('email').maybeSingle();
+    const { data: _member } = await _sb.from('portal_members').select('email').eq('email', (session.user.email || '').toLowerCase()).maybeSingle();
     if (!_member) {
       alert('운영 허브는 파인디어랩 서비스 이용 고객 전용 공간입니다.\n이용 문의: findierlab@gmail.com');
       await _sb.auth.signOut();
