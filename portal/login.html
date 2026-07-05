@@ -176,9 +176,22 @@ body {
     >
   </div>
 
+  <div class="form-group" id="pw2Group" style="margin-top:12px; display:none;">
+    <label class="form-label" for="password2">비밀번호 확인</label>
+    <input
+      type="password"
+      id="password2"
+      class="form-input"
+      placeholder="비밀번호 다시 입력"
+      autocomplete="new-password"
+    >
+  </div>
+
   <button class="login-btn" onclick="doLogin()">입장하기 →</button>
   <div class="error-msg" id="errorMsg">이메일 또는 비밀번호가 올바르지 않습니다.</div>
+  <div class="error-msg" id="okMsg" style="color:#D3F45A;"></div>
 
+  <a href="#" id="modeLink" class="back-link" style="display:block; margin-top:16px;" onclick="toggleMode(); return false;">처음이신가요? 회원가입</a>
   <a href="../index.html" class="back-link">← 파인디어랩 홈으로</a>
 </div>
 
@@ -193,11 +206,53 @@ body {
     if (session) window.location.href = 'index.html';
   });
 
+  let mode = 'login';
+
+  function toggleMode() {
+    mode = mode === 'login' ? 'signup' : 'login';
+    document.getElementById('pw2Group').style.display = mode === 'signup' ? '' : 'none';
+    document.querySelector('.login-btn').textContent = mode === 'signup' ? '가입하기 →' : '입장하기 →';
+    document.getElementById('modeLink').textContent =
+      mode === 'signup' ? '이미 계정이 있으신가요? 로그인' : '처음이신가요? 회원가입';
+    document.getElementById('errorMsg').classList.remove('show');
+    document.getElementById('okMsg').classList.remove('show');
+  }
+
   async function doLogin() {
     const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value;
     const err = document.getElementById('errorMsg');
+    const ok = document.getElementById('okMsg');
     const btn = document.querySelector('.login-btn');
+    err.classList.remove('show');
+    ok.classList.remove('show');
+
+    if (mode === 'signup') {
+      const pw2 = document.getElementById('password2').value;
+      if (password.length < 8) {
+        err.textContent = '비밀번호는 8자 이상으로 설정해주세요.';
+        err.classList.add('show');
+        return;
+      }
+      if (password !== pw2) {
+        err.textContent = '비밀번호 확인이 일치하지 않습니다.';
+        err.classList.add('show');
+        return;
+      }
+      btn.disabled = true;
+      btn.textContent = '가입 중...';
+      const { error } = await _sb.auth.signUp({ email, password });
+      btn.disabled = false;
+      btn.textContent = '가입하기 →';
+      if (error) {
+        err.textContent = '가입에 실패했습니다. 이메일 주소를 확인해주세요.';
+        err.classList.add('show');
+        return;
+      }
+      ok.textContent = '확인 메일을 보냈습니다. 메일함에서 링크를 누른 뒤 로그인해주세요. (메일이 없다면 이미 가입된 이메일일 수 있어요 — 바로 로그인해보세요.)';
+      ok.classList.add('show');
+      return;
+    }
 
     btn.disabled = true;
     btn.textContent = '확인 중...';
@@ -205,6 +260,9 @@ body {
     const { error } = await _sb.auth.signInWithPassword({ email, password });
 
     if (error) {
+      err.textContent = error.message && error.message.includes('not confirmed')
+        ? '이메일 인증이 안 됐습니다. 메일함의 확인 링크를 눌러주세요.'
+        : '이메일 또는 비밀번호가 올바르지 않습니다.';
       err.classList.add('show');
       document.getElementById('password').style.borderColor = '#FF6B6B';
       btn.disabled = false;
@@ -217,13 +275,17 @@ body {
   document.getElementById('password').addEventListener('keydown', (e) => {
     if (e.key === 'Enter') doLogin();
   });
+  document.getElementById('password2').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') doLogin();
+  });
   document.getElementById('email').addEventListener('keydown', (e) => {
     if (e.key === 'Enter') document.getElementById('password').focus();
   });
 
-  ['email', 'password'].forEach(id => {
+  ['email', 'password', 'password2'].forEach(id => {
     document.getElementById(id).addEventListener('input', () => {
       document.getElementById('errorMsg').classList.remove('show');
+      document.getElementById('okMsg').classList.remove('show');
       document.getElementById('password').style.borderColor = '';
     });
   });
