@@ -486,7 +486,7 @@
   <div class="hero-left">
     <p class="hero-eyebrow">Brand Research &amp; Building Lab</p>
     <h1 class="hero-headline">
-      <span id="hero-typed"></span><span id="hero-cursor" class="typing-cursor">|</span>
+      <span id="hero-typed">マーケターを雇う前に、ブランド<span style="color:#D3F45A">翻訳</span>から始めましょう。</span><span id="hero-cursor" class="typing-cursor">|</span>
     </h1>
     <p class="hero-body"><strong>AIではなく、人が直接つくります。</strong></p>
     <div class="hero-symptoms">
@@ -856,7 +856,7 @@ document.querySelectorAll('.fade').forEach(el => fader.observe(el));
   const el     = document.getElementById('hero-typed');
   const cursor = document.getElementById('hero-cursor');
   const typingSpeed = 75, deletingSpeed = 40, pauseDuration = 2000;
-  let idx = 0, charIdx = 0, deleting = false, display = '';
+  let idx = 0, charIdx = texts[0].str.length + 1, deleting = false, display = texts[0].str;
 
   gsap.to(cursor, { opacity: 0, duration: .5, repeat: -1, yoyo: true, ease: 'power2.inOut' });
 
