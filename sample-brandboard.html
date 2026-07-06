@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>브랜드 세계관 보드 — FINDIER LAB 산출물 샘플</title>
+<meta name="description" content="파인디어랩이 만드는 산출물 예시 — 브랜드의 컬러·타이포·언어·원칙을 한 장의 운영 기준으로 정리한 브랜드 세계관 보드.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="브랜드 세계관 보드 — FINDIER LAB 산출물 샘플">
+<meta property="og:description" content="컬러·타이포·언어·원칙을 한 장의 운영 기준으로. 대표님 브랜드도 이렇게 정리됩니다.">
+<meta property="og:url" content="https://findierlab.com/sample-brandboard.html">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root {
+    --bg: #101010;
+    --panel: #171716;
+    --line: rgba(255,255,255,.09);
+    --line-strong: rgba(255,255,255,.16);
+    --ink: #f5f4f0;
+    --muted: #a6a39a;
+    --lime: #D3F45A;
+    --purple: #7B61FF;
+    --cyan: #4DE7FF;
+    --mono: ui-monospace, "SF Mono", Menlo, monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Pretendard Variable", Pretendard, -apple-system, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--lime); color: #111; }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  /* ── 헤더 ── */
+  header {
+    position: sticky; top: 0; z-index: 30;
+    background: rgba(16,16,16,.88); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .hd { display: flex; align-items: center; gap: 14px; height: 64px; }
+  .hd-logo { display: flex; align-items: center; gap: 9px; text-decoration: none; color: var(--ink); font-weight: 800; font-size: 16px; letter-spacing: .02em; }
+  .hd-badge {
+    font-family: var(--mono); font-size: 12px; letter-spacing: .06em;
+    color: #111; background: var(--lime); padding: 4px 10px; border-radius: 999px; font-weight: 700;
+    white-space: nowrap;
+  }
+  .hd-nav { margin-left: auto; display: flex; gap: 4px; }
+  .hd-nav a {
+    font-family: var(--mono); font-size: 13px; color: var(--muted);
+    text-decoration: none; padding: 7px 10px; border-radius: 8px; transition: color .15s, background .15s;
+  }
+  .hd-nav a:hover { color: var(--ink); background: rgba(255,255,255,.06); }
+  @media (max-width: 720px) { .hd-nav { display: none; } }
+
+  /* ── 히어로 ── */
+  .hero { padding: 96px 0 72px; border-bottom: 1px solid var(--line); }
+  .hero-doc {
+    font-family: var(--mono); font-size: 14px; color: var(--muted); letter-spacing: .04em;
+    display: flex; align-items: center; gap: 10px; margin-bottom: 28px;
+  }
+  .hero-doc .dot { width: 7px; height: 7px; border-radius: 999px; background: var(--lime); }
+  .hero h1 {
+    font-size: clamp(38px, 6.5vw, 64px); line-height: 1.12; font-weight: 800;
+    letter-spacing: -0.03em; text-wrap: balance; max-width: 15em;
+  }
+  .hero h1 em { font-style: normal; color: var(--lime); }
+  .hero p.lede { margin-top: 28px; font-size: 19px; color: var(--muted); max-width: 34em; }
+  .hero p.lede strong { color: var(--ink); font-weight: 600; }
+
+  /* ── 섹션 공통: 스펙 문서 목차 번호 ── */
+  section { padding: 88px 0; border-bottom: 1px solid var(--line); }
+  .sec-path { font-family: var(--mono); font-size: 14px; color: var(--lime); margin-bottom: 12px; }
+  .sec-head-h2 { font-size: clamp(26px, 3.6vw, 36px); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 14px; }
+  .sec-sub { color: var(--muted); font-size: 17px; max-width: 40em; margin-bottom: 44px; }
+
+  /* ── 01 CORE ── */
+  .core-quote {
+    font-size: clamp(24px, 3.4vw, 34px); font-weight: 700; line-height: 1.4;
+    letter-spacing: -0.02em; text-wrap: balance; max-width: 24em;
+  }
+  .core-quote span { color: var(--purple); }
+  .core-grid { margin-top: 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  .core-cell { background: var(--panel); padding: 26px 24px; }
+  .core-cell .k { font-family: var(--mono); font-size: 13px; color: var(--muted); letter-spacing: .05em; margin-bottom: 10px; }
+  .core-cell .v { font-size: 18px; font-weight: 600; line-height: 1.5; }
+
+  /* ── 02 COLOR: 토큰 보드 ── */
+  .swatches { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; }
+  .swatch { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--panel); transition: transform .18s ease, border-color .18s ease; }
+  .swatch:hover { transform: translateY(-2px); border-color: var(--line-strong); }
+  .swatch-chip { height: 150px; position: relative; }
+  .swatch-chip .ratio { position: absolute; right: 12px; top: 10px; font-family: var(--mono); font-size: 12px; font-weight: 700; opacity: .8; }
+  .swatch-info { padding: 16px 16px 14px; }
+  .swatch-name { font-weight: 700; font-size: 16px; }
+  .swatch-usage { color: var(--muted); font-size: 14px; margin-top: 2px; min-height: 42px; }
+  .swatch-hex {
+    margin-top: 12px; width: 100%;
+    display: flex; align-items: center; justify-content: space-between;
+    font-family: var(--mono); font-size: 14px; color: var(--ink);
+    background: rgba(255,255,255,.05); border: 1px solid var(--line);
+    border-radius: 8px; padding: 8px 12px; cursor: pointer;
+    transition: background .15s, border-color .15s;
+  }
+  .swatch-hex:hover { background: rgba(255,255,255,.1); border-color: var(--line-strong); }
+  .swatch-hex .cp { color: var(--muted); font-size: 12px; }
+  .color-rule { margin-top: 40px; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); padding: 24px 26px; }
+  .color-rule .k { font-family: var(--mono); font-size: 13px; color: var(--lime); letter-spacing: .05em; margin-bottom: 12px; }
+  .color-rule ul { list-style: none; display: grid; gap: 8px; }
+  .color-rule li { color: var(--muted); font-size: 16px; padding-left: 18px; position: relative; }
+  .color-rule li::before { content: "·"; position: absolute; left: 0; color: var(--lime); }
+
+  /* ── 03 TYPE: 스펙시먼 ── */
+  .type-rows { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  .type-row {
+    display: grid; grid-template-columns: 200px 1fr; gap: 24px; align-items: baseline;
+    background: var(--panel); padding: 26px; border-bottom: 1px solid var(--line);
+  }
+  .type-row:last-child { border-bottom: none; }
+  .type-meta { font-family: var(--mono); font-size: 13px; color: var(--muted); line-height: 1.8; }
+  .type-meta b { color: var(--ink); display: block; font-size: 14px; }
+  .t-display { font-size: clamp(30px, 4.5vw, 46px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.15; }
+  .t-heading { font-size: clamp(22px, 3vw, 28px); font-weight: 700; letter-spacing: -0.02em; }
+  .t-body { font-size: 17px; color: var(--ink); max-width: 36em; }
+  .t-caption { font-size: 14px; color: var(--muted); }
+  @media (max-width: 720px) { .type-row { grid-template-columns: 1fr; gap: 10px; } }
+
+  /* ── 04 VOICE ── */
+  .voice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 720px) { .voice-grid { grid-template-columns: 1fr; } }
+  .voice-col { border: 1px solid var(--line); border-radius: 14px; background: var(--panel); padding: 26px; }
+  .voice-col .k { font-family: var(--mono); font-size: 13px; letter-spacing: .05em; margin-bottom: 18px; font-weight: 700; }
+  .voice-col.do .k { color: var(--lime); }
+  .voice-col.dont .k { color: #ff7a5c; }
+  .voice-col ul { list-style: none; display: grid; gap: 12px; }
+  .voice-col li { font-size: 17px; font-weight: 600; padding-left: 26px; position: relative; }
+  .voice-col.do li::before { content: "○"; position: absolute; left: 0; color: var(--lime); }
+  .voice-col.dont li { color: var(--muted); text-decoration: line-through; text-decoration-color: rgba(255,122,92,.6); }
+  .voice-col.dont li::before { content: "✕"; position: absolute; left: 0; color: #ff7a5c; text-decoration: none; }
+  .voice-sentence { margin-top: 14px; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); padding: 26px; }
+  .voice-sentence .k { font-family: var(--mono); font-size: 13px; color: var(--cyan); letter-spacing: .05em; margin-bottom: 14px; font-weight: 700; }
+  .voice-sentence p { font-size: 18px; line-height: 1.7; color: var(--ink); max-width: 38em; }
+  .voice-sentence p + p { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); }
+
+  /* ── 05 PRINCIPLE ── */
+  .prin-list { counter-reset: prin; display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  .prin-item { counter-increment: prin; background: var(--panel); padding: 24px 26px; display: flex; gap: 20px; align-items: baseline; }
+  .prin-item::before {
+    content: counter(prin, decimal-leading-zero);
+    font-family: var(--mono); font-size: 14px; color: var(--purple); font-weight: 700; flex-shrink: 0;
+  }
+  .prin-item p { font-size: 18px; font-weight: 600; }
+
+  /* ── CTA ── */
+  .cta { padding: 100px 0 110px; text-align: left; border-bottom: none; }
+  .cta h2 { font-size: clamp(30px, 4.5vw, 44px); font-weight: 800; letter-spacing: -0.025em; line-height: 1.2; text-wrap: balance; }
+  .cta h2 em { font-style: normal; color: var(--lime); }
+  .cta p { margin-top: 20px; color: var(--muted); font-size: 18px; max-width: 32em; }
+  .cta-btns { margin-top: 36px; display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-solid {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--lime); color: #111; font-weight: 700; font-size: 17px;
+    padding: 15px 26px; border-radius: 999px; text-decoration: none;
+    transition: transform .15s ease, background .15s;
+  }
+  .btn-solid:hover { background: #c7ec3f; transform: translateY(-1px); }
+  .btn-line {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid var(--line-strong); color: var(--ink); font-weight: 600; font-size: 17px;
+    padding: 15px 26px; border-radius: 999px; text-decoration: none; transition: background .15s;
+  }
+  .btn-line:hover { background: rgba(255,255,255,.06); }
+
+  footer { padding: 28px 0 44px; }
+  .ft { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; color: var(--muted); font-size: 14px; }
+  .ft a { color: var(--ink); text-decoration: none; font-weight: 600; }
+
+  /* 복사 토스트 */
+  #toast {
+    position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%) translateY(8px);
+    background: var(--lime); color: #111; font-weight: 700; font-size: 15px;
+    padding: 11px 20px; border-radius: 999px; opacity: 0; pointer-events: none;
+    transition: opacity .2s ease, transform .2s ease; z-index: 60;
+    font-family: var(--mono);
+  }
+  #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap hd">
+    <a class="hd-logo" href="index.html">
+      <svg width="24" height="24" viewBox="0 0 34 34" fill="none" aria-hidden="true">
+        <circle cx="10" cy="9.5" r="4.5" fill="#D3F45A"/>
+        <path d="M17 5 L28 5 L28 20" stroke="#7B61FF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M6.5 21 Q10.5 29.5 20 27" stroke="#fff" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+      </svg>
+      FINDIER LAB
+    </a>
+    <span class="hd-badge">산출물 샘플</span>
+    <nav class="hd-nav" aria-label="문서 목차">
+      <a href="#core">Core</a>
+      <a href="#color">Color</a>
+      <a href="#type">Type</a>
+      <a href="#voice">Voice</a>
+      <a href="#principle">Principle</a>
+    </nav>
+  </div>
+</header>
+
+<!-- 히어로 -->
+<div class="hero">
+  <div class="wrap">
+    <p class="hero-doc"><span class="dot"></span>BRAND_WORLDVIEW.board · FINDIER LAB v1.0</p>
+    <h1>브랜드 세계관 보드는<br>로고가 아니라 <em>운영 기준</em>입니다.</h1>
+    <p class="lede">
+      파인디어랩과 작업이 끝나면 대표님께 남는 문서입니다.
+      컬러 하나, 문장 하나까지 <strong>"왜 이걸 쓰는지"</strong>가 정리되어 있습니다.
+      디자이너를 바꿔도, 직원이 들어와도, 브랜드가 흔들리지 않습니다.
+      아래는 파인디어랩 자신의 브랜드를 예시로 정리한 실제 형식입니다.
+    </p>
+  </div>
+</div>
+
+<!-- 01 CORE -->
+<section id="core">
+  <div class="wrap">
+    <p class="sec-path">board/core</p>
+    <h2 class="sec-head-h2">브랜드의 뼈대</h2>
+    <p class="sec-sub">모든 판단의 기준이 되는 문장들. 여기서 어긋나면 아래 전부를 다시 봅니다.</p>
+
+    <p class="core-quote">"브랜드를 만들어드리는 것이 아닙니다.<br>당신이 <span>말할 수 있는 구조</span>를 함께 만듭니다."</p>
+
+    <div class="core-grid">
+      <div class="core-cell">
+        <p class="k">DEFINITION</p>
+        <p class="v">Brand Research &amp; Building Lab. 대표의 생각을 브랜드·운영·실행 구조로 번역하는 연구소</p>
+      </div>
+      <div class="core-cell">
+        <p class="k">PHILOSOPHY</p>
+        <p class="v">사람이 사람을 위한 브랜드를 만든다. AI는 실행을 돕고, 판단은 사람이 한다.</p>
+      </div>
+      <div class="core-cell">
+        <p class="k">FIRST QUESTION</p>
+        <p class="v">"광고를 끄면 살아남는가, 대표 없이도 유지되는가" — 아니면 다시 만든다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 COLOR -->
+<section id="color">
+  <div class="wrap">
+    <p class="sec-path">board/color</p>
+    <h2 class="sec-head-h2">색은 역할로 씁니다</h2>
+    <p class="sec-sub">예쁜 색이 아니라 역할이 정해진 색. 각 색이 언제 나오는지가 규칙으로 남습니다. 코드를 누르면 복사됩니다.</p>
+
+    <div class="swatches">
+      <div class="swatch">
+        <div class="swatch-chip" style="background:#111111;"><span class="ratio" style="color:#f5f4f0;">60%</span></div>
+        <div class="swatch-info">
+          <p class="swatch-name">Black</p>
+          <p class="swatch-usage">본문·구조. 브랜드의 기본 목소리</p>
+          <button class="swatch-hex" data-hex="#111111">#111111 <span class="cp">복사</span></button>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-chip" style="background:#F7F7F5;"><span class="ratio" style="color:#111;">30%</span></div>
+        <div class="swatch-info">
+          <p class="swatch-name">Off-white</p>
+          <p class="swatch-usage">배경·여백. 말하지 않는 시간</p>
+          <button class="swatch-hex" data-hex="#F7F7F5">#F7F7F5 <span class="cp">복사</span></button>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-chip" style="background:#D3F45A;"><span class="ratio" style="color:#111;">6%</span></div>
+        <div class="swatch-info">
+          <p class="swatch-name">Lime</p>
+          <p class="swatch-usage">핵심 행동(CTA)·가장 중요한 한 곳</p>
+          <button class="swatch-hex" data-hex="#D3F45A">#D3F45A <span class="cp">복사</span></button>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-chip" style="background:#7B61FF;"><span class="ratio" style="color:#fff;">3%</span></div>
+        <div class="swatch-info">
+          <p class="swatch-name">Purple</p>
+          <p class="swatch-usage">보조 포인트·링크·강조 문장</p>
+          <button class="swatch-hex" data-hex="#7B61FF">#7B61FF <span class="cp">복사</span></button>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-chip" style="background:#4DE7FF;"><span class="ratio" style="color:#111;">1%</span></div>
+        <div class="swatch-info">
+          <p class="swatch-name">Cyan</p>
+          <p class="swatch-usage">제한적 보조. 정보성 표시에만</p>
+          <button class="swatch-hex" data-hex="#4DE7FF">#4DE7FF <span class="cp">복사</span></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="color-rule">
+      <p class="k">USAGE RULE</p>
+      <ul>
+        <li>색보다 메시지 먼저: 화면에서 가장 눈에 띄는 건 항상 문장이어야 한다</li>
+        <li>라임은 한 화면에 한 가지 목적으로만, 두 번 쓰이면 한 곳을 지운다</li>
+        <li>그라디언트·장식 효과는 기본값이 아니라 예외. 이유 없이 쓰지 않는다</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 03 TYPE -->
+<section id="type">
+  <div class="wrap">
+    <p class="sec-path">board/type</p>
+    <h2 class="sec-head-h2">목소리의 크기</h2>
+    <p class="sec-sub">국문 Pretendard, 영문·숫자 Inter. 크기가 아니라 위계가 목소리를 만듭니다.</p>
+
+    <div class="type-rows">
+      <div class="type-row">
+        <div class="type-meta"><b>Display</b>Pretendard 800<br>46px / -3%</div>
+        <p class="t-display">브랜드는 감성이 아니라 구조다</p>
+      </div>
+      <div class="type-row">
+        <div class="type-meta"><b>Heading</b>Pretendard 700<br>28px / -2%</div>
+        <p class="t-heading">시작보다 지속이 중요하다</p>
+      </div>
+      <div class="type-row">
+        <div class="type-meta"><b>Body</b>Pretendard 400<br>17px / 1.65</div>
+        <p class="t-body">좋은 아이디어는 많지만 오래 살아남는 회사는 적습니다. 파인디어랩은 "남는가?"라는 질문을 먼저 합니다. 대표의 생각이 실제로 운영되는 회사가 되도록 돕습니다.</p>
+      </div>
+      <div class="type-row">
+        <div class="type-meta"><b>Caption</b>Pretendard 500<br>14px / muted</div>
+        <p class="t-caption">보조 설명과 출처, 날짜는 이 크기로 조용히.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 VOICE -->
+<section id="voice">
+  <div class="wrap">
+    <p class="sec-path">board/voice</p>
+    <h2 class="sec-head-h2">쓰는 말, 안 쓰는 말</h2>
+    <p class="sec-sub">홈페이지·SNS·상담 멘트가 전부 같은 말을 하게 만드는 언어 규칙.</p>
+
+    <div class="voice-grid">
+      <div class="voice-col do">
+        <p class="k">WE SAY</p>
+        <ul>
+          <li>생각을 번역합니다</li>
+          <li>구조를 설계합니다</li>
+          <li>대표의 언어를 발견합니다</li>
+          <li>운영 가능한 상태를 만듭니다</li>
+        </ul>
+      </div>
+      <div class="voice-col dont">
+        <p class="k">WE NEVER SAY</p>
+        <ul>
+          <li>매출 폭발</li>
+          <li>자동 수익화</li>
+          <li>AI가 대신합니다</li>
+          <li>무조건 성장</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="voice-sentence">
+      <p class="k">HOW WE EXPLAIN OURSELVES</p>
+      <p>"저희는 로고를 만드는 회사가 아니라, 대표님의 생각을 브랜드 언어와 운영 구조로 번역하는 연구소입니다."</p>
+      <p>"저희가 먼저 묻는 건 디자인이 아니라 '광고를 꺼도 살아남는 구조인가'입니다."</p>
+    </div>
+  </div>
+</section>
+
+<!-- 05 PRINCIPLE -->
+<section id="principle">
+  <div class="wrap">
+    <p class="sec-path">board/principle</p>
+    <h2 class="sec-head-h2">지키는 것</h2>
+    <p class="sec-sub">브랜드가 흔들릴 때 돌아오는 자리.</p>
+
+    <div class="prin-list">
+      <div class="prin-item"><p>로고만 만드는 일은 하지 않는다</p></div>
+      <div class="prin-item"><p>근거 없는 수치·과장된 약속을 쓰지 않는다</p></div>
+      <div class="prin-item"><p>할인에도 이유를 숨기지 않는다</p></div>
+      <div class="prin-item"><p>모든 페이지는 명확한 다음 행동으로 이어진다</p></div>
+      <div class="prin-item"><p>결과물은 반드시 클라이언트 소유 계정에 남긴다</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="wrap">
+    <h2>대표님 브랜드도<br>이렇게 <em>한 장으로</em> 정리됩니다.</h2>
+    <p>인터뷰 한 번이면 시작할 수 있습니다. 색·문장·원칙이 정리되면, 그다음의 모든 결정이 빨라집니다.</p>
+    <div class="cta-btns">
+      <a class="btn-solid" href="contact.html">30분 무료 상담 →</a>
+      <a class="btn-line" href="works.html">다른 작업 보기</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap ft">
+    <span>ⓒ FINDIER LAB · Brand Research &amp; Building Lab</span>
+    <span>Powered by <a href="index.html">FINDIER LAB</a></span>
+  </div>
+</footer>
+
+<div id="toast" role="status">복사됨</div>
+
+<script>
+  // 컬러 코드 클릭 복사
+  const toast = document.getElementById('toast');
+  let toastTimer;
+  document.querySelectorAll('.swatch-hex').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(btn.dataset.hex);
+        toast.textContent = btn.dataset.hex + ' 복사됨';
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove('show'), 1400);
+      } catch (e) { /* 클립보드 미지원 시 무시 */ }
+    });
+  });
+</script>
+</body>
+</html>
