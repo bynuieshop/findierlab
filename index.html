@@ -814,7 +814,7 @@ document.querySelectorAll('.fade').forEach(el => fader.observe(el));
 
   // Smooth scroll
   if (!reduceMotion && !isTouch && typeof Lenis !== 'undefined') {
-    const lenis = new Lenis({ duration: 1.0, easing: (t) => 1 - Math.pow(1 - t, 3) });
+    const lenis = new Lenis({ duration: 0.55, wheelMultiplier: 1.2, easing: (t) => 1 - Math.pow(1 - t, 3) });
     function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
   }
