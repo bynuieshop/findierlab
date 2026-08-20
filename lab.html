@@ -37,7 +37,16 @@
     .d1 { transition-delay: .1s; } .d2 { transition-delay: .2s; } .d3 { transition-delay: .3s; } .d4 { transition-delay: .4s; }
 
     /* NAV */
-    #nav { position: fixed; top: 0; left: 0; right: 0; height: 64px; z-index: 9999; background: var(--white); border-bottom: 1px solid #E8E8E8; display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 0 48px; }
+    #lab-switcher { position: fixed; top: 0; left: 0; right: 0; z-index: 10000; background: #0A0A0A; border-bottom: 1px solid rgba(255,255,255,.08); height: 44px; display: flex; align-items: center; padding: 0 48px; overflow-x: auto; }
+    .ls-inner { display: flex; align-items: center; gap: 16px; }
+    .ls-label { font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 800; letter-spacing: .16em; color: rgba(255,255,255,.3); text-transform: uppercase; flex-shrink: 0; white-space: nowrap; }
+    .ls-btns { display: flex; gap: 8px; }
+    .ls-btn { display: flex; align-items: baseline; gap: 6px; padding: 6px 14px; border-radius: 100px; border: 1px solid rgba(255,255,255,.12); white-space: nowrap; transition: border-color .2s, background .2s; }
+    .ls-btn:hover { border-color: var(--ls-accent); }
+    .ls-btn.active { border-color: var(--ls-accent); background: rgba(255,255,255,.06); }
+    .ls-btn-name { font-size: 12px; font-weight: 800; color: #fff; }
+    .ls-btn-desc { font-size: 10px; color: rgba(255,255,255,.4); }
+    #nav { position: fixed; top: 44px; left: 0; right: 0; height: 64px; z-index: 9999; background: var(--white); border-bottom: 1px solid #E8E8E8; display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 0 48px; }
     .nav-logo { display: flex; align-items: center; gap: 10px; }
     .nav-logo-text { font-family: 'Inter',sans-serif; font-size: 15px; font-weight: 800; letter-spacing: .05em; color: #111; }
     .nav-menu { display: flex; gap: 28px; list-style: none; justify-content: center; }
@@ -52,7 +61,7 @@
     .nav-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--lime); }
 
     /* HERO */
-    #hero { display: grid; grid-template-columns: 1fr 1fr; height: 100vh; padding-top: 64px; background: var(--black); overflow: hidden; }
+    #hero { display: grid; grid-template-columns: 1fr 1fr; height: 100vh; padding-top: 108px; background: var(--black); overflow: hidden; }
     .hero-left { display: flex; flex-direction: column; justify-content: flex-end; padding: 0 52px 72px 80px; }
     .hero-kicker { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .22em; color: var(--lime); text-transform: uppercase; display: flex; align-items: center; gap: 8px; margin-bottom: 20px; }
     .hero-kicker::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--lime); }
@@ -190,7 +199,7 @@
     .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
     .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-    #mobileMenu { display: none; position: fixed; top: 64px; left: 0; right: 0; bottom: 0; background: #fff; z-index: 9998; flex-direction: column; padding: 36px 24px; overflow-y: auto; }
+    #mobileMenu { display: none; position: fixed; top: 108px; left: 0; right: 0; bottom: 0; background: #fff; z-index: 9998; flex-direction: column; padding: 36px 24px; overflow-y: auto; }
     #mobileMenu.open { display: flex; }
     .mob-link { font-family: 'Inter',sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #888; text-decoration: none; padding: 18px 0; border-bottom: 1px solid #f0eeeb; transition: color .2s; }
     .mob-link.active { color: #111; }
@@ -216,13 +225,16 @@
       .footer-bottom { padding: 20px 48px 28px; }
     }
     @media (max-width: 768px) {
+      #lab-switcher { padding: 0 16px; }
+      .ls-label { display: none; }
+      .ls-btn-desc { display: none; }
       #nav { padding: 0 20px; display: flex; justify-content: space-between; }
       .nav-portal { display: none; }
       .nav-menu { display: none; }
       .nav-burger { display: flex; }
       .nav-cta { padding: 8px 16px; font-size: 12px; }
       #hero { height: auto; min-height: 100svh; }
-      .hero-left { padding: 96px 24px 48px; }
+      .hero-left { padding: 140px 24px 48px; }
       .hero-title { font-size: clamp(2.4rem,8vw,3.2rem); }
       #philosophy { padding: 56px 24px; }
       #tools { padding: 56px 24px; }
@@ -269,6 +281,16 @@
 </head>
 <body>
 
+<div id="lab-switcher">
+  <div class="ls-inner">
+    <span class="ls-label">FINDIER LAB'S</span>
+    <div class="ls-btns">
+      <a href="kidsfeed.html" class="ls-btn" style="--ls-accent:#FF6FA5;"><span class="ls-btn-name">KidsFeed Lab</span><span class="ls-btn-desc">어린이집·유치원</span></a>
+      <a href="foodielab.html" class="ls-btn" style="--ls-accent:#FF6B47;"><span class="ls-btn-name">Foodie Lab</span><span class="ls-btn-desc">외식업 브랜드</span></a>
+      <a href="vendierlab.html" class="ls-btn" style="--ls-accent:#4DE7FF;"><span class="ls-btn-name">Vendier Lab</span><span class="ls-btn-desc">커머스·매출진단</span></a>
+    </div>
+  </div>
+</div>
 <header id="nav">
   <a href="index.html" class="nav-logo">
     <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
