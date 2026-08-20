@@ -49,13 +49,13 @@
     .nav-logo { display: flex; align-items: center; gap: 10px; }
     .nav-logo-text { font-family: 'Inter',sans-serif; font-size: 15px; font-weight: 800; letter-spacing: .05em; color: #fff; }
     .nav-sub-badge { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 800; letter-spacing: .1em; color: var(--accent); background: rgba(77,231,255,.14); padding: 4px 10px; border-radius: 100px; margin-left: 4px; }
-    .nav-menu { display: flex; gap: 28px; list-style: none; justify-content: center; }
-    .nav-menu a { font-family: 'Inter',sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .12em; color: rgba(255,255,255,.35); text-transform: uppercase; transition: color .2s; }
+    .nav-menu { display: flex; align-items: center; gap: 28px; list-style: none; justify-content: flex-start; margin-left: 40px; }
+    .nav-menu a { font-family: 'Inter',sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .12em; color: rgba(255,255,255,.35); text-transform: uppercase; transition: color .2s; line-height: 1; }
     .nav-menu a:hover { color: #fff; }
-    .nav-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: #111; font-size: 13px; font-weight: 700; padding: 10px 22px; border-radius: 100px; flex-shrink: 0; transition: opacity .2s; }
+    .nav-cta { display: inline-flex; align-items: center; gap: 8px; line-height: 1; background: var(--accent); color: #111; font-size: 13px; font-weight: 700; padding: 10px 22px; border-radius: 100px; flex-shrink: 0; transition: opacity .2s; }
     .nav-cta:hover { opacity: .85; }
     .nav-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-    .nav-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+    .nav-dot { width: 7px; height: 7px; border-radius: 50%; background: #111; flex-shrink: 0; }
     .nav-burger { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px 4px; flex-shrink: 0; }
     .nav-burger span { display: block; width: 22px; height: 2px; background: #fff; border-radius: 1px; transition: transform .25s, opacity .25s; }
     .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
@@ -209,12 +209,11 @@
     <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
       <circle cx="10" cy="9.5" r="4.5" fill="#D3F45A"/>
       <path d="M17 5 L28 5 L28 20" stroke="#7B61FF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M6.5 21 Q10.5 29.5 20 27" stroke="#111111" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+      <path d="M6.5 21 Q10.5 29.5 20 27" stroke="#fff" stroke-width="2.8" stroke-linecap="round" fill="none"/>
     </svg>
     <span class="nav-logo-text">FINDIER LAB</span><span class="nav-sub-badge">VENDIER LAB</span>
   </a>
   <ul class="nav-menu">
-    <li><a href="service.html">SERVICE</a></li>
     <li class="nav-dropdown">
       <a href="lab.html">LAB</a>
       <div class="nav-dropdown-menu">
@@ -224,7 +223,7 @@
         <a href="vendierlab.html" class="nav-dd-item"><span class="nav-dd-name" style="color:#1aabb8;">Vendier Lab ✓</span><span class="nav-dd-desc">커머스·매출진단</span></a>
       </div>
     </li>
-    <li><a href="contact.html">CONTACT</a></li>
+    <li><a href="index.html">HOME</a></li>
   </ul>
   <div class="nav-actions">
     <a href="contact.html" class="nav-cta"><span class="nav-dot"></span>우리 브랜드 상담하기</a>
@@ -232,12 +231,11 @@
   </div>
 </header>
 <div id="mobileMenu">
-  <a href="service.html" class="mob-link">SERVICE</a>
   <a href="lab.html" class="mob-link">LAB</a>
   <a href="kidsfeed.html" class="mob-link mob-sublink">↳ KidsFeed Lab</a>
   <a href="foodielab.html" class="mob-link mob-sublink">↳ Foodie Lab</a>
   <a href="vendierlab.html" class="mob-link mob-sublink" style="opacity:1;">↳ Vendier Lab ✓</a>
-  <a href="contact.html" class="mob-link">CONTACT</a>
+  <a href="index.html" class="mob-link">HOME</a>
   <div class="mob-cta-wrap"><a href="contact.html" class="mob-cta"><span class="nav-dot"></span>우리 브랜드 상담하기</a></div>
 </div>
 

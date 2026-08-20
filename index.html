@@ -110,7 +110,7 @@
     .lang-switch a.active { color: #111; background: var(--gray1); }
 
     /* PRODUCT GATE */
-    #product-gate { min-height: 100vh; background: var(--offwhite); display: flex; flex-direction: column; justify-content: center; padding: 84px 80px 64px; box-sizing: border-box; }
+    #product-gate { background: var(--offwhite); display: flex; flex-direction: column; justify-content: center; padding: 100px 80px; box-sizing: border-box; }
     .gate-header { text-align: center; margin-bottom: 40px; }
     .gate-logo-row { display: flex; align-items: center; justify-content: center; gap: 10px; }
     .gate-logo-text { font-family: 'Inter',sans-serif; font-size: 14px; font-weight: 800; letter-spacing: .08em; color: var(--black); }
@@ -137,7 +137,7 @@
     .gw-vendier { font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 1.25rem; color: #1aa8b8; letter-spacing: .04em; text-transform: uppercase; }
 
     /* HERO */
-    #hero { display: grid; grid-template-columns: 1fr 1fr; height: 100vh; padding-top: 0; overflow: hidden; scroll-margin-top: 108px; }
+    #hero { display: grid; grid-template-columns: 1fr 1fr; height: 100vh; padding-top: 64px; overflow: hidden; }
     .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 40px 48px 40px 72px; background: #fff; overflow: hidden; }
     .hero-eyebrow { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 600; letter-spacing: .2em; color: var(--t-muted); text-transform: uppercase; margin-bottom: 16px; }
     .hero-headline { font-family: 'Pretendard',sans-serif; font-size: clamp(2.8rem,4.6vw,4.4rem); font-weight: 900; line-height: 1.16; letter-spacing: -.03em; color: var(--black); margin-bottom: 20px; }
@@ -401,7 +401,7 @@
       #nav { padding: 0 32px; }
       .nav-menu { gap: 20px; }
       .hero-left { padding: 40px 36px 40px 48px; }
-      #product-gate { padding: 84px 48px 56px; }
+      #product-gate { padding: 72px 48px; }
       .gate-grid { grid-template-columns: 1fr 1fr; }
       #how { padding: 80px 48px; }
       #price-teaser { padding: 64px 48px; }
@@ -420,11 +420,11 @@
       .mob-lang-switch { display: flex; align-items: center; gap: 6px; margin: 0 0 20px; }
       .mob-lang-switch a { font-family: 'Inter',sans-serif; font-size: 13px; font-weight: 700; color: #999; text-decoration: none; padding: 7px 14px; border-radius: 100px; border: 1px solid var(--gray2); }
       .mob-lang-switch a.active { color: #111; background: var(--gray1); border-color: var(--gray1); }
-      #product-gate { padding: 72px 20px 48px; }
+      #product-gate { padding: 56px 20px; }
       .gate-grid { grid-template-columns: 1fr; }
       .gate-card { padding: 32px 26px; }
       #hero { grid-template-columns: 1fr; height: auto; min-height: 100svh; }
-      .hero-left { padding: 40px 24px 40px; order: 1; }
+      .hero-left { padding: 96px 24px 40px; order: 1; }
       .hero-right { height: 56vw; min-height: 220px; order: 2; }
       .hero-headline { font-size: clamp(1.9rem,7.5vw,2.8rem); }
       #how { padding: 56px 24px; }
@@ -567,6 +567,28 @@
   <div class="mob-cta-wrap"><a href="contact.html" class="mob-cta"><span class="nav-cta-dot"></span>무료 상담받기</a><a href="portal/login.html" class="mob-cta" style="background:#D3F45A;color:#111;">운영 허브</a></div>
 </div>
 
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Brand Research &amp; Building Lab</p>
+    <h1 class="hero-headline">
+      <span id="hero-typed">AI시대에 맞는 <span style="color:#D3F45A">마케팅</span>을 도와드립니다.</span><span id="hero-cursor" class="typing-cursor">|</span>
+    </h1>
+    <p class="hero-body"><strong>AI 아니라, 사람이 직접 만듭니다.</strong></p>
+    <div class="hero-symptoms">
+      <span class="hero-symptom"><span class="hs-x">✕</span>뭐부터 해야 할지 모르겠음</span>
+      <span class="hero-symptom"><span class="hs-x">✕</span>외주 후 내 이야기 사라짐</span>
+      <span class="hero-symptom"><span class="hs-x">✕</span>AI 써봤더니 일만 늘어남</span>
+    </div>
+    <div class="hero-cta-wrap">
+      <a href="contact.html" class="hero-cta">30분 무료 상담 →</a>
+      <a href="diagnose.html" class="hero-cta-sub">무료 브랜드 진단 →</a>
+    </div>
+    <a href="lab.html#library" class="hero-cta-tertiary">무료자료실 →</a>
+  </div>
+  <div class="hero-right"></div>
+</section>
+
 <!-- PRODUCT GATE -->
 <section id="product-gate">
   <div class="gate-grid">
@@ -604,29 +626,6 @@
       <span class="gate-cta" style="color:#1aabb8;">보기 →</span>
     </a>
   </div>
-  <p class="gate-footer-link">브랜드 전략·운영 구조가 필요하다면 <a href="#hero">FINDIER LAB 서비스 알아보기 ↓</a></p>
-</section>
-
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-left">
-    <p class="hero-eyebrow">Brand Research &amp; Building Lab</p>
-    <h1 class="hero-headline">
-      <span id="hero-typed">마케터 뽑기 전에, 브랜드 <span style="color:#D3F45A">번역</span>부터 하세요.</span><span id="hero-cursor" class="typing-cursor">|</span>
-    </h1>
-    <p class="hero-body"><strong>AI 아니라, 사람이 직접 만듭니다.</strong></p>
-    <div class="hero-symptoms">
-      <span class="hero-symptom"><span class="hs-x">✕</span>뭐부터 해야 할지 모르겠음</span>
-      <span class="hero-symptom"><span class="hs-x">✕</span>외주 후 내 이야기 사라짐</span>
-      <span class="hero-symptom"><span class="hs-x">✕</span>AI 써봤더니 일만 늘어남</span>
-    </div>
-    <div class="hero-cta-wrap">
-      <a href="contact.html" class="hero-cta">30분 무료 상담 →</a>
-      <a href="diagnose.html" class="hero-cta-sub">무료 브랜드 진단 →</a>
-    </div>
-    <a href="lab.html#library" class="hero-cta-tertiary">무료자료실 →</a>
-  </div>
-  <div class="hero-right"></div>
 </section>
 
 <!-- HOW WE WORK -->
@@ -746,37 +745,6 @@
   <div class="results-sample-strip">
     <p class="results-sample-text">브랜드 컬러보드는 어떻게 생겼을까요? 실제 산출물 한 장을 그대로 보여드립니다.</p>
     <a href="sample-brandboard.html" class="results-sample-link">산출물 예시 보기 →</a>
-  </div>
-</section>
-
-<!-- OUR LABS -->
-<section id="labs" class="fade">
-  <div class="labs-header">
-    <p class="section-eyebrow">Our Labs</p>
-    <h2 class="labs-title">업종과 사업 단계별로,<br>전문 Lab이 함께합니다.</h2>
-  </div>
-  <div class="labs-grid">
-    <a href="kidsfeed.html" class="lab-card">
-      <div class="lab-bar" style="background:#FF6FA5;"></div>
-      <p class="lab-name">KidsFeed Lab</p>
-      <p class="lab-msg">선생님들의 일은 조금 덜어드리고,<br>아이들의 좋은 하루는 더 잘 보이게.</p>
-      <p class="lab-desc">어린이집·유치원 SNS 운영 서비스</p>
-      <span class="lab-link" style="color:#FF6FA5;">KidsFeed Lab 보기 →</span>
-    </a>
-    <a href="foodielab.html" class="lab-card">
-      <div class="lab-bar" style="background:var(--coral);"></div>
-      <p class="lab-name">Foodie Lab</p>
-      <p class="lab-msg">좋은 가게가, 더 잘 발견되도록.</p>
-      <p class="lab-desc">음식점·카페·외식업 브랜드 &amp; 마케팅</p>
-      <span class="lab-link" style="color:var(--coral);">Foodie Lab 보기 →</span>
-    </a>
-    <a href="vendierlab.html" class="lab-card">
-      <div class="lab-bar" style="background:var(--cyan);"></div>
-      <p class="lab-name">Vendier Lab</p>
-      <p class="lab-msg">좋은 제품이, 제대로 팔리도록.</p>
-      <p class="lab-desc">브랜드·스타트업 커머스 &amp; 마케팅</p>
-      <span class="lab-link" style="color:#1aabb8;">밴디어랩 보기 →</span>
-    </a>
   </div>
 </section>
 
@@ -1007,11 +975,11 @@ document.querySelectorAll('.fade').forEach(el => fader.observe(el));
 (function () {
   const texts = [
     {
-      str: "마케터 뽑기 전에, 브랜드 번역부터 하세요.",
+      str: "AI시대에 맞는 마케팅을 도와드립니다.",
       segs: [
-        { s: 0,  e: 15, color: null      },
-        { s: 15, e: 17, color: '#D3F45A' },
-        { s: 17, e: 99, color: null      }
+        { s: 0,  e: 9,  color: null      },
+        { s: 9,  e: 12, color: '#D3F45A' },
+        { s: 12, e: 99, color: null      }
       ]
     },
     {

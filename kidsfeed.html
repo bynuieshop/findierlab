@@ -34,7 +34,7 @@
       --card: #FFFFFF;
     }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Pretendard', sans-serif; background: var(--cream); color: var(--ink); overflow-x: hidden; }
+    body { font-family: 'Pretendard', sans-serif; background: var(--cream); color: var(--ink); overflow-x: hidden; word-break: keep-all; overflow-wrap: break-word; }
     a { text-decoration: none; color: inherit; }
     .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
 
@@ -53,25 +53,25 @@
     .mob-sublink { padding-left: 20px !important; font-size: 10px !important; opacity: .75; }
 
     /* NAV */
-    #nav { position: fixed; top: 0; left: 0; right: 0; height: 64px; z-index: 9999; background: #111111; border-bottom: 1px solid rgba(255,255,255,.06); display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 0 48px; }
+    #nav { position: fixed; top: 0; left: 0; right: 0; height: 64px; z-index: 9999; background: #ffffff; border-bottom: 1px solid #E8E8E8; display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 0 48px; }
     .nav-logo { display: flex; align-items: center; gap: 10px; }
-    .nav-logo-text { font-family: 'Inter',sans-serif; font-size: 15px; font-weight: 800; letter-spacing: .05em; color: #fff; }
+    .nav-logo-text { font-family: 'Inter',sans-serif; font-size: 15px; font-weight: 800; letter-spacing: .05em; color: #111; }
     .nav-sub-badge { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 800; letter-spacing: .1em; color: #FF6FA5; background: rgba(255,111,165,.14); padding: 4px 10px; border-radius: 100px; margin-left: 4px; }
-    .nav-menu { display: flex; gap: 28px; list-style: none; justify-content: center; }
-    .nav-menu a { font-family: 'Inter',sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .12em; color: rgba(255,255,255,.35); text-transform: uppercase; transition: color .2s; }
-    .nav-menu a:hover { color: #fff; }
-    .nav-cta { display: inline-flex; align-items: center; gap: 8px; background: #FF6FA5; color: #fff; font-size: 13px; font-weight: 700; padding: 10px 22px; border-radius: 100px; flex-shrink: 0; transition: opacity .2s; }
+    .nav-menu { display: flex; align-items: center; gap: 28px; list-style: none; justify-content: flex-start; margin-left: 40px; }
+    .nav-menu a { font-family: 'Inter',sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .12em; color: #666; text-transform: uppercase; transition: color .2s; line-height: 1; }
+    .nav-menu a:hover { color: #111; }
+    .nav-cta { display: inline-flex; align-items: center; gap: 8px; line-height: 1; background: #FF6FA5; color: #fff; font-size: 13px; font-weight: 700; padding: 10px 22px; border-radius: 100px; flex-shrink: 0; transition: opacity .2s; }
     .nav-cta:hover { opacity: .85; }
     .nav-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-    .nav-dot { width: 7px; height: 7px; border-radius: 50%; background: #FF6FA5; }
+    .nav-dot { width: 7px; height: 7px; border-radius: 50%; background: #fff; flex-shrink: 0; }
     .nav-burger { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px 4px; flex-shrink: 0; }
-    .nav-burger span { display: block; width: 22px; height: 2px; background: #fff; border-radius: 1px; transition: transform .25s, opacity .25s; }
+    .nav-burger span { display: block; width: 22px; height: 2px; background: #111; border-radius: 1px; transition: transform .25s, opacity .25s; }
     .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
     .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-    #mobileMenu { display: none; position: fixed; top: 64px; left: 0; right: 0; bottom: 0; background: #111111; z-index: 9998; flex-direction: column; padding: 36px 24px; overflow-y: auto; }
+    #mobileMenu { display: none; position: fixed; top: 64px; left: 0; right: 0; bottom: 0; background: #ffffff; z-index: 9998; flex-direction: column; padding: 36px 24px; overflow-y: auto; }
     #mobileMenu.open { display: flex; }
-    .mob-link { font-family: 'Inter',sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.5); padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,.08); }
+    .mob-link { font-family: 'Inter',sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #666; padding: 18px 0; border-bottom: 1px solid #eee; }
     .mob-cta-wrap { margin-top: 32px; }
     .mob-cta { display: inline-flex; align-items: center; gap: 8px; background: #FF6FA5; color: #fff; font-size: 14px; font-weight: 700; padding: 14px 28px; border-radius: 100px; }
     @media (max-width: 768px) {
@@ -251,7 +251,6 @@
     <span class="nav-logo-text">FINDIER LAB</span><span class="nav-sub-badge">KIDSFEED LAB</span>
   </a>
   <ul class="nav-menu">
-    <li><a href="service.html">SERVICE</a></li>
     <li class="nav-dropdown">
       <a href="lab.html">LAB</a>
       <div class="nav-dropdown-menu">
@@ -269,7 +268,6 @@
   </div>
 </header>
 <div id="mobileMenu">
-  <a href="service.html" class="mob-link">SERVICE</a>
   <a href="lab.html" class="mob-link">LAB</a>
   <a href="kidsfeed.html" class="mob-link mob-sublink" style="opacity:1;">↳ KidsFeed Lab ✓</a>
   <a href="foodielab.html" class="mob-link mob-sublink">↳ Foodie Lab</a>
