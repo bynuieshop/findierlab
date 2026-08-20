@@ -24,7 +24,7 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --lime: #D3F45A; --purple: #7B61FF; --cyan: #4DE7FF;
+      --lime: #FF4F2E; --purple: #7B61FF; --cyan: #4DE7FF;
       --black: #111111; --white: #FFFFFF; --offwhite: #F7F7F5;
       --gray1: #F2F0ED; --gray2: #E2E0DC;
     }
@@ -55,7 +55,7 @@
     .nav-menu a.active { color: var(--purple); border-bottom: 2px solid var(--purple); padding-bottom: 2px; }
     .nav-cta { display: inline-flex; align-items: center; gap: 8px; background: #111; color: #fff; font-size: 13px; font-weight: 700; padding: 10px 22px; border-radius: 100px; flex-shrink: 0; transition: opacity .2s; }
     .nav-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-    .nav-portal { display: inline-flex; align-items: center; background: #D3F45A; color: #111; font-family: 'Pretendard',sans-serif; font-size: 13px; font-weight: 600; padding: 10px 22px; border-radius: 100px; text-decoration: none; white-space: nowrap; transition: opacity .2s; flex-shrink: 0; }
+    .nav-portal { display: inline-flex; align-items: center; background: #FF4F2E; color: #111; font-family: 'Pretendard',sans-serif; font-size: 13px; font-weight: 600; padding: 10px 22px; border-radius: 100px; text-decoration: none; white-space: nowrap; transition: opacity .2s; flex-shrink: 0; }
     .nav-portal:hover { opacity: .75; }
     .nav-cta:hover { opacity: .8; }
     .nav-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--lime); }
@@ -191,7 +191,7 @@
     .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding: 24px 80px 32px; }
     .footer-copy { font-size: 10px; color: rgba(255,255,255,.18); letter-spacing: .06em; line-height: 1.8; }
     .footer-legal { color: rgba(255,255,255,.3); }
-    .footer-gradbar { width: 100px; height: 2px; border-radius: 2px; background: linear-gradient(90deg,#D3F45A,#7B61FF,#4DE7FF); }
+    .footer-gradbar { width: 100px; height: 2px; border-radius: 2px; background: linear-gradient(90deg,#FF4F2E,#FF632E); }
 
     /* HAMBURGER */
     .nav-burger { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px 4px; flex-shrink: 0; }
@@ -281,8 +281,8 @@
 <header id="nav">
   <a href="index.html" class="nav-logo">
     <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
-      <circle cx="10" cy="9.5" r="4.5" fill="#D3F45A"/>
-      <path d="M17 5 L28 5 L28 20" stroke="#7B61FF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="10" cy="9.5" r="4.5" fill="#FF4F2E"/>
+      <path d="M17 5 L28 5 L28 20" stroke="#111111" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
       <path d="M6.5 21 Q10.5 29.5 20 27" stroke="#111111" stroke-width="2.8" stroke-linecap="round" fill="none"/>
     </svg>
     <span class="nav-logo-text">FINDIER LAB</span>
@@ -296,7 +296,7 @@
       <div class="nav-dropdown-menu">
         <a href="lab.html" class="nav-dd-item"><span class="nav-dd-name">LAB</span><span class="nav-dd-desc">AI 도구 실험실</span></a>
         <a href="kidsfeed.html" class="nav-dd-item"><span class="nav-dd-name" style="color:#FF6FA5;">KidsFeed Lab</span><span class="nav-dd-desc">어린이집·유치원</span></a>
-        <a href="foodielab.html" class="nav-dd-item"><span class="nav-dd-name" style="color:var(--coral, #FF6B47);">Foodie Lab</span><span class="nav-dd-desc">외식업 브랜드</span></a>
+        <a href="foodielab.html" class="nav-dd-item"><span class="nav-dd-name" style="color:#5C7A4F;">Foodie Lab</span><span class="nav-dd-desc">외식업 브랜드</span></a>
         <a href="vendierlab.html" class="nav-dd-item"><span class="nav-dd-name" style="color:#1aabb8;">Vendier Lab</span><span class="nav-dd-desc">커머스·매출진단</span></a>
       </div>
     </li>
@@ -321,7 +321,7 @@
   <a href="events.html" class="mob-link">EVENT</a>
   <a href="about.html" class="mob-link">ABOUT</a>
   <a href="contact.html" class="mob-link">CONTACT</a>
-  <div class="mob-cta-wrap"><a href="contact.html" class="mob-cta"><span class="nav-dot"></span>무료 상담받기</a><a href="portal/login.html" class="mob-cta" style="background:#D3F45A;color:#111;">운영 허브</a></div>
+  <div class="mob-cta-wrap"><a href="contact.html" class="mob-cta"><span class="nav-dot"></span>무료 상담받기</a><a href="portal/login.html" class="mob-cta" style="background:#FF4F2E;color:#111;">운영 허브</a></div>
 </div>
 
 
@@ -349,13 +349,13 @@
       <line x1="0" y1="320" x2="480" y2="320" stroke="#fff" stroke-width="1"/>
       <line x1="0" y1="400" x2="480" y2="400" stroke="#fff" stroke-width="1"/>
       <!-- nodes -->
-      <circle cx="160" cy="160" r="6" fill="#D3F45A" opacity="1"/>
+      <circle cx="160" cy="160" r="6" fill="#FF4F2E" opacity="1"/>
       <circle cx="320" cy="160" r="4" fill="#7B61FF" opacity="1"/>
       <circle cx="240" cy="320" r="5" fill="#4DE7FF" opacity="1"/>
       <circle cx="160" cy="320" r="3" fill="#fff" opacity=".5"/>
       <circle cx="320" cy="240" r="3" fill="#fff" opacity=".3"/>
       <!-- connections -->
-      <line x1="160" y1="160" x2="320" y2="160" stroke="#D3F45A" stroke-width="1.5" opacity=".6"/>
+      <line x1="160" y1="160" x2="320" y2="160" stroke="#FF4F2E" stroke-width="1.5" opacity=".6"/>
       <line x1="320" y1="160" x2="240" y2="320" stroke="#7B61FF" stroke-width="1.5" opacity=".6"/>
       <line x1="160" y1="160" x2="240" y2="320" stroke="#4DE7FF" stroke-width="1" opacity=".4"/>
     </svg>
@@ -447,16 +447,16 @@
     <div class="tool-card fade d1">
       <div class="tool-icon">
         <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-          <circle cx="20" cy="20" r="12" stroke="#D3F45A" stroke-width="1.8"/>
-          <line x1="20" y1="4" x2="20" y2="36" stroke="#D3F45A" stroke-width="1.2" opacity=".4"/>
-          <line x1="4" y1="20" x2="36" y2="20" stroke="#D3F45A" stroke-width="1.2" opacity=".4"/>
-          <circle cx="20" cy="20" r="4" fill="#D3F45A" opacity=".6"/>
+          <circle cx="20" cy="20" r="12" stroke="#FF4F2E" stroke-width="1.8"/>
+          <line x1="20" y1="4" x2="20" y2="36" stroke="#FF4F2E" stroke-width="1.2" opacity=".4"/>
+          <line x1="4" y1="20" x2="36" y2="20" stroke="#FF4F2E" stroke-width="1.2" opacity=".4"/>
+          <circle cx="20" cy="20" r="4" fill="#FF4F2E" opacity=".6"/>
         </svg>
       </div>
       <p class="tool-num">01</p>
       <h3 class="tool-name">브랜드 리서치 보조</h3>
       <p class="tool-desc">시장, 경쟁자, 타겟 고객을 AI가 빠르게 정리합니다. 대표가 직접 조사하던 시간을 전략 사고로 바꿉니다.</p>
-      <span class="tool-tag"><span class="tool-tag-dot" style="background:#D3F45A;"></span>RESEARCH</span>
+      <span class="tool-tag"><span class="tool-tag-dot" style="background:#FF4F2E;"></span>RESEARCH</span>
     </div>
     <!-- 02 -->
     <div class="tool-card fade d2">
@@ -493,14 +493,14 @@
     <div class="tool-card fade d4">
       <div class="tool-icon">
         <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-          <path d="M10 20 L18 28 L30 12" stroke="#D3F45A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="20" cy="20" r="14" stroke="#D3F45A" stroke-width="1.5" opacity=".3"/>
+          <path d="M10 20 L18 28 L30 12" stroke="#FF4F2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="20" cy="20" r="14" stroke="#FF4F2E" stroke-width="1.5" opacity=".3"/>
         </svg>
       </div>
       <p class="tool-num">04</p>
       <h3 class="tool-name">운영 매뉴얼 자동화</h3>
       <p class="tool-desc">매번 판단해야 했던 반복 업무를 매뉴얼화하고 자동화합니다. 결정 피로를 줄이고 중요한 일에 집중합니다.</p>
-      <span class="tool-tag"><span class="tool-tag-dot" style="background:#D3F45A;"></span>FOCUS</span>
+      <span class="tool-tag"><span class="tool-tag-dot" style="background:#FF4F2E;"></span>FOCUS</span>
     </div>
     <!-- 05 -->
     <div class="tool-card fade" style="grid-column: 1 / -1;">
@@ -546,14 +546,14 @@
     <a class="tool-card fade" href="kidsfeed.html" style="grid-column: 1 / -1; text-decoration: none; color: inherit;">
       <div class="tool-icon">
         <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-          <path d="M8 14 L20 6 L32 14 L32 32 L8 32 Z" stroke="#D3F45A" stroke-width="1.8" stroke-linejoin="round"/>
-          <circle cx="20" cy="22" r="4" stroke="#D3F45A" stroke-width="1.5"/>
+          <path d="M8 14 L20 6 L32 14 L32 32 L8 32 Z" stroke="#FF4F2E" stroke-width="1.8" stroke-linejoin="round"/>
+          <circle cx="20" cy="22" r="4" stroke="#FF4F2E" stroke-width="1.5"/>
         </svg>
       </div>
       <p class="tool-num">06</p>
       <h3 class="tool-name">KidsFeed Lab — 어린이집·유치원 인스타그램 운영 구독</h3>
       <p class="tool-desc">보육계획안과 활동 사진만 보내면 카드뉴스 제작부터 Instagram 업로드까지. 런칭가 월 49,000원, 월 8회 발행.</p>
-      <span class="tool-tag"><span class="tool-tag-dot" style="background:#D3F45A;"></span>SUBSCRIBE</span>
+      <span class="tool-tag"><span class="tool-tag-dot" style="background:#FF4F2E;"></span>SUBSCRIBE</span>
     </a>
   </div>
 </section>

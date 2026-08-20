@@ -27,10 +27,10 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --lime:   #D3F45A;
+      --lime:   #FF4F2E;
       --purple: #7B61FF;
       --cyan:   #4DE7FF;
-      --coral:  #FF6B47;
+      --coral:  #FF4F2E;
       --black:  #111111;
       --white:  #FFFFFF;
       --offwhite: #F7F7F5;
@@ -96,7 +96,7 @@
     .nav-menu li a:hover { color: #111; }
     .nav-cta { display: inline-flex; align-items: center; gap: 8px; background: #111; color: #fff; font-family: 'Pretendard',sans-serif; font-size: 13px; font-weight: 600; padding: 10px 22px; border-radius: 100px; text-decoration: none; white-space: nowrap; transition: opacity .2s; flex-shrink: 0; }
     .nav-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-    .nav-portal { display: inline-flex; align-items: center; background: #D3F45A; color: #111; font-family: 'Pretendard',sans-serif; font-size: 13px; font-weight: 600; padding: 10px 22px; border-radius: 100px; text-decoration: none; white-space: nowrap; transition: opacity .2s; flex-shrink: 0; }
+    .nav-portal { display: inline-flex; align-items: center; background: #FF4F2E; color: #111; font-family: 'Pretendard',sans-serif; font-size: 13px; font-weight: 600; padding: 10px 22px; border-radius: 100px; text-decoration: none; white-space: nowrap; transition: opacity .2s; flex-shrink: 0; }
     .nav-portal:hover { opacity: .75; }
     .nav-cta:hover { opacity: .75; }
     .nav-cta-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--lime); flex-shrink: 0; }
@@ -133,7 +133,7 @@
     .gw-kids span:nth-child(3) { color: #9B5DE5; } .gw-kids span:nth-child(4) { color: #FFC93C; }
     .gw-kids span:nth-child(5) { color: #4DA6FF; } .gw-kids span:nth-child(6) { color: #FF6FA5; }
     .gw-kids span:nth-child(7) { color: #4CAF50; } .gw-kids span:nth-child(8) { color: #FF7A45; }
-    .gw-foodie { font-family: 'DM Serif Display', serif; font-size: 1.7rem; color: var(--coral); letter-spacing: -.01em; }
+    .gw-foodie { font-family: 'DM Serif Display', serif; font-size: 1.7rem; color: #5C7A4F; letter-spacing: -.01em; }
     .gw-vendier { font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 1.25rem; color: #1aa8b8; letter-spacing: .04em; text-transform: uppercase; }
 
     /* HERO */
@@ -175,7 +175,7 @@
     .how-title { font-size: clamp(1.6rem,2.5vw,2.2rem); font-weight: 900; line-height: 1.3; letter-spacing: -.025em; margin-bottom: 20px; color: var(--black); }
     .how-sub { font-size: .95rem; color: #888; margin-bottom: 24px; }
     .how-title .underbar { position: relative; display: inline-block; }
-    .how-title .underbar::after { content: ''; position: absolute; left: 0; right: 0; bottom: -2px; height: 3px; background: linear-gradient(90deg,#D3F45A,#7B61FF,#4DE7FF); border-radius: 2px; }
+    .how-title .underbar::after { content: ''; position: absolute; left: 0; right: 0; bottom: -2px; height: 3px; background: linear-gradient(90deg,#FF4F2E,#FF632E); border-radius: 2px; }
     .how-body { font-size: .92rem; color: var(--t-soft); line-height: 1.9; margin-bottom: 12px; }
     .how-quote { font-size: .88rem; font-style: italic; color: var(--t-muted); line-height: 1.75; padding-left: 14px; border-left: 2.5px solid var(--gray2); margin-bottom: 28px; }
     .text-link { font-size: 12px; font-weight: 700; letter-spacing: .06em; color: var(--black); border-bottom: 1.5px solid var(--black); padding-bottom: 2px; transition: opacity .2s; display: inline-block; }
@@ -381,7 +381,7 @@
     .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding: 20px 80px 36px; }
     .footer-copy { font-size: 10px; color: rgba(255,255,255,.15); letter-spacing: .06em; line-height: 1.8; }
     .footer-legal { color: rgba(255,255,255,.3); }
-    .footer-gradbar { width: 100px; height: 2px; border-radius: 2px; background: linear-gradient(90deg,#D3F45A,#7B61FF,#4DE7FF); }
+    .footer-gradbar { width: 100px; height: 2px; border-radius: 2px; background: linear-gradient(90deg,#FF4F2E,#FF632E); }
 
     /* HAMBURGER */
     .nav-burger { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px 4px; flex-shrink: 0; }
@@ -517,8 +517,8 @@
 <header id="nav">
   <a href="index.html" class="nav-logo">
     <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
-      <circle cx="10" cy="9.5" r="4.5" fill="#D3F45A"/>
-      <path d="M17 5 L28 5 L28 20" stroke="#7B61FF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="10" cy="9.5" r="4.5" fill="#FF4F2E"/>
+      <path d="M17 5 L28 5 L28 20" stroke="#111111" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
       <path d="M6.5 21 Q10.5 29.5 20 27" stroke="#111111" stroke-width="2.8" stroke-linecap="round" fill="none"/>
     </svg>
     <span class="nav-logo-text">FINDIER LAB</span>
@@ -532,7 +532,7 @@
       <div class="nav-dropdown-menu">
         <a href="lab.html" class="nav-dd-item"><span class="nav-dd-name">LAB</span><span class="nav-dd-desc">AI 도구 실험실</span></a>
         <a href="kidsfeed.html" class="nav-dd-item"><span class="nav-dd-name" style="color:#FF6FA5;">KidsFeed Lab</span><span class="nav-dd-desc">어린이집·유치원</span></a>
-        <a href="foodielab.html" class="nav-dd-item"><span class="nav-dd-name" style="color:var(--coral);">Foodie Lab</span><span class="nav-dd-desc">외식업 브랜드</span></a>
+        <a href="foodielab.html" class="nav-dd-item"><span class="nav-dd-name" style="color:#5C7A4F;">Foodie Lab</span><span class="nav-dd-desc">외식업 브랜드</span></a>
         <a href="vendierlab.html" class="nav-dd-item"><span class="nav-dd-name" style="color:#1aabb8;">Vendier Lab</span><span class="nav-dd-desc">커머스·매출진단</span></a>
       </div>
     </li>
@@ -564,7 +564,7 @@
   <a href="events.html" class="mob-link">EVENT</a>
   <a href="about.html" class="mob-link">ABOUT</a>
   <a href="contact.html" class="mob-link">CONTACT</a>
-  <div class="mob-cta-wrap"><a href="contact.html" class="mob-cta"><span class="nav-cta-dot"></span>무료 상담받기</a><a href="portal/login.html" class="mob-cta" style="background:#D3F45A;color:#111;">운영 허브</a></div>
+  <div class="mob-cta-wrap"><a href="contact.html" class="mob-cta"><span class="nav-cta-dot"></span>무료 상담받기</a><a href="portal/login.html" class="mob-cta" style="background:#FF4F2E;color:#111;">운영 허브</a></div>
 </div>
 
 <!-- PRODUCT GATE -->
@@ -581,7 +581,7 @@
       <p class="gate-audience">어린이집·유치원 SNS 운영 구독</p>
       <span class="gate-cta" style="color:#FF6FA5;">보기 →</span>
     </a>
-    <a href="foodielab.html" class="gate-card" style="--ga:#FF6B47;">
+    <a href="foodielab.html" class="gate-card" style="--ga:#5C7A4F;">
       <div class="gate-bar"></div>
       <span class="gate-tag">02 · Food &amp; Cafe</span>
       <div class="gate-wordmark">
@@ -612,7 +612,7 @@
   <div class="hero-left">
     <p class="hero-eyebrow">Brand Research &amp; Building Lab</p>
     <h1 class="hero-headline">
-      <span id="hero-typed">마케터 뽑기 전에, 브랜드 <span style="color:#D3F45A">번역</span>부터 하세요.</span><span id="hero-cursor" class="typing-cursor">|</span>
+      <span id="hero-typed">마케터 뽑기 전에, 브랜드 <span style="color:#FF4F2E">번역</span>부터 하세요.</span><span id="hero-cursor" class="typing-cursor">|</span>
     </h1>
     <p class="hero-body"><strong>AI 아니라, 사람이 직접 만듭니다.</strong></p>
     <div class="hero-symptoms">
@@ -646,21 +646,21 @@
     <div class="steps-grid">
       <!-- 01 DISCOVER -->
       <div class="step-card">
-        <span class="step-num" style="color:#D3F45A;">01</span>
+        <span class="step-num" style="color:#FF4F2E;">01</span>
         <div class="step-icon">
           <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-            <circle cx="15" cy="15" r="9" stroke="#D3F45A" stroke-width="2"/>
-            <line x1="22" y1="22" x2="30" y2="30" stroke="#D3F45A" stroke-width="2" stroke-linecap="round"/>
-            <circle cx="15" cy="15" r="3.5" fill="#D3F45A" opacity=".3"/>
-            <line x1="15" y1="9" x2="15" y2="21" stroke="#D3F45A" stroke-width="1.2" opacity=".5"/>
-            <line x1="9" y1="15" x2="21" y2="15" stroke="#D3F45A" stroke-width="1.2" opacity=".5"/>
+            <circle cx="15" cy="15" r="9" stroke="#FF4F2E" stroke-width="2"/>
+            <line x1="22" y1="22" x2="30" y2="30" stroke="#FF4F2E" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="15" cy="15" r="3.5" fill="#FF4F2E" opacity=".3"/>
+            <line x1="15" y1="9" x2="15" y2="21" stroke="#FF4F2E" stroke-width="1.2" opacity=".5"/>
+            <line x1="9" y1="15" x2="21" y2="15" stroke="#FF4F2E" stroke-width="1.2" opacity=".5"/>
           </svg>
         </div>
         <p class="step-name">DISCOVER</p>
         <p class="step-ko">발견 · 7일</p>
         <p class="step-desc">1:1 인터뷰로 브랜드 방향 문서를 받습니다.</p>
         <div class="step-portal">
-          <span class="step-portal-dot" style="background:#D3F45A;"></span>
+          <span class="step-portal-dot" style="background:#FF4F2E;"></span>
           Brand Note Portal
         </div>
       </div>
@@ -764,11 +764,11 @@
       <span class="lab-link" style="color:#FF6FA5;">KidsFeed Lab 보기 →</span>
     </a>
     <a href="foodielab.html" class="lab-card">
-      <div class="lab-bar" style="background:var(--coral);"></div>
+      <div class="lab-bar" style="background:#5C7A4F;"></div>
       <p class="lab-name">Foodie Lab</p>
       <p class="lab-msg">좋은 가게가, 더 잘 발견되도록.</p>
       <p class="lab-desc">음식점·카페·외식업 브랜드 &amp; 마케팅</p>
-      <span class="lab-link" style="color:var(--coral);">Foodie Lab 보기 →</span>
+      <span class="lab-link" style="color:#5C7A4F;">Foodie Lab 보기 →</span>
     </a>
     <a href="vendierlab.html" class="lab-card">
       <div class="lab-bar" style="background:var(--cyan);"></div>
@@ -897,7 +897,7 @@
 
   <a href="service.html#quick-track" class="pt-geo">
     <div class="pt-geo-icon">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#D3F45A" stroke-width="1.8"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.8 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.8-3.8-9s1.3-6.5 3.8-9z" stroke="#D3F45A" stroke-width="1.8"/></svg>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#FF4F2E" stroke-width="1.8"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.8 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.8-3.8-9s1.3-6.5 3.8-9z" stroke="#FF4F2E" stroke-width="1.8"/></svg>
     </div>
     <div class="pt-geo-text">
       <p class="pt-geo-title">이미 홈페이지가 있어도, <em>단순히 옮기기만 하면</em> 소용없습니다.</p>
@@ -1010,7 +1010,7 @@ document.querySelectorAll('.fade').forEach(el => fader.observe(el));
       str: "마케터 뽑기 전에, 브랜드 번역부터 하세요.",
       segs: [
         { s: 0,  e: 15, color: null      },
-        { s: 15, e: 17, color: '#D3F45A' },
+        { s: 15, e: 17, color: '#FF4F2E' },
         { s: 17, e: 99, color: null      }
       ]
     },
