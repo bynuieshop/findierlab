@@ -21,7 +21,7 @@
   <meta property="og:url" content="https://findierlab.com">
   <meta property="og:image" content="https://findierlab.com/assets/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Baloo+2:wght@700;800&family=Jua&family=DM+Serif+Display&family=Archivo:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.min.css">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -73,20 +73,19 @@
     a { text-decoration: none; color: inherit; }
     ul { list-style: none; }
 
-    /* LAB SWITCHER */
-    #lab-switcher { position: fixed; top: 0; left: 0; right: 0; z-index: 10000; background: #0A0A0A; border-bottom: 1px solid rgba(255,255,255,.08); height: 44px; display: flex; align-items: center; padding: 0 48px; overflow-x: auto; }
-    .ls-inner { display: flex; align-items: center; gap: 16px; }
-    .ls-label { font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 800; letter-spacing: .16em; color: rgba(255,255,255,.3); text-transform: uppercase; flex-shrink: 0; white-space: nowrap; }
-    .ls-btns { display: flex; gap: 8px; }
-    .ls-btn { display: flex; align-items: baseline; gap: 6px; padding: 6px 14px; border-radius: 100px; border: 1px solid rgba(255,255,255,.12); white-space: nowrap; transition: border-color .2s, background .2s; }
-    .ls-btn:hover { border-color: var(--ls-accent); }
-    .ls-btn.active { border-color: var(--ls-accent); background: rgba(255,255,255,.06); }
-    .ls-btn-name { font-size: 12px; font-weight: 800; color: #fff; }
-    .ls-btn-desc { font-size: 10px; color: rgba(255,255,255,.4); }
+    /* NAV LAB DROPDOWN */
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-menu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(6px); background: #fff; border: 1px solid var(--gray2); border-radius: 14px; padding: 8px; min-width: 210px; box-shadow: 0 14px 34px rgba(0,0,0,.14); opacity: 0; pointer-events: none; transition: opacity .16s, transform .16s; }
+    .nav-dropdown:hover .nav-dropdown-menu, .nav-dropdown:focus-within .nav-dropdown-menu { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+    .nav-dd-item { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 8px; text-transform: none; letter-spacing: 0; }
+    .nav-dd-item:hover { background: var(--gray1); }
+    .nav-dd-name { font-family: 'Pretendard',sans-serif; font-size: 13px; font-weight: 700; color: #111; }
+    .nav-dd-desc { font-size: 11px; color: #999; white-space: nowrap; }
+    .mob-sublink { padding-left: 20px !important; font-size: 10px !important; opacity: .75; }
 
     /* NAV */
     #nav {
-      position: fixed; top: 44px; left: 0; right: 0; height: 64px; z-index: 9999;
+      position: fixed; top: 0; left: 0; right: 0; height: 64px; z-index: 9999;
       background: #ffffff; border-bottom: 1px solid #E8E8E8;
       display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 0 48px;
     }
@@ -111,22 +110,31 @@
     .lang-switch a.active { color: #111; background: var(--gray1); }
 
     /* PRODUCT GATE */
-    #product-gate { min-height: 100vh; background: var(--black); display: flex; flex-direction: column; justify-content: center; padding: 128px 80px 64px; box-sizing: border-box; }
-    .gate-header { text-align: center; margin-bottom: 48px; }
-    .gate-logo-row { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 22px; }
-    .gate-logo-text { font-family: 'Inter',sans-serif; font-size: 14px; font-weight: 800; letter-spacing: .08em; color: #fff; }
-    .gate-kicker { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .2em; color: rgba(255,255,255,.4); text-transform: uppercase; margin-bottom: 18px; }
-    .gate-title { font-size: clamp(1.7rem,3.2vw,2.7rem); font-weight: 900; color: #fff; line-height: 1.4; letter-spacing: -.03em; }
-    .gate-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; max-width: 1100px; margin: 0 auto; width: 100%; }
-    .gate-card { background: #1B1B1B; border: 1.5px solid rgba(255,255,255,.08); border-radius: 24px; padding: 40px 32px; display: flex; flex-direction: column; gap: 14px; transition: border-color .2s, transform .2s; }
-    .gate-card:hover { transform: translateY(-4px); border-color: var(--ga); }
-    .gate-tag { font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 800; letter-spacing: .14em; color: rgba(255,255,255,.4); text-transform: uppercase; }
-    .gate-name { font-size: 1.55rem; font-weight: 900; color: #fff; letter-spacing: -.02em; }
-    .gate-msg { font-size: .92rem; color: rgba(255,255,255,.65); line-height: 1.55; }
-    .gate-audience { font-size: .78rem; color: rgba(255,255,255,.4); }
+    #product-gate { min-height: 100vh; background: var(--offwhite); display: flex; flex-direction: column; justify-content: center; padding: 84px 80px 64px; box-sizing: border-box; }
+    .gate-header { text-align: center; margin-bottom: 40px; }
+    .gate-logo-row { display: flex; align-items: center; justify-content: center; gap: 10px; }
+    .gate-logo-text { font-family: 'Inter',sans-serif; font-size: 14px; font-weight: 800; letter-spacing: .08em; color: var(--black); }
+    .gate-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--gray2); border: 1px solid var(--gray2); max-width: 1100px; margin: 0 auto; width: 100%; }
+    .gate-card { background: var(--white); padding: 44px 34px 36px; display: flex; flex-direction: column; gap: 14px; transition: background .2s, transform .2s; text-align: left; }
+    .gate-card:hover { transform: translateY(-3px); background: var(--gray1); }
+    .gate-bar { width: 30px; height: 3px; border-radius: 2px; background: var(--ga); margin-bottom: 4px; }
+    .gate-tag { font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 800; letter-spacing: .14em; color: #aaa; text-transform: uppercase; }
+    .gate-wordmark { display: flex; flex-direction: column; gap: 3px; margin: 2px 0 4px; }
+    .gate-ko { font-family: 'Pretendard',sans-serif; font-size: 12px; font-weight: 700; color: #999; }
+    .gate-msg { font-size: .9rem; color: #666; line-height: 1.55; }
+    .gate-audience { font-size: .78rem; color: #999; }
     .gate-cta { margin-top: auto; font-size: .85rem; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; padding-top: 8px; }
-    .gate-footer-link { text-align: center; margin-top: 40px; font-size: .85rem; color: rgba(255,255,255,.4); }
-    .gate-footer-link a { color: rgba(255,255,255,.75); text-decoration: underline; }
+    .gate-footer-link { text-align: center; margin-top: 32px; font-size: .85rem; color: #999; }
+    .gate-footer-link a { color: #555; text-decoration: underline; }
+
+    /* Lab별 고유 워드마크 스타일 */
+    .gw-kids { font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 1.5rem; letter-spacing: -.01em; }
+    .gw-kids span:nth-child(1) { color: #4CAF50; } .gw-kids span:nth-child(2) { color: #FF7A45; }
+    .gw-kids span:nth-child(3) { color: #9B5DE5; } .gw-kids span:nth-child(4) { color: #FFC93C; }
+    .gw-kids span:nth-child(5) { color: #4DA6FF; } .gw-kids span:nth-child(6) { color: #FF6FA5; }
+    .gw-kids span:nth-child(7) { color: #4CAF50; } .gw-kids span:nth-child(8) { color: #FF7A45; }
+    .gw-foodie { font-family: 'DM Serif Display', serif; font-size: 1.7rem; color: var(--coral); letter-spacing: -.01em; }
+    .gw-vendier { font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 1.25rem; color: #1aa8b8; letter-spacing: .04em; text-transform: uppercase; }
 
     /* HERO */
     #hero { display: grid; grid-template-columns: 1fr 1fr; height: 100vh; padding-top: 0; overflow: hidden; scroll-margin-top: 108px; }
@@ -381,7 +389,7 @@
     .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
     .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-    #mobileMenu { display: none; position: fixed; top: 108px; left: 0; right: 0; bottom: 0; background: #fff; z-index: 9998; flex-direction: column; padding: 36px 24px; overflow-y: auto; }
+    #mobileMenu { display: none; position: fixed; top: 64px; left: 0; right: 0; bottom: 0; background: #fff; z-index: 9998; flex-direction: column; padding: 36px 24px; overflow-y: auto; }
     #mobileMenu.open { display: flex; }
     .mob-link { font-family: 'Inter',sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #888; text-decoration: none; padding: 18px 0; border-bottom: 1px solid #f0eeeb; transition: color .2s; }
     .mob-link.active { color: #111; }
@@ -393,7 +401,7 @@
       #nav { padding: 0 32px; }
       .nav-menu { gap: 20px; }
       .hero-left { padding: 40px 36px 40px 48px; }
-      #product-gate { padding: 128px 48px 56px; }
+      #product-gate { padding: 84px 48px 56px; }
       .gate-grid { grid-template-columns: 1fr 1fr; }
       #how { padding: 80px 48px; }
       #price-teaser { padding: 64px 48px; }
@@ -403,9 +411,6 @@
       .footer-bottom { padding: 20px 48px 28px; }
     }
     @media (max-width: 768px) {
-      #lab-switcher { padding: 0 16px; }
-      .ls-label { display: none; }
-      .ls-btn-desc { display: none; }
       #nav { padding: 0 20px; display: flex; justify-content: space-between; }
       .nav-portal { display: none; }
       .nav-menu { display: none; }
@@ -415,7 +420,7 @@
       .mob-lang-switch { display: flex; align-items: center; gap: 6px; margin: 0 0 20px; }
       .mob-lang-switch a { font-family: 'Inter',sans-serif; font-size: 13px; font-weight: 700; color: #999; text-decoration: none; padding: 7px 14px; border-radius: 100px; border: 1px solid var(--gray2); }
       .mob-lang-switch a.active { color: #111; background: var(--gray1); border-color: var(--gray1); }
-      #product-gate { padding: 116px 20px 48px; }
+      #product-gate { padding: 72px 20px 48px; }
       .gate-grid { grid-template-columns: 1fr; }
       .gate-card { padding: 32px 26px; }
       #hero { grid-template-columns: 1fr; height: auto; min-height: 100svh; }
@@ -509,16 +514,6 @@
 </head>
 <body>
 
-<div id="lab-switcher">
-  <div class="ls-inner">
-    <span class="ls-label">FINDIER LAB'S</span>
-    <div class="ls-btns">
-      <a href="kidsfeed.html" class="ls-btn" style="--ls-accent:#FF6FA5;"><span class="ls-btn-name">KidsFeed Lab</span><span class="ls-btn-desc">어린이집·유치원</span></a>
-      <a href="foodielab.html" class="ls-btn" style="--ls-accent:#FF6B47;"><span class="ls-btn-name">Foodie Lab</span><span class="ls-btn-desc">외식업 브랜드</span></a>
-      <a href="vendierlab.html" class="ls-btn" style="--ls-accent:#4DE7FF;"><span class="ls-btn-name">Vendier Lab</span><span class="ls-btn-desc">커머스·매출진단</span></a>
-    </div>
-  </div>
-</div>
 <header id="nav">
   <a href="index.html" class="nav-logo">
     <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
@@ -532,7 +527,15 @@
     <li><a href="service.html">SERVICE</a></li>
     <li><a href="works.html">PORTFOLIO</a></li>
     <li><a href="process.html">PROCESS</a></li>
-    <li><a href="lab.html">LAB</a></li>
+    <li class="nav-dropdown">
+      <a href="lab.html">LAB</a>
+      <div class="nav-dropdown-menu">
+        <a href="lab.html" class="nav-dd-item"><span class="nav-dd-name">LAB</span><span class="nav-dd-desc">AI 도구 실험실</span></a>
+        <a href="kidsfeed.html" class="nav-dd-item"><span class="nav-dd-name" style="color:#FF6FA5;">KidsFeed Lab</span><span class="nav-dd-desc">어린이집·유치원</span></a>
+        <a href="foodielab.html" class="nav-dd-item"><span class="nav-dd-name" style="color:var(--coral);">Foodie Lab</span><span class="nav-dd-desc">외식업 브랜드</span></a>
+        <a href="vendierlab.html" class="nav-dd-item"><span class="nav-dd-name" style="color:#1aabb8;">Vendier Lab</span><span class="nav-dd-desc">커머스·매출진단</span></a>
+      </div>
+    </li>
     <li><a href="events.html">EVENT</a></li>
     <li><a href="about.html">ABOUT</a></li>
     <li><a href="contact.html">CONTACT</a></li>
@@ -555,6 +558,9 @@
   <a href="works.html" class="mob-link">PORTFOLIO</a>
   <a href="process.html" class="mob-link">PROCESS</a>
   <a href="lab.html" class="mob-link">LAB</a>
+  <a href="kidsfeed.html" class="mob-link mob-sublink">↳ KidsFeed Lab</a>
+  <a href="foodielab.html" class="mob-link mob-sublink">↳ Foodie Lab</a>
+  <a href="vendierlab.html" class="mob-link mob-sublink">↳ Vendier Lab</a>
   <a href="events.html" class="mob-link">EVENT</a>
   <a href="about.html" class="mob-link">ABOUT</a>
   <a href="contact.html" class="mob-link">CONTACT</a>
@@ -563,36 +569,36 @@
 
 <!-- PRODUCT GATE -->
 <section id="product-gate">
-  <div class="gate-header">
-    <div class="gate-logo-row">
-      <svg width="26" height="26" viewBox="0 0 34 34" fill="none">
-        <circle cx="10" cy="9.5" r="4.5" fill="#D3F45A"/>
-        <path d="M17 5 L28 5 L28 20" stroke="#7B61FF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M6.5 21 Q10.5 29.5 20 27" stroke="#fff" stroke-width="2.8" stroke-linecap="round" fill="none"/>
-      </svg>
-      <span class="gate-logo-text">FINDIER LAB</span>
-    </div>
-    <p class="gate-kicker">Our Products</p>
-    <h1 class="gate-title">업종별 전문 Lab이,<br>지금 필요한 문제를 해결합니다.</h1>
-  </div>
   <div class="gate-grid">
     <a href="kidsfeed.html" class="gate-card" style="--ga:#FF6FA5;">
-      <span class="gate-tag">01 · KidsFeed Lab</span>
-      <p class="gate-name">KidsFeed Lab</p>
+      <div class="gate-bar"></div>
+      <span class="gate-tag">01 · Kids &amp; Care</span>
+      <div class="gate-wordmark">
+        <p class="gw-kids"><span>K</span><span>i</span><span>d</span><span>s</span><span>F</span><span>e</span><span>e</span><span>d</span> Lab</p>
+        <p class="gate-ko">키즈피드랩</p>
+      </div>
       <p class="gate-msg">선생님들의 일은 조금 덜어드리고, 아이들의 좋은 하루는 더 잘 보이게.</p>
       <p class="gate-audience">어린이집·유치원 SNS 운영 구독</p>
       <span class="gate-cta" style="color:#FF6FA5;">보기 →</span>
     </a>
     <a href="foodielab.html" class="gate-card" style="--ga:#FF6B47;">
-      <span class="gate-tag">02 · Foodie Lab</span>
-      <p class="gate-name">Foodie Lab</p>
+      <div class="gate-bar"></div>
+      <span class="gate-tag">02 · Food &amp; Cafe</span>
+      <div class="gate-wordmark">
+        <p class="gw-foodie">Foodie Lab</p>
+        <p class="gate-ko">푸디랩</p>
+      </div>
       <p class="gate-msg">좋은 가게가, 더 잘 발견되도록.</p>
       <p class="gate-audience">음식점·카페·외식업 브랜드 &amp; 마케팅</p>
       <span class="gate-cta" style="color:var(--coral);">보기 →</span>
     </a>
     <a href="vendierlab.html" class="gate-card" style="--ga:#4DE7FF;">
-      <span class="gate-tag">03 · Vendier Lab</span>
-      <p class="gate-name">Vendier Lab</p>
+      <div class="gate-bar"></div>
+      <span class="gate-tag">03 · Commerce</span>
+      <div class="gate-wordmark">
+        <p class="gw-vendier">Vendier Lab</p>
+        <p class="gate-ko">밴디어랩</p>
+      </div>
       <p class="gate-msg">좋은 제품이, 제대로 팔리도록.</p>
       <p class="gate-audience">브랜드·스타트업 커머스 &amp; 마케팅</p>
       <span class="gate-cta" style="color:#1aabb8;">보기 →</span>

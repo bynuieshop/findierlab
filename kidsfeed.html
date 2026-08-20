@@ -42,18 +42,18 @@
     .fade.in { opacity: 1; transform: none; }
 
     /* LAB SWITCHER */
-    #lab-switcher { position: fixed; top: 0; left: 0; right: 0; z-index: 10000; background: #0A0A0A; border-bottom: 1px solid rgba(255,255,255,.08); height: 44px; display: flex; align-items: center; padding: 0 48px; overflow-x: auto; }
-    .ls-inner { display: flex; align-items: center; gap: 16px; }
-    .ls-label { font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 800; letter-spacing: .16em; color: rgba(255,255,255,.3); text-transform: uppercase; flex-shrink: 0; white-space: nowrap; }
-    .ls-btns { display: flex; gap: 8px; }
-    .ls-btn { display: flex; align-items: baseline; gap: 6px; padding: 6px 14px; border-radius: 100px; border: 1px solid rgba(255,255,255,.12); white-space: nowrap; transition: border-color .2s, background .2s; }
-    .ls-btn:hover { border-color: var(--ls-accent); }
-    .ls-btn.active { border-color: var(--ls-accent); background: rgba(255,255,255,.06); }
-    .ls-btn-name { font-size: 12px; font-weight: 800; color: #fff; }
-    .ls-btn-desc { font-size: 10px; color: rgba(255,255,255,.4); }
+    /* NAV LAB DROPDOWN */
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-menu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(6px); background: #fff; border: 1px solid #E2E0DC; border-radius: 14px; padding: 8px; min-width: 210px; box-shadow: 0 14px 34px rgba(0,0,0,.24); opacity: 0; pointer-events: none; transition: opacity .16s, transform .16s; }
+    .nav-dropdown:hover .nav-dropdown-menu, .nav-dropdown:focus-within .nav-dropdown-menu { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+    .nav-dd-item { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 8px; text-transform: none; letter-spacing: 0; }
+    .nav-dd-item:hover { background: #F2F0ED; }
+    .nav-dd-name { font-family: 'Pretendard',sans-serif; font-size: 13px; font-weight: 700; color: #111; }
+    .nav-dd-desc { font-size: 11px; color: #999; white-space: nowrap; }
+    .mob-sublink { padding-left: 20px !important; font-size: 10px !important; opacity: .75; }
 
     /* NAV */
-    #nav { position: fixed; top: 44px; left: 0; right: 0; height: 64px; z-index: 9999; background: #111111; border-bottom: 1px solid rgba(255,255,255,.06); display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 0 48px; }
+    #nav { position: fixed; top: 0; left: 0; right: 0; height: 64px; z-index: 9999; background: #111111; border-bottom: 1px solid rgba(255,255,255,.06); display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 0 48px; }
     .nav-logo { display: flex; align-items: center; gap: 10px; }
     .nav-logo-text { font-family: 'Inter',sans-serif; font-size: 15px; font-weight: 800; letter-spacing: .05em; color: #fff; }
     .nav-sub-badge { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 800; letter-spacing: .1em; color: #FF6FA5; background: rgba(255,111,165,.14); padding: 4px 10px; border-radius: 100px; margin-left: 4px; }
@@ -69,15 +69,12 @@
     .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
     .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-    #mobileMenu { display: none; position: fixed; top: 108px; left: 0; right: 0; bottom: 0; background: #111111; z-index: 9998; flex-direction: column; padding: 36px 24px; overflow-y: auto; }
+    #mobileMenu { display: none; position: fixed; top: 64px; left: 0; right: 0; bottom: 0; background: #111111; z-index: 9998; flex-direction: column; padding: 36px 24px; overflow-y: auto; }
     #mobileMenu.open { display: flex; }
     .mob-link { font-family: 'Inter',sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.5); padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,.08); }
     .mob-cta-wrap { margin-top: 32px; }
     .mob-cta { display: inline-flex; align-items: center; gap: 8px; background: #FF6FA5; color: #fff; font-size: 14px; font-weight: 700; padding: 14px 28px; border-radius: 100px; }
     @media (max-width: 768px) {
-      #lab-switcher { padding: 0 16px; }
-      .ls-label { display: none; }
-      .ls-btn-desc { display: none; }
       #nav { padding: 0 20px; display: flex; justify-content: space-between; }
       .nav-menu { display: none; }
       .nav-burger { display: flex; }
@@ -85,7 +82,7 @@
     }
 
     /* HERO */
-    .hero { position: relative; padding: 188px 24px 60px; text-align: center; overflow: hidden; }
+    .hero { position: relative; padding: 100px 24px 60px; text-align: center; overflow: hidden; }
     .hero-doodles { position: absolute; inset: 0; pointer-events: none; }
     .swoosh { position: absolute; top: 20px; left: 50%; transform: translateX(-190px); width: 380px; opacity: .9; }
     .sparkle { position: absolute; }
@@ -244,16 +241,6 @@
 </head>
 <body>
 
-<div id="lab-switcher">
-  <div class="ls-inner">
-    <span class="ls-label">FINDIER LAB'S</span>
-    <div class="ls-btns">
-      <a href="kidsfeed.html" class="ls-btn active" style="--ls-accent:#FF6FA5;"><span class="ls-btn-name">KidsFeed Lab</span><span class="ls-btn-desc">어린이집·유치원</span></a>
-      <a href="foodielab.html" class="ls-btn" style="--ls-accent:#FF6B47;"><span class="ls-btn-name">Foodie Lab</span><span class="ls-btn-desc">외식업 브랜드</span></a>
-      <a href="vendierlab.html" class="ls-btn" style="--ls-accent:#4DE7FF;"><span class="ls-btn-name">Vendier Lab</span><span class="ls-btn-desc">커머스·매출진단</span></a>
-    </div>
-  </div>
-</div>
 <header id="nav">
   <a href="index.html" class="nav-logo">
     <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
@@ -265,7 +252,15 @@
   </a>
   <ul class="nav-menu">
     <li><a href="service.html">SERVICE</a></li>
-    <li><a href="lab.html">LAB</a></li>
+    <li class="nav-dropdown">
+      <a href="lab.html">LAB</a>
+      <div class="nav-dropdown-menu">
+        <a href="lab.html" class="nav-dd-item"><span class="nav-dd-name">LAB</span><span class="nav-dd-desc">AI 도구 실험실</span></a>
+        <a href="kidsfeed.html" class="nav-dd-item"><span class="nav-dd-name" style="color:#FF6FA5;">KidsFeed Lab ✓</span><span class="nav-dd-desc">어린이집·유치원</span></a>
+        <a href="foodielab.html" class="nav-dd-item"><span class="nav-dd-name" style="color:#FF6B47;">Foodie Lab</span><span class="nav-dd-desc">외식업 브랜드</span></a>
+        <a href="vendierlab.html" class="nav-dd-item"><span class="nav-dd-name" style="color:#1aabb8;">Vendier Lab</span><span class="nav-dd-desc">커머스·매출진단</span></a>
+      </div>
+    </li>
     <li><a href="index.html">HOME</a></li>
   </ul>
   <div class="nav-actions">
@@ -276,6 +271,9 @@
 <div id="mobileMenu">
   <a href="service.html" class="mob-link">SERVICE</a>
   <a href="lab.html" class="mob-link">LAB</a>
+  <a href="kidsfeed.html" class="mob-link mob-sublink" style="opacity:1;">↳ KidsFeed Lab ✓</a>
+  <a href="foodielab.html" class="mob-link mob-sublink">↳ Foodie Lab</a>
+  <a href="vendierlab.html" class="mob-link mob-sublink">↳ Vendier Lab</a>
   <a href="index.html" class="mob-link">HOME</a>
   <div class="mob-cta-wrap"><a href="https://pf.kakao.com/_LtiPX" target="_blank" rel="noopener" class="mob-cta"><span class="nav-dot"></span>상담하기</a></div>
 </div>
