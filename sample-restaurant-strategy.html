@@ -75,6 +75,8 @@
   }
   .hero h1 em { font-style: normal; color: var(--coral); }
   .hero p.lede { margin-top: 28px; font-size: 18px; color: var(--muted); max-width: 34em; }
+  .hero-shot { margin-top: 56px; width: 100%; border-radius: 16px; overflow: hidden; border: 1px solid var(--line); }
+  .hero-shot img { display: block; width: 100%; height: auto; }
 
   section { padding: 96px 0; border-bottom: 1px solid var(--line); }
   .sec-path { font-family: var(--mono); font-size: 13px; color: var(--coral); margin-bottom: 14px; letter-spacing: .04em; }
@@ -82,13 +84,8 @@
   .sec-sub { color: var(--muted); font-size: 17px; max-width: 40em; }
 
   /* SITUATION: 흩어진 메뉴 */
-  .scatter-wrap { display: flex; flex-wrap: wrap; gap: 14px 20px; margin: 52px 0 56px; }
-  .scatter-item {
-    font-size: clamp(17px, 2vw, 21px); font-weight: 700; color: var(--muted); opacity: .5;
-    letter-spacing: -0.01em;
-  }
-  .scatter-item:nth-child(2n) { transform: rotate(-1deg); }
-  .scatter-item:nth-child(3n) { transform: rotate(1.2deg); }
+  .situation-shot { margin: 52px 0 56px; border-radius: 16px; overflow: hidden; border: 1px solid var(--line); }
+  .situation-shot img { display: block; width: 100%; height: auto; }
   .situation-question {
     font-size: clamp(24px, 3.6vw, 36px); font-weight: 800; letter-spacing: -0.02em;
     padding-top: 36px; border-top: 1px solid var(--line);
@@ -112,6 +109,8 @@
     font-size: clamp(44px, 9vw, 104px); font-weight: 900; letter-spacing: -0.03em;
     color: var(--coral); line-height: 1.02; margin-bottom: 44px; text-wrap: balance;
   }
+  .decision-shot { max-width: 560px; margin: 8px 0 40px; border-radius: 16px; overflow: hidden; border: 1px solid var(--line-strong); }
+  .decision-shot img { display: block; width: 100%; height: auto; }
   .decision-reasons { display: flex; flex-wrap: wrap; gap: 12px; }
   .reason-chip {
     border: 1px solid var(--line-strong); border-radius: 999px; padding: 11px 20px;
@@ -214,6 +213,7 @@
       BRICK BURGER는 이미 운영 중인 버거 전문점이었습니다.
       Foodie Lab이 다시 잡은 건 새로운 메뉴가 아니라, 이 매장을 찾아올 이유였습니다.
     </p>
+    <div class="hero-shot"><img src="assets/case-shots/brick-burger-hero.jpg" alt="BRICK BURGER 차콜버거"></div>
   </div>
 </div>
 
@@ -224,16 +224,7 @@
     <h2 class="sec-head-h2">메뉴는 충분했습니다. 이유가 없었을 뿐.</h2>
     <p class="sec-sub">브랜드 비주얼도, 인스타그램도, 네이버 플레이스도 이미 운영되고 있었습니다. 문제는 그다음이었습니다.</p>
 
-    <div class="scatter-wrap">
-      <span class="scatter-item">차콜버거</span>
-      <span class="scatter-item">트러플버거</span>
-      <span class="scatter-item">치킨버거</span>
-      <span class="scatter-item">파스타</span>
-      <span class="scatter-item">감자튀김</span>
-      <span class="scatter-item">쉐이크</span>
-      <span class="scatter-item">루프탑</span>
-      <span class="scatter-item">심야영업</span>
-    </div>
+    <div class="situation-shot"><img src="assets/case-shots/brick-burger-situation.jpg" alt="BRICK BURGER 메뉴와 공간 자산: 차콜버거, 트러플버거, 치킨버거, 파스타, 감자튀김, 쉐이크, 루프탑, 심야영업"></div>
 
     <p class="situation-question">그래서, 여기는 <em>뭘 먹으러</em> 가는 곳이지?</p>
   </div>
@@ -266,6 +257,8 @@
 
     <p class="decision-eyebrow">FOODIE LAB'S CHOICE</p>
     <p class="decision-menu">차콜버거</p>
+
+    <div class="decision-shot"><img src="assets/case-shots/brick-burger-decision.jpg" alt="차콜버거 단면"></div>
 
     <div class="decision-reasons">
       <span class="reason-chip">다른 데선 보기 힘든 메뉴</span>
