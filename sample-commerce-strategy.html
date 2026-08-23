@@ -118,11 +118,7 @@
     color: var(--ink); line-height: 1.25; margin-bottom: 40px; text-wrap: balance;
   }
   .decision-verdict { font-size: 18px; color: var(--muted); max-width: 34em; line-height: 1.75; margin-bottom: 44px; }
-  .decision-reasons { display: flex; flex-wrap: wrap; gap: 12px; }
-  .reason-chip {
-    border: 1px solid var(--line-strong); border-radius: 999px; padding: 11px 20px;
-    font-size: 14.5px; font-weight: 600; color: var(--ink);
-  }
+  .decision-reason-line { font-size: 18px; color: var(--ink); font-weight: 600; max-width: 34em; line-height: 1.7; }
 
   /* BEFORE / AFTER — clutter to clarity */
   .ba-wrap { margin-top: 48px; }
@@ -138,15 +134,7 @@
   .ba-after-rest { text-align: center; font-size: 13px; color: var(--muted); font-family: var(--mono); letter-spacing: .04em; }
 
   /* WHAT CHANGED */
-  .type-rows { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; margin-top: 48px; }
-  .type-row {
-    display: grid; grid-template-columns: 200px 1fr; gap: 24px; align-items: baseline;
-    background: var(--bg); padding: 26px; border-bottom: 1px solid var(--line);
-  }
-  .type-row:last-child { border-bottom: none; }
-  .type-meta { font-family: var(--mono); font-size: 13px; color: var(--accent); line-height: 1.8; font-weight: 700; letter-spacing: .04em; }
-  .t-body { font-size: 16.5px; color: var(--ink); max-width: 38em; }
-  @media (max-width: 720px) { .type-row { grid-template-columns: 1fr; gap: 8px; } }
+  .changed-line { font-size: clamp(20px, 2.8vw, 26px); font-weight: 700; line-height: 1.6; max-width: 30em; margin-top: 8px; }
 
   /* OWNER PERCEPTION */
   #perception { background: var(--panel); }
@@ -162,7 +150,6 @@
   /* IMPACT */
   .impact-line { font-size: clamp(24px, 3.4vw, 32px); font-weight: 800; letter-spacing: -0.01em; color: var(--ink); line-height: 1.5; max-width: 20em; }
   .impact-line em { font-style: normal; color: var(--accent); }
-  .impact-sub { font-size: 15px; color: var(--muted); margin-top: 20px; }
 
   /* CTA */
   .cta { padding: 110px 0 120px; text-align: left; border-bottom: none; }
@@ -249,12 +236,12 @@
 <section id="questions">
   <div class="wrap fade">
     <p class="sec-path">case/questions</p>
-    <h2 class="sec-head-h2">매출이 줄었다고,<br>이유가 하나인 것은 아닙니다.</h2>
+    <h2 class="sec-head-h2">매출이 줄었다고,<br>답이 하나인 것은 아닙니다.</h2>
     <div class="diag-questions">
-      <p class="diag-q">사람이 안 들어오는 걸까요?</p>
-      <p class="diag-q">들어오는데 안 사는 걸까요?</p>
-      <p class="diag-q">팔리기는 하는데 남지 않는 걸까요?</p>
-      <p class="diag-q">한 번 사고 다시 오지 않는 걸까요?</p>
+      <p class="diag-q">광고를 더 해야 할까요?</p>
+      <p class="diag-q">상품을 바꿔야 할까요?</p>
+      <p class="diag-q">판매처를 더 늘려야 할까요?</p>
+      <p class="diag-q">아니면, 지금 하고 있는 것부터 다시 봐야 할까요?</p>
     </div>
   </div>
 </section>
@@ -277,11 +264,7 @@
     <p class="decision-line2">먼저,</p>
     <p class="decision-then">판매의 중심부터 다시 잡았습니다.</p>
     <p class="decision-verdict">상품이 많고 채널도 많았지만, 고객에게 가장 먼저 보여줘야 할 상품이 선명하지 않았습니다.</p>
-    <div class="decision-reasons">
-      <span class="reason-chip">한눈에 이 브랜드가 무엇인지 보여주고</span>
-      <span class="reason-chip">처음 사는 고객도 이해하기 쉽고</span>
-      <span class="reason-chip">다른 상품까지 자연스럽게 이어질 수 있어서</span>
-    </div>
+    <p class="decision-reason-line">처음 보는 고객도 브랜드를 바로 이해하고, 다른 상품까지 자연스럽게 이어질 수 있는 제품을 먼저 세웠습니다.</p>
   </div>
 </section>
 
@@ -294,7 +277,7 @@
     <div class="ba-wrap">
       <p class="ba-label">BEFORE</p>
       <div class="ba-clutter">
-        <span>Main Product</span><span>Product B</span><span>Product C</span><span>Set</span>
+        <span>Daily Wash</span><span>Body Cream</span><span>Diffuser</span><span>Set</span>
         <span>Gift Set</span><span>Refill</span><span>SALE</span><span>NEW</span><span>BEST</span>
       </div>
       <p class="ba-note">무엇을 먼저 팔아야 하는지는 흐렸습니다.</p>
@@ -304,7 +287,7 @@
 
     <div class="ba-wrap" style="margin-top:0;">
       <p class="ba-label" style="color:var(--accent);">AFTER</p>
-      <div class="ba-after-focus"><span>Main Product</span></div>
+      <div class="ba-after-focus"><span>MORROW Daily Wash</span></div>
       <p class="ba-after-rest">나머지는 그 뒤에 질서 있게 연결됩니다.</p>
     </div>
   </div>
@@ -314,25 +297,8 @@
 <section id="changed">
   <div class="wrap fade">
     <p class="sec-path">case/changed</p>
-    <h2 class="sec-head-h2">필요한 곳만 다시 정렬했습니다.</h2>
-    <div class="type-rows">
-      <div class="type-row">
-        <div class="type-meta">PRODUCT</div>
-        <p class="t-body">무엇을 먼저 보여줄지 선명하게</p>
-      </div>
-      <div class="type-row">
-        <div class="type-meta">STORE</div>
-        <p class="t-body">들어온 사람이 바로 이해할 수 있게</p>
-      </div>
-      <div class="type-row">
-        <div class="type-meta">CHANNEL</div>
-        <p class="t-body">모든 곳에서 똑같이 팔지 않게</p>
-      </div>
-      <div class="type-row">
-        <div class="type-meta">MARKETING</div>
-        <p class="t-body">더 쓰기 전에, 방향부터 맞게</p>
-      </div>
-    </div>
+    <h2 class="sec-head-h2">필요한 것만 다시 정리했습니다.</h2>
+    <p class="changed-line">무엇을 먼저 보여줄지 정하고, 고객이 그 이유를 쉽게 이해하게 만들었습니다.<br>더 하는 것보다, 지금 필요한 것에 집중했습니다.</p>
   </div>
 </section>
 
@@ -364,7 +330,6 @@
     <p class="sec-path">case/impact</p>
     <h2 class="sec-head-h2">매출만 보지 않습니다.</h2>
     <p class="impact-line"><em>팔리고, 남고,</em><br>다시 사는지를 봅니다.</p>
-    <p class="impact-sub">실제 프로젝트가 아니므로 가짜 수치는 쓰지 않습니다.</p>
   </div>
 </section>
 
