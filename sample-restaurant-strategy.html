@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BRICK BURGER 대표메뉴 포지셔닝 · FINDIER LAB Foodie Lab 전략 샘플</title>
-<meta name="description" content="메뉴 6종 중 하나를 대표메뉴로 선정해 브랜드 포지셔닝을 다시 짠 Foodie Lab의 전략 샘플. 신메뉴 개발이 아니라, 찾아올 이유를 찾는 과정입니다.">
+<meta name="description" content="여러 메뉴 중 대표 소구 메뉴를 선정해 브랜드 포지셔닝을 다시 짠 Foodie Lab의 전략 샘플. 신메뉴 개발이 아니라, 이미 있는 메뉴 중 찾아올 이유를 찾는 과정입니다.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="BRICK BURGER 대표메뉴 포지셔닝 · FINDIER LAB Foodie Lab 전략 샘플">
 <meta property="og:description" content="메뉴는 많은데 무엇을 먹으러 가야 할지 보이지 않았던 매장. Foodie Lab이 대표메뉴를 찾고 포지셔닝을 다시 짠 과정.">
@@ -152,8 +152,11 @@
   .perc-col.after .bubble { color: var(--ink); font-weight: 700; border-color: rgba(255,107,71,.25); }
 
   /* IMPACT */
-  .impact-tags { display: flex; flex-wrap: wrap; gap: 10px; margin: 48px 0 36px; }
-  .impact-tag { font-family: var(--mono); font-size: 13px; color: var(--ink); background: var(--panel); border: 1px solid var(--line); border-radius: 999px; padding: 9px 16px; }
+  .impact-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; margin: 48px 0 36px; }
+  @media (max-width: 720px) { .impact-grid { grid-template-columns: 1fr 1fr; } }
+  .impact-cell { background: var(--panel); padding: 28px 22px; }
+  .impact-cell .ic-label { font-family: var(--mono); font-size: 13px; letter-spacing: .1em; color: var(--coral); font-weight: 700; margin-bottom: 14px; }
+  .impact-cell .ic-q { font-size: 15.5px; color: var(--ink); line-height: 1.5; }
   .impact-line { font-size: clamp(22px, 3vw, 28px); font-weight: 800; letter-spacing: -0.01em; color: var(--ink); }
 
   /* ── CTA ── */
@@ -222,12 +225,14 @@
     <p class="sec-sub">브랜드 비주얼도, 인스타그램도, 네이버 플레이스도 이미 운영되고 있었습니다. 문제는 그다음이었습니다.</p>
 
     <div class="scatter-wrap">
-      <span class="scatter-item">오리지널버거</span>
-      <span class="scatter-item">베이컨치즈버거</span>
-      <span class="scatter-item">아보카도버거</span>
-      <span class="scatter-item">시그니처 차콜버거</span>
-      <span class="scatter-item">트러플감자튀김</span>
+      <span class="scatter-item">차콜버거</span>
+      <span class="scatter-item">트러플버거</span>
+      <span class="scatter-item">치킨버거</span>
+      <span class="scatter-item">파스타</span>
+      <span class="scatter-item">감자튀김</span>
       <span class="scatter-item">쉐이크</span>
+      <span class="scatter-item">루프탑</span>
+      <span class="scatter-item">심야영업</span>
     </div>
 
     <p class="situation-question">그래서, 여기는 <em>뭘 먹으러</em> 가는 곳이지?</p>
@@ -238,16 +243,17 @@
 <section id="insight">
   <div class="wrap fade">
     <p class="sec-path">case/insight</p>
-    <h2 class="sec-head-h2">모든 메뉴를 같은 무게로 알리고 있었습니다</h2>
-    <p class="sec-sub">상권과 경쟁 매장, 소비자 수요, 기존 메뉴를 함께 검토했습니다. 분석 방법은 이 페이지에 담지 않고, 결과만 보여드립니다.</p>
+    <p class="decision-eyebrow">FOODIE LAB ANALYSIS</p>
+    <h2 class="sec-head-h2">모든 걸 같은 무게로 알리고 있었습니다</h2>
+    <p class="sec-sub">상권과 경쟁 매장, 소비자 반응, 기존 메뉴를 함께 살펴봤습니다. 무엇을 어떻게 검토했는지는 이 페이지에 담지 않습니다.</p>
 
     <div class="bars-row">
-      <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-      <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+      <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+      <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
     </div>
-    <p class="bars-caption">메뉴 6종 · 노출 비중은 균등하고, 대표는 없는 상태</p>
+    <p class="bars-caption">메뉴·공간 자산 8가지 · 노출 비중은 균등하고, 대표는 없는 상태</p>
 
-    <p class="insight-line">모든 메뉴를 동일하게 홍보하는 것이<br>오히려 <span>브랜드 인식을 분산</span>시키고 있었습니다.</p>
+    <p class="insight-line">다 잘 팔려고 하면,<br><span>아무것도 기억되지 않을 수</span> 있습니다.</p>
   </div>
 </section>
 
@@ -256,15 +262,15 @@
   <div class="wrap fade">
     <p class="sec-path">case/decision</p>
     <h2 class="sec-head-h2">선택은 하나였습니다</h2>
-    <p class="sec-sub">여섯 개 중 하나를, 방문의 이유로 앞세우기로 했습니다.</p>
+    <p class="sec-sub">여덟 가지 자산 중 하나를, 방문의 이유로 앞세우기로 했습니다.</p>
 
-    <p class="decision-eyebrow">WE FOUND THE REASON TO VISIT.</p>
-    <p class="decision-menu">시그니처 차콜버거</p>
+    <p class="decision-eyebrow">FOODIE LAB'S CHOICE</p>
+    <p class="decision-menu">차콜버거</p>
 
     <div class="decision-reasons">
-      <span class="reason-chip">상권 내 차별화 가능성</span>
-      <span class="reason-chip">시각적 콘텐츠 경쟁력</span>
-      <span class="reason-chip">브랜드 기억 가능성</span>
+      <span class="reason-chip">경쟁 매장 대비 기억하기 쉬운 차별점</span>
+      <span class="reason-chip">사진 한 장으로도 먹고 싶게 보이는 비주얼</span>
+      <span class="reason-chip">매장 브랜드 이미지와의 연결 가능성</span>
     </div>
   </div>
 </section>
@@ -277,7 +283,7 @@
 
     <div class="ba-block ba-before">
       <p class="ba-label">BEFORE</p>
-      <p class="ba-text">다양한 메뉴를 판매하는 BRICK BURGER</p>
+      <p class="ba-text">여러 메뉴를 파는 버거 다이닝</p>
     </div>
     <p class="ba-arrow">↓</p>
     <div class="ba-block ba-after">
@@ -285,7 +291,7 @@
       <p class="ba-text"><em>차콜버거</em>를 먹으러 가는 곳</p>
     </div>
 
-    <p class="ba-note">메뉴 하나를 더 판 게 아니라, 고객 머릿속에서 이 매장이 차지하는 자리를 만들었습니다.</p>
+    <p class="ba-note">다른 메뉴를 버린 게 아닙니다. 먼저 기억될 메뉴 하나를 정한 것입니다.</p>
   </div>
 </section>
 
@@ -293,33 +299,30 @@
 <section id="channels">
   <div class="wrap fade">
     <p class="sec-path">case/channels</p>
-    <h2 class="sec-head-h2">이후 모든 접점을 하나의 방향으로</h2>
-    <p class="sec-sub">대표 메뉴를 정한 다음부터가 진짜 시작입니다. 세부 실행 매뉴얼이 아니라, 방향만 공유합니다.</p>
+    <p class="decision-eyebrow">ONE POSITION, EVERYWHERE.</p>
+    <h2 class="sec-head-h2">어디서 보든, 같은 이유로 기억되게</h2>
+    <p class="sec-sub">채널을 늘리는 게 아니라, 하나의 포지션을 모든 접점에서 반복합니다. 세부 실행 방식은 이 페이지에 담지 않습니다.</p>
 
     <div class="type-rows">
       <div class="type-row">
         <div class="type-meta">WEBSITE</div>
-        <p class="t-body">첫 화면부터 차콜버거를 중심으로. 랜딩 구조 전체를 대표메뉴 기준으로 재정렬합니다.</p>
+        <p class="t-body">첫 화면부터 차콜버거가 보이도록, 대표 메뉴 중심으로 브랜드 메시지를 통일합니다.</p>
       </div>
       <div class="type-row">
         <div class="type-meta">NAVER PLACE</div>
-        <p class="t-body">대표 사진, 소개 문구, 메뉴 노출 순서까지 하나의 메시지로 통일합니다.</p>
+        <p class="t-body">차콜버거가 매장의 첫인상이 되도록, 대표 사진과 소개 문구를 정렬합니다.</p>
       </div>
       <div class="type-row">
         <div class="type-meta">SEARCH</div>
-        <p class="t-body">대표메뉴 + 지역 + 방문 목적 중심으로, 검색과 AI 추천 양쪽에서 발견되게 합니다.</p>
+        <p class="t-body">차콜버거와 관련된 검색에서, 이 매장이 발견되게 합니다.</p>
       </div>
       <div class="type-row">
-        <div class="type-meta">INSTAGRAM</div>
-        <p class="t-body">차콜버거를 중심으로 반복적인 비주얼 기억을 쌓습니다.</p>
+        <div class="type-meta">SOCIAL</div>
+        <p class="t-body">반복 노출로 "BRICK BURGER = 차콜버거"라는 인식을 만듭니다.</p>
       </div>
       <div class="type-row">
         <div class="type-meta">CONTENT</div>
-        <p class="t-body">다른 메뉴를 없애는 게 아니라, 차콜버거를 첫 진입점으로 활용합니다.</p>
-      </div>
-      <div class="type-row">
-        <div class="type-meta">PROMOTION</div>
-        <p class="t-body">체험단·인플루언서·광고도 동일한 메시지에 집중시킵니다.</p>
+        <p class="t-body">다른 메뉴를 없애는 게 아니라, 차콜버거를 방문의 첫 진입점으로 씁니다.</p>
       </div>
     </div>
   </div>
@@ -354,17 +357,25 @@
   <div class="wrap fade">
     <p class="sec-path">case/impact</p>
     <h2 class="sec-head-h2">그래서, 무엇을 봅니다</h2>
-    <p class="sec-sub">실제 프로젝트가 아니므로 가짜 수치는 쓰지 않습니다. 대신 이 전략으로 관리하게 되는 지표 영역은 이렇습니다.</p>
+    <p class="sec-sub">실제 프로젝트가 아니므로 가짜 수치는 쓰지 않습니다. 대신 이 전략이 결국 무엇으로 이어지는지, 4가지 행동 단위로 봅니다.</p>
 
-    <div class="impact-tags">
-      <span class="impact-tag">대표메뉴 검색량</span>
-      <span class="impact-tag">플레이스 유입</span>
-      <span class="impact-tag">메뉴별 클릭</span>
-      <span class="impact-tag">저장 · 길찾기 · 전화</span>
-      <span class="impact-tag">방문 전환</span>
-      <span class="impact-tag">대표메뉴 주문 비중</span>
-      <span class="impact-tag">객단가</span>
-      <span class="impact-tag">재방문</span>
+    <div class="impact-grid">
+      <div class="impact-cell">
+        <p class="ic-label">DISCOVERY</p>
+        <p class="ic-q">검색과 플레이스에서 발견되는가</p>
+      </div>
+      <div class="impact-cell">
+        <p class="ic-label">CHOICE</p>
+        <p class="ic-q">대표 메뉴를 실제로 선택하는가</p>
+      </div>
+      <div class="impact-cell">
+        <p class="ic-label">VALUE</p>
+        <p class="ic-q">매출과 객단가로 이어지는가</p>
+      </div>
+      <div class="impact-cell">
+        <p class="ic-label">RETURN</p>
+        <p class="ic-q">다시 오거나, 추천하는가</p>
+      </div>
     </div>
 
     <p class="impact-line">우리는 좋아요보다, 방문 행동을 봅니다.</p>
@@ -375,7 +386,7 @@
 <section class="cta">
   <div class="wrap fade">
     <h2>메뉴는 많은데<br>무엇을 밀어야 할지 모르겠다면.</h2>
-    <p>Foodie Lab은 메뉴를 더 만들기 전에, 고객이 찾아올 이유부터 찾습니다.</p>
+    <p>메뉴가 많다고 강점이 되지는 않습니다. Foodie Lab은 메뉴를 더 만들기 전에, 무엇을 먼저 기억하게 할지부터 정합니다.</p>
     <div class="cta-btns">
       <a class="btn-solid" href="diagnose.html">우리 매장 진단하기 →</a>
       <a class="btn-line" href="foodielab.html">Foodie Lab 알아보기</a>
