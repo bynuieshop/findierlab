@@ -74,6 +74,20 @@
   .hero h1 em { font-style: normal; color: var(--accent); }
   .hero p.lede { margin-top: 28px; font-size: 18px; color: var(--muted); max-width: 32em; }
 
+  /* SAMPLE CASE IMAGES */
+  .case-img { display: block; width: 100%; border-radius: 18px; box-shadow: 0 24px 60px rgba(0,0,0,.28); }
+  .case-img-cap { font-family: var(--mono); font-size: 12px; color: var(--muted); opacity: .55; text-align: center; margin-top: 10px; }
+  .case-img-01 { max-height: 560px; object-fit: cover; }
+  .case-img-01-wrap { margin: 56px 0 0; }
+  .case-img-02 { max-width: 720px; margin: 0 auto; object-fit: cover; }
+  .case-img-02-wrap { margin: 48px 0; display: flex; flex-direction: column; align-items: center; }
+  .case-img-03 { max-width: 100%; object-fit: cover; }
+  .case-img-03-wrap { max-width: 70%; margin: 48px auto 0; }
+  @media (max-width: 720px) {
+    .case-img-01 { max-height: 320px; }
+    .case-img-03-wrap { max-width: 100%; }
+  }
+
   section { padding: 96px 0; border-bottom: 1px solid var(--line); }
   .sec-path { font-family: var(--mono); font-size: 13px; color: var(--accent); margin-bottom: 14px; letter-spacing: .04em; }
   .sec-head-h2 { font-size: clamp(26px, 3.6vw, 38px); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 14px; text-wrap: balance; }
@@ -210,6 +224,11 @@
   </div>
 </div>
 
+<div class="wrap case-img-01-wrap fade">
+  <img class="case-img case-img-01" src="assets/case-shots/morrow-lineup-before.png" alt="MORROW 브랜드 전체 제품 화보">
+  <p class="case-img-cap">*본이미지는 샘플이미지입니다.</p>
+</div>
+
 <!-- THE SITUATION -->
 <section id="situation">
   <div class="wrap fade">
@@ -226,6 +245,11 @@
       <span class="clutter-item">리뷰</span>
       <span class="clutter-item">신상품</span>
       <span class="clutter-item">할인</span>
+    </div>
+
+    <div class="case-img-02-wrap">
+      <img class="case-img case-img-02" src="assets/case-shots/morrow-commerce-collage.png" alt="자사몰·광고·SNS·리뷰 등 커머스 콜라주">
+      <p class="case-img-cap">*본이미지는 샘플이미지입니다.</p>
     </div>
 
     <p class="situation-question">그런데, <em>왜 매출이 떨어지는지</em>는 몰랐습니다.</p>
@@ -265,6 +289,11 @@
     <p class="decision-then">판매의 중심부터 다시 잡았습니다.</p>
     <p class="decision-verdict">상품이 많고 채널도 많았지만, 고객에게 가장 먼저 보여줘야 할 상품이 선명하지 않았습니다.</p>
     <p class="decision-reason-line">처음 보는 고객도 브랜드를 바로 이해하고, 다른 상품까지 자연스럽게 이어질 수 있는 제품을 먼저 세웠습니다.</p>
+
+    <div class="case-img-03-wrap">
+      <img class="case-img case-img-03" src="assets/case-shots/morrow-hero-after.png" alt="MORROW 대표 제품 단독 Hero Shot">
+      <p class="case-img-cap">*본이미지는 샘플이미지입니다.</p>
+    </div>
   </div>
 </section>
 
