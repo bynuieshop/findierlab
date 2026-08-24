@@ -216,14 +216,12 @@
     .qt-targets { display: flex; gap: 8px; flex-wrap: wrap; }
     .qt-target { font-size: .74rem; font-weight: 600; color: #888; background: var(--gray1); padding: 5px 12px; border-radius: 100px; }
     .qt-right { text-align: right; flex-shrink: 0; }
-    .qt-price { font-family: 'Inter',sans-serif; font-weight: 900; letter-spacing: -.04em; line-height: 1; }
-    .qt-price .won { font-size: 1.1rem; color: #999; }
-    .qt-price .amount { font-size: clamp(1.6rem,2.6vw,2rem); color: var(--black); }
     .qt-period { font-size: .8rem; color: #999; margin: 6px 0 16px; }
     .qt-cta { display: inline-flex; align-items: center; gap: 6px; background: var(--coral); color: #fff; font-size: .85rem; font-weight: 700; padding: 12px 24px; border-radius: 100px; white-space: nowrap; }
 
     #separate-service { background: var(--offwhite); padding: 72px 80px; }
-    .inv-kicker { font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 700; letter-spacing: .22em; color: #bbb; text-transform: uppercase; display: flex; align-items: center; gap: 10px; margin-bottom: 40px; }
+    .inv-kicker { font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 700; letter-spacing: .22em; color: #bbb; text-transform: uppercase; display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+    .inv-note { font-size: 13px; color: #999; margin-bottom: 40px; }
     .inv-kicker::before { content: ''; width: 20px; height: 1px; background: #ddd; }
     .cards-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
     .inv-card { border-radius: 20px; padding: 32px 26px 28px; display: flex; flex-direction: column; border: 1.5px solid var(--gray2); background: var(--white); position: relative; transition: border-color .25s, box-shadow .25s; cursor: pointer; }
@@ -238,7 +236,6 @@
     .premium-badge { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: var(--lime); color: #111; font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; white-space: nowrap; }
     .inv-card.premium .card-num,
     .inv-card.premium .card-plan,
-    .inv-card.premium .card-price,
     .inv-card.premium .card-item { color: #fff; }
     .inv-card.premium .card-period,
     .inv-card.premium .card-desc,
@@ -248,9 +245,6 @@
     .inv-card.premium .card-target { background: rgba(255,255,255,.1); color: rgba(255,255,255,.6); }
     .card-bar { height: 3px; border-radius: 2px; margin-bottom: 24px; }
     .card-num { font-family: 'Inter',sans-serif; font-size: 9px; font-weight: 700; letter-spacing: .16em; color: #ccc; text-transform: uppercase; margin-bottom: 14px; }
-    .card-price { font-family: 'Inter',sans-serif; font-weight: 900; letter-spacing: -.04em; line-height: 1; margin-bottom: 5px; }
-    .card-price .won { font-size: 1.2rem; }
-    .card-price .amount { font-size: clamp(1.8rem,3vw,2.4rem); }
     .card-period { font-size: .78rem; color: #bbb; margin-bottom: 18px; font-family: 'Inter',sans-serif; font-weight: 500; }
     .card-divider { height: 1px; background: var(--gray2); margin-bottom: 18px; }
     .card-plan { font-size: .88rem; font-weight: 800; letter-spacing: -.01em; color: var(--black); margin-bottom: 6px; }
@@ -781,6 +775,7 @@
 <!-- INVESTMENT -->
 <section id="investment">
   <p class="inv-kicker fade">어떤 단계에서 시작하나요</p>
+  <p class="inv-note fade">정확한 금액은 브랜드 상황에 따라 달라, 상담 후 견적서로 안내드립니다.</p>
 
   <div class="cards-grid">
 
@@ -788,9 +783,6 @@
     <div class="inv-card fade d1" onclick="openPortal('start', this)">
       <div class="card-bar" style="background:#D0CEC9;"></div>
       <p class="card-num">01 — START</p>
-      <div class="card-price" style="color:var(--black);">
-        <span class="won">₩</span><span class="amount">390,000</span>
-      </div>
       <p class="card-period">최대 7일</p>
       <div class="card-divider"></div>
       <p class="card-plan">인터뷰 + 브랜드 방향 문서 6종을 받습니다.</p>
@@ -823,9 +815,6 @@
       <span class="featured-badge">가장 많이 선택</span>
       <div class="card-bar" style="background:var(--purple);"></div>
       <p class="card-num" style="color:rgba(123,97,255,.5);">02 — BUILD</p>
-      <div class="card-price" style="color:var(--purple);">
-        <span class="won">₩</span><span class="amount">990,000</span>
-      </div>
       <p class="card-period">최대 14일</p>
       <div class="card-divider" style="background:rgba(123,97,255,.15);"></div>
       <p class="card-plan">로고·컬러부터 홈페이지까지 완성됩니다.</p>
@@ -861,9 +850,6 @@
       <span class="premium-badge">최상위 · 완전 자동화</span>
       <div class="card-bar" style="background:var(--lime);"></div>
       <p class="card-num" style="color:rgba(255,255,255,.4);">03 — OPERATE</p>
-      <div class="card-price" style="color:var(--lime);">
-        <span class="won">₩</span><span class="amount">1,990,000</span>
-      </div>
       <p class="card-period">최대 30일</p>
       <div class="card-divider"></div>
       <p class="card-plan">로그인 운영 허브 + AI 발행까지 완성됩니다.</p>
@@ -966,7 +952,6 @@
       </div>
     </div>
     <div class="qt-right">
-      <div class="qt-price"><span class="amount">19만원</span><span class="won">~</span></div>
       <p class="qt-period">최대 3일</p>
       <a href="contact.html" class="qt-cta">문의하기 →</a>
     </div>
