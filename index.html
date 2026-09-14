@@ -903,7 +903,6 @@
 <div class="cursor-dot" id="cursorDot"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
 <script>
 const fader = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
@@ -913,13 +912,6 @@ document.querySelectorAll('.fade').forEach(el => fader.observe(el));
 (function(){
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isTouch = window.matchMedia('(hover: none)').matches;
-
-  // Smooth scroll
-  if (!reduceMotion && !isTouch && typeof Lenis !== 'undefined') {
-    const lenis = new Lenis({ duration: 0.55, wheelMultiplier: 1.2, easing: (t) => 1 - Math.pow(1 - t, 3) });
-    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-    requestAnimationFrame(raf);
-  }
 
   // Custom cursor
   if (!reduceMotion && !isTouch) {
