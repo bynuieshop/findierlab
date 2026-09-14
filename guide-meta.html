@@ -775,17 +775,10 @@ document.getElementById('s-intro').classList.add('open');
 
 
 <div class="cursor-dot" id="cursorDot"></div>
-<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
 <script>
 (function(){
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isTouch = window.matchMedia('(hover: none)').matches;
-
-  if (!reduceMotion && !isTouch && typeof Lenis !== 'undefined') {
-    const lenis = new Lenis({ duration: 0.55, wheelMultiplier: 1.2, easing: (t) => 1 - Math.pow(1 - t, 3) });
-    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-    requestAnimationFrame(raf);
-  }
 
   if (!reduceMotion && !isTouch) {
     const dot = document.getElementById('cursorDot');
