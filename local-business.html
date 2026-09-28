@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta name="google-site-verification" content="1bU7yXqmsnwM57BhSG9vTkV5gLtmIs-WQqaBRsu8-Dc" />
+  <meta name="naver-site-verification" content="1a16d04d5a9178d135cf3c80ac081a5ecd81d11d" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5VTZY9P51Z"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-5VTZY9P51Z');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>지역 사업자 파일럿 모집 — FINDIER LOCAL | FINDIER LAB(파인디어랩)</title>
+  <meta name="description" content="부산·경남의 가게와 브랜드를 위한 고객경험 기반 마케팅. FINDIER LOCAL이 초기 파일럿 파트너를 모집합니다.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="지역 사업자 파일럿 모집 — FINDIER LOCAL">
+  <meta property="og:description" content="부산·경남의 가게와 브랜드를 위한 고객경험 기반 마케팅. FINDIER LOCAL이 초기 파일럿 파트너를 모집합니다.">
+  <meta property="og:url" content="https://findierlab.com/local-business.html">
+  <meta property="og:image" content="https://findierlab.com/assets/logo.png">
+  <link rel="canonical" href="https://findierlab.com/local-business.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.min.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "FINDIER LOCAL Experience Campaign",
+    "serviceType": "지역 고객경험 기반 마케팅",
+    "description": "지역 크리에이터가 실제 방문·경험을 통해 공개 콘텐츠와 비공개 고객경험 노트를 함께 전달하는 로컬 사업자용 파일럿 캠페인",
+    "provider": { "@type": "Organization", "name": "FINDIER LAB", "url": "https://findierlab.com", "sameAs": "https://instagram.com/findier.lab" },
+    "areaServed": ["양산", "부산", "김해", "창원"]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --lime:   #D3F45A;
+      --purple: #7B61FF;
+      --cyan:   #4DE7FF;
+      --coral:  #FF6B47;
+      --black:  #111111;
+      --white:  #FFFFFF;
+      --offwhite: #F7F7F5;
+      --gray1:  #F2F0ED;
+      --gray2:  #E2E0DC;
+      --t-soft: #555555;
+      --t-muted:#999999;
+    }
+
+    html { scroll-behavior: smooth; font-size: 17px; }
+    body { font-family: 'Pretendard','Inter',-apple-system,BlinkMacSystemFont,sans-serif; color: var(--black); background: var(--white); -webkit-font-smoothing: antialiased; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    img { max-width: 100%; display: block; }
+
+    .fade { opacity: 0; transform: translateY(32px); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+    .fade.in { opacity: 1; transform: none; }
+
+    /* NAV */
+    #nav { position: fixed; top: 0; left: 0; right: 0; height: 64px; z-index: 999; background: rgba(255,255,255,.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--gray2); display: flex; align-items: center; justify-content: space-between; padding: 0 48px; }
+    .nav-logo { display: flex; align-items: center; gap: 9px; }
+    .nav-logo-text { font-family: 'Inter',sans-serif; font-size: 15px; font-weight: 800; letter-spacing: .04em; color: var(--black); }
+    .nav-menu { display: flex; align-items: center; gap: 28px; }
+    .nav-menu li a { font-family: 'Inter',sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .08em; color: var(--t-soft); transition: color .2s; }
+    .nav-menu li a:hover { color: var(--black); }
+    .nav-actions { display: flex; align-items: center; gap: 14px; }
+    .nav-cta { display: inline-flex; align-items: center; gap: 7px; background: var(--black); color: var(--white); font-size: 12px; font-weight: 700; padding: 10px 18px; border-radius: 100px; }
+    .nav-cta-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--lime); }
+    .nav-burger { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px 4px; }
+    .nav-burger span { display: block; width: 22px; height: 2px; background: #111; border-radius: 1px; transition: transform .25s, opacity .25s; }
+    .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-burger.open span:nth-child(2) { opacity: 0; }
+    .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    #mobileMenu { display: none; position: fixed; top: 64px; left: 0; right: 0; bottom: 0; background: #fff; z-index: 998; flex-direction: column; padding: 36px 24px; overflow-y: auto; }
+    #mobileMenu.open { display: flex; }
+    .mob-link { font-family: 'Inter',sans-serif; font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #888; padding: 16px 0; border-bottom: 1px solid #f0eeeb; }
+    .mob-cta { display: inline-flex; align-items: center; gap: 8px; background: #111; color: #fff; font-size: 14px; font-weight: 700; padding: 14px 26px; border-radius: 100px; margin-top: 24px; width: fit-content; }
+
+    main { padding-top: 64px; }
+
+    .eyebrow { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .2em; color: var(--coral); text-transform: uppercase; margin-bottom: 16px; }
+    .section-title { font-size: clamp(1.5rem,2.6vw,2.2rem); font-weight: 900; letter-spacing: -.025em; line-height: 1.32; color: var(--black); word-break: keep-all; }
+
+    /* HERO */
+    #lb-hero { position: relative; padding: 88px 80px 96px; background: var(--offwhite); overflow: hidden; }
+    .lb-hero-mark { position: absolute; right: -60px; top: -40px; width: 420px; height: 420px; opacity: .08; }
+    .lb-hero-inner { position: relative; max-width: 720px; }
+    .lb-hero-headline { font-size: clamp(2.3rem,4.4vw,3.6rem); font-weight: 900; line-height: 1.22; letter-spacing: -.03em; color: var(--black); margin-bottom: 22px; word-break: keep-all; }
+    .lb-hero-body { font-size: 1rem; color: var(--t-soft); line-height: 1.85; max-width: 540px; margin-bottom: 32px; word-break: keep-all; }
+    .lb-hero-body strong { color: var(--black); font-weight: 700; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--black); color: var(--white); font-size: 14px; font-weight: 700; letter-spacing: .02em; padding: 15px 30px; border-radius: 100px; transition: opacity .2s; }
+    .btn-primary:hover { opacity: .8; }
+    .lb-hero-cross { display: block; margin-top: 22px; font-size: 12.5px; font-weight: 600; color: var(--t-muted); }
+    .lb-hero-cross a { color: var(--coral); border-bottom: 1px solid rgba(255,107,71,.3); padding-bottom: 1px; }
+
+    section.block { padding: 96px 80px; }
+    .block-head { max-width: 640px; margin: 0 auto 44px; text-align: center; }
+    .block-lede { font-size: .95rem; color: var(--t-soft); line-height: 1.85; max-width: 640px; margin: 0 auto; text-align: center; word-break: keep-all; }
+
+    /* PROBLEM quote box */
+    .problem-quote { max-width: 700px; margin: 40px auto 0; border-left: 3px solid var(--gray2); padding-left: 22px; font-size: .95rem; font-style: italic; color: var(--t-muted); line-height: 2; word-break: keep-all; }
+    .problem-quote strong { color: var(--t-soft); font-style: normal; }
+    .problem-close { max-width: 640px; margin: 28px auto 0; text-align: center; font-size: .95rem; font-weight: 700; color: var(--black); word-break: keep-all; }
+
+    /* DIFFERENCE */
+    #lb-diff { background: var(--gray1); }
+    .diff-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 20px; align-items: center; max-width: 880px; margin: 44px auto 0; }
+    .diff-old { background: var(--white); border: 1.5px solid var(--gray2); border-radius: 18px; padding: 32px 26px; text-align: center; }
+    .diff-old-label { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 800; letter-spacing: .12em; color: var(--t-muted); text-transform: uppercase; margin-bottom: 14px; }
+    .diff-old-body { font-size: .92rem; color: var(--t-soft); font-weight: 600; }
+    .diff-arrow { font-size: 22px; color: var(--gray2); font-weight: 900; justify-self: center; }
+    .diff-new { background: var(--black); border-radius: 18px; padding: 32px 26px; }
+    .diff-new-label { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 800; letter-spacing: .12em; color: var(--lime); text-transform: uppercase; margin-bottom: 16px; }
+    .diff-new-stack { display: flex; flex-direction: column; gap: 8px; }
+    .diff-chip { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14); color: #fff; font-size: .84rem; font-weight: 600; padding: 10px 14px; border-radius: 10px; }
+    .diff-chip.future { opacity: .55; border-style: dashed; }
+
+    /* STEPS (creator 페이지와 동일 컴포넌트) */
+    .lb-steps-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--gray2); border: 1px solid var(--gray2); max-width: 1040px; margin: 0 auto; }
+    .lb-step-card { background: var(--white); padding: 34px 28px; }
+    .lb-step-num { font-family: 'Inter',sans-serif; font-size: 1.5rem; font-weight: 900; color: var(--coral); display: block; margin-bottom: 12px; }
+    .lb-step-name { font-size: 1rem; font-weight: 800; margin-bottom: 8px; word-break: keep-all; }
+    .lb-step-desc { font-size: .84rem; color: var(--t-soft); line-height: 1.7; word-break: keep-all; }
+
+    /* PRIVATE NOTE sample */
+    #lb-note { background: var(--black); color: var(--white); }
+    #lb-note .eyebrow { color: var(--lime); }
+    #lb-note .section-title { color: var(--white); }
+    .note-card { max-width: 680px; margin: 44px auto 0; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.14); border-radius: 20px; overflow: hidden; }
+    .note-sample-badge { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 16px; padding: 16px 24px; background: rgba(255,255,255,.06); border-bottom: 1px solid rgba(255,255,255,.1); }
+    .note-sample-tag { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 800; letter-spacing: .14em; color: var(--lime); text-transform: uppercase; }
+    .note-sample-note { font-size: 10.5px; color: rgba(255,255,255,.35); }
+    .note-rows { padding: 8px 24px 24px; }
+    .note-row { padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,.08); }
+    .note-row:last-child { border-bottom: none; }
+    .note-q { font-family: 'Inter',sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: .06em; color: rgba(255,255,255,.4); text-transform: uppercase; margin-bottom: 8px; }
+    .note-a { font-size: .95rem; color: rgba(255,255,255,.85); line-height: 1.7; word-break: keep-all; }
+
+    /* WHAT YOU GET */
+    .get-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; max-width: 980px; margin: 44px auto 24px; }
+    .get-item { background: var(--gray1); border-radius: 16px; padding: 26px 20px; text-align: center; }
+    .get-num { font-family: 'Inter',sans-serif; font-size: 11px; font-weight: 800; color: var(--coral); letter-spacing: .1em; margin-bottom: 10px; display: block; }
+    .get-label { font-size: .87rem; font-weight: 700; line-height: 1.5; word-break: keep-all; }
+    .get-note { text-align: center; font-size: .82rem; color: var(--t-muted); max-width: 480px; margin: 0 auto; }
+
+    /* WHY FINDIER manifesto */
+    #lb-why { background: var(--offwhite); padding: 110px 80px; text-align: center; }
+    .why-manifesto { max-width: 780px; margin: 0 auto; font-size: clamp(1.4rem,2.6vw,2.1rem); font-weight: 800; line-height: 1.55; letter-spacing: -.02em; color: var(--black); word-break: keep-all; }
+    .why-manifesto .c-coral { color: var(--coral); }
+
+    /* WHO IS THIS FOR */
+    .who-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; max-width: 780px; margin: 0 auto; }
+    .who-item { display: flex; gap: 12px; align-items: flex-start; background: var(--gray1); border-radius: 14px; padding: 18px 20px; font-size: .9rem; color: var(--t-soft); line-height: 1.6; word-break: keep-all; }
+    .who-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--coral); flex-shrink: 0; margin-top: 7px; }
+
+    /* PILOT CTA + FORM */
+    #lb-consult { padding: 100px 80px 120px; background: var(--gray1); }
+    .consult-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; max-width: 1040px; margin: 0 auto; }
+    .consult-title { font-size: clamp(1.7rem,3vw,2.4rem); font-weight: 900; line-height: 1.32; letter-spacing: -.025em; margin-bottom: 16px; word-break: keep-all; }
+    .consult-sub { font-size: .92rem; color: var(--t-soft); line-height: 1.8; word-break: keep-all; }
+    .field { margin-bottom: 16px; }
+    .field label { display: block; font-size: .82rem; font-weight: 700; margin-bottom: 7px; }
+    .field .opt { color: var(--t-muted); font-weight: 500; }
+    .field input, .field select, .field textarea { width: 100%; border: 1.5px solid var(--gray2); border-radius: 10px; padding: 13px 14px; font-family: inherit; font-size: .92rem; background: var(--white); color: var(--black); }
+    .field textarea { min-height: 90px; resize: vertical; }
+    .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--coral); }
+    .submit-btn { width: 100%; background: var(--black); color: var(--white); font-size: .95rem; font-weight: 700; padding: 15px; border: none; border-radius: 100px; cursor: pointer; transition: opacity .2s; margin-top: 6px; }
+    .submit-btn:hover { opacity: .85; }
+    .submit-btn:disabled { opacity: .5; cursor: default; }
+    #lb-form-success { display: none; text-align: center; padding: 48px 24px; background: var(--white); border-radius: 16px; }
+    .success-title { font-size: 1.05rem; font-weight: 800; margin-bottom: 8px; }
+    .success-sub { font-size: .85rem; color: var(--t-soft); line-height: 1.7; }
+    .consult-cross { margin-top: 24px; font-size: .85rem; color: var(--t-muted); }
+    .consult-cross a { color: var(--coral); font-weight: 700; }
+
+    /* FOOTER */
+    #footer { background: var(--black); padding: 0; border-top: 1px solid rgba(255,255,255,.08); }
+    .footer-top { display: flex; justify-content: space-between; align-items: center; padding: 32px 80px; flex-wrap: wrap; gap: 16px; }
+    .footer-logo { font-family: 'Inter',sans-serif; font-size: 15px; font-weight: 800; letter-spacing: .06em; color: #fff; }
+    .footer-tagline { font-size: 10px; color: rgba(255,255,255,.25); letter-spacing: .14em; margin-top: 6px; }
+    .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-links a { font-size: 11px; font-weight: 500; letter-spacing: .1em; color: rgba(255,255,255,.3); text-transform: uppercase; }
+    .footer-links a:hover { color: rgba(255,255,255,.8); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding: 20px 80px 36px; flex-wrap: wrap; gap: 12px; }
+    .footer-copy { font-size: 10px; color: rgba(255,255,255,.15); letter-spacing: .06em; line-height: 1.8; }
+    .footer-gradbar { width: 100px; height: 2px; border-radius: 2px; background: linear-gradient(90deg,#D3F45A,#7B61FF,#4DE7FF); }
+
+    @media (max-width: 1024px) {
+      #nav { padding: 0 32px; }
+      #lb-hero { padding: 80px 48px 72px; }
+      section.block { padding: 72px 48px; }
+      #lb-why { padding: 88px 48px; }
+      #lb-consult { padding: 80px 48px 96px; }
+      .footer-top { padding: 32px 48px; }
+      .footer-bottom { padding: 20px 48px 28px; }
+      .get-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      #nav { padding: 0 20px; }
+      .nav-menu, .nav-actions .nav-cta { display: none; }
+      .nav-burger { display: flex; }
+      #lb-hero { padding: 100px 24px 56px; }
+      .lb-hero-mark { width: 240px; height: 240px; right: -40px; top: -20px; }
+      section.block { padding: 56px 24px; }
+      #lb-why { padding: 64px 24px; }
+      .diff-grid { grid-template-columns: 1fr; }
+      .diff-arrow { transform: rotate(90deg); }
+      .lb-steps-grid { grid-template-columns: 1fr; }
+      .get-grid { grid-template-columns: 1fr 1fr; }
+      .who-grid, .consult-wrap { grid-template-columns: 1fr; }
+      #lb-consult { padding: 64px 24px 80px; }
+      .footer-top, .footer-bottom { padding: 24px; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<header id="nav">
+  <a href="index.html" class="nav-logo">
+    <svg width="30" height="30" viewBox="0 0 34 34" fill="none">
+      <circle cx="10" cy="9.5" r="4.5" fill="#D3F45A"/>
+      <path d="M17 5 L28 5 L28 20" stroke="#7B61FF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M6.5 21 Q10.5 29.5 20 27" stroke="#111111" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+    </svg>
+    <span class="nav-logo-text">FINDIER LAB</span>
+  </a>
+  <ul class="nav-menu">
+    <li><a href="service.html">SERVICE</a></li>
+    <li><a href="works.html">PORTFOLIO</a></li>
+    <li><a href="local-creator.html">FINDIER LOCAL</a></li>
+    <li><a href="about.html">ABOUT</a></li>
+    <li><a href="contact.html">CONTACT</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="#consult" class="nav-cta"><span class="nav-cta-dot"></span>파일럿 상담하기</a>
+    <button class="nav-burger" id="navBurger" aria-label="메뉴"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<div id="mobileMenu">
+  <a href="index.html" class="mob-link">FINDIER LAB 홈</a>
+  <a href="local-creator.html" class="mob-link">지역 크리에이터가 궁금하신가요?</a>
+  <a href="about.html" class="mob-link">ABOUT</a>
+  <a href="contact.html" class="mob-link">CONTACT</a>
+  <a href="#consult" class="mob-cta">파일럿 상담하기</a>
+</div>
+
+<main>
+
+  <!-- 01 HERO -->
+  <section id="lb-hero">
+    <svg class="lb-hero-mark" viewBox="0 0 34 34" fill="none" aria-hidden="true">
+      <circle cx="10" cy="9.5" r="4.5" fill="#D3F45A"/>
+      <path d="M17 5 L28 5 L28 20" stroke="#7B61FF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M6.5 21 Q10.5 29.5 20 27" stroke="#111111" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+    </svg>
+    <div class="lb-hero-inner">
+      <p class="eyebrow">FINDIER LOCAL · BUSINESS</p>
+      <h1 class="lb-hero-headline">AI 시대,<br>더 중요한 건<br>실제 고객의 경험입니다.</h1>
+      <p class="lb-hero-body">
+        광고성 리뷰를 하나 더 만드는 대신, 우리 가게를 직접 경험한 사람의 이야기를 쌓습니다.<br>
+        <strong>파인디어랩의 지역 크리에이터가 직접 경험하고 기록합니다.</strong><br>
+        공개할 수 있는 경험은 콘텐츠가 되고, 솔직한 의견은 사장님에게만 전달됩니다.
+      </p>
+      <a href="#consult" class="btn-primary">파일럿 캠페인 상담하기 →</a>
+      <span class="lb-hero-cross">지역 크리에이터가 궁금하신가요? <a href="local-creator.html">크리에이터 페이지 보기 →</a></span>
+    </div>
+  </section>
+
+  <!-- 02 PROBLEM -->
+  <section class="block fade" id="problem">
+    <div class="block-head">
+      <p class="eyebrow" style="text-align:center;">PROBLEM</p>
+      <h2 class="section-title">콘텐츠는 쌓이는데,<br>우리 가게가 어떻게 경험됐는지는<br>알 수 없었습니다.</h2>
+    </div>
+    <p class="problem-quote">
+      비슷한 제목, 비슷한 사진, 비슷한 표현, 정해진 키워드…<br>
+      "맛있어요 / 친절해요 / 추천해요"
+    </p>
+    <p class="problem-close">
+      콘텐츠는 남았는데, 정작 사장님은 <strong>고객이 우리 가게를 어떻게 경험했는지</strong> 모르는 경우가 많습니다.<br>
+      파인디어랩은 여기에서 출발합니다.
+    </p>
+  </section>
+
+  <!-- 03 DIFFERENCE -->
+  <section class="block fade" id="lb-diff">
+    <div class="block-head">
+      <p class="eyebrow" style="text-align:center;">DIFFERENCE</p>
+      <h2 class="section-title">기존 방식과<br>무엇이 다른가요?</h2>
+    </div>
+    <div class="diff-grid">
+      <div class="diff-old">
+        <p class="diff-old-label">기존 방식</p>
+        <p class="diff-old-body">홍보 콘텐츠<br>생산 중심</p>
+      </div>
+      <span class="diff-arrow">→</span>
+      <div class="diff-new">
+        <p class="diff-new-label">FINDIER 방식</p>
+        <div class="diff-new-stack">
+          <span class="diff-chip">실제 경험</span>
+          <span class="diff-chip">+ PUBLIC CONTENT</span>
+          <span class="diff-chip">+ PRIVATE NOTE</span>
+          <span class="diff-chip future">+ (향후) EXPERIENCE INSIGHT</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 HOW IT WORKS -->
+  <section class="block fade">
+    <div class="block-head">
+      <p class="eyebrow" style="text-align:center;">HOW IT WORKS</p>
+      <h2 class="section-title">상담부터 결과 전달까지</h2>
+    </div>
+    <div class="lb-steps-grid">
+      <div class="lb-step-card"><span class="lb-step-num">01</span><p class="lb-step-name">사업자·매장 상담</p><p class="lb-step-desc">지금 필요한 것부터 함께 확인합니다.</p></div>
+      <div class="lb-step-card"><span class="lb-step-num">02</span><p class="lb-step-name">지역 크리에이터 매칭</p><p class="lb-step-desc">업종과 지역에 맞는 크리에이터를 연결합니다.</p></div>
+      <div class="lb-step-card"><span class="lb-step-num">03</span><p class="lb-step-name">실제 방문·경험</p><p class="lb-step-desc">손님의 입장에서 실제로 방문하고 이용합니다.</p></div>
+      <div class="lb-step-card"><span class="lb-step-num">04</span><p class="lb-step-name">공개 콘텐츠 제작</p><p class="lb-step-desc">실제 경험을 바탕으로 콘텐츠가 만들어집니다.</p></div>
+      <div class="lb-step-card"><span class="lb-step-num">05</span><p class="lb-step-name">Private Experience Note</p><p class="lb-step-desc">사장님에게만 전하는 솔직한 기록을 남깁니다.</p></div>
+      <div class="lb-step-card"><span class="lb-step-num">06</span><p class="lb-step-name">사장님에게 결과 전달</p><p class="lb-step-desc">Public Content와 Private Note를 함께 전달합니다.</p></div>
+    </div>
+  </section>
+
+  <!-- 05 PRIVATE NOTE -->
+  <section class="block fade" id="lb-note">
+    <div class="block-head">
+      <p class="eyebrow" style="text-align:center;">PRIVATE NOTE</p>
+      <h2 class="section-title">사장님에게만 전달되는,<br>솔직한 고객경험</h2>
+    </div>
+    <div class="note-card">
+      <div class="note-sample-badge">
+        <span class="note-sample-tag">SAMPLE</span>
+        <span class="note-sample-note">실제 고객 데이터가 아닌 예시입니다</span>
+      </div>
+      <div class="note-rows">
+        <div class="note-row">
+          <p class="note-q">첫 방문에서 가장 좋았던 점</p>
+          <p class="note-a">"직원분의 메뉴 설명이 친절해서 처음 방문했는데도 주문하기 쉬웠어요."</p>
+        </div>
+        <div class="note-row">
+          <p class="note-q">방문 과정에서 불편했던 점</p>
+          <p class="note-a">"주차장이 건물 뒤편이라는 걸 도착하고 나서 알았어요."</p>
+        </div>
+        <div class="note-row">
+          <p class="note-q">다시 방문한다면?</p>
+          <p class="note-a">"친구와 저녁에 다시 방문하고 싶어요."</p>
+        </div>
+        <div class="note-row">
+          <p class="note-q">사장님에게만 남기는 한마디</p>
+          <p class="note-a">"대표 메뉴가 무엇인지 메뉴판에서 조금 더 잘 보이면 선택하기 쉬울 것 같아요."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 WHAT YOU GET -->
+  <section class="block fade" id="get">
+    <div class="block-head">
+      <p class="eyebrow" style="text-align:center;">WHAT YOU GET</p>
+      <h2 class="section-title">캠페인에 참여하면<br>받는 것</h2>
+    </div>
+    <div class="get-grid">
+      <div class="get-item"><span class="get-num">01</span><p class="get-label">실제 고객 경험</p></div>
+      <div class="get-item"><span class="get-num">02</span><p class="get-label">Public Content</p></div>
+      <div class="get-item"><span class="get-num">03</span><p class="get-label">Private Experience Note</p></div>
+      <div class="get-item"><span class="get-num">04</span><p class="get-label">(향후) Findier Insight Report</p></div>
+    </div>
+    <p class="get-note">정확한 참여 인원과 패키지 구성은 상담 시 함께 설계합니다.</p>
+  </section>
+
+  <!-- 07 WHY FINDIER -->
+  <section id="lb-why" class="fade">
+    <p class="why-manifesto">
+      우리는 좋은 리뷰를 만들어주는 회사가 아니라,<br>
+      좋은 가게가 <span class="c-coral">더 잘 발견되고</span>, 더 좋은 가게가 될 수 있도록<br>
+      실제 사람의 경험을 연결합니다.
+    </p>
+  </section>
+
+  <!-- 08 WHO IS THIS FOR -->
+  <section class="block fade" style="background:var(--gray1);">
+    <div class="block-head">
+      <p class="eyebrow" style="text-align:center;">WHO IS THIS FOR</p>
+      <h2 class="section-title">이런 사장님과 함께합니다</h2>
+    </div>
+    <ul class="who-grid">
+      <li class="who-item"><span class="who-dot"></span>우리 가게를 처음 방문한 사람이 어떻게 느끼는지 궁금한 사장님</li>
+      <li class="who-item"><span class="who-dot"></span>광고성 리뷰만 반복하는 것이 고민인 사장님</li>
+      <li class="who-item"><span class="who-dot"></span>실제 고객의 피드백을 받고 싶은 사장님</li>
+      <li class="who-item"><span class="who-dot"></span>지역에서 오래 사랑받는 브랜드를 만들고 싶은 사업자</li>
+      <li class="who-item" style="grid-column:1 / -1;"><span class="who-dot"></span>콘텐츠와 고객경험을 함께 개선하고 싶은 사업자</li>
+    </ul>
+  </section>
+
+  <!-- 09 PILOT CTA + FORM -->
+  <section id="lb-consult" class="fade">
+    <div class="consult-wrap">
+      <div>
+        <p class="eyebrow">PILOT</p>
+        <h2 class="consult-title">Findier Local Experience<br>초기 파일럿 파트너를<br>모집합니다.</h2>
+        <p class="consult-sub">아직 검증 단계입니다. 과장 없이, 딱 필요한 만큼만 시작합니다. 상담 후 우리 가게에 맞는 방식을 함께 설계해요.</p>
+      </div>
+      <div>
+        <form id="lb-form" novalidate>
+          <input type="hidden" name="_subject" value="FINDIER LOCAL 파일럿 상담 문의">
+          <div class="field">
+            <label>담당자명</label>
+            <input type="text" name="name" placeholder="대표자명 또는 담당자명" required>
+          </div>
+          <div class="field">
+            <label>연락처</label>
+            <input type="text" name="contact" placeholder="010-0000-0000 또는 이메일" required>
+          </div>
+          <div class="field">
+            <label>업체명·가게이름</label>
+            <input type="text" name="business" placeholder="업체명" required>
+          </div>
+          <div class="field">
+            <label>업종</label>
+            <select name="category">
+              <option value="">선택해주세요</option>
+              <option>외식업</option>
+              <option>카페</option>
+              <option>공간·리테일</option>
+              <option>기타</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>지역</label>
+            <select name="area">
+              <option value="">선택해주세요</option>
+              <option>양산</option>
+              <option>부산</option>
+              <option>김해</option>
+              <option>창원</option>
+              <option>기타</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>지금 고민 <span class="opt">(선택)</span></label>
+            <textarea name="message" placeholder="지금 어떤 부분이 궁금하신지 자유롭게 적어주세요."></textarea>
+          </div>
+          <button type="submit" class="submit-btn">파일럿 캠페인 상담하기</button>
+        </form>
+        <div id="lb-form-success">
+          <p class="success-title">문의가 접수되었습니다.</p>
+          <p class="success-sub">확인 후 순차적으로 연락드리겠습니다.</p>
+        </div>
+        <p class="consult-cross">지역 크리에이터가 궁금하신가요? <a href="local-creator.html">크리에이터 페이지 보기 →</a></p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="footer">
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">FINDIER LAB</div>
+      <div class="footer-tagline">LOCAL BRAND RESEARCH &amp; BUILDING LAB</div>
+    </div>
+    <div class="footer-links">
+      <a href="index.html">HOME</a>
+      <a href="local-creator.html">FINDIER LOCAL · CREATOR</a>
+      <a href="about.html">ABOUT</a>
+      <a href="contact.html">CONTACT</a>
+      <a href="https://instagram.com/findier.lab" target="_blank">@INSTAGRAM</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">
+      <div>FINDIER LAB &nbsp;|&nbsp; 대표 박지민 &nbsp;|&nbsp; 사업자등록번호 496-06-03651 &nbsp;|&nbsp; findierlab@gmail.com</div>
+      <div>경상남도 양산시 명곡로 321, 3층 2308호 (명곡동, 동원과학기술대학교 창업보육센터)</div>
+      © 2026 FINDIER LAB. All rights reserved.
+    </div>
+    <div class="footer-gradbar"></div>
+  </div>
+</footer>
+
+<script>
+const fader = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -48px 0px' });
+document.querySelectorAll('.fade').forEach(el => fader.observe(el));
+</script>
+<script>
+(function(){var b=document.getElementById('navBurger'),m=document.getElementById('mobileMenu');if(!b)return;b.addEventListener('click',function(){b.classList.toggle('open');m.classList.toggle('open');document.body.style.overflow=m.classList.contains('open')?'hidden':'';});})();
+</script>
+<script>
+document.getElementById('lb-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const fields = this.querySelectorAll('[required]');
+  let valid = true;
+  fields.forEach(f => { f.style.borderColor = ''; if (!f.value.trim()) { f.style.borderColor = '#FF6B6B'; valid = false; } });
+  if (!valid) return;
+
+  const btn = this.querySelector('.submit-btn');
+  btn.textContent = '전송 중…';
+  btn.disabled = true;
+
+  try {
+    const res = await fetch('https://formspree.io/f/xojojwog', {
+      method: 'POST',
+      body: new FormData(this),
+      headers: { 'Accept': 'application/json' }
+    });
+    if (res.ok) {
+      document.getElementById('lb-form').style.display = 'none';
+      document.getElementById('lb-form-success').style.display = 'block';
+      document.getElementById('lb-form-success').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } else {
+      btn.textContent = '파일럿 캠페인 상담하기';
+      btn.disabled = false;
+      alert('전송 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
+    }
+  } catch {
+    btn.textContent = '파일럿 캠페인 상담하기';
+    btn.disabled = false;
+    alert('네트워크 오류입니다. 잠시 후 다시 시도해주세요.');
+  }
+});
+</script>
+</body>
+</html>

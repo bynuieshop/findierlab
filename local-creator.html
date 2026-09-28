@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta name="google-site-verification" content="1bU7yXqmsnwM57BhSG9vTkV5gLtmIs-WQqaBRsu8-Dc" />
+  <meta name="naver-site-verification" content="1a16d04d5a9178d135cf3c80ac081a5ecd81d11d" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5VTZY9P51Z"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-5VTZY9P51Z');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>지역 크리에이터 모집 — FINDIER LOCAL | FINDIER LAB(파인디어랩)</title>
+  <meta name="description" content="부산·경남에서 활동할 지역 크리에이터를 모집합니다. 우리 동네를 직접 경험하고 기록하는 사람, FINDIER LOCAL이 함께합니다.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="지역 크리에이터 모집 — FINDIER LOCAL">
+  <meta property="og:description" content="부산·경남에서 활동할 지역 크리에이터를 모집합니다. 우리 동네를 직접 경험하고 기록하는 사람, FINDIER LOCAL이 함께합니다.">
+  <meta property="og:url" content="https://findierlab.com/local-creator.html">
+  <meta property="og:image" content="https://findierlab.com/assets/logo.png">
+  <link rel="canonical" href="https://findierlab.com/local-creator.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.min.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "FINDIER LOCAL Creator",
+    "serviceType": "지역 크리에이터 교육 및 매칭",
+    "description": "지역 주민을 로컬 크리에이터로 교육하고, 실제 방문 경험을 공개 콘텐츠와 비공개 경험 노트로 기록하도록 돕는 프로그램",
+    "provider": { "@type": "Organization", "name": "FINDIER LAB", "url": "https://findierlab.com", "sameAs": "https://instagram.com/findier.lab" },
+    "areaServed": ["양산", "부산", "김해", "창원"]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --lime:   #D3F45A;
+      --purple: #7B61FF;
+      --cyan:   #4DE7FF;
+      --coral:  #FF6B47;
+      --black:  #111111;
+      --white:  #FFFFFF;
+      --offwhite: #F7F7F5;
+      --gray1:  #F2F0ED;
+      --gray2:  #E2E0DC;
+      --t-soft: #555555;
+      --t-muted:#999999;
+    }
+
+    html { scroll-behavior: smooth; font-size: 17px; }
+    body { font-family: 'Pretendard','Inter',-apple-system,BlinkMacSystemFont,sans-serif; color: var(--black); background: var(--white); -webkit-font-smoothing: antialiased; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    img { max-width: 100%; display: block; }
+
+    .fade { opacity: 0; transform: translateY(32px); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+    .fade.in { opacity: 1; transform: none; }
+    .d1 { transition-delay: .1s; } .d2 { transition-delay: .2s; } .d3 { transition-delay: .3s; }
+
+    /* NAV (동일 컴포넌트, index.html과 공유) */
+    #nav { position: fixed; top: 0; left: 0; right: 0; height: 64px; z-index: 999; background: rgba(255,255,255,.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--gray2); display: flex; align-items: center; justify-content: space-between; padding: 0 48px; }
+    .nav-logo { display: flex; align-items: center; gap: 9px; }
+    .nav-logo-text { font-family: 'Inter',sans-serif; font-size: 15px; font-weight: 800; letter-spacing: .04em; color: var(--black); }
+    .nav-menu { display: flex; align-items: center; gap: 28px; }
+    .nav-menu li a { font-family: 'Inter',sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .08em; color: var(--t-soft); transition: color .2s; }
+    .nav-menu li a:hover { color: var(--black); }
+    .nav-actions { display: flex; align-items: center; gap: 14px; }
+    .nav-cta { display: inline-flex; align-items: center; gap: 7px; background: var(--black); color: var(--white); font-size: 12px; font-weight: 700; padding: 10px 18px; border-radius: 100px; }
+    .nav-cta-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--lime); }
+    .nav-burger { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px 4px; }
+    .nav-burger span { display: block; width: 22px; height: 2px; background: #111; border-radius: 1px; transition: transform .25s, opacity .25s; }
+    .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-burger.open span:nth-child(2) { opacity: 0; }
+    .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    #mobileMenu { display: none; position: fixed; top: 64px; left: 0; right: 0; bottom: 0; background: #fff; z-index: 998; flex-direction: column; padding: 36px 24px; overflow-y: auto; }
+    #mobileMenu.open { display: flex; }
+    .mob-link { font-family: 'Inter',sans-serif; font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #888; padding: 16px 0; border-bottom: 1px solid #f0eeeb; }
+    .mob-cta { display: inline-flex; align-items: center; gap: 8px; background: #111; color: #fff; font-size: 14px; font-weight: 700; padding: 14px 26px; border-radius: 100px; margin-top: 24px; width: fit-content; }
+
+    main { padding-top: 64px; }
+
+    .eyebrow { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .2em; color: var(--purple); text-transform: uppercase; margin-bottom: 16px; }
+    .section-title { font-size: clamp(1.5rem,2.6vw,2.2rem); font-weight: 900; letter-spacing: -.025em; line-height: 1.32; color: var(--black); word-break: keep-all; }
+
+    /* HERO */
+    #lc-hero { position: relative; padding: 88px 80px 96px; background: var(--offwhite); overflow: hidden; }
+    .lc-hero-mark { position: absolute; right: -60px; top: -40px; width: 420px; height: 420px; opacity: .08; }
+    .lc-hero-inner { position: relative; max-width: 720px; }
+    .lc-hero-headline { font-size: clamp(2.3rem,4.4vw,3.6rem); font-weight: 900; line-height: 1.22; letter-spacing: -.03em; color: var(--black); margin-bottom: 22px; word-break: keep-all; }
+    .lc-hero-body { font-size: 1rem; color: var(--t-soft); line-height: 1.85; max-width: 520px; margin-bottom: 32px; word-break: keep-all; }
+    .lc-hero-body strong { color: var(--black); font-weight: 700; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--black); color: var(--white); font-size: 14px; font-weight: 700; letter-spacing: .02em; padding: 15px 30px; border-radius: 100px; transition: opacity .2s; }
+    .btn-primary:hover { opacity: .8; }
+    .lc-hero-cross { display: block; margin-top: 22px; font-size: 12.5px; font-weight: 600; color: var(--t-muted); }
+    .lc-hero-cross a { color: var(--purple); border-bottom: 1px solid rgba(123,97,255,.3); padding-bottom: 1px; }
+
+    /* GENERIC SECTION RHYTHM */
+    section.block { padding: 96px 80px; }
+    .block-head { max-width: 640px; margin: 0 auto 48px; text-align: center; }
+    .block-head.left { margin: 0 0 44px; text-align: left; }
+    .block-lede { font-size: .95rem; color: var(--t-soft); line-height: 1.85; max-width: 640px; margin: 0 auto; text-align: center; word-break: keep-all; }
+
+    /* WHY NOW flow */
+    .why-flow { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: center; gap: 18px; max-width: 900px; margin: 44px auto 0; }
+    .why-step { background: var(--white); border: 1px solid var(--gray2); border-radius: 16px; padding: 28px 20px; text-align: center; }
+    .why-step-label { font-size: .88rem; font-weight: 700; line-height: 1.5; color: var(--black); word-break: keep-all; }
+    .why-arrow { color: var(--gray2); font-size: 20px; font-weight: 900; }
+    .why-step:last-child { background: var(--black); border-color: var(--black); }
+    .why-step:last-child .why-step-label { color: var(--lime); }
+
+    /* WHO checklist */
+    .who-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; max-width: 780px; margin: 0 auto; }
+    .who-item { display: flex; gap: 12px; align-items: flex-start; background: var(--gray1); border-radius: 14px; padding: 18px 20px; font-size: .9rem; color: var(--t-soft); line-height: 1.6; word-break: keep-all; }
+    .who-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--lime); flex-shrink: 0; margin-top: 7px; }
+
+    /* STEPS */
+    #lc-how { background: var(--gray1); }
+    .lc-steps-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--gray2); border: 1px solid var(--gray2); max-width: 1040px; margin: 0 auto; }
+    .lc-step-card { background: var(--white); padding: 34px 28px; }
+    .lc-step-num { font-family: 'Inter',sans-serif; font-size: 1.5rem; font-weight: 900; color: var(--purple); display: block; margin-bottom: 12px; }
+    .lc-step-name { font-size: 1rem; font-weight: 800; margin-bottom: 8px; word-break: keep-all; }
+    .lc-step-desc { font-size: .84rem; color: var(--t-soft); line-height: 1.7; word-break: keep-all; }
+
+    /* CREATOR SCHOOL */
+    .school-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 28px; max-width: 780px; margin: 0 auto 32px; }
+    .school-item { display: flex; gap: 10px; font-size: .88rem; color: var(--t-soft); line-height: 1.6; word-break: keep-all; }
+    .school-item::before { content: '·'; color: var(--purple); font-weight: 900; }
+    .school-note { max-width: 640px; margin: 0 auto; background: var(--gray1); border-radius: 14px; padding: 22px 26px; font-size: .87rem; color: var(--t-soft); line-height: 1.7; text-align: center; word-break: keep-all; }
+    .school-note a { color: var(--purple); font-weight: 700; }
+
+    /* PUBLIC x PRIVATE */
+    #lc-pp { background: var(--black); color: var(--white); }
+    #lc-pp .eyebrow { color: var(--lime); }
+    #lc-pp .section-title { color: var(--white); }
+    .pp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 900px; margin: 44px auto 0; }
+    .pp-card { border-radius: 20px; padding: 36px 32px; }
+    .pp-public { background: rgba(211,244,90,.08); border: 1px solid rgba(211,244,90,.25); }
+    .pp-private { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.14); }
+    .pp-tag { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 800; letter-spacing: .16em; padding: 5px 12px; border-radius: 100px; display: inline-block; margin-bottom: 18px; }
+    .pp-public .pp-tag { background: var(--lime); color: var(--black); }
+    .pp-private .pp-tag { background: rgba(255,255,255,.12); color: var(--white); }
+    .pp-title { font-size: 1.2rem; font-weight: 800; line-height: 1.4; margin-bottom: 14px; word-break: keep-all; }
+    .pp-desc { font-size: .85rem; color: rgba(255,255,255,.55); line-height: 1.75; word-break: keep-all; }
+
+    /* AREA */
+    .area-pills { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 36px 0 18px; }
+    .area-pill { font-size: .85rem; font-weight: 700; padding: 10px 22px; border-radius: 100px; border: 1.5px solid var(--gray2); color: var(--black); }
+    .area-note { text-align: center; font-size: .82rem; color: var(--t-muted); }
+
+    /* FAQ */
+    #lc-faq { background: var(--gray1); }
+    .faq-list { max-width: 640px; margin: 40px auto 0; display: flex; flex-direction: column; gap: 10px; }
+    .faq-item { background: var(--white); border-radius: 14px; overflow: hidden; border: 1px solid var(--gray2); }
+    .faq-item summary { list-style: none; cursor: pointer; padding: 20px 24px; font-size: .92rem; font-weight: 700; display: flex; justify-content: space-between; align-items: center; gap: 12px; word-break: keep-all; }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after { content: '+'; font-family: 'Inter',sans-serif; font-size: 18px; color: var(--coral); font-weight: 700; transition: transform .2s; flex-shrink: 0; }
+    .faq-item[open] summary::after { transform: rotate(45deg); }
+    .faq-a { padding: 0 24px 20px; font-size: .85rem; color: var(--t-soft); line-height: 1.75; word-break: keep-all; }
+
+    /* FINAL CTA + FORM */
+    #lc-apply { padding: 100px 80px 120px; }
+    .apply-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; max-width: 1040px; margin: 0 auto; }
+    .apply-title { font-size: clamp(1.7rem,3vw,2.4rem); font-weight: 900; line-height: 1.32; letter-spacing: -.025em; margin-bottom: 16px; word-break: keep-all; }
+    .apply-title .c-purple { color: var(--purple); }
+    .apply-sub { font-size: .92rem; color: var(--t-soft); line-height: 1.8; word-break: keep-all; }
+    .field { margin-bottom: 16px; }
+    .field label { display: block; font-size: .82rem; font-weight: 700; margin-bottom: 7px; }
+    .field .opt { color: var(--t-muted); font-weight: 500; }
+    .field input, .field select, .field textarea { width: 100%; border: 1.5px solid var(--gray2); border-radius: 10px; padding: 13px 14px; font-family: inherit; font-size: .92rem; background: var(--white); color: var(--black); }
+    .field textarea { min-height: 90px; resize: vertical; }
+    .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--purple); }
+    .submit-btn { width: 100%; background: var(--black); color: var(--white); font-size: .95rem; font-weight: 700; padding: 15px; border: none; border-radius: 100px; cursor: pointer; transition: opacity .2s; margin-top: 6px; }
+    .submit-btn:hover { opacity: .85; }
+    .submit-btn:disabled { opacity: .5; cursor: default; }
+    #lc-form-success { display: none; text-align: center; padding: 48px 24px; background: var(--gray1); border-radius: 16px; }
+    .success-title { font-size: 1.05rem; font-weight: 800; margin-bottom: 8px; }
+    .success-sub { font-size: .85rem; color: var(--t-soft); line-height: 1.7; }
+    .apply-cross { margin-top: 24px; font-size: .85rem; color: var(--t-muted); }
+    .apply-cross a { color: var(--purple); font-weight: 700; }
+
+    /* FOOTER (index.html과 동일 컴포넌트) */
+    #footer { background: var(--black); padding: 0; border-top: 1px solid rgba(255,255,255,.08); }
+    .footer-top { display: flex; justify-content: space-between; align-items: center; padding: 32px 80px; flex-wrap: wrap; gap: 16px; }
+    .footer-logo { font-family: 'Inter',sans-serif; font-size: 15px; font-weight: 800; letter-spacing: .06em; color: #fff; }
+    .footer-tagline { font-size: 10px; color: rgba(255,255,255,.25); letter-spacing: .14em; margin-top: 6px; }
+    .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-links a { font-size: 11px; font-weight: 500; letter-spacing: .1em; color: rgba(255,255,255,.3); text-transform: uppercase; }
+    .footer-links a:hover { color: rgba(255,255,255,.8); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding: 20px 80px 36px; flex-wrap: wrap; gap: 12px; }
+    .footer-copy { font-size: 10px; color: rgba(255,255,255,.15); letter-spacing: .06em; line-height: 1.8; }
+    .footer-gradbar { width: 100px; height: 2px; border-radius: 2px; background: linear-gradient(90deg,#D3F45A,#7B61FF,#4DE7FF); }
+
+    @media (max-width: 1024px) {
+      #nav { padding: 0 32px; }
+      #lc-hero { padding: 80px 48px 72px; }
+      section.block { padding: 72px 48px; }
+      #lc-apply { padding: 80px 48px 96px; }
+      .footer-top { padding: 32px 48px; }
+      .footer-bottom { padding: 20px 48px 28px; }
+      .why-flow { grid-template-columns: 1fr; }
+      .why-arrow { transform: rotate(90deg); justify-self: center; }
+    }
+    @media (max-width: 768px) {
+      #nav { padding: 0 20px; }
+      .nav-menu, .nav-actions .nav-cta { display: none; }
+      .nav-burger { display: flex; }
+      #lc-hero { padding: 100px 24px 56px; }
+      .lc-hero-mark { width: 240px; height: 240px; right: -40px; top: -20px; }
+      section.block { padding: 56px 24px; }
+      .who-grid, .school-grid, .pp-grid, .apply-wrap { grid-template-columns: 1fr; }
+      .lc-steps-grid { grid-template-columns: 1fr; }
+      #lc-apply { padding: 64px 24px 80px; }
+      .footer-top, .footer-bottom { padding: 24px; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<header id="nav">
+  <a href="index.html" class="nav-logo">
+    <svg width="30" height="30" viewBox="0 0 34 34" fill="none">
+      <circle cx="10" cy="9.5" r="4.5" fill="#D3F45A"/>
+      <path d="M17 5 L28 5 L28 20" stroke="#7B61FF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M6.5 21 Q10.5 29.5 20 27" stroke="#111111" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+    </svg>
+    <span class="nav-logo-text">FINDIER LAB</span>
+  </a>
+  <ul class="nav-menu">
+    <li><a href="service.html">SERVICE</a></li>
+    <li><a href="works.html">PORTFOLIO</a></li>
+    <li><a href="local-business.html">FINDIER LOCAL</a></li>
+    <li><a href="about.html">ABOUT</a></li>
+    <li><a href="contact.html">CONTACT</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="#apply" class="nav-cta"><span class="nav-cta-dot"></span>크리에이터 지원하기</a>
+    <button class="nav-burger" id="navBurger" aria-label="메뉴"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<div id="mobileMenu">
+  <a href="index.html" class="mob-link">FINDIER LAB 홈</a>
+  <a href="local-business.html" class="mob-link">사장님이신가요?</a>
+  <a href="about.html" class="mob-link">ABOUT</a>
+  <a href="contact.html" class="mob-link">CONTACT</a>
+  <a href="#apply" class="mob-cta">크리에이터 지원하기</a>
+</div>
+
+<main>
+
+  <!-- 01 HERO -->
+  <section id="lc-hero">
+    <svg class="lc-hero-mark" viewBox="0 0 34 34" fill="none" aria-hidden="true">
+      <circle cx="10" cy="9.5" r="4.5" fill="#D3F45A"/>
+      <path d="M17 5 L28 5 L28 20" stroke="#7B61FF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M6.5 21 Q10.5 29.5 20 27" stroke="#111111" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+    </svg>
+    <div class="lc-hero-inner">
+      <p class="eyebrow">FINDIER LOCAL · CREATOR</p>
+      <h1 class="lc-hero-headline">당신이 직접 경험한<br>우리 동네를 기록해주세요.</h1>
+      <p class="lc-hero-body">
+        AI가 글을 쓰는 시대, 사람의 경험은 더 중요해집니다.<br>
+        <strong>파인디어랩은 부산·경남의 가게와 공간을 직접 경험하고 자신의 언어로 기록할<br>지역 크리에이터</strong>를 모집합니다.
+      </p>
+      <a href="#apply" class="btn-primary">지역 크리에이터 지원하기 →</a>
+      <span class="lc-hero-cross">사장님이신가요? <a href="local-business.html">사업자용 페이지 보기 →</a></span>
+    </div>
+  </section>
+
+  <!-- 02 WHY NOW -->
+  <section class="block fade" id="why">
+    <div class="block-head">
+      <p class="eyebrow" style="text-align:center;">WHY NOW</p>
+      <h2 class="section-title">왜 지금, 지역 크리에이터인가요?</h2>
+    </div>
+    <p class="block-lede">
+      AI가 수많은 콘텐츠를 만들어내는 시대, 우리가 필요한 것은 더 많은 글이 아니라<br>
+      사람이 직접 보고, 먹고, 사용하고, 느낀 실제 경험입니다.
+    </p>
+    <div class="why-flow">
+      <div class="why-step"><p class="why-step-label">AI 콘텐츠<br>증가</p></div>
+      <span class="why-arrow">→</span>
+      <div class="why-step"><p class="why-step-label">비슷한 정보,<br>재가공 콘텐츠 증가</p></div>
+      <span class="why-arrow">→</span>
+      <div class="why-step"><p class="why-step-label">직접 경험한 사람의<br>정보 가치 증가</p></div>
+    </div>
+  </section>
+
+  <!-- 03 WHO -->
+  <section class="block fade" style="background:var(--gray1);" id="who">
+    <div class="block-head">
+      <p class="eyebrow" style="text-align:center;">WHO</p>
+      <h2 class="section-title">잘 쓰는 사람이 아니라,<br>직접 경험하는 사람</h2>
+    </div>
+    <ul class="who-grid">
+      <li class="who-item"><span class="who-dot"></span>우리 동네의 좋은 가게를 발견하는 것을 좋아하는 사람</li>
+      <li class="who-item"><span class="who-dot"></span>블로그·SNS에 자신의 경험을 기록하고 싶은 사람</li>
+      <li class="who-item"><span class="who-dot"></span>사진이나 영상 기록을 좋아하는 사람</li>
+      <li class="who-item"><span class="who-dot"></span>지역 콘텐츠 제작을 배워보고 싶은 사람</li>
+      <li class="who-item" style="grid-column:1 / -1;"><span class="who-dot"></span>이제 막 블로그·SNS를 시작한 사람도 좋습니다 — 팔로워 수보다 관찰력과 진심을 봅니다</li>
+    </ul>
+  </section>
+
+  <!-- 04 HOW IT WORKS -->
+  <section class="block fade" id="lc-how">
+    <div class="block-head">
+      <p class="eyebrow" style="text-align:center;">HOW IT WORKS</p>
+      <h2 class="section-title">배우고 → 경험하고 → 기록하고<br>→ 성장합니다.</h2>
+    </div>
+    <div class="lc-steps-grid">
+      <div class="lc-step-card"><span class="lc-step-num">01</span><p class="lc-step-name">Local Creator 교육</p><p class="lc-step-desc">경험을 관찰하고 기록하는 방법을 배웁니다.</p></div>
+      <div class="lc-step-card"><span class="lc-step-num">02</span><p class="lc-step-name">지역 캠페인 참여</p><p class="lc-step-desc">지역·관심사에 맞는 캠페인에 참여합니다.</p></div>
+      <div class="lc-step-card"><span class="lc-step-num">03</span><p class="lc-step-name">직접 방문·경험</p><p class="lc-step-desc">손님의 입장에서 실제로 방문하고 사용합니다.</p></div>
+      <div class="lc-step-card"><span class="lc-step-num">04</span><p class="lc-step-name">Public Content 작성</p><p class="lc-step-desc">실제 경험을 바탕으로 콘텐츠를 남깁니다.</p></div>
+      <div class="lc-step-card"><span class="lc-step-num">05</span><p class="lc-step-name">Private Note 작성</p><p class="lc-step-desc">사장님에게만 전하는 솔직한 경험을 기록합니다.</p></div>
+      <div class="lc-step-card"><span class="lc-step-num">06</span><p class="lc-step-name">이력·포트폴리오 축적</p><p class="lc-step-desc">활동이 쌓일수록 나만의 포트폴리오가 됩니다.</p></div>
+    </div>
+  </section>
+
+  <!-- 05 CREATOR SCHOOL -->
+  <section class="block fade" id="school">
+    <div class="block-head">
+      <p class="eyebrow" style="text-align:center;">CREATOR SCHOOL</p>
+      <h2 class="section-title">파인디어랩은 Local Creator를<br>직접 양성합니다.</h2>
+    </div>
+    <p class="block-lede" style="margin-bottom:32px;">단순히 블로그 상위노출 방법을 가르치는 교육이 아닙니다.</p>
+    <ul class="school-grid">
+      <li class="school-item">경험을 관찰하는 방법</li>
+      <li class="school-item">자신의 언어로 기록하는 방법</li>
+      <li class="school-item">사진·영상으로 경험을 남기는 방법</li>
+      <li class="school-item">사실과 의견을 구분하는 방법</li>
+      <li class="school-item">과장하지 않는 콘텐츠 작성</li>
+      <li class="school-item">광고·협찬 콘텐츠 기본 윤리</li>
+      <li class="school-item">사업자에게 도움이 되는 Experience Note 작성</li>
+      <li class="school-item">AI를 경험 대신이 아닌 정리·편집 보조도구로 쓰는 법</li>
+    </ul>
+    <p class="school-note">
+      교육 과정은 향후 소액 유료 프로그램으로 운영할 예정입니다.<br>
+      정확한 일정과 비용은 아직 확정 전이며, <a href="#apply">1기 모집 소식은 사전 신청</a>으로 가장 먼저 받아보실 수 있어요.
+    </p>
+  </section>
+
+  <!-- 06 PUBLIC x PRIVATE -->
+  <section class="block fade" id="lc-pp">
+    <div class="block-head">
+      <p class="eyebrow" style="text-align:center;">PUBLIC × PRIVATE</p>
+      <h2 class="section-title">하나의 경험으로,<br>두 가지를 남깁니다.</h2>
+    </div>
+    <div class="pp-grid">
+      <div class="pp-card pp-public">
+        <span class="pp-tag">PUBLIC</span>
+        <p class="pp-title">사람들에게 보여주는<br>나의 실제 경험</p>
+        <p class="pp-desc">블로그·Instagram 등에 공개되는 콘텐츠. 실제 경험을 기반으로, 나만의 언어로 씁니다. 협찬·제공 사실은 명확하게 표시합니다.</p>
+      </div>
+      <div class="pp-card pp-private">
+        <span class="pp-tag">PRIVATE</span>
+        <p class="pp-title">사장님에게만 전달하는<br>나의 솔직한 경험</p>
+        <p class="pp-desc">공개 콘텐츠에서는 말하기 어려운 솔직한 의견. 접근성, 첫인상, 서비스, 가격 체감처럼 사장님께 실제로 도움이 되는 기록입니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 AREA -->
+  <section class="block fade" id="area">
+    <div class="block-head">
+      <p class="eyebrow" style="text-align:center;">AREA</p>
+      <h2 class="section-title">초기 활동 지역</h2>
+    </div>
+    <div class="area-pills">
+      <span class="area-pill">양산</span>
+      <span class="area-pill">부산</span>
+      <span class="area-pill">김해</span>
+      <span class="area-pill">창원</span>
+      <span class="area-pill">부산·경남권 인근</span>
+    </div>
+    <p class="area-note">활동 지역은 앞으로 더 넓어질 예정입니다.</p>
+  </section>
+
+  <!-- 08 FAQ -->
+  <section class="block fade" id="lc-faq">
+    <div class="block-head">
+      <p class="eyebrow" style="text-align:center;">FAQ</p>
+      <h2 class="section-title">자주 묻는 질문</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>블로그를 처음 시작해도 되나요?</summary>
+        <p class="faq-a">네. 팔로워 수나 경력보다 관찰력과 기록하려는 마음을 봅니다. 이제 막 시작한 분도 지원할 수 있습니다.</p>
+      </details>
+      <details class="faq-item">
+        <summary>팔로워가 많아야 하나요?</summary>
+        <p class="faq-a">아니요. Findier Local Creator는 영향력보다 관찰력·기록력·신뢰성·지역 이해도를 우선 기준으로 봅니다.</p>
+      </details>
+      <details class="faq-item">
+        <summary>체험비가 있나요?</summary>
+        <p class="faq-a">캠페인마다 다를 수 있습니다. 세부 조건은 초기 운영 정책에 따라 안내드릴 예정입니다.</p>
+      </details>
+      <details class="faq-item">
+        <summary>교육은 어떻게 진행되나요?</summary>
+        <p class="faq-a">Creator School을 통해 경험 관찰·기록·콘텐츠 작성법 등을 배웁니다. 구체적인 일정은 1기 모집 시 함께 안내드립니다.</p>
+      </details>
+      <details class="faq-item">
+        <summary>어떤 지역에서 활동하나요?</summary>
+        <p class="faq-a">현재는 양산·부산·김해·창원 등 부산·경남권을 중심으로 시작하며, 앞으로 활동 지역을 넓혀갈 예정입니다.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Private Note는 공개되나요?</summary>
+        <p class="faq-a">아니요. Private Note는 해당 사업자에게만 전달되는 비공개 기록입니다. 외부에 공개되지 않습니다.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- 09 FINAL CTA + FORM -->
+  <section id="lc-apply" class="fade">
+    <div class="apply-wrap">
+      <div>
+        <p class="eyebrow">JOIN US</p>
+        <h2 class="apply-title">우리 동네를 경험하는 사람이,<br><span class="c-purple">우리 동네의 이야기</span>를 만듭니다.</h2>
+        <p class="apply-sub">지금 신청해주시면 Creator School 1기 모집과 가까운 캠페인 소식을 가장 먼저 전해드립니다.</p>
+      </div>
+      <div>
+        <form id="lc-form" novalidate>
+          <input type="hidden" name="_subject" value="FINDIER LOCAL 크리에이터 지원">
+          <div class="field">
+            <label>이름</label>
+            <input type="text" name="name" placeholder="이름" required>
+          </div>
+          <div class="field">
+            <label>연락처</label>
+            <input type="text" name="contact" placeholder="010-0000-0000 또는 이메일" required>
+          </div>
+          <div class="field">
+            <label>활동 희망 지역</label>
+            <select name="area" required>
+              <option value="">선택해주세요</option>
+              <option>양산</option>
+              <option>부산</option>
+              <option>김해</option>
+              <option>창원</option>
+              <option>기타</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>SNS·블로그 링크 <span class="opt">(선택)</span></label>
+            <input type="text" name="link" placeholder="있다면 남겨주세요">
+          </div>
+          <div class="field">
+            <label>한마디 <span class="opt">(선택)</span></label>
+            <textarea name="message" placeholder="지원 동기나 하고 싶은 이야기를 자유롭게 적어주세요."></textarea>
+          </div>
+          <button type="submit" class="submit-btn">지역 크리에이터 지원하기</button>
+        </form>
+        <div id="lc-form-success">
+          <p class="success-title">지원이 접수되었습니다.</p>
+          <p class="success-sub">확인 후 순차적으로 연락드리겠습니다.</p>
+        </div>
+        <p class="apply-cross">사장님이신가요? <a href="local-business.html">사업자용 페이지에서 파일럿 캠페인 상담하기 →</a></p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="footer">
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">FINDIER LAB</div>
+      <div class="footer-tagline">LOCAL BRAND RESEARCH &amp; BUILDING LAB</div>
+    </div>
+    <div class="footer-links">
+      <a href="index.html">HOME</a>
+      <a href="local-business.html">FINDIER LOCAL · BUSINESS</a>
+      <a href="about.html">ABOUT</a>
+      <a href="contact.html">CONTACT</a>
+      <a href="https://instagram.com/findier.lab" target="_blank">@INSTAGRAM</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">
+      <div>FINDIER LAB &nbsp;|&nbsp; 대표 박지민 &nbsp;|&nbsp; 사업자등록번호 496-06-03651 &nbsp;|&nbsp; findierlab@gmail.com</div>
+      <div>경상남도 양산시 명곡로 321, 3층 2308호 (명곡동, 동원과학기술대학교 창업보육센터)</div>
+      © 2026 FINDIER LAB. All rights reserved.
+    </div>
+    <div class="footer-gradbar"></div>
+  </div>
+</footer>
+
+<script>
+const fader = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -48px 0px' });
+document.querySelectorAll('.fade').forEach(el => fader.observe(el));
+</script>
+<script>
+(function(){var b=document.getElementById('navBurger'),m=document.getElementById('mobileMenu');if(!b)return;b.addEventListener('click',function(){b.classList.toggle('open');m.classList.toggle('open');document.body.style.overflow=m.classList.contains('open')?'hidden':'';});})();
+</script>
+<script>
+document.getElementById('lc-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const fields = this.querySelectorAll('[required]');
+  let valid = true;
+  fields.forEach(f => { f.style.borderColor = ''; if (!f.value.trim()) { f.style.borderColor = '#FF6B6B'; valid = false; } });
+  if (!valid) return;
+
+  const btn = this.querySelector('.submit-btn');
+  btn.textContent = '전송 중…';
+  btn.disabled = true;
+
+  try {
+    const res = await fetch('https://formspree.io/f/xojojwog', {
+      method: 'POST',
+      body: new FormData(this),
+      headers: { 'Accept': 'application/json' }
+    });
+    if (res.ok) {
+      document.getElementById('lc-form').style.display = 'none';
+      document.getElementById('lc-form-success').style.display = 'block';
+      document.getElementById('lc-form-success').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } else {
+      btn.textContent = '지역 크리에이터 지원하기';
+      btn.disabled = false;
+      alert('전송 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
+    }
+  } catch {
+    btn.textContent = '지역 크리에이터 지원하기';
+    btn.disabled = false;
+    alert('네트워크 오류입니다. 잠시 후 다시 시도해주세요.');
+  }
+});
+</script>
+</body>
+</html>
