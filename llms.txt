@@ -1,6 +1,6 @@
 # FINDIER LAB
 
-> FINDIER LAB은 스타트업/초기 창업자를 위한 브랜드 리서치 & 빌딩 랩입니다. 대표의 생각을 브랜드·운영·실행 구조로 번역합니다. 로고나 광고 대행이 아니라, 대표 없이도 유지되는 브랜드 구조를 만드는 것을 목표로 합니다.
+> FINDIER LAB은 양산·부산·경남 지역 가게를 위한 블로그 운영·로컬 마케팅 랩입니다. 검색과 AI가 참고할 수 있는 가게의 진짜 정보를 꾸준히 쌓고, 지역 크리에이터가 직접 경험한 것으로 다시 확인합니다.
 
 대표: 박지민
 연락처: findierlab@gmail.com
@@ -8,22 +8,23 @@
 웹사이트: https://findierlab.com
 
 ## 핵심 철학
-- 브랜드는 감성이 아니라 구조다.
-- AI는 사람의 판단을 대체하지 않는다. AI는 실행을 돕는 도구다.
-- 로고부터 만들지 않는다. 대표의 언어와 생각을 먼저 발견한다.
+- 더 많은 광고보다, 더 많은 진짜 정보를 남기는 것.
+- AI는 콘텐츠 제작을 돕는 도구다. 판단과 경험은 사람이 한다.
+- 콘텐츠는 많다고 되는 게 아니다. 가게를 제대로 설명하는 정보가 쌓여야 한다.
 
 ## 서비스
-- [브랜드(Brand)](https://findierlab.com/service.html): 철학·세계관·언어·네이밍·VI
-- [시스템(System)](https://findierlab.com/service.html): 홈페이지 구조·카피·UI·SEO/GEO
-- [콘텐츠(Content)](https://findierlab.com/service.html): 콘텐츠 전략·SNS·발행 자동화
+- [가게 블로그 운영](https://findierlab.com/for-business/#blog): 메뉴·공간·주차·이용방법·고객 질문까지, 검색과 AI가 참고할 가게 정보를 꾸준히 기록
+- [지역 크리에이터](https://findierlab.com/creator/): 부산·경남 지역 크리에이터가 실제 방문·경험하고 기록, 사장님 전용 비공개 경험노트 제공
+- [교육·컨설팅](https://findierlab.com/education/): 소상공인 AI 마케팅 교육·실습형 워크숍·1:1 컨설팅
 
 ## 주요 페이지
-- [홈](https://findierlab.com/index.html)
-- [서비스](https://findierlab.com/service.html)
-- [포트폴리오](https://findierlab.com/works.html)
-- [프로세스](https://findierlab.com/process.html)
-- [소개](https://findierlab.com/about.html)
-- [문의](https://findierlab.com/contact.html)
+- [홈](https://findierlab.com/)
+- [사업자](https://findierlab.com/for-business/)
+- [크리에이터](https://findierlab.com/creator/)
+- [교육·컨설팅](https://findierlab.com/education/)
+- [회사소개](https://findierlab.com/about/)
+- [사례](https://findierlab.com/cases/)
+- [문의](https://findierlab.com/contact/)
 
 ## 무료 자료 (실무 가이드)
 - [브랜드 자가진단](https://findierlab.com/diagnose.html)
